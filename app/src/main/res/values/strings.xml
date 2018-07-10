@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">OGE_App</string>
+
+    <string name="oge_main_screen">ОГЭ</string>
+    <string name="english">English</string>
+    <string name="trainings">Тренировки</string>
+    <string name="variants">Варианты</string>
+    <string name="theory">Теория</string>
+</resources>
