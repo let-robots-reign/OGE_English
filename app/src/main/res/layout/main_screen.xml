@@ -104,4 +104,24 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/user_icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="13dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="13dp"
+        app:srcCompat="@drawable/ic_user"/>
+
+    <ImageView
+        android:id="@+id/settings_icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="13dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="13dp"
+        app:srcCompat="@drawable/ic_settings"/>
+
 </RelativeLayout>
