@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="10dp"
+    android:background="@color/colorPrimaryLight">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/training_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="12dp"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+
+            <ImageView
+                android:id="@+id/training_icon"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                tools:srcCompat="@drawable/ic_audio" />
+
+            <TextView
+                android:id="@+id/training_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/training_icon"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="16sp"
+                app:fontFamily="@font/merriweather_bold"
+                tools:text="@string/audio" />
+
+            <TextView
+                android:id="@+id/progress"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/training_icon"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:gravity="end"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"
+                app:fontFamily="@font/merriweather_bold"
+                tools:text="@string/progress" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="100dp"
+                android:layout_height="5dp"
+                android:layout_below="@+id/progress"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="42"
+                android:progressDrawable="@drawable/progress_bar"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
