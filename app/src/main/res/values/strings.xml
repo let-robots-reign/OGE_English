@@ -17,4 +17,8 @@
 
     <string name="cards_watched">просмотрено 24/42</string>
 
+    <string name="variant">Вариант 1</string>
+    <string name="solved">решено</string>
+    <string name="not_solved">не решено</string>
+
 </resources>

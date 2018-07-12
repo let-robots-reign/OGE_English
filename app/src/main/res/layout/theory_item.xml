@@ -26,7 +26,7 @@
                 android:layout_height="64dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                tools:srcCompat="@drawable/ic_audio" />
+                tools:srcCompat="@drawable/ic_audio"/>
 
             <TextView
                 android:id="@+id/theory_card_name"
