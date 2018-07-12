@@ -44,68 +44,49 @@
         android:textStyle="bold"
         android:gravity="center_horizontal"/>
 
-    <RelativeLayout
+    <Button
         android:layout_width="187dp"
         android:layout_height="47dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="171dp"
-        android:background="@drawable/layout_bg">
+        android:background="@drawable/layout_bg"
+        android:id="@+id/training"
+        android:text="@string/trainings"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="24sp"
+        app:fontFamily="@font/lobster"
+        android:textAllCaps="false"
+        android:gravity="center"/>
 
-        <TextView
-            android:id="@+id/training"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:text="@string/trainings"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="24sp"
-            app:fontFamily="@font/lobster"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <Button
         android:layout_width="187dp"
         android:layout_height="47dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="240dp"
-        android:background="@drawable/layout_bg">
+        android:background="@drawable/layout_bg"
+        android:id="@+id/variants"
+        android:text="@string/variants"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="24sp"
+        android:textAllCaps="false"
+        android:gravity="center"
+        app:fontFamily="@font/lobster"/>
 
-        <TextView
-            android:id="@+id/variants"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:text="@string/variants"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="24sp"
-            app:fontFamily="@font/lobster"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <Button
         android:layout_width="187dp"
         android:layout_height="47dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="310dp"
-        android:background="@drawable/layout_bg">
-
-        <TextView
-            android:id="@+id/theory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:text="@string/theory"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="24sp"
-            app:fontFamily="@font/lobster"/>
-
-    </RelativeLayout>
+        android:background="@drawable/layout_bg"
+        android:id="@+id/theory"
+        android:gravity="center"
+        android:text="@string/theory"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="24sp"
+        android:textAllCaps="false"
+        app:fontFamily="@font/lobster"/>
 
     <ImageView
         android:id="@+id/user_icon"

@@ -1,20 +1,22 @@
 package com.eduapps.edumage.oge_app;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
 
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TrainingsViewHolder>{
+public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.TrainingsViewHolder> {
     List<Training> trainings;
 
-    RVAdapter(List<Training> trainings){
+    RVTrainingsAdapter(List<Training> trainings){
         this.trainings = trainings;
     }
 
@@ -22,6 +24,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TrainingsViewHolde
         CardView training;
         TextView trainingName;
         TextView progress;
+        ProgressBar progressBar;
         ImageView trainingIcon;
 
         TrainingsViewHolder(View itemView) {
@@ -29,6 +32,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TrainingsViewHolde
             training = itemView.findViewById(R.id.training_page);
             trainingName = itemView.findViewById(R.id.training_name);
             progress = itemView.findViewById(R.id.progress);
+            progressBar = itemView.findViewById(R.id.progress_bar);
             trainingIcon = itemView.findViewById(R.id.training_icon);
         }
     }
@@ -38,21 +42,30 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.TrainingsViewHolde
         return trainings.size();
     }
 
+    @NonNull
     @Override
-    public TrainingsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TrainingsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trainings_item, parent, false);
         return new TrainingsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(TrainingsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TrainingsViewHolder holder, int position) {
         holder.trainingName.setText(trainings.get(position).getTrainingName());
-        holder.progress.setText(trainings.get(position).getProgress());
+        if (trainings.get(position).getTrainingName() == R.string.individual) {
+            holder.trainingName.setTextSize(14);
+        }
+        // make a progress bar
+        String progress = "прогресс " + trainings.get(position).getProgress() + "%";
+        holder.progress.setText(progress);
+        holder.progressBar.setProgress(trainings.get(position).getProgress());
+        //
+
         holder.trainingIcon.setImageResource(trainings.get(position).getIconResource());
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 }

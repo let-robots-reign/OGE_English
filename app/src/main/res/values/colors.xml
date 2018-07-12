@@ -12,4 +12,6 @@
 
     <color name="shadow_gray">#40000000</color>
     <color name="light_gray">#90d3d3d3</color>
+
+    <color name="cards">#2e7d32</color>
 </resources>

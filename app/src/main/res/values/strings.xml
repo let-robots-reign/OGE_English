@@ -8,10 +8,13 @@
     <string name="variants">Варианты</string>
     <string name="theory">Теория</string>
 
-    <string name="individual">Индивидуальная тренировка</string>
+    <string name="individual">Индивидуальная</string>
     <string name="audio">Аудирование</string>
     <string name="reading">Чтение</string>
     <string name="use_of_english">Языковой материал</string>
     <string name="writing">Письмо</string>
     <string name="progress">прогресс 42%</string>
+
+    <string name="cards_watched">просмотрено 24/42</string>
+
 </resources>

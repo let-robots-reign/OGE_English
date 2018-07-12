@@ -23,13 +23,13 @@ public class TrainingsActivity extends AppCompatActivity {
         // collect all trainings in a list
         List<Training> trainings = new ArrayList<>();
 
-        trainings.add(new Training(R.string.individual, R.string.progress, R.drawable.ic_individual));
-        trainings.add(new Training(R.string.audio, R.string.progress, R.drawable.ic_audio));
-        trainings.add(new Training(R.string.reading, R.string.progress, R.drawable.ic_reading));
-        trainings.add(new Training(R.string.use_of_english, R.string.progress, R.drawable.ic_use_of_english));
-        trainings.add(new Training(R.string.writing, R.string.progress, R.drawable.ic_writing));
+        trainings.add(new Training(R.string.individual, 42, R.drawable.ic_individual));
+        trainings.add(new Training(R.string.audio, 12, R.drawable.ic_audio));
+        trainings.add(new Training(R.string.reading, 8, R.drawable.ic_reading));
+        trainings.add(new Training(R.string.use_of_english, 70, R.drawable.ic_use_of_english));
+        trainings.add(new Training(R.string.writing, 65, R.drawable.ic_writing));
 
-        RVAdapter adapter = new RVAdapter(trainings);
+        RVTrainingsAdapter adapter = new RVTrainingsAdapter(trainings);
         trainingsList.setAdapter(adapter);
     }
 }
