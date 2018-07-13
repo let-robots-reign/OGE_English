@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
     }
 
     public static class VariantsViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout layout;
         CardView variantCard;
         TextView variantNumber;
         TextView ifSolved;
@@ -26,6 +28,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
 
         VariantsViewHolder(View itemView) {
             super(itemView);
+            layout = itemView.findViewById(R.id.layout_variant_card);
             variantCard = itemView.findViewById(R.id.variant_card);
             variantNumber = itemView.findViewById(R.id.variant_card_name);
             ifSolved = itemView.findViewById(R.id.variant_solved);
@@ -56,6 +59,11 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
             holder.ifSolved.setText(R.string.not_solved);
         } else {
             holder.ifSolved.setText(R.string.solved);
+        }
+        // alter paddingBottom of the last element
+        if (variants.get(position).getVariantNumber() == 10) {
+            holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
+                    holder.layout.getPaddingRight(), 10);
         }
     }
 

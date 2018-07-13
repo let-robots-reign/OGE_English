@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
     }
 
     public static class TrainingsViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout layout;
         CardView training;
         TextView trainingName;
         TextView progress;
@@ -29,6 +31,7 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
 
         TrainingsViewHolder(View itemView) {
             super(itemView);
+            layout = itemView.findViewById(R.id.layout_trainings_card);
             training = itemView.findViewById(R.id.training_page);
             trainingName = itemView.findViewById(R.id.training_name);
             progress = itemView.findViewById(R.id.progress);
@@ -62,6 +65,11 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
         //
 
         holder.trainingIcon.setImageResource(trainings.get(position).getIconResource());
+        // alter paddingBottom of the last element
+        if (trainings.get(position).getTrainingName() == R.string.writing) {
+            holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
+                    holder.layout.getPaddingRight(), 10);
+        }
     }
 
     @Override
