@@ -61,7 +61,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
             holder.ifSolved.setText(R.string.solved);
         }
         // alter paddingBottom of the last element
-        if (position == getItemCount()) {
+        if (position == getItemCount() - 1) {
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
         }

@@ -1,8 +1,11 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 // import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +56,11 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TrainingsViewHolder holder, int position) {
+    public void onBindViewHolder(final @NonNull TrainingsViewHolder holder, int position) {
         holder.trainingName.setText(trainings.get(position).getTrainingName());
-        if (trainings.get(position).getTrainingName() == R.string.individual) {
-            holder.trainingName.setTextSize(14);
-        }
+//        if (trainings.get(position).getTrainingName() == R.string.individual) {
+//            holder.trainingName.setTextSize(14);
+//        }
         // make a progress bar
         String progress = "прогресс " + trainings.get(position).getProgress() + "%";
         holder.progress.setText(progress);
@@ -66,10 +69,38 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
 
         holder.trainingIcon.setImageResource(trainings.get(position).getIconResource());
         // alter paddingBottom of the last element
-        if (trainings.get(position).getTrainingName() == R.string.writing) {
+        if (position == getItemCount() - 1) {
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
         }
+
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int category = trainings.get(holder.getAdapterPosition()).getTrainingName();
+                Context context = holder.layout.getContext();
+                Intent intent;
+                switch (category) {
+                    case R.string.use_of_english:
+                        intent = new Intent(context, UoeActivity.class);
+                        context.startActivity(intent);
+                        break;
+                    case R.string.individual:
+                        intent = new Intent(context, IndividualActivity.class);
+                        context.startActivity(intent);
+                        break;
+                    case R.string.audio:
+                        intent = new Intent(context, AudioActivity.class);
+                        context.startActivity(intent);
+                    case R.string.reading:
+                        intent = new Intent(context, ReadingActivity.class);
+                        context.startActivity(intent);
+                    case R.string.writing:
+                        intent = new Intent(context, WritingActivity.class);
+                        context.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
