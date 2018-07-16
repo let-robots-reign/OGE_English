@@ -1,7 +1,7 @@
 package com.eduapps.edumage.oge_app;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
+// import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +21,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
 
     public static class VariantsViewHolder extends RecyclerView.ViewHolder {
         LinearLayout layout;
-        CardView variantCard;
+        // CardView variantCard;
         TextView variantNumber;
         TextView ifSolved;
         ImageView tick;
@@ -29,7 +29,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
         VariantsViewHolder(View itemView) {
             super(itemView);
             layout = itemView.findViewById(R.id.layout_variant_card);
-            variantCard = itemView.findViewById(R.id.variant_card);
+            // variantCard = itemView.findViewById(R.id.variant_card);
             variantNumber = itemView.findViewById(R.id.variant_card_name);
             ifSolved = itemView.findViewById(R.id.variant_solved);
             tick = itemView.findViewById(R.id.tick);
@@ -61,7 +61,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
             holder.ifSolved.setText(R.string.solved);
         }
         // alter paddingBottom of the last element
-        if (variants.get(position).getVariantNumber() == 10) {
+        if (position == getItemCount()) {
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
         }

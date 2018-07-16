@@ -1,14 +1,12 @@
 package com.eduapps.edumage.oge_app;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
+// import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,7 +21,7 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
     }
 
     public static class TheoryViewHolder extends RecyclerView.ViewHolder {
-        CardView theoryCard;
+        //  CardView theoryCard;
         TextView theoryCardName;
         TextView cardsWatched;
         ImageView theoryCardIcon;
@@ -31,7 +29,7 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
 
         TheoryViewHolder(View itemView) {
             super(itemView);
-            theoryCard = itemView.findViewById(R.id.theory_card);
+            // theoryCard = itemView.findViewById(R.id.theory_card);
             theoryCardName = itemView.findViewById(R.id.theory_card_name);
             cardsWatched = itemView.findViewById(R.id.cards_watched);
             theoryCardIcon = itemView.findViewById(R.id.theory_icon);

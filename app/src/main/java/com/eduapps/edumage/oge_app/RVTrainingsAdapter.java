@@ -1,7 +1,7 @@
 package com.eduapps.edumage.oge_app;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
+// import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +23,7 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
 
     public static class TrainingsViewHolder extends RecyclerView.ViewHolder {
         LinearLayout layout;
-        CardView training;
+        // CardView training;
         TextView trainingName;
         TextView progress;
         ProgressBar progressBar;
@@ -32,7 +32,7 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
         TrainingsViewHolder(View itemView) {
             super(itemView);
             layout = itemView.findViewById(R.id.layout_trainings_card);
-            training = itemView.findViewById(R.id.training_page);
+            // training = itemView.findViewById(R.id.training_page);
             trainingName = itemView.findViewById(R.id.training_name);
             progress = itemView.findViewById(R.id.progress);
             progressBar = itemView.findViewById(R.id.progress_bar);

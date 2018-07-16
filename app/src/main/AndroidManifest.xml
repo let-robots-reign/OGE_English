@@ -49,6 +49,56 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <activity
+            android:name=".UoeActivity"
+            android:label="@string/use_of_english"
+            android:parentActivityName=".TrainingsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TrainingsActivity" />
+        </activity>
+
+        <activity
+            android:name=".ReadingActivity"
+            android:label="@string/reading"
+            android:parentActivityName=".TrainingsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TrainingsActivity" />
+        </activity>
+
+        <activity
+            android:name=".AudioActivity"
+            android:label="@string/audio"
+            android:parentActivityName=".TrainingsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TrainingsActivity" />
+        </activity>
+
+        <activity
+            android:name=".WritingActivity"
+            android:label="@string/writing"
+            android:parentActivityName=".TrainingsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TrainingsActivity" />
+        </activity>
+
+        <activity
+            android:name=".IndividualActivity"
+            android:label="@string/individual"
+            android:parentActivityName=".TrainingsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TrainingsActivity" />
+        </activity>
     </application>
 
 </manifest>
