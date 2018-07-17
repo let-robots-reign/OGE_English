@@ -1,7 +1,8 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class RVUoeAdapter extends RecyclerView.Adapter<RVUoeAdapter.UoeViewHolder> {
+public class RVUoeTopicsAdapter extends RecyclerView.Adapter<RVUoeTopicsAdapter.UoeViewHolder> {
     List<UoeTopic> uoeTopicList;
 
-    RVUoeAdapter(List<UoeTopic> topicsList) {
+    RVUoeTopicsAdapter(List<UoeTopic> topicsList) {
         this.uoeTopicList = topicsList;
     }
 
@@ -44,12 +45,28 @@ public class RVUoeAdapter extends RecyclerView.Adapter<RVUoeAdapter.UoeViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UoeViewHolder holder, int position) {
+    public void onBindViewHolder(final @NonNull UoeViewHolder holder, int position) {
         holder.topicCardName.setText(uoeTopicList.get(position).getTopicName());
 
         if (position == getItemCount()) {
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
         }
+
+        holder.layout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Context context = holder.layout.getContext();
+                Intent intent;
+                switch(position) {
+                    case 0:
+                        intent = new Intent(context, UoeTaskActivity.class);
+                        // intent.putExtra("category", 0);
+                        context.startActivity(intent);
+                        break;
+                }
+            }
+        });
     }
 }

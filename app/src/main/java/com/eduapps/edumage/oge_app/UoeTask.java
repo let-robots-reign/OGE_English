@@ -1,14 +1,29 @@
 package com.eduapps.edumage.oge_app;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+public class UoeTask {
+    private int question;
+    private int origin;
+    private int answer;
 
-public class UoeTask extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.writing_task);
+    UoeTask(int question, int origin, int answer) {
+        this.question = question;
+        this.origin = origin;
+        this.answer = answer;
     }
+
+    public int getQuestion() {
+        return this.question;
+    }
+
+    public int getOrigin() {
+        return this.origin;
+    }
+
+    public int getAnswer() {
+        return this.answer;
+    }
+
+//    public void setCategory(int category) {
+//        this.category = category;
+//    }
 }

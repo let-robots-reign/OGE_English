@@ -61,6 +61,16 @@
         </activity>
 
         <activity
+            android:name=".UoeTaskActivity"
+            android:label="@string/topic1"
+            android:parentActivityName=".UoeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UoeActivity"/>
+        </activity>
+
+        <activity
             android:name=".ReadingTask"
             android:label="@string/reading"
             android:parentActivityName=".TrainingsActivity"

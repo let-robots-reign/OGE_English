@@ -28,6 +28,11 @@
 
     <!-- Use of English tasks list (will be replaced with DB soon -->
     <string name="uoe_task1">He was in the bathroom cleaning his ________ when he heard some unfamiliar voices from the veranda.</string>
+    <string name="uoe_origin1">TOOTH</string>
     <string name="uoe_answer1">TEETH</string>
+
+    <string name="uoe_task2">His ________ were wet and I gave him a pair of socks to change into. A cup of hot tea and some biscuits soon made the boy feel warm.</string>
+    <string name="uoe_origin2">FOOT</string>
+    <string name="uoe_answer2">FEET</string>
 
 </resources>

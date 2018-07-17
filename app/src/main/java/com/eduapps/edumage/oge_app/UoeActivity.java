@@ -28,7 +28,7 @@ public class UoeActivity extends AppCompatActivity {
         uoeTopics.add(new UoeTopic(R.string.topic2));
         uoeTopics.add(new UoeTopic(R.string.topic3));
 
-        RVUoeAdapter adapter = new RVUoeAdapter(uoeTopics);
+        RVUoeTopicsAdapter adapter = new RVUoeTopicsAdapter(uoeTopics);
         uoeTopicsList.setAdapter(adapter);
     }
 }
