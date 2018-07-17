@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,9 @@ import java.util.List;
 
 public class TrainingsActivity extends AppCompatActivity {
 
+    static Parcelable state;
+    LinearLayoutManager layoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +22,7 @@ public class TrainingsActivity extends AppCompatActivity {
         RecyclerView trainingsList = findViewById(R.id.trainings_list);
         // optimize recycler view for better performance
         trainingsList.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this);
         trainingsList.setLayoutManager(layoutManager);
         // collect all trainings in a list
         List<Training> trainings = new ArrayList<>();
@@ -31,5 +35,15 @@ public class TrainingsActivity extends AppCompatActivity {
 
         RVTrainingsAdapter adapter = new RVTrainingsAdapter(trainings);
         trainingsList.setAdapter(adapter);
+
+        if (state != null) {
+            layoutManager.onRestoreInstanceState(state);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        state = layoutManager.onSaveInstanceState();
+        super.onPause();
     }
 }

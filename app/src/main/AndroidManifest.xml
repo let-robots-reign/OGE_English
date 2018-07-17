@@ -61,7 +61,7 @@
         </activity>
 
         <activity
-            android:name=".ReadingActivity"
+            android:name=".ReadingTask"
             android:label="@string/reading"
             android:parentActivityName=".TrainingsActivity"
             android:theme="@style/AppTheme">
@@ -71,7 +71,7 @@
         </activity>
 
         <activity
-            android:name=".AudioActivity"
+            android:name=".AudioTask"
             android:label="@string/audio"
             android:parentActivityName=".TrainingsActivity"
             android:theme="@style/AppTheme">
@@ -81,7 +81,7 @@
         </activity>
 
         <activity
-            android:name=".WritingActivity"
+            android:name=".WritingTask"
             android:label="@string/writing"
             android:parentActivityName=".TrainingsActivity"
             android:theme="@style/AppTheme">
@@ -91,7 +91,7 @@
         </activity>
 
         <activity
-            android:name=".IndividualActivity"
+            android:name=".IndividualTask"
             android:label="@string/individual"
             android:parentActivityName=".TrainingsActivity"
             android:theme="@style/AppTheme">

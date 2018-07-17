@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 // import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,27 +76,30 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int category = trainings.get(holder.getAdapterPosition()).getTrainingName();
+                int position = holder.getAdapterPosition();
                 Context context = holder.layout.getContext();
                 Intent intent;
-                switch (category) {
-                    case R.string.use_of_english:
+                switch (position) {
+                    case 0:
+                        intent = new Intent(context, IndividualTask.class);
+                        context.startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(context, AudioTask.class);
+                        context.startActivity(intent);
+                        break;
+                    case 2:
+                        intent = new Intent(context, ReadingTask.class);
+                        context.startActivity(intent);
+                        break;
+                    case 3:
                         intent = new Intent(context, UoeActivity.class);
                         context.startActivity(intent);
                         break;
-                    case R.string.individual:
-                        intent = new Intent(context, IndividualActivity.class);
+                    case 4:
+                        intent = new Intent(context, WritingTask.class);
                         context.startActivity(intent);
                         break;
-                    case R.string.audio:
-                        intent = new Intent(context, AudioActivity.class);
-                        context.startActivity(intent);
-                    case R.string.reading:
-                        intent = new Intent(context, ReadingActivity.class);
-                        context.startActivity(intent);
-                    case R.string.writing:
-                        intent = new Intent(context, WritingActivity.class);
-                        context.startActivity(intent);
                 }
             }
         });
