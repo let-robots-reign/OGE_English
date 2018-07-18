@@ -11,10 +11,17 @@ import java.util.List;
 
 public class UoeTaskActivity extends AppCompatActivity {
 
+    String[] answersTyped = new String[10];
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.uoe_tasks_page);
+
+
+        for (int i = 0; i < 10; i++) {
+            answersTyped[i] = "";
+        }
 
         RecyclerView uoeTasksList = findViewById(R.id.uoe_tasks_list);
 
@@ -51,7 +58,7 @@ public class UoeTaskActivity extends AppCompatActivity {
 //            tasks.add(generateRandomTask(category));
 //        }
 
-        RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks);
+        RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped);
         uoeTasksList.setAdapter(adapter);
     }
 
