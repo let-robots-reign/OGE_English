@@ -27,12 +27,49 @@
     <string name="topic3">Объектные местоимения</string>
 
     <!-- Use of English tasks list (will be replaced with DB soon -->
-    <string name="uoe_task1">He was in the bathroom cleaning his ________ when he heard some unfamiliar voices from the veranda.</string>
-    <string name="uoe_origin1">TOOTH</string>
-    <string name="uoe_answer1">TEETH</string>
 
-    <string name="uoe_task2">His ________ were wet and I gave him a pair of socks to change into. A cup of hot tea and some biscuits soon made the boy feel warm.</string>
-    <string name="uoe_origin2">FOOT</string>
-    <string name="uoe_answer2">FEET</string>
+    <!-- Topic #1 -->
+    <string name="uoe_topic1_task1">He was in the bathroom cleaning his ________ when he heard some unfamiliar voices from the veranda.</string>
+    <string name="uoe_topic1_origin1">TOOTH</string>
+    <string name="uoe_topic1_answer1">TEETH</string>
+
+    <string name="uoe_topic1_task2">His ________ were wet and I gave him a pair of socks to change into. A cup of hot tea and some biscuits soon made the boy feel warm.</string>
+    <string name="uoe_topic1_origin2">FOOT</string>
+    <string name="uoe_topic1_answer2">FEET</string>
+
+    <string name="uoe_topic1_task3">We arrived at the lake very early. It was cold but in spite of that there were several ________ there. Dad pulled our fishing rods out of the rucksack and we joined the others.</string>
+    <string name="uoe_topic1_origin3">MAN</string>
+    <string name="uoe_topic1_answer3">MEN</string>
+
+    <string name="uoe_topic1_task4">That was probably true - most ________ in Michael’s class were very competent computer users.</string>
+    <string name="uoe_topic1_origin4">CHILD</string>
+    <string name="uoe_topic1_answer4">CHILDREN</string>
+    
+    <string name="uoe_topic1_task5">I felt puzzled and didn’t know what to say. The two ________ at the bus stop looked amused at our conversation and didn’t hide their smiles.</string>
+    <string name="uoe_topic1_origin5">WOMAN</string>
+    <string name="uoe_topic1_answer5">WOMEN</string>
+
+    <string name="uoe_topic1_task6">She actually looked younger than other ________ of her age and that was probably because of her walking.</string>
+    <string name="uoe_topic1_origin6">WOMAN</string>
+    <string name="uoe_topic1_answer6">WOMEN</string>
+
+    <string name="uoe_topic1_task7">Anna was glad that the academic year was about to finish. Like most ________ she was looking forward to the summer but not because she wanted to relax.</string>
+    <string name="uoe_topic1_origin7">CHILD</string>
+    <string name="uoe_topic1_answer7">CHILDREN</string>
+
+    <string name="uoe_topic1_task8">One of the __________ called for the manager and complained.” Ted nervously turned back to his computer. “I didn’t like that job anyway.”</string>
+    <string name="uoe_topic1_origin8">WOMAN</string>
+    <string name="uoe_topic1_answer8">WOMEN</string>
+    
+    <string name="uoe_topic1_task9">My first impulse was to say “no” - unlike most ________ I hated shopping. But Kate sounded so unhappy that I felt sorry for her.</string>
+    <string name="uoe_topic1_origin9">WOMAN</string>
+    <string name="uoe_topic1_answer9">WOMEN</string>
+
+    <string name="uoe_topic1_task10">Mr. and Mrs. Wormwood were our neighbours. They had two ________.</string>
+    <string name="uoe_topic1_origin10">CHILD</string>
+    <string name="uoe_topic1_answer10">CHILDREN</string>
+
+    <!-- Topic #2 -->
+
 
 </resources>

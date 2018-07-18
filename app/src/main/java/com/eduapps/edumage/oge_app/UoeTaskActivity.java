@@ -25,31 +25,37 @@ public class UoeTaskActivity extends AppCompatActivity {
         List<UoeTask> tasks = new ArrayList<>();
 
         // retrieving the tasks' category passed from adapter class
-//        Bundle extras = getIntent().getExtras();
-//        int category = 0;
-//        if (extras != null) {
-//            category = extras.getInt("category");
-//        }
-//
+        Bundle extras = getIntent().getExtras();
+        int category = 0;
+        if (extras != null) {
+            category = extras.getInt("category");
+        }
+
+        if (category == 0) {
+            tasks.add(new UoeTask(R.string.uoe_topic1_task1, R.string.uoe_topic1_origin1, R.string.uoe_topic1_answer1));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task2, R.string.uoe_topic1_origin2, R.string.uoe_topic1_answer2));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task3, R.string.uoe_topic1_origin3, R.string.uoe_topic1_answer3));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task4, R.string.uoe_topic1_origin4, R.string.uoe_topic1_answer4));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task5, R.string.uoe_topic1_origin5, R.string.uoe_topic1_answer5));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task6, R.string.uoe_topic1_origin6, R.string.uoe_topic1_answer6));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task7, R.string.uoe_topic1_origin7, R.string.uoe_topic1_answer7));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task8, R.string.uoe_topic1_origin8, R.string.uoe_topic1_answer8));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task9, R.string.uoe_topic1_origin9, R.string.uoe_topic1_answer9));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task10, R.string.uoe_topic1_origin10, R.string.uoe_topic1_answer10));
+        } else if (category == 1) {
+            tasks.add(new UoeTask(R.string.uoe_topic1_task1, R.string.uoe_topic1_origin1, R.string.uoe_topic1_answer1));
+            tasks.add(new UoeTask(R.string.uoe_topic1_task2, R.string.uoe_topic1_origin2, R.string.uoe_topic1_answer2));
+        }
+
 //        for (int i = 1; i <= 2; i++) {
 //            tasks.add(generateRandomTask(category));
 //        }
-
-        tasks.add(new UoeTask(R.string.uoe_task1, R.string.uoe_origin1, R.string.uoe_answer1));
-        tasks.add(new UoeTask(R.string.uoe_task2, R.string.uoe_origin2, R.string.uoe_answer2));
 
         RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks);
         uoeTasksList.setAdapter(adapter);
     }
 
-    public UoeTask generateRandomTask(int i) {
+    public void generateRandomTask(int category) {
         // TODO: get tasks from DB
-        if (i == 1) {
-            return new UoeTask(R.string.uoe_task1, R.string.uoe_origin1, R.string.uoe_answer1);
-        } else if (i == 2) {
-            return new UoeTask(R.string.uoe_task2, R.string.uoe_origin2, R.string.uoe_answer2);
-        } else {
-            return null;
-        }
     }
 }

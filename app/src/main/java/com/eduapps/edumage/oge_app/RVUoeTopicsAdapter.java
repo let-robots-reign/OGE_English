@@ -62,7 +62,12 @@ public class RVUoeTopicsAdapter extends RecyclerView.Adapter<RVUoeTopicsAdapter.
                 switch(position) {
                     case 0:
                         intent = new Intent(context, UoeTaskActivity.class);
-                        // intent.putExtra("category", 0);
+                        intent.putExtra("category", 0);
+                        context.startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(context, UoeTaskActivity.class);
+                        intent.putExtra("category", 1);
                         context.startActivity(intent);
                         break;
                 }

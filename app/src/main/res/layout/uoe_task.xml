@@ -32,7 +32,7 @@
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 app:fontFamily="@font/roboto_regular"
-                tools:text="@string/uoe_task1"/>
+                tools:text="@string/uoe_topic1_task1"/>
 
             <EditText
                 android:id="@+id/uoe_answer"
@@ -41,7 +41,7 @@
                 android:layout_toRightOf="@id/uoe_task"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                tools:hint="@string/uoe_origin1"
+                tools:hint="@string/uoe_topic1_origin1"
                 android:inputType="textCapCharacters"
                 android:textSize="16sp"
                 android:textStyle="bold"

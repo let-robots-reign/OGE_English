@@ -62,6 +62,7 @@
 
         <activity
             android:name=".UoeTaskActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/topic1"
             android:parentActivityName=".UoeActivity"
             android:theme="@style/AppTheme">
