@@ -1,10 +1,15 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +28,13 @@ public class UoeTaskActivity extends AppCompatActivity {
             answersTyped[i] = "";
         }
 
-        RecyclerView uoeTasksList = findViewById(R.id.uoe_tasks_list);
+        final RecyclerView uoeTasksList = findViewById(R.id.uoe_tasks_list);
 
         uoeTasksList.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         uoeTasksList.setLayoutManager(layoutManager);
 
-        List<UoeTask> tasks = new ArrayList<>();
+        final List<UoeTask> tasks = new ArrayList<>();
 
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
@@ -58,8 +63,39 @@ public class UoeTaskActivity extends AppCompatActivity {
 //            tasks.add(generateRandomTask(category));
 //        }
 
-        RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped);
+        RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
         uoeTasksList.setAdapter(adapter);
+
+        Button exitButton = findViewById(R.id.exit_button);
+        Button submitButton = findViewById(R.id.submit_button);
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UoeTaskActivity.this, UoeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, true);
+                uoeTasksList.setAdapter(adapter);
+
+                String[] rightAnswersList = getResources().getStringArray(R.array.questions);
+
+                int rightAnswers = 0;
+                for (int i = 0; i < 10; i++) {
+                    if (answersTyped[i].equals(rightAnswersList[i])) {
+                        rightAnswers += 1;
+                    }
+                }
+
+                Toast.makeText(UoeTaskActivity.this, "You have " + rightAnswers + "/"
+                        + "10 right answers", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void generateRandomTask(int category) {

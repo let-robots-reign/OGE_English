@@ -1,24 +1,32 @@
 package com.eduapps.edumage.oge_app;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class RVUoeTasksAdapter extends RecyclerView.Adapter<RVUoeTasksAdapter.UoeTasksViewHolder> {
     private List<UoeTask> tasks;
     private String[] answersTyped;
+    private boolean ifCheck;
 
-    RVUoeTasksAdapter(List<UoeTask> tasks, String[] answers) {
+    RVUoeTasksAdapter(List<UoeTask> tasks, String[] answers, boolean check) {
+        this.ifCheck = check;
         this.tasks = tasks;
         this.answersTyped = answers;
     }
@@ -52,13 +60,20 @@ public class RVUoeTasksAdapter extends RecyclerView.Adapter<RVUoeTasksAdapter.Uo
 
     @Override
     public void onBindViewHolder(final @NonNull UoeTasksViewHolder holder, int position) {
-        //Log.v("RVUoeTasksAdapter", tasks.get(0).getQuestion() + " " + tasks.get(1).getQuestion());
-        //Log.v("RVUoeTasksAdapter", "" + position);
         holder.question.setText(tasks.get(position).getQuestion());
 
         holder.answer.setHint(tasks.get(position).getOrigin());
         holder.answer.setTextIsSelectable(false);
-        holder.layout.requestFocus();
+
+        /* if user tapped Submit, checking their answers */
+        if (ifCheck) {
+            if (answersTyped[position].equals(holder.answer.getContext().getString(tasks.get(position).getAnswer()))) {
+                holder.answer.setTextColor(holder.answer.getContext().getResources().getColor(R.color.right_answer));
+            } else {
+                holder.answer.setTextColor(holder.answer.getContext().getResources().getColor(R.color.wrong_answer));
+            }
+        }
+
         holder.answer.setText(answersTyped[position]);
 
         holder.answer.addTextChangedListener(new TextWatcher() {
@@ -70,11 +85,24 @@ public class RVUoeTasksAdapter extends RecyclerView.Adapter<RVUoeTasksAdapter.Uo
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 answersTyped[holder.getAdapterPosition()] = s.toString();
+                holder.answer.setTextColor(holder.answer.getContext().getResources().getColor(R.color.colorPrimaryText));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
 
+        holder.answer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!holder.answer.getText().toString().equals("cat")) {
+                        hideKeyboard(holder.answer.getContext(), holder.answer);
+                    }
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -82,5 +110,11 @@ public class RVUoeTasksAdapter extends RecyclerView.Adapter<RVUoeTasksAdapter.Uo
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
         }
+    }
+
+    private static void hideKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        //view.clearFocus();
     }
 }

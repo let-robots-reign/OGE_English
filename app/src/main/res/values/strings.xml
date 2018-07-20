@@ -21,6 +21,9 @@
     <string name="solved">решено</string>
     <string name="not_solved">не решено</string>
 
+    <string name="exit">Выход</string>
+    <string name="submit">Проверка</string>
+
     <!-- Use of English training section starts here -->
     <string name="topic1">Множественное число существительных</string>
     <string name="topic2">Порядковые числительные</string>

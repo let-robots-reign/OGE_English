@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="questions">
+        <item>TEETH</item>
+        <item>FEET</item>
+        <item>MEN</item>
+        <item>CHILDREN</item>
+        <item>WOMEN</item>
+        <item>WOMEN</item>
+        <item>CHILDREN</item>
+        <item>WOMEN</item>
+        <item>WOMEN</item>
+        <item>CHILDREN</item>
+    </string-array>
+</resources>
