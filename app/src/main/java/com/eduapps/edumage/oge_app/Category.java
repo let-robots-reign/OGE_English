@@ -1,9 +1,9 @@
 package com.eduapps.edumage.oge_app;
 
-public class UoeTopic {
+public class Category {
     private int topicName;
 
-    UoeTopic(int name) {
+    Category(int name) {
         this.topicName = name;
     }
 
