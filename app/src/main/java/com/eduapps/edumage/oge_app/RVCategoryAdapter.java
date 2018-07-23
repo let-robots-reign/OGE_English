@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,28 +56,34 @@ public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.Ca
                     holder.layout.getPaddingRight(), 10);
         }
 
+        Log.v("RVCategoryAdapter", String.valueOf(currentCategory));
         switch(currentCategory) {
+            case 0:
+                holder.layout.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        int position = holder.getAdapterPosition();
+                        Context context = holder.layout.getContext();
+                        Intent intent = new Intent(context, AudioTaskActivity.class);
+                        // transferring info about the chosen topic
+                        intent.putExtra("category", position);
+                        context.startActivity(intent);
+                    }
+                });
+                break;
             case 2:
                 holder.layout.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                         int position = holder.getAdapterPosition();
                         Context context = holder.layout.getContext();
-                        Intent intent;
-                        switch(position) {
-                            case 0:
-                                intent = new Intent(context, UoeTaskActivity.class);
-                                intent.putExtra("category", 0);
-                                context.startActivity(intent);
-                                break;
-                            case 1:
-                                intent = new Intent(context, UoeTaskActivity.class);
-                                intent.putExtra("category", 1);
-                                context.startActivity(intent);
-                                break;
-                        }
+                        Intent intent = new Intent(context, UoeTaskActivity.class);
+                        // transferring info about the chosen topic
+                        intent.putExtra("category", position);
+                        context.startActivity(intent);
                     }
                 });
+                break;
         }
 
     }

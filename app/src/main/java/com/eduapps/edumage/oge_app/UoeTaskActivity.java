@@ -43,6 +43,8 @@ public class UoeTaskActivity extends AppCompatActivity {
             category = extras.getInt("category");
         }
 
+        setTitle(getResources().getStringArray(R.array.uoe_topics)[category]);
+
         switch (category) {
             case 0:
                 tasks.add(new UoeTask(R.string.uoe_topic1_task1, R.string.uoe_topic1_origin1, R.string.uoe_topic1_answer1));
@@ -86,7 +88,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                 RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, true);
                 uoeTasksList.setAdapter(adapter);
 
-                String[] rightAnswersList = getResources().getStringArray(R.array.questions);
+                String[] rightAnswersList = getResources().getStringArray(R.array.uoe_answers);
 
                 int rightAnswers = 0;
                 for (int i = 0; i < 10; i++) {

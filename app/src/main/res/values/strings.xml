@@ -25,9 +25,9 @@
     <string name="submit">Проверка</string>
 
     <!-- Use of English training section starts here -->
-    <string name="topic1">Множественное число существительных</string>
-    <string name="topic2">Порядковые числительные</string>
-    <string name="topic3">Объектные местоимения</string>
+    <string name="uoe_topic1">Множественное число существительных</string>
+    <string name="uoe_topic2">Порядковые числительные</string>
+    <string name="uoe_topic3">Объектные местоимения</string>
 
     <!-- Use of English tasks list (will be replaced with DB soon -->
 
@@ -74,5 +74,10 @@
 
     <!-- Topic #2 -->
 
+
+    <!-- Audio topics -->
+    <string name="audio_topic1">Задание 1</string>
+    <string name="audio_topic2">Задание 2</string>
+    <string name="audio_topic3">Задания 3&#8211;8</string>
 
 </resources>

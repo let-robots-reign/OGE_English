@@ -24,9 +24,9 @@ public class UoeActivity extends AppCompatActivity {
 
         List<Category> categories = new ArrayList<>();
 
-        categories.add(new Category(R.string.topic1));
-        categories.add(new Category(R.string.topic2));
-        categories.add(new Category(R.string.topic3));
+        categories.add(new Category(R.string.uoe_topic1));
+        categories.add(new Category(R.string.uoe_topic2));
+        categories.add(new Category(R.string.uoe_topic3));
 
         RVCategoryAdapter adapter = new RVCategoryAdapter(categories, 2);
         uoeTopicsList.setAdapter(adapter);

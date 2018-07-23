@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="uoe_topics">
+        <item>Множественное число существительных</item>
+        <item>Порядковые числительные</item>
+        <item>Объектные местоимения</item>
+    </string-array>
+</resources>
