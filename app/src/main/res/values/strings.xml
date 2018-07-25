@@ -80,4 +80,7 @@
     <string name="audio_topic2">Задание 2</string>
     <string name="audio_topic3">Задания 3&#8211;8</string>
 
+    <!-- Audio tasks (Задание 1) -->
+    <string name="audio_topic1_task1">1. In a swimming pool\n2. In a street\n3. In a travel agency\n4. In a hotel\n5. On a bus excursion</string>
+
 </resources>

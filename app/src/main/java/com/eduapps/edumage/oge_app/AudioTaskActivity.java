@@ -23,7 +23,15 @@ public class AudioTaskActivity extends AppCompatActivity {
 
         String topic = getResources().getStringArray(R.array.audio_topics)[category];
         setTitle(topic);
-        TextView text = findViewById(R.id.audio_task);
-        text.setText(topic);
+
+        TextView question = findViewById(R.id.audio_question);
+        question.setText(R.string.audio_topic1_task1);
+
+//        switch(category) {
+//            case 0:
+//                TextView question = findViewById(R.id.audio_question);
+//                question.setText(R.string.audio_topic1_task1);
+//                break;
+//        }
     }
 }
