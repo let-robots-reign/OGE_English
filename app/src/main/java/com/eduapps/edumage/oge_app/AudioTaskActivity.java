@@ -80,7 +80,7 @@ public class AudioTaskActivity extends AppCompatActivity {
                     }
                 } else {
                     if (ifAudioPlaying) {
-                       setPauseMode();
+                        setPauseMode();
                     } else {
                         setPlayMode();
                     }
