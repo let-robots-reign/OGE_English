@@ -83,4 +83,8 @@
     <!-- Audio tasks (Задание 1) -->
     <string name="audio_topic1_task1">1. In a swimming pool\n2. In a street\n3. In a travel agency\n4. In a hotel\n5. On a bus excursion</string>
 
+    <!-- Audio tasks (Задание 2) -->
+    <string name="audio_topic2_task1">1. The speaker talks about an animal care organization.\n2. The speaker believes environmental education is very important.\n3. The speaker is against keeping exotic animals as pets.\n4. The speaker explains how to protect exotic animals.\n5. The speaker says that common animals are disappearing.\n6. The speaker talks about health reasons for keeping pets.
+</string>
+
 </resources>

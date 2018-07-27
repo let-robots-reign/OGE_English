@@ -41,7 +41,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.audio_task);
+        setContentView(R.layout.audio_tasks_1_2);
 
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
@@ -55,9 +55,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         String topic = getResources().getStringArray(R.array.audio_topics)[category];
         setTitle(topic);
 
-        // TODO: query from DB
-        //String currentQuestion = getRandomQuestion();
-        final int currentQuestion = R.string.audio_topic1_task1;
+        final int currentQuestion = getRandomQuestion(category);
         TextView question = findViewById(R.id.audio_question);
         question.setText(currentQuestion);
 
@@ -87,13 +85,6 @@ public class AudioTaskActivity extends AppCompatActivity {
                 }
             }
         });
-
-//        switch(category) {
-//            case 0:
-//                TextView question = findViewById(R.id.audio_question);
-//                question.setText(R.string.audio_topic1_task1);
-//                break;
-//        }
     }
 
     private void setPlayMode() {
@@ -113,6 +104,18 @@ public class AudioTaskActivity extends AppCompatActivity {
     private int getAudio(int question) {
         // TODO: query audio file from DB
         return R.raw.audio_topic1_task1;
+    }
+
+    private int getRandomQuestion(int category) {
+        // TODO: query question from DB
+        switch(category) {
+            case 0:
+                return R.string.audio_topic1_task1;
+            case 1:
+                return R.string.audio_topic2_task1;
+            default:
+                return 0;
+        }
     }
 
     private void releaseMediaPlayer() {
