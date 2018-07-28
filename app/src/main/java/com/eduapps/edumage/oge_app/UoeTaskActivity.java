@@ -14,9 +14,30 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UoeTaskActivity extends AppCompatActivity {
+public class UoeTaskActivity extends AppCompatActivity implements OnSubmitButtonClick {
 
     String[] answersTyped = new String[10];
+    private RVUoeTasksAdapter adapter;
+    List<UoeTask> tasks;
+    RecyclerView uoeTasksList;
+
+    @Override
+    public void onSubmitClick() {
+        RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(this, tasks, answersTyped, true);
+        uoeTasksList.setAdapter(adapter);
+
+        String[] rightAnswersList = getResources().getStringArray(R.array.uoe_answers);
+
+        int rightAnswers = 0;
+        for (int i = 0; i < 10; i++) {
+            if (answersTyped[i].equals(rightAnswersList[i])) {
+                rightAnswers += 1;
+            }
+        }
+
+        Toast.makeText(UoeTaskActivity.this, "You have " + rightAnswers + "/"
+                + "10 right answers", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,13 +49,13 @@ public class UoeTaskActivity extends AppCompatActivity {
             answersTyped[i] = "";
         }
 
-        final RecyclerView uoeTasksList = findViewById(R.id.uoe_tasks_list);
+        uoeTasksList = findViewById(R.id.uoe_tasks_list);
 
         uoeTasksList.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         uoeTasksList.setLayoutManager(layoutManager);
 
-        final List<UoeTask> tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
 
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
@@ -68,39 +89,39 @@ public class UoeTaskActivity extends AppCompatActivity {
 //            tasks.add(generateRandomTask(category));
 //        }
 
-        RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
+        adapter = new RVUoeTasksAdapter(this, tasks, answersTyped, false);
         uoeTasksList.setAdapter(adapter);
 
-        Button exitButton = findViewById(R.id.exit_button);
-        Button submitButton = findViewById(R.id.submit_button);
-
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UoeTaskActivity.this, UoeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, true);
-                uoeTasksList.setAdapter(adapter);
-
-                String[] rightAnswersList = getResources().getStringArray(R.array.uoe_answers);
-
-                int rightAnswers = 0;
-                for (int i = 0; i < 10; i++) {
-                    if (answersTyped[i].equals(rightAnswersList[i])) {
-                        rightAnswers += 1;
-                    }
-                }
-
-                Toast.makeText(UoeTaskActivity.this, "You have " + rightAnswers + "/"
-                        + "10 right answers", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        Button exitButton = findViewById(R.id.exit_button);
+//        Button submitButton = findViewById(R.id.submit_button);
+//
+//        exitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(UoeTaskActivity.this, UoeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, true);
+//                uoeTasksList.setAdapter(adapter);
+//
+//                String[] rightAnswersList = getResources().getStringArray(R.array.uoe_answers);
+//
+//                int rightAnswers = 0;
+//                for (int i = 0; i < 10; i++) {
+//                    if (answersTyped[i].equals(rightAnswersList[i])) {
+//                        rightAnswers += 1;
+//                    }
+//                }
+//
+//                Toast.makeText(UoeTaskActivity.this, "You have " + rightAnswers + "/"
+//                        + "10 right answers", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     public void generateRandomTask(int category) {
