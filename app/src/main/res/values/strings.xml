@@ -84,7 +84,20 @@
     <string name="audio_topic1_task1">1. In a swimming pool\n2. In a street\n3. In a travel agency\n4. In a hotel\n5. On a bus excursion</string>
 
     <!-- Audio tasks (Задание 2) -->
-    <string name="audio_topic2_task1">1. The speaker talks about an animal care organization.\n2. The speaker believes environmental education is very important.\n3. The speaker is against keeping exotic animals as pets.\n4. The speaker explains how to protect exotic animals.\n5. The speaker says that common animals are disappearing.\n6. The speaker talks about health reasons for keeping pets.
-</string>
+    <string name="audio_topic2_task1">1. The speaker talks about an animal care organization.\n2. The speaker believes environmental education is very important.\n3. The speaker is against keeping exotic animals as pets.\n4. The speaker explains how to protect exotic animals.\n5. The speaker says that common animals are disappearing.\n6. The speaker talks about health reasons for keeping pets</string>
+
+    <!-- Audio tasks (Задания 3-8) -->
+    <string name="audio_topic3_task1">On his first day Max came to school</string>
+    <string name="audio_topic3_task1_option1">too early.</string>
+    <string name="audio_topic3_task1_option2">too late.</string>
+    <string name="audio_topic3_task1_option3">exactly on time.</string>
+
+    <string name="audio_topics_3_8_task1">On his first day Max came to school/option/too early./option/too late./option/exactly on time.\n
+Max\'s school is located/option/in the park./option/near the library./option/in the city centre.\n
+In class Max\'s classmates speak/option/only English./option/their native language./option/Max\'s native language.\n
+Max\'s school/option/has computers in every classroom./option/has a special computer room./option/is a computer-free zone.\n
+Max is disappointed with school/option/cafeteria food./option/library facilities./option/sports facilities.\n
+In the evening Max is going to/option/go to a party./option/do his homework/option/walk around the city.</string>
+
 
 </resources>

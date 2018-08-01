@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryLight">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/audio_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="480dp"
+            android:layout_margin="16dp"
+            android:elevation="12dp"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:id="@+id/play_pause_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                app:srcCompat="@drawable/ellipse"/>
+
+            <ImageView
+                android:id="@+id/play_pause_icon"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"
+                app:srcCompat="@drawable/play_triangle"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="122dp">
+
+                <TextView
+                    android:id="@+id/question1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/audio_topic3_task1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/roboto_regular"/>
+
+                <RadioGroup
+                    android:id="@+id/options1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/question1_option1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option1"/>
+
+                    <RadioButton
+                        android:id="@+id/question1_option2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option2"/>
+
+                    <RadioButton
+                        android:id="@+id/question1_option3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option3"
+                        android:layout_marginBottom="8dp"/>
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/question2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/audio_topic3_task1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/roboto_regular"/>
+
+                <RadioGroup
+                    android:id="@+id/options2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/question2_option1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option1"/>
+
+                    <RadioButton
+                        android:id="@+id/question2_option2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option2"/>
+
+                    <RadioButton
+                        android:id="@+id/question2_option3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option3"
+                        android:layout_marginBottom="8dp"/>
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/question3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/audio_topic3_task1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/roboto_regular"/>
+
+                <RadioGroup
+                    android:id="@+id/options3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/question3_option1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option1"/>
+
+                    <RadioButton
+                        android:id="@+id/question3_option2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option2"/>
+
+                    <RadioButton
+                        android:id="@+id/question3_option3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option3"
+                        android:layout_marginBottom="8dp"/>
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/question4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/audio_topic3_task1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/roboto_regular"/>
+
+                <RadioGroup
+                    android:id="@+id/options4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/question4_option1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option1"/>
+
+                    <RadioButton
+                        android:id="@+id/question4_option2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option2"/>
+
+                    <RadioButton
+                        android:id="@+id/question4_option3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option3"
+                        android:layout_marginBottom="8dp"/>
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/question5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/audio_topic3_task1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/roboto_regular"/>
+
+                <RadioGroup
+                    android:id="@+id/options5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/question5_option1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option1"/>
+
+                    <RadioButton
+                        android:id="@+id/question5_option2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option2"/>
+
+                    <RadioButton
+                        android:id="@+id/question5_option3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option3"
+                        android:layout_marginBottom="8dp"/>
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/question6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/audio_topic3_task1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/roboto_regular"/>
+
+                <RadioGroup
+                    android:id="@+id/options6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/question6_option1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option1"/>
+
+                    <RadioButton
+                        android:id="@+id/question6_option2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option2"/>
+
+                    <RadioButton
+                        android:id="@+id/question6_option3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/audio_topic3_task1_option3"
+                        android:layout_marginBottom="8dp"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

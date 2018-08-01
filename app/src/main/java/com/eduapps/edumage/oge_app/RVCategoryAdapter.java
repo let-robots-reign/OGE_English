@@ -59,6 +59,7 @@ public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.Ca
         Log.v("RVCategoryAdapter", String.valueOf(currentCategory));
         switch(currentCategory) {
             case 0:
+                // listening
                 holder.layout.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -72,6 +73,7 @@ public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.Ca
                 });
                 break;
             case 2:
+                // use of english
                 holder.layout.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
