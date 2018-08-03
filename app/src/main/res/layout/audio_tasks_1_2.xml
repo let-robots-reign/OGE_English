@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -105,6 +105,7 @@
                     android:gravity="center"/>
 
                 <TextView
+                    android:id="@+id/letter_e"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -133,7 +134,7 @@
                     android:layout_marginTop="-5dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
-                    android:hint="A"
+                    android:hint="1"
                     android:inputType="textCapCharacters"/>
 
                 <View
@@ -151,7 +152,7 @@
                     android:layout_marginTop="-5dp"
                     android:layout_marginLeft="32dp"
                     android:layout_marginStart="32dp"
-                    android:hint="B"
+                    android:hint="2"
                     android:inputType="textCapCharacters"/>
 
                 <View
@@ -169,7 +170,7 @@
                     android:layout_marginTop="-5dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginStart="60dp"
-                    android:hint="C"
+                    android:hint="3"
                     android:inputType="textCapCharacters"/>
 
                 <View
@@ -187,10 +188,11 @@
                     android:layout_marginTop="-5dp"
                     android:layout_marginLeft="88dp"
                     android:layout_marginStart="88dp"
-                    android:hint="D"
+                    android:hint="4"
                     android:inputType="textCapCharacters"/>
 
                 <View
+                    android:id="@+id/letter_e_view"
                     android:layout_width="28dp"
                     android:layout_height="32dp"
                     android:background="@drawable/answer_cell"
@@ -205,7 +207,7 @@
                     android:layout_marginTop="-5dp"
                     android:layout_marginLeft="116dp"
                     android:layout_marginStart="116dp"
-                    android:hint="E"
+                    android:hint="5"
                     android:inputType="textCapCharacters"/>
 
             </RelativeLayout>
@@ -214,4 +216,26 @@
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/layout_bg"
+        android:text="@string/exit"
+        app:fontFamily="@font/merriweather_bold"/>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/layout_bg"
+        android:text="@string/submit"
+        app:fontFamily="@font/merriweather_bold"/>
+
+</RelativeLayout>

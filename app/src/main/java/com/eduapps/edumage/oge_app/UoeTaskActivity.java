@@ -1,8 +1,10 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,6 +37,7 @@ public class UoeTaskActivity extends AppCompatActivity {
         uoeTasksList.setLayoutManager(layoutManager);
 
         final List<UoeTask> tasks = new ArrayList<>();
+        final List<String> rightAnswersList = new ArrayList<>();
 
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
@@ -48,19 +51,31 @@ public class UoeTaskActivity extends AppCompatActivity {
         switch (category) {
             case 0:
                 tasks.add(new UoeTask(R.string.uoe_topic1_task1, R.string.uoe_topic1_origin1, R.string.uoe_topic1_answer1));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer1));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task2, R.string.uoe_topic1_origin2, R.string.uoe_topic1_answer2));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer2));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task3, R.string.uoe_topic1_origin3, R.string.uoe_topic1_answer3));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer3));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task4, R.string.uoe_topic1_origin4, R.string.uoe_topic1_answer4));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer4));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task5, R.string.uoe_topic1_origin5, R.string.uoe_topic1_answer5));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer5));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task6, R.string.uoe_topic1_origin6, R.string.uoe_topic1_answer6));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer6));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task7, R.string.uoe_topic1_origin7, R.string.uoe_topic1_answer7));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer7));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task8, R.string.uoe_topic1_origin8, R.string.uoe_topic1_answer8));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer8));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task9, R.string.uoe_topic1_origin9, R.string.uoe_topic1_answer9));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer9));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task10, R.string.uoe_topic1_origin10, R.string.uoe_topic1_answer10));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer10));
                 break;
             case 1:
                 tasks.add(new UoeTask(R.string.uoe_topic1_task1, R.string.uoe_topic1_origin1, R.string.uoe_topic1_answer1));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer1));
                 tasks.add(new UoeTask(R.string.uoe_topic1_task2, R.string.uoe_topic1_origin2, R.string.uoe_topic1_answer2));
+                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer2));
                 break;
         }
 
@@ -88,17 +103,37 @@ public class UoeTaskActivity extends AppCompatActivity {
                 RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, true);
                 uoeTasksList.setAdapter(adapter);
 
-                String[] rightAnswersList = getResources().getStringArray(R.array.uoe_answers);
-
                 int rightAnswers = 0;
                 for (int i = 0; i < 10; i++) {
-                    if (answersTyped[i].equals(rightAnswersList[i])) {
+                    if (answersTyped[i].equals(rightAnswersList.get(i))) {
                         rightAnswers += 1;
                     }
                 }
 
-                Toast.makeText(UoeTaskActivity.this, "You have " + rightAnswers + "/"
-                        + "10 right answers", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(UoeTaskActivity.this, "You have " + rightAnswers + "/"
+                 //       + "10 right answers", Toast.LENGTH_SHORT).show();
+
+                //TODO: AlertDialog
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
+                builder.setTitle("Ваш результат:")
+                                .setMessage("You have " + rightAnswers + "/" + "10 right answers")
+                                .setCancelable(false)
+                                .setNegativeButton("Попробовать снова",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                                // clear the typed answers
+                                                for (int i = 0; i < 10; i++) {
+                                                    answersTyped[i] = "";
+                                                }
+                                                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
+                                                uoeTasksList.setAdapter(adapter);
+                                            }
+                                        });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
     }
