@@ -18,38 +18,47 @@
         android:elevation="12dp"
         app:cardCornerRadius="20dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="150dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/uoe_task"
-                android:layout_width="180dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 app:fontFamily="@font/roboto_regular"
                 tools:text="@string/uoe_topic1_task1"/>
 
-            <EditText
-                android:id="@+id/uoe_answer"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/uoe_task"
-                android:layout_marginLeft="8dp"
-                android:layout_centerVertical="true"
-                tools:hint="@string/uoe_topic1_origin1"
-                android:focusableInTouchMode="true"
-                android:imeOptions="actionDone"
-                android:inputType="textCapCharacters"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/roboto_regular"/>
+                android:layout_weight="0.5"
+                android:layout_gravity="center_vertical">
 
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/uoe_answer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:hint="@string/uoe_topic1_origin1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapCharacters"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/roboto_regular"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 

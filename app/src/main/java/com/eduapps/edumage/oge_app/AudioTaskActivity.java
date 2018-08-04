@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -376,6 +377,26 @@ public class AudioTaskActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // when user exits via "back" we also need to stop the audio
+        releaseMediaPlayer();
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // the same behavior for the "up/home" button in the Action Bar
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                releaseMediaPlayer();
+                this.onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setPlayMode() {
