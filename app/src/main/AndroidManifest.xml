@@ -81,6 +81,15 @@
         </activity>
 
         <activity
+            android:name=".ReadingTaskActivity"
+            android:parentActivityName=".TrainingsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TrainingsActivity" />
+        </activity>
+
+        <activity
             android:name=".AudioActivity"
             android:label="@string/audio"
             android:parentActivityName=".TrainingsActivity"

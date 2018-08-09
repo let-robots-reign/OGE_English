@@ -80,6 +80,10 @@
     <string name="audio_topic2">Задание 2</string>
     <string name="audio_topic3">Задания 3&#8211;8</string>
 
+    <!-- Reading topics -->
+    <string name="reading_topic1">Задание 9</string>
+    <string name="reading_topic2">Задания 10&#8211;17</string>
+
     <!-- Audio tasks (Задание 1) -->
     <string name="audio_topic1_task1">1. In a swimming pool\n2. In a street\n3. In a travel agency\n4. In a hotel\n5. On a bus excursion</string>
 
@@ -92,12 +96,58 @@
     <string name="audio_topic3_task1_option2">too late.</string>
     <string name="audio_topic3_task1_option3">exactly on time.</string>
 
-    <string name="audio_topics_3_8_task1">&#032;On his first day Max came to school/option/too early./option/too late./option/exactly on time.\n
+    <string name="audio_topics_3_8_task1">On his first day Max came to school/option/too early./option/too late./option/exactly on time.\n
 Max\'s school is located/option/in the park./option/near the library./option/in the city centre.\n
 In class Max\'s classmates speak/option/only English./option/their native language./option/Max\'s native language.\n
 Max\'s school/option/has computers in every classroom./option/has a special computer room./option/is a computer-free zone.\n
 Max is disappointed with school/option/cafeteria food./option/library facilities./option/sports facilities.\n
 In the evening Max is going to/option/go to a party./option/do his homework/option/walk around the city.</string>
 
+    <!-- Reading tasks Задания 10-17 -->
+    <string name="reading_topic2_text1">\u00A0\u00A0\u00A0\u00A0The small town in Bavaria is very famous in Germany, because there is the home of the Dassler brothers. They started two well-known sports brands: Adidas and Puma. But their story is not about peace, it\'s about war, disagreement and competition.\n
+\u00A0\u00A0\u00A0In 1924 Adolf and Rudolf started making shoes and soon had a small shoe business. The elder brother, Rudolf (or Rudi), was a veteran of World War I. He was a good businessman and knew how to sell things. The younger brother, Adolf (or Adi) was more thoughtful and creative. The brothers had 25 workers at the factory and they made 100 pairs of sports shoes every day.\n
+\u00A0\u00A0\u00A0During the 1936 Olympics, Adi Dassler drove to the Olympic village with a suitcase full of sports shoes. He asked an American sprinter Jesse Owens to wear and run in them. Owens won 4 gold medals and at once the Dassler shoes became popular. The Dasslers were selling 200,000 pairs of shoes each year before World War II.\n
+\u00A0\u00A0\u00A0We don\'t know much about their lives at the time of World War II. However, in the 1940s they refused to work together any more. Rudolf left the company, moved to the other bank of the river and started a competing shop there. At first he wanted to name his company Ruda, but then he thought about a graceful, quick animal – the puma. And so Puma was born.\n
+\u00A0\u00A0\u00A0Adi stayed with family business and renamed the company Adidas. He developed the 3-stripe logo in 1941 and registered it as Adidas\' brand. Adi wanted to make a symbol that could be easily recognized by other people and three stripes was a good idea. The stripes show a mountain. You have to climb it if you want to reach the peak or achieve anything.\n
+\u00A0\u00A0\u00A0The serious conflict between the brothers divided the town into two: the Adidas bank and the Puma bank of the river. It was like a silent war. Only the bravest people could wear their Puma shoes and cross the river to the Adidas side of the town. When people met in the street, they first looked down at each other's shoes. It helped them to decide if that person was an enemy or a friend. What's more, Puma people didn't marry Adidas people. There were Adidas and Puma schools, pubs, shops, restaurants and hotels.\n
+\u00A0\u00A0\u00A0The brothers never became friendly again or even spoke to each other. Rudi died in 1974 and left Puma to his son. The family sold the company in 1989. Adi died in 1978, his son was the head of Adidas till his death in 1987. Today Puma is controlled by a big French company and Adidas is owned by a number of companies.\n
+\u00A0\u00A0\u00A0The "war" was declared completely over in 2009. Employees and workers of both companies shook hands and then played a football match in the Bavarian town of Herzogenaurach. The match was the first joint event for the two companies since 1948. The match ended 7–5 but the teams were not divided into Adidas and Puma. Each team was a mix of Adidas and Puma players.</string>
+
+    <string name="reading_topic2_task1">The brands Adidas and Puma were started in the USA.</string>
+
+    <string name="reading_topic2_task1_real">The brands Adidas and Puma were started in the USA.\n
+    One of the brothers advertised the first sports shoes with the help of a famous athlete.\n
+    Both brothers called their new company by their own names.\n
+    A trip to the mountain gave Adi the idea for Adidas logo.\n
+    The people of the town were involved in the brothers’ quarrel.\n
+    In Bavaria most people preferred Adidas shoes to Puma shoes.\n
+    Now Adidas and Puma belong to the Dassler family.\n
+    The results of the football match caused a new outbreak of the war between the Adidas and Puma companies.</string>
+
+    <string name="true_sentence">True</string>
+    <string name="false_sentence">False</string>
+    <string name="not_stated">Not stated</string>
+
+    <!-- Reading Задание 9 -->
+    <string name="headings">Заголовки:</string>
+    <string name="texts">Тексты:</string>
+
+    <string name="task9_task1_headings">1. Good for everyone\n2. Easy to care for\n3. Part of culture\n4. Screen fashion\n5. An innovative idea\n6. Working clothes\n7. Jeans’ labels\n8. Clothes to protest</string>
+
+    <string name="task9_task1_text1">Jeans are one of fashion\'s most long enduring trends. Cowboys wear them but so do supermodels, farmers, presidents and housewives. Ask any group of people why they wear jeans and you will get a range of answers. For some they\'re comfortable and easy – for others they\'re trendy and cool. Jeans mean different things to different people, but they are popular everywhere.</string>
+    <string name="task9_task1_text2">Americans do not have a national folk dress with a long tradition. Blue jeans are probably the most recognisable article of American clothing. They have been part of American life for over 125 years. Blue denim jeans became not only an expression of American fashion but also an element of American identity known around the world.</string>
+    <string name="task9_task1_text3">Jeans were first designed as trousers for farmers and miners in the states of the American West. They quickly grew popular with common people, including cowboys, factory employees and railroad builders. The new trousers were made from a very strong material which did not wear out easily. However, at the same time jeans were very practical and comfortable to wear.</string>
+    <string name="task9_task1_text4">Pockets were the weak point of the miners\' clothes – they easily tore away from the jeans. A man called Jacob Davis had the idea of using metal rivets (fasteners) to hold the pockets and the jeans together so that they wouldn\'t tear. Davis wanted to patent his idea, but he didn\'t have enough money, so he offered Levi Strauss a deal if Strauss paid for the patent. Strauss accepted and started making jeans.</string>
+    <string name="task9_task1_text5">By the middle of the twentieth century, these heavy cotton trousers had become a symbol of opposition for young artists and writers. College students started to wear them to show they were against the Vietnam War. The new trousers were banned in American schools from coast to coast and sometimes in theatres and cinemas.</string>
+    <string name="task9_task1_text6">Jeans are good because they don\'t show the dirt. You can easily go a month without washing them and they don\'t look shocking. They don\'t need to be washed as often as other trousers and you don\'t need to iron them. What's more, because of the strong material you can wear your favorite jeans for years. Even the occasional hole or spot doesn\'t spoil them at all.</string>
+    <string name="task9_task1_text7">In the 30s and 40s many people began to spend their spare time watching movies where adventurous cowboys rode horses, fought bad guys and wore blue jeans. The actors made jeans popular in movies and everyone wanted to wear them. Young people wished to imitate the casual "cowboyish" look they saw in films, and they began to wear jeans as casual wear.</string>
+
+    <string name="task9_task1_texts1">Jeans are one of fashion\'s most long enduring trends. Cowboys wear them but so do supermodels, farmers, presidents and housewives. Ask any group of people why they wear jeans and you will get a range of answers. For some they\'re comfortable and easy – for others they\'re trendy and cool. Jeans mean different things to different people, but they are popular everywhere.\n
+    Americans do not have a national folk dress with a long tradition. Blue jeans are probably the most recognisable article of American clothing. They have been part of American life for over 125 years. Blue denim jeans became not only an expression of American fashion but also an element of American identity known around the world.\n
+    Jeans were first designed as trousers for farmers and miners in the states of the American West. They quickly grew popular with common people, including cowboys, factory employees and railroad builders. The new trousers were made from a very strong material which did not wear out easily. However, at the same time jeans were very practical and comfortable to wear.\n
+    Pockets were the weak point of the miners\' clothes – they easily tore away from the jeans. A man called Jacob Davis had the idea of using metal rivets (fasteners) to hold the pockets and the jeans together so that they wouldn\'t tear. Davis wanted to patent his idea, but he didn\'t have enough money, so he offered Levi Strauss a deal if Strauss paid for the patent. Strauss accepted and started making jeans.\n
+    By the middle of the twentieth century, these heavy cotton trousers had become a symbol of opposition for young artists and writers. College students started to wear them to show they were against the Vietnam War. The new trousers were banned in American schools from coast to coast and sometimes in theatres and cinemas.\n
+    Jeans are good because they don\'t show the dirt. You can easily go a month without washing them and they don\'t look shocking. They don\'t need to be washed as often as other trousers and you don\'t need to iron them. What\'s more, because of the strong material you can wear your favorite jeans for years. Even the occasional hole or spot doesn\'t spoil them at all.\n
+    In the 30s and 40s many people began to spend their spare time watching movies where adventurous cowboys rode horses, fought bad guys and wore blue jeans. The actors made jeans popular in movies and everyone wanted to wear them. Young people wished to imitate the casual “cowboyish” look they saw in films, and they began to wear jeans as casual wear.</string>
 
 </resources>

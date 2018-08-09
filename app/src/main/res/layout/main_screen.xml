@@ -6,16 +6,17 @@
     android:background="#28ACE4">
 
     <ImageView
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="385dp"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_marginTop="180dp"
         app:srcCompat="@drawable/main_screen_separator"
         android:scaleType="centerCrop"/>
 
     <TextView
-        android:layout_width="300dp"
+        android:id="@+id/app_label"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
@@ -31,18 +32,18 @@
 
     <TextView
         android:id="@+id/english"
-        android:layout_width="209dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="170dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="63dp"
+        android:layout_below="@id/app_label"
+        android:layout_toRightOf="@id/app_label"
+        android:layout_toEndOf="@id/app_label"
+        android:layout_marginTop="-32dp"
+        android:layout_marginLeft="-18dp"
         android:text="@string/english"
         android:textSize="24sp"
         android:textColor="@color/colorPrimaryText"
         app:fontFamily="@font/petit_formal_script"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"/>
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -101,7 +101,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             option1_3.setText(options1[3]);
 
             TextView question2 = findViewById(R.id.question2);
-            question2.setText(question[1].split("/option/")[0]);
+            question2.setText(question[1].split("/option/")[0].trim());
             String[] options2 = question[1].split("/option/");
             RadioButton option2_1 = findViewById(R.id.question2_option1);
             option2_1.setText(options2[1]);
@@ -111,7 +111,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             option2_3.setText(options2[3]);
 
             TextView question3 = findViewById(R.id.question3);
-            question3.setText(question[2].split("/option/")[0]);
+            question3.setText(question[2].split("/option/")[0].trim());
             String[] options3 = question[2].split("/option/");
             RadioButton option3_1 = findViewById(R.id.question3_option1);
             option3_1.setText(options3[1]);
@@ -121,7 +121,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             option3_3.setText(options3[3]);
 
             TextView question4 = findViewById(R.id.question4);
-            question4.setText(question[3].split("/option/")[0]);
+            question4.setText(question[3].split("/option/")[0].trim());
             String[] options4 = question[3].split("/option/");
             RadioButton option4_1 = findViewById(R.id.question4_option1);
             option4_1.setText(options4[1]);
@@ -131,7 +131,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             option4_3.setText(options4[3]);
 
             TextView question5 = findViewById(R.id.question5);
-            question5.setText(question[4].split("/option/")[0]);
+            question5.setText(question[4].split("/option/")[0].trim());
             String[] options5 = question[4].split("/option/");
             RadioButton option5_1 = findViewById(R.id.question5_option1);
             option5_1.setText(options5[1]);
@@ -141,7 +141,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             option5_3.setText(options5[3]);
 
             TextView question6 = findViewById(R.id.question6);
-            question6.setText(question[5].split("/option/")[0]);
+            question6.setText(question[5].split("/option/")[0].trim());
             String[] options6 = question[5].split("/option/");
             RadioButton option6_1 = findViewById(R.id.question6_option1);
             option6_1.setText(options6[1]);
@@ -359,7 +359,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ifAudioPlaying = !ifAudioPlaying;
-                Log.v("AudioTaskActivity", "" + ifAudioPlaying);
+                //Log.v("AudioTaskActivity", "" + ifAudioPlaying);
                 if (mediaPlayer == null) {
                     int res = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC,
                             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -464,11 +464,5 @@ public class AudioTaskActivity extends AppCompatActivity {
             mediaPlayer = null;
             audioManager.abandonAudioFocus(changeListener);
         }
-    }
-
-    private int getHeightOfView(View view) {
-        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        //contentview.getMeasuredWidth();
-        return view.getMeasuredHeight();
     }
 }

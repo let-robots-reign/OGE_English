@@ -56,37 +56,37 @@ public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.Ca
                     holder.layout.getPaddingRight(), 10);
         }
 
-        Log.v("RVCategoryAdapter", String.valueOf(currentCategory));
-        switch(currentCategory) {
-            case 0:
-                // listening
-                holder.layout.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        int position = holder.getAdapterPosition();
-                        Context context = holder.layout.getContext();
-                        Intent intent = new Intent(context, AudioTaskActivity.class);
-                        // transferring info about the chosen topic
-                        intent.putExtra("category", position);
-                        context.startActivity(intent);
-                    }
-                });
-                break;
-            case 2:
-                // use of english
-                holder.layout.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        int position = holder.getAdapterPosition();
-                        Context context = holder.layout.getContext();
-                        Intent intent = new Intent(context, UoeTaskActivity.class);
-                        // transferring info about the chosen topic
-                        intent.putExtra("category", position);
-                        context.startActivity(intent);
-                    }
-                });
-                break;
-        }
+        //Log.v("RVCategoryAdapter", String.valueOf(currentCategory));
 
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Context context = holder.layout.getContext();
+                Intent intent;
+                switch (currentCategory) {
+                    case 0:
+                        //listening
+                        intent = new Intent(context, AudioTaskActivity.class);
+                        break;
+                    case 1:
+                        // reading
+                        intent = new Intent(context, ReadingTaskActivity.class);
+                        break;
+                    case 2:
+                        // use of english
+                        intent = new Intent(context, UoeTaskActivity.class);
+                        break;
+                    default:
+                        intent = null;
+                        break;
+                }
+                if (intent != null) {
+                    // transferring info about the chosen topic
+                    intent.putExtra("category", position);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 }
