@@ -138,7 +138,9 @@
                     android:layout_marginStart="4dp"
                     android:hint="1"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"/>
 
                 <View
                     android:layout_width="28dp"
@@ -157,7 +159,9 @@
                     android:layout_marginStart="32dp"
                     android:hint="2"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"/>
 
                 <View
                     android:layout_width="28dp"
@@ -176,7 +180,9 @@
                     android:layout_marginStart="60dp"
                     android:hint="3"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"/>
 
                 <View
                     android:layout_width="28dp"
@@ -195,7 +201,9 @@
                     android:layout_marginStart="88dp"
                     android:hint="4"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"/>
 
                 <View
                     android:id="@+id/letter_e_view"
@@ -215,7 +223,9 @@
                     android:layout_marginStart="116dp"
                     android:hint="5"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"/>
 
             </RelativeLayout>
 

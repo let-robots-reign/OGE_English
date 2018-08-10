@@ -82,11 +82,12 @@
 
         <activity
             android:name=".ReadingTaskActivity"
-            android:parentActivityName=".TrainingsActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".ReadingActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TrainingsActivity" />
+                android:value=".ReadingActivity" />
         </activity>
 
         <activity
@@ -101,6 +102,7 @@
 
         <activity
             android:name=".AudioTaskActivity"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".AudioActivity"
             android:theme="@style/AppTheme">
             <meta-data
