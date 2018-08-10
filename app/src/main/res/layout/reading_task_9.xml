@@ -113,7 +113,7 @@
                         android:layout_toRightOf="@id/box1"
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="6dp"
                         android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
                         app:fontFamily="@font/roboto_regular"/>
@@ -169,7 +169,7 @@
                         android:layout_toRightOf="@id/box2"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="6dp"
                         android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
                         app:fontFamily="@font/roboto_regular"/>
@@ -225,7 +225,7 @@
                         android:layout_toRightOf="@id/box3"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="6dp"
                         android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
                         app:fontFamily="@font/roboto_regular"/>
@@ -281,7 +281,7 @@
                         android:layout_toRightOf="@id/box4"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="6dp"
                         android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
                         app:fontFamily="@font/roboto_regular"/>
@@ -337,7 +337,7 @@
                         android:layout_toRightOf="@id/box5"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="6dp"
                         android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
                         app:fontFamily="@font/roboto_regular"/>
@@ -393,7 +393,7 @@
                         android:layout_toRightOf="@id/box6"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="6dp"
                         android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
                         app:fontFamily="@font/roboto_regular"/>
@@ -449,7 +449,7 @@
                         android:layout_toRightOf="@id/box7"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="6dp"
                         android:textSize="16sp"
                         android:textColor="@color/colorPrimaryText"
                         app:fontFamily="@font/roboto_regular"/>

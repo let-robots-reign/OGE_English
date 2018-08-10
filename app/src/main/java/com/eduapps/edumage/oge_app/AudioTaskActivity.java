@@ -168,6 +168,9 @@ public class AudioTaskActivity extends AppCompatActivity {
             submitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    releaseMediaPlayer();
+                    setPauseMode();
+
                     int rightAnswers = 0;
                     int maxRightAnswers;
                     if (category == 0) {
@@ -234,8 +237,6 @@ public class AudioTaskActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     dialog.cancel();
-                                                    releaseMediaPlayer();
-                                                    setPauseMode();
                                                     answer1.setText("");
                                                     answer1.setTextColor(getResources().getColor(R.color.colorPrimaryText));
                                                     answer2.setText("");
@@ -258,60 +259,75 @@ public class AudioTaskActivity extends AppCompatActivity {
             submitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    releaseMediaPlayer();
+                    setPauseMode();
+
                     int rightAnswers = 0;
 
-                    RadioGroup options1 = findViewById(R.id.options1);
+                    final RadioGroup options1 = findViewById(R.id.options1);
                     final RadioButton radioButton1 = options1.findViewById(options1.getCheckedRadioButtonId());
-                    if (options1.indexOfChild(radioButton1) == Integer.parseInt(rightAnswersList.get(0)) - 1) {
-                        rightAnswers += 1;
-                        radioButton1.setTextColor(getResources().getColor(R.color.right_answer));
-                    } else {
-                        radioButton1.setTextColor(getResources().getColor(R.color.wrong_answer));
+                    if (radioButton1 != null) {
+                        if (options1.indexOfChild(radioButton1) == Integer.parseInt(rightAnswersList.get(0)) - 1) {
+                            rightAnswers += 1;
+                            radioButton1.setTextColor(getResources().getColor(R.color.right_answer));
+                        } else {
+                            radioButton1.setTextColor(getResources().getColor(R.color.wrong_answer));
+                        }
                     }
 
-                    RadioGroup options2 = findViewById(R.id.options2);
+                    final RadioGroup options2 = findViewById(R.id.options2);
                     final RadioButton radioButton2 = options2.findViewById(options2.getCheckedRadioButtonId());
-                    if (options2.indexOfChild(radioButton2) == Integer.parseInt(rightAnswersList.get(1)) - 1) {
-                        rightAnswers += 1;
-                        radioButton2.setTextColor(getResources().getColor(R.color.right_answer));
-                    } else {
-                        radioButton2.setTextColor(getResources().getColor(R.color.wrong_answer));
+                    if (radioButton2 != null) {
+                        if (options2.indexOfChild(radioButton2) == Integer.parseInt(rightAnswersList.get(1)) - 1) {
+                            rightAnswers += 1;
+                            radioButton2.setTextColor(getResources().getColor(R.color.right_answer));
+                        } else {
+                            radioButton2.setTextColor(getResources().getColor(R.color.wrong_answer));
+                        }
                     }
 
-                    RadioGroup options3 = findViewById(R.id.options3);
+                    final RadioGroup options3 = findViewById(R.id.options3);
                     final RadioButton radioButton3 = options3.findViewById(options3.getCheckedRadioButtonId());
-                    if (options3.indexOfChild(radioButton3) == Integer.parseInt(rightAnswersList.get(2)) - 1) {
-                        rightAnswers += 1;
-                        radioButton3.setTextColor(getResources().getColor(R.color.right_answer));
-                    } else {
-                        radioButton3.setTextColor(getResources().getColor(R.color.wrong_answer));
+                    if (radioButton3 != null) {
+                        if (options3.indexOfChild(radioButton3) == Integer.parseInt(rightAnswersList.get(2)) - 1) {
+                            rightAnswers += 1;
+                            radioButton3.setTextColor(getResources().getColor(R.color.right_answer));
+                        } else {
+                            radioButton3.setTextColor(getResources().getColor(R.color.wrong_answer));
+                        }
                     }
 
-                    RadioGroup options4 = findViewById(R.id.options4);
+                    final RadioGroup options4 = findViewById(R.id.options4);
                     final RadioButton radioButton4 = options4.findViewById(options4.getCheckedRadioButtonId());
-                    if (options4.indexOfChild(radioButton4) == Integer.parseInt(rightAnswersList.get(3)) - 1) {
-                        rightAnswers += 1;
-                        radioButton4.setTextColor(getResources().getColor(R.color.right_answer));
-                    } else {
-                        radioButton4.setTextColor(getResources().getColor(R.color.wrong_answer));
+                    if (radioButton4 != null) {
+                        if (options4.indexOfChild(radioButton4) == Integer.parseInt(rightAnswersList.get(3)) - 1) {
+                            rightAnswers += 1;
+                            radioButton4.setTextColor(getResources().getColor(R.color.right_answer));
+                        } else {
+                            radioButton4.setTextColor(getResources().getColor(R.color.wrong_answer));
+                        }
                     }
 
-                    RadioGroup options5 = findViewById(R.id.options5);
+                    final RadioGroup options5 = findViewById(R.id.options5);
                     final RadioButton radioButton5 = options5.findViewById(options5.getCheckedRadioButtonId());
-                    if (options5.indexOfChild(radioButton5) == Integer.parseInt(rightAnswersList.get(4)) - 1) {
-                        rightAnswers += 1;
-                        radioButton5.setTextColor(getResources().getColor(R.color.right_answer));
-                    } else {
-                        radioButton5.setTextColor(getResources().getColor(R.color.wrong_answer));
+                    if (radioButton5 != null) {
+                        if (options5.indexOfChild(radioButton5) == Integer.parseInt(rightAnswersList.get(4)) - 1) {
+                            rightAnswers += 1;
+                            radioButton5.setTextColor(getResources().getColor(R.color.right_answer));
+                        } else {
+                            radioButton5.setTextColor(getResources().getColor(R.color.wrong_answer));
+                        }
                     }
 
-                    RadioGroup options6 = findViewById(R.id.options6);
+                    final RadioGroup options6 = findViewById(R.id.options6);
                     final RadioButton radioButton6 = options6.findViewById(options6.getCheckedRadioButtonId());
-                    if (options6.indexOfChild(radioButton6) == Integer.parseInt(rightAnswersList.get(5)) - 1) {
-                        rightAnswers += 1;
-                        radioButton6.setTextColor(getResources().getColor(R.color.right_answer));
-                    } else {
-                        radioButton6.setTextColor(getResources().getColor(R.color.wrong_answer));
+                    if (radioButton6 != null) {
+                        if (options6.indexOfChild(radioButton6) == Integer.parseInt(rightAnswersList.get(5)) - 1) {
+                            rightAnswers += 1;
+                            radioButton6.setTextColor(getResources().getColor(R.color.right_answer));
+                        } else {
+                            radioButton6.setTextColor(getResources().getColor(R.color.wrong_answer));
+                        }
                     }
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(AudioTaskActivity.this);
@@ -323,20 +339,30 @@ public class AudioTaskActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
-                                            releaseMediaPlayer();
-                                            setPauseMode();
-                                            radioButton1.setChecked(false);
-                                            radioButton1.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-                                            radioButton2.setChecked(false);
-                                            radioButton2.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-                                            radioButton3.setChecked(false);
-                                            radioButton3.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-                                            radioButton4.setChecked(false);
-                                            radioButton4.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-                                            radioButton5.setChecked(false);
-                                            radioButton5.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-                                            radioButton6.setChecked(false);
-                                            radioButton6.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                                            if (radioButton1 != null) {
+                                                options1.clearCheck();
+                                                radioButton1.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                                            }
+                                            if (radioButton2 != null) {
+                                                options2.clearCheck();
+                                                radioButton2.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                                            }
+                                            if (radioButton3 != null) {
+                                                options3.clearCheck();
+                                                radioButton3.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                                            }
+                                            if (radioButton4 != null) {
+                                                options4.clearCheck();
+                                                radioButton4.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                                            }
+                                            if (radioButton5 != null) {
+                                                options5.clearCheck();
+                                                radioButton5.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                                            }
+                                            if (radioButton6 != null) {
+                                                options6.clearCheck();
+                                                radioButton6.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                                            }
                                         }
                                     });
                     AlertDialog alert = builder.create();
