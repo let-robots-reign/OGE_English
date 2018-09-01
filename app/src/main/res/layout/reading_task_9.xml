@@ -86,33 +86,21 @@
                         android:textSize="24sp"
                         android:textColor="@color/colorPrimaryText"/>
 
-                    <View
-                        android:id="@+id/box1"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/textA"/>
-
-                    <EditText
-                        android:id="@+id/reading_cell_1"
+                    <Spinner
+                        android:id="@+id/spinner1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/textA"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:hint="1"
-                        android:inputType="textCapCharacters"
-                        android:maxLength="1"
-                        android:focusableInTouchMode="true"
-                        android:imeOptions="actionDone"/>
+                        android:layout_marginTop="9dp"
+                        style="@android:style/Widget.Holo.Light.Spinner"/>
+                        <!--android:background="@drawable/spinner_style"-->
 
                     <TextView
                         android:id="@+id/question1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="@string/task9_task1_text1"
-                        android:layout_toRightOf="@id/box1"
+                        android:layout_below="@id/textA"
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="6dp"
@@ -144,33 +132,20 @@
                         android:textSize="24sp"
                         android:textColor="@color/colorPrimaryText"/>
 
-                    <View
-                        android:id="@+id/box2"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/textB"/>
-
-                    <EditText
-                        android:id="@+id/reading_cell_2"
+                    <Spinner
+                        android:id="@+id/spinner2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/textB"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:hint="2"
-                        android:inputType="textCapCharacters"
-                        android:maxLength="1"
-                        android:focusableInTouchMode="true"
-                        android:imeOptions="actionDone"/>
+                        android:layout_marginTop="9dp"
+                        style="@android:style/Widget.Holo.Light.Spinner"/>
 
                     <TextView
                         android:id="@+id/question2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="@string/task9_task1_text1"
-                        android:layout_toRightOf="@id/box2"
+                        android:layout_below="@id/textB"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="6dp"
@@ -202,33 +177,20 @@
                         android:textSize="24sp"
                         android:textColor="@color/colorPrimaryText"/>
 
-                    <View
-                        android:id="@+id/box3"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/textC"/>
-
-                    <EditText
-                        android:id="@+id/reading_cell_3"
+                    <Spinner
+                        android:id="@+id/spinner3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/textC"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:hint="3"
-                        android:inputType="textCapCharacters"
-                        android:maxLength="1"
-                        android:focusableInTouchMode="true"
-                        android:imeOptions="actionDone"/>
+                        android:layout_marginTop="9dp"
+                        style="@android:style/Widget.Holo.Light.Spinner"/>
 
                     <TextView
                         android:id="@+id/question3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="@string/task9_task1_text1"
-                        android:layout_toRightOf="@id/box3"
+                        android:layout_below="@id/textC"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="6dp"
@@ -260,33 +222,20 @@
                         android:textSize="24sp"
                         android:textColor="@color/colorPrimaryText"/>
 
-                    <View
-                        android:id="@+id/box4"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/textD"/>
-
-                    <EditText
-                        android:id="@+id/reading_cell_4"
+                    <Spinner
+                        android:id="@+id/spinner4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/textD"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:hint="4"
-                        android:maxLength="1"
-                        android:inputType="textCapCharacters"
-                        android:focusableInTouchMode="true"
-                        android:imeOptions="actionDone"/>
+                        android:layout_marginTop="9dp"
+                        style="@android:style/Widget.Holo.Light.Spinner"/>
 
                     <TextView
                         android:id="@+id/question4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="@string/task9_task1_text1"
-                        android:layout_toRightOf="@id/box4"
+                        android:layout_below="@id/textD"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="6dp"
@@ -318,33 +267,20 @@
                         android:textSize="24sp"
                         android:textColor="@color/colorPrimaryText"/>
 
-                    <View
-                        android:id="@+id/box5"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/textE"/>
-
-                    <EditText
-                        android:id="@+id/reading_cell_5"
+                    <Spinner
+                        android:id="@+id/spinner5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/textE"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:hint="5"
-                        android:maxLength="1"
-                        android:inputType="textCapCharacters"
-                        android:focusableInTouchMode="true"
-                        android:imeOptions="actionDone"/>
+                        android:layout_marginTop="9dp"
+                        style="@android:style/Widget.Holo.Light.Spinner"/>
 
                     <TextView
                         android:id="@+id/question5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="@string/task9_task1_text1"
-                        android:layout_toRightOf="@id/box5"
+                        android:layout_below="@id/textE"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="6dp"
@@ -376,33 +312,20 @@
                         android:textSize="24sp"
                         android:textColor="@color/colorPrimaryText"/>
 
-                    <View
-                        android:id="@+id/box6"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/textF"/>
-
-                    <EditText
-                        android:id="@+id/reading_cell_6"
+                    <Spinner
+                        android:id="@+id/spinner6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/textF"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:hint="6"
-                        android:maxLength="1"
-                        android:inputType="textCapCharacters"
-                        android:focusableInTouchMode="true"
-                        android:imeOptions="actionDone"/>
+                        android:layout_marginTop="9dp"
+                        style="@android:style/Widget.Holo.Light.Spinner"/>
 
                     <TextView
                         android:id="@+id/question6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="@string/task9_task1_text1"
-                        android:layout_toRightOf="@id/box6"
+                        android:layout_below="@id/textF"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="6dp"
@@ -434,33 +357,20 @@
                         android:textSize="24sp"
                         android:textColor="@color/colorPrimaryText"/>
 
-                    <View
-                        android:id="@+id/box7"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/textG"/>
-
-                    <EditText
-                        android:id="@+id/reading_cell_7"
+                    <Spinner
+                        android:id="@+id/spinner7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/textG"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:hint="7"
-                        android:maxLength="1"
-                        android:inputType="textCapCharacters"
-                        android:focusableInTouchMode="true"
-                        android:imeOptions="actionDone"/>
+                        android:layout_marginTop="9dp"
+                        style="@android:style/Widget.Holo.Light.Spinner"/>
 
                     <TextView
                         android:id="@+id/question7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="@string/task9_task1_text1"
-                        android:layout_toRightOf="@id/box7"
+                        android:layout_below="@id/textG"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="6dp"

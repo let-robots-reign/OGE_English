@@ -110,11 +110,6 @@ public class UoeTaskActivity extends AppCompatActivity {
                     }
                 }
 
-                //Toast.makeText(UoeTaskActivity.this, "You have " + rightAnswers + "/"
-                 //       + "10 right answers", Toast.LENGTH_SHORT).show();
-
-                //TODO: AlertDialog
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
                 builder.setTitle("Ваш результат:")
                                 .setMessage("You have " + rightAnswers + "/" + "10 right answers")
@@ -125,11 +120,11 @@ public class UoeTaskActivity extends AppCompatActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
                                                 // clear the typed answers
-                                                for (int i = 0; i < 10; i++) {
-                                                    answersTyped[i] = "";
-                                                }
-                                                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
-                                                uoeTasksList.setAdapter(adapter);
+//                                                for (int i = 0; i < 10; i++) {
+//                                                    answersTyped[i] = "";
+//                                                }
+//                                                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
+//                                                uoeTasksList.setAdapter(adapter);
                                             }
                                         });
                 AlertDialog alert = builder.create();
