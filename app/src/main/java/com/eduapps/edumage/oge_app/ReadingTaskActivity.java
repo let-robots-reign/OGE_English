@@ -21,6 +21,7 @@ import java.util.List;
 public class ReadingTaskActivity extends AppCompatActivity {
 
     private List<String> rightAnswersList;
+    private List<String> typedAnswers;
     private int category;
     private int rightAnswers;
     private String heading;
@@ -45,7 +46,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             setContentView(R.layout.reading_task_9);
             setTitle(R.string.reading_topic1);
             TextView headings = findViewById(R.id.headings_list);
-            headings.setText(currentQuestion);
+            headings.setText(getResources().getString(currentQuestion).split("Выберите заголовок\n")[1]);
 
             // spinner options are the list of headings
             String[] spinnerOptions = getResources().getString(currentQuestion).split("\n");
@@ -144,6 +145,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             }
         });
 
+        typedAnswers = new ArrayList<>();
         if (category == 0) {
             // the task with EditTexts and Spinners
             submitButton.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +178,25 @@ public class ReadingTaskActivity extends AppCompatActivity {
                     builder.setTitle("Ваш результат:")
                             .setMessage("You have " + rightAnswers + "/7 right answers")
                             .setCancelable(false)
+                            .setPositiveButton("Смотреть ошибки",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(ReadingTaskActivity.this, MistakesActivity.class);
+                                            // put category to know the key-value pairs
+                                            intent.putExtra("task_category", "task_9");
+                                            // answers user typed (transforming to String[] array)
+                                            String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
+                                            intent.putExtra("typed_answers", answersArray);
+                                            // right answers indices (transforming to String[] array)
+                                            String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
+                                            intent.putExtra("right_answers", rightAnswersArray);
+                                            // headings (to get right answers by indices)
+                                            intent.putExtra("question", currentQuestion);
+
+                                            startActivity(intent);
+                                        }
+                                    })
                             .setNegativeButton("Попробовать снова",
                                     new DialogInterface.OnClickListener() {
                                         @Override
@@ -238,6 +259,23 @@ public class ReadingTaskActivity extends AppCompatActivity {
                     builder.setTitle("Ваш результат:")
                             .setMessage("You have " + rightAnswers + "/8 right answers")
                             .setCancelable(false)
+                            .setPositiveButton("Смотреть ошибки",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(ReadingTaskActivity.this, MistakesActivity.class);
+                                            // put category to know the key-value pairs
+                                            intent.putExtra("task_category", "task_10");
+                                            // answers user typed (transforming to String[] array)
+                                            String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
+                                            intent.putExtra("typed_answers", answersArray);
+                                            // right answers indices (transforming to String[] array)
+                                            String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
+                                            intent.putExtra("right_answers", rightAnswersArray);
+
+                                            startActivity(intent);
+                                        }
+                                    })
                             .setNegativeButton("Попробовать снова",
                                     new DialogInterface.OnClickListener() {
                                         @Override
@@ -262,6 +300,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             TextView text = (TextView) spinner.getSelectedView();
             text.setTextColor(getResources().getColor(R.color.wrong_answer));
         }
+        typedAnswers.add(spinner.getSelectedItem().toString());
     }
 
     private void checkRadioButtonAnswer(RadioGroup options, RadioButton radioButton, int position) {
@@ -272,6 +311,9 @@ public class ReadingTaskActivity extends AppCompatActivity {
             } else {
                 radioButton.setTextColor(getResources().getColor(R.color.wrong_answer));
             }
+            typedAnswers.add("" + options.indexOfChild(radioButton));
+        } else {
+            typedAnswers.add("0");
         }
     }
 

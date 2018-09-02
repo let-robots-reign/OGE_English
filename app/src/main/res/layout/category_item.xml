@@ -32,7 +32,7 @@
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 app:fontFamily="@font/merriweather_bold"
-                tools:text="@string/topic1" />
+                tools:text="@string/uoe_topic1" />
 
         </RelativeLayout>
 
