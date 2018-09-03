@@ -23,6 +23,7 @@
 
     <string name="exit">Выход</string>
     <string name="submit">Проверка</string>
+    <string name="mistakes">Смотреть ошибки</string>
 
     <!-- Use of English training section starts here -->
     <string name="uoe_topic1">Множественное число существительных</string>

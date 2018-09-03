@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -202,6 +203,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
+                                            typedAnswers.clear();
                                         }
                                     });
                     AlertDialog alert = builder.create();
@@ -212,7 +214,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             submitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int rightAnswers = 0;
+                    rightAnswers = 0;
 
                     final RadioGroup options1 = findViewById(R.id.options1);
                     final RadioButton radioButton1 = options1.findViewById(options1.getCheckedRadioButtonId());
@@ -252,8 +254,8 @@ public class ReadingTaskActivity extends AppCompatActivity {
                     applyRadioListener(options4, radioButton4);
                     applyRadioListener(options5, radioButton5);
                     applyRadioListener(options6, radioButton6);
-                    applyRadioListener(options5, radioButton7);
-                    applyRadioListener(options6, radioButton8);
+                    applyRadioListener(options7, radioButton7);
+                    applyRadioListener(options8, radioButton8);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReadingTaskActivity.this);
                     builder.setTitle("Ваш результат:")
@@ -281,6 +283,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
+                                            typedAnswers.clear();
                                         }
                                     });
                     AlertDialog alert = builder.create();

@@ -129,6 +129,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TrainingsActivity" />
         </activity>
+
+        <activity
+            android:name=".MistakesActivity"
+            android:label="@string/mistakes"
+            android:parentActivityName=".TrainingsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TrainingsActivity" />
+        </activity>
     </application>
 
 </manifest>
