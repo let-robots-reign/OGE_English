@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MistakesActivity extends AppCompatActivity {
@@ -18,6 +21,13 @@ public class MistakesActivity extends AppCompatActivity {
     private String[] rightAnswers;
     private boolean[] answersColors; // how to color user's answers
     private int taskID;
+    private String[] annotations;
+
+    // for expandable list item
+    ExpandableListAdapter mistakesAdapter;
+    ExpandableListView mistakesList;
+    List<String> userAnswers;
+    HashMap<String, List<String>> explanations;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +41,7 @@ public class MistakesActivity extends AppCompatActivity {
 
             // TODO: transfer ID of the task to pull explanations for it!!
 
-            String[] annotations = null;
+            annotations = null;
             String[] question;
 
             if (category != null) {
@@ -178,69 +188,24 @@ public class MistakesActivity extends AppCompatActivity {
                 }
             }
 
-            String[] explanations = getExplanations(taskID).split("\n");
+            mistakesList = findViewById(R.id.mistakes_list);
+            prepareListData();
+            mistakesAdapter = new MistakesAdapter(this, userAnswers, explanations, answersColors);
+            mistakesList.setAdapter(mistakesAdapter);
+        }
+    }
 
-            // коллекция для групп
-            ArrayList<Map<String, String>> groupData;
+    private void prepareListData() {
+        userAnswers = new ArrayList<String>();
+        explanations = new HashMap<String, List<String>>();
 
-            // коллекция для элементов одной группы
-            ArrayList<Map<String, String>> childDataItem;
-
-            // общая коллекция для коллекций элементов
-            ArrayList<ArrayList<Map<String, String>>> childData;
-            // в итоге получится childData = ArrayList<childDataItem>
-
-            // список атрибутов группы или элемента
-            Map<String, String> m;
-
-            ExpandableListView mistakes;
-
-            // заполняем коллекцию групп из массива с названиями групп
-            groupData = new ArrayList<Map<String, String>>();
-            for (String info : annotations) {
-                // заполняем список атрибутов для каждой группы
-                m = new HashMap<String, String>();
-                m.put("user_answer", info); // ответ пользователя
-                groupData.add(m);
-            }
-
-            // список атрибутов групп для чтения
-            String groupFrom[] = new String[]{"user_answer"};
-            // список ID view-элементов, в которые будет помещены атрибуты групп
-            int groupTo[] = new int[]{android.R.id.text1};
-
-            // создаем коллекцию для коллекций элементов
-            childData = new ArrayList<ArrayList<Map<String, String>>>();
-
-            for (String explanation : explanations) {
-                // создаем коллекцию элементов для каждой группы
-                childDataItem = new ArrayList<Map<String, String>>();
-                // заполняем список атрибутов для каждого элемента
-                m = new HashMap<String, String>();
-                m.put("explanation", explanation); // пояснение к ответу
-                childDataItem.add(m);
-                // добавляем в коллекцию коллекций
-                childData.add(childDataItem);
-            }
-
-            // список атрибутов элементов для чтения
-            String childFrom[] = new String[]{"explanation"};
-            // список ID view-элементов, в которые будет помещены атрибуты элементов
-            int childTo[] = new int[]{android.R.id.text1};
-
-            SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
-                    this,
-                    groupData,
-                    android.R.layout.simple_expandable_list_item_1,
-                    groupFrom,
-                    groupTo,
-                    childData,
-                    android.R.layout.simple_list_item_1,
-                    childFrom,
-                    childTo);
-
-            mistakes = (ExpandableListView) findViewById(R.id.mistakes_list);
-            mistakes.setAdapter(adapter);
+        // filling userAnswers
+        userAnswers.addAll(Arrays.asList(annotations));
+        // filling explanations
+        for (int i = 0; i < userAnswers.size(); i++) {
+            List<String> explanation = new ArrayList<String>();
+            explanation.add(getExplanations(taskID).split("\n")[i]);
+            explanations.put(userAnswers.get(i), explanation);
         }
     }
 
