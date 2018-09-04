@@ -32,7 +32,7 @@ public class MistakesActivity extends AppCompatActivity {
             // TODO: transfer ID of the task to pull explanations for it!!
 
             String[] annotations = null;
-            String[] question = null;
+            String[] question;
 
             if (category != null) {
                 switch (category) {
