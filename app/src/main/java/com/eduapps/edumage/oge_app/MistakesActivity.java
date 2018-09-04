@@ -32,12 +32,94 @@ public class MistakesActivity extends AppCompatActivity {
             // TODO: transfer ID of the task to pull explanations for it!!
 
             String[] annotations = null;
+            String[] question = null;
 
             if (category != null) {
                 switch (category) {
-                    case "task_9":
+                    case "task_1":
                         // assume taskID is 0
                         taskID = 0;
+                        typedAnswers = extras.getStringArray("typed_answers");
+                        // indices of right answers
+                        rightAnswers = extras.getStringArray("right_answers");
+                        // list of headings
+                        question = getResources().getString(extras.getInt("question")).split("\n");
+
+                        annotations = new String[typedAnswers.length];
+                        for (int i = 0; i < typedAnswers.length; i++) {
+                            if (typedAnswers[i].equals("")) {
+                                annotations[i] = (i + 1) + ") Нет ответа";
+                            } else {
+                                try {
+                                    annotations[i] = (i + 1) + ") " + question[Integer.parseInt(typedAnswers[i]) - 1];
+                                } catch (NumberFormatException e) {
+                                    annotations[i] = (i + 1) + ") " + typedAnswers[i];
+                                }
+                            }
+                        }
+
+                        answersColors = new boolean[typedAnswers.length];
+                        for (int i = 0; i < typedAnswers.length; i++) {
+                            answersColors[i] = typedAnswers[i].equals(rightAnswers[i]);
+                        }
+                        break;
+
+                    case "task_2":
+                        // assume taskID is 1
+                        taskID = 1;
+                        typedAnswers = extras.getStringArray("typed_answers");
+                        // indices of right answers
+                        rightAnswers = extras.getStringArray("right_answers");
+                        // list of headings
+                        question = getResources().getString(extras.getInt("question")).split("\n");
+
+                        annotations = new String[typedAnswers.length];
+                        for (int i = 0; i < typedAnswers.length; i++) {
+                            if (typedAnswers[i].equals("")) {
+                                annotations[i] = (i + 1) + ") Нет ответа";
+                            } else {
+                                try {
+                                    annotations[i] = (i + 1) + ") " + question[Integer.parseInt(typedAnswers[i]) - 1];
+                                } catch (NumberFormatException e) {
+                                    annotations[i] = (i + 1) + ") " + typedAnswers[i];
+                                }
+                            }
+                        }
+
+                        answersColors = new boolean[typedAnswers.length];
+                        for (int i = 0; i < typedAnswers.length; i++) {
+                            answersColors[i] = typedAnswers[i].equals(rightAnswers[i]);
+                        }
+                        break;
+
+                    case "task_3_8":
+                        // assume taskID is 2
+                        taskID = 2;
+                        typedAnswers = extras.getStringArray("typed_answers");
+                        // indices of right answers
+                        rightAnswers = extras.getStringArray("right_answers");
+                        // list of headings
+                        question = getResources().getString(extras.getInt("question")).split("\n");
+
+                        annotations = new String[typedAnswers.length];
+                        for (int i = 0; i < typedAnswers.length; i++) {
+                            if (typedAnswers[i].equals("-1")) {
+                                annotations[i] = (i + 1) + ") Нет ответа";
+                            } else {
+                                //annotations[i] = (i + 1) + ") " + question[Integer.parseInt(typedAnswers[i]) - 1];
+                                annotations[i] = (i + 1) + ") " + question[i].split("/option/")[Integer.parseInt(typedAnswers[i]) + 1];
+                            }
+                        }
+
+                        answersColors = new boolean[typedAnswers.length];
+                        for (int i = 0; i < typedAnswers.length; i++) {
+                            answersColors[i] = Integer.parseInt(typedAnswers[i]) == Integer.parseInt(rightAnswers[i]) - 1;
+                        }
+                        break;
+
+                    case "task_9":
+                        // assume taskID is 3
+                        taskID = 3;
                         typedAnswers = extras.getStringArray("typed_answers");
                         // indices of right answers
                         rightAnswers = extras.getStringArray("right_answers");
@@ -45,36 +127,47 @@ public class MistakesActivity extends AppCompatActivity {
                         String[] headings = getResources().getString(extras.getInt("question")).split("\n");
 
                         annotations = new String[typedAnswers.length];
-                        answersColors = new boolean[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             if (typedAnswers[i].equals("Выберите заголовок")) {
-                                annotations[i] = (i + 1) + ". Нет ответа";
+                                annotations[i] = (i + 1) + ") Нет ответа";
                             } else {
-                                annotations[i] = (i + 1) + ". " + typedAnswers[i];
+                                annotations[i] = (i + 1) + ") " + typedAnswers[i];
                             }
                         }
 
+                        answersColors = new boolean[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = typedAnswers[i].equals(headings[Integer.parseInt(rightAnswers[i])]);
                         }
                         break;
 
                     case "task_10":
-                        // assume taskID is 1
-                        taskID = 1;
+                        // assume taskID is 4
+                        taskID = 4;
                         typedAnswers = extras.getStringArray("typed_answers");
                         // indices of right answers
                         rightAnswers = extras.getStringArray("right_answers");
 
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
-                            if (typedAnswers[i].equals("0")) {
-                                annotations[i] = (i + 1) + ". Нет ответа";
+                            if (typedAnswers[i].equals("-1")) {
+                                annotations[i] = (i + 1) + ") Нет ответа";
                             } else {
-                                annotations[i] = (i + 1) + ". " + typedAnswers[i];
+                                switch (typedAnswers[i]) {
+                                    case "0":
+                                        annotations[i] = (i + 1) + ") True";
+                                        break;
+                                    case "1":
+                                        annotations[i] = (i + 1) + ") False";
+                                        break;
+                                    case "2":
+                                        annotations[i] = (i + 1) + ") Not stated";
+                                        break;
+                                }
                             }
                         }
 
+                        answersColors = new boolean[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = Integer.parseInt(typedAnswers[i]) == Integer.parseInt(rightAnswers[i]) - 1;
                         }
@@ -155,8 +248,14 @@ public class MistakesActivity extends AppCompatActivity {
         // TODO: pull the explanations from DB
         switch (taskID) {
             case 0:
-                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
+                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
             case 1:
+                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
+            case 2:
+                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
+            case 3:
+                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
+            case 4:
                 return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
             default:
                 return null;

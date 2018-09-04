@@ -35,6 +35,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     private ImageView playPauseIcon;
 
     private List<String> rightAnswersList;
+    private List<String> typedAnswers;
     private int category;
     private int rightAnswers;
 
@@ -166,6 +167,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             }
         });
 
+        typedAnswers = new ArrayList<>();
         // also, behavior of submit button depends on category
         if (category == 0 || category == 1) {
             submitButton.setOnClickListener(new View.OnClickListener() {
@@ -212,11 +214,31 @@ public class AudioTaskActivity extends AppCompatActivity {
                                     .setMessage("You have " + rightAnswers + "/"
                                             + maxRightAnswers + " right answers")
                                     .setCancelable(false)
+                                    .setPositiveButton("Смотреть ошибки",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent(AudioTaskActivity.this, MistakesActivity.class);
+                                                    // put category to know the key-value pairs
+                                                    intent.putExtra("task_category", "task_" + (category + 1));
+                                                    // answers user typed (transforming to String[] array)
+                                                    String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
+                                                    intent.putExtra("typed_answers", answersArray);
+                                                    // right answers indices (transforming to String[] array)
+                                                    String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
+                                                    intent.putExtra("right_answers", rightAnswersArray);
+                                                    // options (to get right answers by indices)
+                                                    intent.putExtra("question", currentQuestion);
+
+                                                    startActivity(intent);
+                                                }
+                                            })
                                     .setNegativeButton("Попробовать снова",
                                             new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     dialog.cancel();
+                                                    typedAnswers.clear();
                                                 }
                                             });
                     AlertDialog alert = builder.create();
@@ -230,7 +252,7 @@ public class AudioTaskActivity extends AppCompatActivity {
                     releaseMediaPlayer();
                     setPauseMode();
 
-                    int rightAnswers = 0;
+                    rightAnswers = 0;
 
                     final RadioGroup options1 = findViewById(R.id.options1);
                     final RadioButton radioButton1 = options1.findViewById(options1.getCheckedRadioButtonId());
@@ -267,11 +289,31 @@ public class AudioTaskActivity extends AppCompatActivity {
                     builder.setTitle("Ваш результат:")
                             .setMessage("You have " + rightAnswers + "/6 right answers")
                             .setCancelable(false)
+                            .setPositiveButton("Смотреть ошибки",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(AudioTaskActivity.this, MistakesActivity.class);
+                                            // put category to know the key-value pairs
+                                            intent.putExtra("task_category", "task_3_8");
+                                            // answers user typed (transforming to String[] array)
+                                            String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
+                                            intent.putExtra("typed_answers", answersArray);
+                                            // right answers indices (transforming to String[] array)
+                                            String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
+                                            intent.putExtra("right_answers", rightAnswersArray);
+                                            // options (to get right answers by indices)
+                                            intent.putExtra("question", currentQuestion);
+
+                                            startActivity(intent);
+                                        }
+                                    })
                             .setNegativeButton("Попробовать снова",
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
+                                            typedAnswers.clear();
                                         }
                                     });
                     AlertDialog alert = builder.create();
@@ -340,6 +382,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         } else {
             answer.setTextColor(getResources().getColor(R.color.wrong_answer));
         }
+        typedAnswers.add(answer.getText().toString());
     }
 
     private void checkRadioButtonAnswer(RadioGroup options, RadioButton radioButton, int position) {
@@ -350,6 +393,9 @@ public class AudioTaskActivity extends AppCompatActivity {
             } else {
                 radioButton.setTextColor(getResources().getColor(R.color.wrong_answer));
             }
+            typedAnswers.add("" + options.indexOfChild(radioButton));
+        } else {
+            typedAnswers.add("-1");
         }
     }
 

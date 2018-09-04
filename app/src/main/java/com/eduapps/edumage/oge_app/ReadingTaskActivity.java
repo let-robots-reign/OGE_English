@@ -316,7 +316,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             }
             typedAnswers.add("" + options.indexOfChild(radioButton));
         } else {
-            typedAnswers.add("0");
+            typedAnswers.add("-1");
         }
     }
 
