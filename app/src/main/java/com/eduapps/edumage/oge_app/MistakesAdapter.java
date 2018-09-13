@@ -82,7 +82,7 @@ public class MistakesAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.simple_item, null);
         }
 
-        TextView answer = (TextView) convertView.findViewById(R.id.text2);
+        TextView answer = convertView.findViewById(R.id.text2);
         answer.setTypeface(null, Typeface.BOLD);
         answer.setText(headerTitle);
 

@@ -22,6 +22,7 @@ public class MistakesActivity extends AppCompatActivity {
     private boolean[] answersColors; // how to color user's answers
     private int taskID;
     private String[] annotations;
+    private String[] rightAnswersFull;
 
     // for expandable list item
     ExpandableListAdapter mistakesAdapter;
@@ -69,8 +70,10 @@ public class MistakesActivity extends AppCompatActivity {
                         }
 
                         answersColors = new boolean[typedAnswers.length];
+                        rightAnswersFull = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = typedAnswers[i].equals(rightAnswers[i]);
+                            rightAnswersFull[i] = question[Integer.parseInt(rightAnswers[i]) - 1];
                         }
                         break;
 
@@ -97,8 +100,10 @@ public class MistakesActivity extends AppCompatActivity {
                         }
 
                         answersColors = new boolean[typedAnswers.length];
+                        rightAnswersFull = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = typedAnswers[i].equals(rightAnswers[i]);
+                            rightAnswersFull[i] = question[Integer.parseInt(rightAnswers[i]) - 1];
                         }
                         break;
 
@@ -122,8 +127,10 @@ public class MistakesActivity extends AppCompatActivity {
                         }
 
                         answersColors = new boolean[typedAnswers.length];
+                        rightAnswersFull = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = Integer.parseInt(typedAnswers[i]) == Integer.parseInt(rightAnswers[i]) - 1;
+                            rightAnswersFull[i] = question[i].split("/option/")[Integer.parseInt(rightAnswers[i])];
                         }
                         break;
 
@@ -146,8 +153,10 @@ public class MistakesActivity extends AppCompatActivity {
                         }
 
                         answersColors = new boolean[typedAnswers.length];
+                        rightAnswersFull = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = typedAnswers[i].equals(headings[Integer.parseInt(rightAnswers[i])]);
+                            rightAnswersFull[i] = headings[Integer.parseInt(rightAnswers[i])];
                         }
                         break;
 
@@ -178,8 +187,20 @@ public class MistakesActivity extends AppCompatActivity {
                         }
 
                         answersColors = new boolean[typedAnswers.length];
+                        rightAnswersFull = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = Integer.parseInt(typedAnswers[i]) == Integer.parseInt(rightAnswers[i]) - 1;
+                            switch (rightAnswers[i]) {
+                                case "0":
+                                    rightAnswersFull[i] = "True";
+                                    break;
+                                case "1":
+                                    rightAnswersFull[i] = "False";
+                                    break;
+                                case "2":
+                                    rightAnswersFull[i] = "Not stated";
+                                    break;
+                            }
                         }
                         break;
 
@@ -204,7 +225,10 @@ public class MistakesActivity extends AppCompatActivity {
         // filling explanations
         for (int i = 0; i < userAnswers.size(); i++) {
             List<String> explanation = new ArrayList<String>();
-            explanation.add(getExplanations(taskID).split("\n")[i]);
+            if (!answersColors[i]) {
+                explanation.add("Правильный ответ: " + rightAnswersFull[i]);
+            }
+            explanation.add("Пояснение: " + getExplanations(taskID).split("\n")[i]);
             explanations.put(userAnswers.get(i), explanation);
         }
     }
