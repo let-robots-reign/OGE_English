@@ -191,13 +191,13 @@ public class MistakesActivity extends AppCompatActivity {
                         for (int i = 0; i < typedAnswers.length; i++) {
                             answersColors[i] = Integer.parseInt(typedAnswers[i]) == Integer.parseInt(rightAnswers[i]) - 1;
                             switch (rightAnswers[i]) {
-                                case "0":
+                                case "1":
                                     rightAnswersFull[i] = "True";
                                     break;
-                                case "1":
+                                case "2":
                                     rightAnswersFull[i] = "False";
                                     break;
-                                case "2":
+                                case "3":
                                     rightAnswersFull[i] = "Not stated";
                                     break;
                             }

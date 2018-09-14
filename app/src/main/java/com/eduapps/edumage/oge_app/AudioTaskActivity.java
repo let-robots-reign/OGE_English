@@ -2,6 +2,7 @@ package com.eduapps.edumage.oge_app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
