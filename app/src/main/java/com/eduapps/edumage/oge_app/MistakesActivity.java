@@ -44,8 +44,6 @@ public class MistakesActivity extends AppCompatActivity {
         if (extras != null) {
             category = extras.getString("task_category");
 
-            // TODO: transfer ID of the task to pull explanations for it!!
-
             annotations = null;
             String[] question;
 
@@ -149,7 +147,7 @@ public class MistakesActivity extends AppCompatActivity {
                         }
                         break;
 
-                    case "task_10":
+                    case "task_10_17":
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             if (typedAnswers[i].equals("-1")) {
@@ -212,7 +210,11 @@ public class MistakesActivity extends AppCompatActivity {
             if (!answersColors[i]) {
                 explanation.add("Правильный ответ: " + rightAnswersFull[i]);
             }
-            explanation.add("Пояснение:\n" + explanationFull.split("---")[i].trim());
+            if (explanationFull.equals("Отсутствует")) {
+                explanation.add("Пояснение:\n" + explanationFull);
+            } else {
+                explanation.add("Пояснение:\n" + explanationFull.split("---")[i].trim());
+            }
             explanations.put(userAnswers.get(i), explanation);
         }
     }
@@ -248,6 +250,22 @@ public class MistakesActivity extends AppCompatActivity {
                 cursor = db.query(Tables.AudioTask3.TABLE_NAME, columns, selection, selectionArgs,
                         null, null, null, null);
                 idExplanationIndex = cursor.getColumnIndex(Tables.AudioTask3.COLUMN_EXPLANATION);
+                break;
+            case "task_9":
+                columns = new String[]{Tables.ReadingTask1.COLUMN_EXPLANATION};
+                selection = Tables.ReadingTask1.COLUMN_ID + " = ?";
+                selectionArgs = new String[]{id + ""};
+                cursor = db.query(Tables.ReadingTask1.TABLE_NAME, columns, selection, selectionArgs,
+                        null, null, null, null);
+                idExplanationIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_EXPLANATION);
+                break;
+            case "task_10_17":
+                columns = new String[]{Tables.ReadingTask2.COLUMN_EXPLANATION};
+                selection = Tables.ReadingTask2.COLUMN_ID + " = ?";
+                selectionArgs = new String[]{id + ""};
+                cursor = db.query(Tables.ReadingTask2.TABLE_NAME, columns, selection, selectionArgs,
+                        null, null, null, null);
+                idExplanationIndex = cursor.getColumnIndex(Tables.ReadingTask2.COLUMN_EXPLANATION);
                 break;
             default:
                 cursor = null;

@@ -2,6 +2,8 @@ package com.eduapps.edumage.oge_app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +18,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.eduapps.edumage.oge_app.data.Tables;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReadingTaskActivity extends AppCompatActivity {
@@ -28,9 +33,18 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private String heading;
     private ArrayAdapter<String> adapter; // adapter for spinners
 
+    private SQLiteDatabase db;
+
+    private int currentID;
+    private String currentText;
+    private String currentQuestion;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        db = new DbHelper(this).getReadableDatabase();
+
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
         category = 0;
@@ -38,8 +52,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             category = extras.getInt("category");
         }
 
-        final int currentText = getRandomText(category);
-        final int currentQuestion = getRandomQuestion(category);
+        assignRandomQuestion();
 
         String[] question = new String[]{};
         // the layout depends on the type of the task
@@ -47,10 +60,10 @@ public class ReadingTaskActivity extends AppCompatActivity {
             setContentView(R.layout.reading_task_9);
             setTitle(R.string.reading_topic1);
             TextView headings = findViewById(R.id.headings_list);
-            headings.setText(getResources().getString(currentQuestion).split("Выберите заголовок\n")[1]);
+            headings.setText(currentQuestion.split("Выберите заголовок\n")[1]);
 
             // spinner options are the list of headings
-            String[] spinnerOptions = getResources().getString(currentQuestion).split("\n");
+            String[] spinnerOptions = currentQuestion.split("\n");
             // Spinners for task9
             Spinner spinner1 = findViewById(R.id.spinner1);
             adapter = new ArrayAdapter<>(this,
@@ -94,7 +107,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner7.setAdapter(adapter);
 
-            question = getResources().getString(currentText).split("\n");
+            question = currentText.split("\n");
 
         } else if (category == 1) {
             setContentView(R.layout.reading_tasks_10_17);
@@ -104,7 +117,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             TextView text = findViewById(R.id.reading_text);
             text.setText(currentText);
 
-            question = getResources().getString(currentQuestion).split("\n");
+            question = currentQuestion.split("\n");
         }
 
         // first category has 7 questions, 2nd - 8
@@ -194,6 +207,8 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                             intent.putExtra("right_answers", rightAnswersArray);
                                             // headings (to get right answers by indices)
                                             intent.putExtra("question", currentQuestion);
+                                            // id of the task
+                                            intent.putExtra("id", currentID);
 
                                             startActivity(intent);
                                         }
@@ -267,13 +282,15 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent = new Intent(ReadingTaskActivity.this, MistakesActivity.class);
                                             // put category to know the key-value pairs
-                                            intent.putExtra("task_category", "task_10");
+                                            intent.putExtra("task_category", "task_10_17");
                                             // answers user typed (transforming to String[] array)
                                             String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
                                             intent.putExtra("typed_answers", answersArray);
                                             // right answers indices (transforming to String[] array)
                                             String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
                                             intent.putExtra("right_answers", rightAnswersArray);
+                                            // id of the task
+                                            intent.putExtra("id", currentID);
 
                                             startActivity(intent);
                                         }
@@ -342,32 +359,42 @@ public class ReadingTaskActivity extends AppCompatActivity {
         }
     }
 
-    private int getRandomQuestion(int category) {
+    private void assignRandomQuestion() {
         rightAnswersList = new ArrayList<>();
-        // TODO: query question from DB
+        Cursor cursor;
         switch (category) {
             case 0:
-                rightAnswersList.add("1");
-                rightAnswersList.add("3");
-                rightAnswersList.add("6");
-                rightAnswersList.add("5");
-                rightAnswersList.add("8");
-                rightAnswersList.add("2");
-                rightAnswersList.add("4");
-                return R.string.task9_task1_headings;
+                cursor = db.query(Tables.ReadingTask1.TABLE_NAME, null, null,
+                        null, null, null, "RANDOM()", "1");
+                break;
             case 1:
-                rightAnswersList.add("2");
-                rightAnswersList.add("1");
-                rightAnswersList.add("2");
-                rightAnswersList.add("3");
-                rightAnswersList.add("1");
-                rightAnswersList.add("3");
-                rightAnswersList.add("2");
-                rightAnswersList.add("2");
-                heading = "Two sports brands";
-                return R.string.reading_topic2_task1_real;
+                cursor = db.query(Tables.ReadingTask2.TABLE_NAME, null, null,
+                        null, null, null, "RANDOM()", "1");
+                int headingColumnIndex = cursor.getColumnIndex(Tables.ReadingTask2.COLUMN_HEADING);
+                cursor.moveToFirst();
+                heading = cursor.getString(headingColumnIndex);
+                break;
             default:
-                return 0;
+                cursor = null;
+        }
+
+        if (cursor != null) {
+            try {
+                int idColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_ID);
+                int textColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_TEXT);
+                int taskColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_TASK);
+                int answerColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_ANSWER);
+
+                cursor.moveToFirst();
+                currentID = cursor.getInt(idColumnIndex);
+                currentText = cursor.getString(textColumnIndex);
+                currentQuestion = cursor.getString(taskColumnIndex);
+                String currentAnswer = cursor.getString(answerColumnIndex);
+
+                rightAnswersList.addAll(Arrays.asList(currentAnswer.split(" ")));
+            } finally {
+                cursor.close();
+            }
         }
     }
 }
