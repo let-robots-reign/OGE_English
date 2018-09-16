@@ -1,18 +1,19 @@
 package com.eduapps.edumage.oge_app;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
+
+import com.eduapps.edumage.oge_app.data.Tables;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MistakesActivity extends AppCompatActivity {
 
@@ -23,6 +24,8 @@ public class MistakesActivity extends AppCompatActivity {
     private int taskID;
     private String[] annotations;
     private String[] rightAnswersFull;
+
+    private SQLiteDatabase db;
 
     // for expandable list item
     ExpandableListAdapter mistakesAdapter;
@@ -35,8 +38,9 @@ public class MistakesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mistakes_list);
 
+        db = new DbHelper(this).getReadableDatabase();
+
         Bundle extras = getIntent().getExtras();
-        category = null;
         if (extras != null) {
             category = extras.getString("task_category");
 
@@ -45,16 +49,16 @@ public class MistakesActivity extends AppCompatActivity {
             annotations = null;
             String[] question;
 
+            taskID = extras.getInt("id");
+            typedAnswers = extras.getStringArray("typed_answers");
+            // indices of right answers
+            rightAnswers = extras.getStringArray("right_answers");
+
             if (category != null) {
                 switch (category) {
                     case "task_1":
-                        // assume taskID is 0
-                        taskID = 0;
-                        typedAnswers = extras.getStringArray("typed_answers");
-                        // indices of right answers
-                        rightAnswers = extras.getStringArray("right_answers");
                         // list of headings
-                        question = getResources().getString(extras.getInt("question")).split("\n");
+                        question = extras.getString("question").split("\n");
 
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
@@ -78,13 +82,8 @@ public class MistakesActivity extends AppCompatActivity {
                         break;
 
                     case "task_2":
-                        // assume taskID is 1
-                        taskID = 1;
-                        typedAnswers = extras.getStringArray("typed_answers");
-                        // indices of right answers
-                        rightAnswers = extras.getStringArray("right_answers");
                         // list of headings
-                        question = getResources().getString(extras.getInt("question")).split("\n");
+                        question = extras.getString("question").split("\n");
 
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
@@ -108,13 +107,8 @@ public class MistakesActivity extends AppCompatActivity {
                         break;
 
                     case "task_3_8":
-                        // assume taskID is 2
-                        taskID = 2;
-                        typedAnswers = extras.getStringArray("typed_answers");
-                        // indices of right answers
-                        rightAnswers = extras.getStringArray("right_answers");
                         // list of headings
-                        question = getResources().getString(extras.getInt("question")).split("\n");
+                        question = extras.getString("question").split("\n");
 
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
@@ -135,13 +129,8 @@ public class MistakesActivity extends AppCompatActivity {
                         break;
 
                     case "task_9":
-                        // assume taskID is 3
-                        taskID = 3;
-                        typedAnswers = extras.getStringArray("typed_answers");
-                        // indices of right answers
-                        rightAnswers = extras.getStringArray("right_answers");
                         // list of headings
-                        String[] headings = getResources().getString(extras.getInt("question")).split("\n");
+                        String[] headings = extras.getString("question").split("\n");
 
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
@@ -161,12 +150,6 @@ public class MistakesActivity extends AppCompatActivity {
                         break;
 
                     case "task_10":
-                        // assume taskID is 4
-                        taskID = 4;
-                        typedAnswers = extras.getStringArray("typed_answers");
-                        // indices of right answers
-                        rightAnswers = extras.getStringArray("right_answers");
-
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             if (typedAnswers[i].equals("-1")) {
@@ -217,38 +200,69 @@ public class MistakesActivity extends AppCompatActivity {
     }
 
     private void prepareListData() {
-        userAnswers = new ArrayList<String>();
-        explanations = new HashMap<String, List<String>>();
+        userAnswers = new ArrayList<>();
+        String explanationFull = getExplanations(taskID);
+        explanations = new HashMap<>();
 
         // filling userAnswers
         userAnswers.addAll(Arrays.asList(annotations));
         // filling explanations
         for (int i = 0; i < userAnswers.size(); i++) {
-            List<String> explanation = new ArrayList<String>();
+            List<String> explanation = new ArrayList<>();
             if (!answersColors[i]) {
                 explanation.add("Правильный ответ: " + rightAnswersFull[i]);
             }
-            explanation.add("Пояснение: " + getExplanations(taskID).split("\n")[i]);
+            explanation.add("Пояснение:\n" + explanationFull.split("---")[i].trim());
             explanations.put(userAnswers.get(i), explanation);
         }
     }
 
     private String getExplanations(int id) {
-        // TODO: pull the explanations from DB
-        switch (taskID) {
-            case 0:
-                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
-            case 1:
-                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
-            case 2:
-                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
-            case 3:
-                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
-            case 4:
-                return "Отсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует\nОтсутсвует";
+        // WHERE clause
+        String[] columns;
+        String selection;
+        String[] selectionArgs;
+        Cursor cursor;
+        int idExplanationIndex;
+        switch (category) {
+            case "task_1":
+                columns = new String[]{Tables.AudioTask1.COLUMN_EXPLANATION};
+                selection = Tables.AudioTask1.COLUMN_ID + " = ?";
+                selectionArgs = new String[]{id + ""};
+                cursor = db.query(Tables.AudioTask1.TABLE_NAME, columns, selection, selectionArgs,
+                        null, null, null, null);
+                idExplanationIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_EXPLANATION);
+                break;
+            case "task_2":
+                columns = new String[]{Tables.AudioTask2.COLUMN_EXPLANATION};
+                selection = Tables.AudioTask2.COLUMN_ID + " = ?";
+                selectionArgs = new String[]{id + ""};
+                cursor = db.query(Tables.AudioTask2.TABLE_NAME, columns, selection, selectionArgs,
+                        null, null, null, null);
+                idExplanationIndex = cursor.getColumnIndex(Tables.AudioTask2.COLUMN_EXPLANATION);
+                break;
+            case "task_3_8":
+                columns = new String[]{Tables.AudioTask3.COLUMN_EXPLANATION};
+                selection = Tables.AudioTask3.COLUMN_ID + " = ?";
+                selectionArgs = new String[]{id + ""};
+                cursor = db.query(Tables.AudioTask3.TABLE_NAME, columns, selection, selectionArgs,
+                        null, null, null, null);
+                idExplanationIndex = cursor.getColumnIndex(Tables.AudioTask3.COLUMN_EXPLANATION);
+                break;
             default:
-                return null;
+                cursor = null;
+                idExplanationIndex = 0;
+        }
+
+        if (cursor != null) {
+            try {
+                cursor.moveToFirst();
+                return cursor.getString(idExplanationIndex);
+            } finally {
+                cursor.close();
+            }
+        } else {
+            return null;
         }
     }
 }
-

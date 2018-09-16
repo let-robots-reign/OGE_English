@@ -2,6 +2,7 @@ package com.eduapps.edumage.oge_app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -11,19 +12,19 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.eduapps.edumage.oge_app.data.Tables;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -39,6 +40,12 @@ public class AudioTaskActivity extends AppCompatActivity {
     private List<String> typedAnswers;
     private int category;
     private int rightAnswers;
+
+    private SQLiteDatabase db;
+
+    private int currentID;
+    private String currentQuestion;
+    private String currentAudioFile;
 
     private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
         @Override
@@ -65,6 +72,9 @@ public class AudioTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        db = new DbHelper(this).getReadableDatabase();
+
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
         category = 0;
@@ -72,7 +82,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             category = extras.getInt("category");
         }
 
-        final int currentQuestion = getRandomQuestion(category);
+        assignRandomQuestionAndAudio();
 
         if (category == 0 || category == 1) {
             // the layout depends on the type of task
@@ -80,7 +90,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             TextView question = findViewById(R.id.audio_question);
             // if the question is too big
             question.setText(currentQuestion);
-            if (getResources().getString(currentQuestion).length() >= 250) {
+            if (currentQuestion.length() >= 250) {
                 question.setTextSize(14);
             }
 
@@ -93,7 +103,7 @@ public class AudioTaskActivity extends AppCompatActivity {
 
         } else {
             setContentView(R.layout.audio_tasks_3_8);
-            String[] question = getResources().getString(currentQuestion).split("\n");
+            String[] question = currentQuestion.split("\n");
 
             TextView question1 = findViewById(R.id.question1);
             question1.setText(question[0].split("/option/")[0]);
@@ -230,6 +240,8 @@ public class AudioTaskActivity extends AppCompatActivity {
                                                     intent.putExtra("right_answers", rightAnswersArray);
                                                     // options (to get right answers by indices)
                                                     intent.putExtra("question", currentQuestion);
+                                                    // id of the task
+                                                    intent.putExtra("id", currentID);
 
                                                     startActivity(intent);
                                                 }
@@ -305,6 +317,8 @@ public class AudioTaskActivity extends AppCompatActivity {
                                             intent.putExtra("right_answers", rightAnswersArray);
                                             // options (to get right answers by indices)
                                             intent.putExtra("question", currentQuestion);
+                                            // id of the task
+                                            intent.putExtra("id", currentID);
 
                                             startActivity(intent);
                                         }
@@ -341,7 +355,8 @@ public class AudioTaskActivity extends AppCompatActivity {
                     int res = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC,
                             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                     if (res == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                        mediaPlayer = MediaPlayer.create(AudioTaskActivity.this, getAudio(currentQuestion));
+                        mediaPlayer = MediaPlayer.create(AudioTaskActivity.this,
+                                getResources().getIdentifier(currentAudioFile, "raw", getPackageName()));
                         setPlayMode();
                         mediaPlayer.setOnCompletionListener(completionListener);
                     }
@@ -444,48 +459,47 @@ public class AudioTaskActivity extends AppCompatActivity {
         playPauseIcon.setImageResource(R.drawable.play_triangle);
     }
 
-    private int getAudio(int question) {
-        // TODO: query audio file from DB
-        switch (question) {
-            case R.string.audio_topic1_task1:
-                return R.raw.audio_topic1_task1;
-            case R.string.audio_topic2_task1:
-                return R.raw.audio_topic2_task1;
-            case R.string.audio_topics_3_8_task1:
-                return R.raw.audio_topic3_task1;
-            default:
-                return 0;
-        }
-    }
-
-    private int getRandomQuestion(int category) {
+    private void assignRandomQuestionAndAudio() {
         rightAnswersList = new ArrayList<>();
-        // TODO: query question from DB
+        Cursor cursor;
         switch(category) {
             case 0:
-                rightAnswersList.add("4");
-                rightAnswersList.add("2");
-                rightAnswersList.add("5");
-                rightAnswersList.add("1");
-                rightAnswersList.add(""); // dummy
-                return R.string.audio_topic1_task1;
+                cursor = db.query(Tables.AudioTask1.TABLE_NAME, null,null,
+                        null, null, null, "RANDOM()", "1");
+                break;
             case 1:
-                rightAnswersList.add("3");
-                rightAnswersList.add("5");
-                rightAnswersList.add("1");
-                rightAnswersList.add("6");
-                rightAnswersList.add("2");
-                return R.string.audio_topic2_task1;
+                cursor = db.query(Tables.AudioTask2.TABLE_NAME, null, null,
+                        null, null,null, "RANDOM()", "1");
+                break;
             case 2:
-                rightAnswersList.add("1");
-                rightAnswersList.add("3");
-                rightAnswersList.add("1");
-                rightAnswersList.add("2");
-                rightAnswersList.add("3");
-                rightAnswersList.add("1");
-                return R.string.audio_topics_3_8_task1;
+                cursor = db.query(Tables.AudioTask3.TABLE_NAME, null, null,
+                        null, null,null, "RANDOM()", "1");
+                break;
             default:
-                return 0;
+                cursor = null;
+        }
+
+        if (cursor != null) {
+            try {
+                // Figure out the index of each column
+                int idColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_ID);
+                int taskColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_TASK);
+                int answerColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_ANSWER);
+                int audioColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_AUDIO);
+
+                cursor.moveToFirst();
+                currentID = cursor.getInt(idColumnIndex);
+                currentQuestion = cursor.getString(taskColumnIndex);
+                String currentAnswer = cursor.getString(answerColumnIndex);
+                currentAudioFile = cursor.getString(audioColumnIndex);
+
+                rightAnswersList.addAll(Arrays.asList(currentAnswer.split(" ")));
+                if (category == 0) {
+                    rightAnswersList.add(""); // dummy
+                }
+            } finally {
+                cursor.close();
+            }
         }
     }
 
