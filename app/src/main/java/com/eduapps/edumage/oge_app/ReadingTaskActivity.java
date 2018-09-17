@@ -320,6 +320,34 @@ public class ReadingTaskActivity extends AppCompatActivity {
                 }
             });
         }
+
+        // when a user enters, he should see an instruction to the task
+        AlertDialog.Builder builder = new AlertDialog.Builder(ReadingTaskActivity.this);
+        builder.setTitle("Инструкция")
+                .setCancelable(false)
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        switch(category) {
+            case 0:
+                builder.setMessage("Прочитайте тексты и установите соответствие между текстами и " +
+                        "их заголовками: к каждому тексту, обозначенному буквами А–G, подберите " +
+                        "соответствующий заголовок, обозначенный цифрами 1–8. Используйте каждую " +
+                        "цифру только один раз. В задании есть один лишний заголовок.");
+                break;
+            case 1:
+                builder.setMessage("Прочитайте текст. Определите, какие из приведённых утверждений " +
+                        "10–17 соответствуют содержанию текста (1 – True), какие не соответствуют " +
+                        "(2 – False) и о чём в тексте не сказано, то есть на основании текста нельзя" +
+                        " дать ни положительного, ни отрицательного ответа (3 – Not stated).");
+                break;
+        }
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     private void checkSpinnerSelection(Spinner spinner, int position) {

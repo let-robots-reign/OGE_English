@@ -381,6 +381,41 @@ public class AudioTaskActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // when a user enters, he should see an instruction to the task
+        AlertDialog.Builder builder = new AlertDialog.Builder(AudioTaskActivity.this);
+        builder.setTitle("Инструкция")
+                .setCancelable(false)
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        switch(category) {
+            case 0:
+                builder.setMessage("Вы два раза услышите четыре коротких диалога, обозначенных буквами " +
+                        "А, B, C, D. Установите соответствие между диалогами и местами, где они " +
+                        "происходят: к каждому диалогу подберите соответствующее место действия, " +
+                        "обозначенное цифрами. Используйте каждое место действия из списка 1–5 " +
+                        "только один раз. В задании есть одно лишнее место действия.");
+                break;
+            case 1:
+                builder.setMessage("Вы два раза услышите пять высказываний, обозначенных буквами " +
+                        "А, В, С, D, Е. Установите соответствие между высказываниями и утверждениями " +
+                        "из следующего списка: к каждому высказыванию подберите соответствующее " +
+                        "утверждение, обозначенное цифрами. Используйте каждое утверждение из списка " +
+                        "1-6 только один раз. В задании есть одно лишнее утверждение.");
+                break;
+            case 2:
+                builder.setMessage("Вы услышите разговор двух собеседников. В заданиях 3-8 в поле " +
+                        "ответа запишите одну цифру, которая соответствует номеру правильного " +
+                        "ответа.");
+                break;
+        }
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     @Override
