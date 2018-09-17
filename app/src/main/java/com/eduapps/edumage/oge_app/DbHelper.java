@@ -12,6 +12,7 @@ public class DbHelper extends SQLiteAssetHelper {
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super.setForcedUpgrade();
     }
 
     @Override
@@ -26,7 +27,6 @@ public class DbHelper extends SQLiteAssetHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        super.setForcedUpgrade(newVersion);
         super.onUpgrade(db, oldVersion, newVersion);
     }
 }

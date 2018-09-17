@@ -40,6 +40,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     private List<String> typedAnswers;
     private int category;
     private int rightAnswers;
+    private boolean canRetry;
 
     private SQLiteDatabase db;
 
@@ -75,6 +76,7 @@ public class AudioTaskActivity extends AppCompatActivity {
 
         db = new DbHelper(this).getReadableDatabase();
 
+        canRetry = true;
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
         category = 0;
@@ -245,15 +247,20 @@ public class AudioTaskActivity extends AppCompatActivity {
 
                                                     startActivity(intent);
                                                 }
-                                            })
-                                    .setNegativeButton("Попробовать снова",
-                                            new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.cancel();
-                                                    typedAnswers.clear();
-                                                }
                                             });
+
+                    if (canRetry) {
+                        builder.setNegativeButton("Попробовать снова",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        typedAnswers.clear();
+                                    }
+                                });
+                        canRetry = false;
+                    }
+
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
@@ -322,15 +329,20 @@ public class AudioTaskActivity extends AppCompatActivity {
 
                                             startActivity(intent);
                                         }
-                                    })
-                            .setNegativeButton("Попробовать снова",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                            typedAnswers.clear();
-                                        }
                                     });
+
+                    if (canRetry) {
+                        builder.setNegativeButton("Попробовать снова",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        typedAnswers.clear();
+                                    }
+                                });
+                        canRetry = false;
+                    }
+
                     AlertDialog alert = builder.create();
                     alert.show();
                 }

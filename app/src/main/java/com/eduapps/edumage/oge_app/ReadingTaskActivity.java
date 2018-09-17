@@ -32,6 +32,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private int rightAnswers;
     private String heading;
     private ArrayAdapter<String> adapter; // adapter for spinners
+    private boolean canRetry;
 
     private SQLiteDatabase db;
 
@@ -45,6 +46,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
 
         db = new DbHelper(this).getReadableDatabase();
 
+        canRetry = true;
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
         category = 0;
@@ -212,15 +214,20 @@ public class ReadingTaskActivity extends AppCompatActivity {
 
                                             startActivity(intent);
                                         }
-                                    })
-                            .setNegativeButton("Попробовать снова",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                            typedAnswers.clear();
-                                        }
                                     });
+
+                    if (canRetry) {
+                        builder.setNegativeButton("Попробовать снова",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                    typedAnswers.clear();
+                                }
+                            });
+                        canRetry = false;
+                    }
+
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
@@ -294,15 +301,20 @@ public class ReadingTaskActivity extends AppCompatActivity {
 
                                             startActivity(intent);
                                         }
-                                    })
-                            .setNegativeButton("Попробовать снова",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                            typedAnswers.clear();
-                                        }
                                     });
+
+                    if (canRetry) {
+                        builder.setNegativeButton("Попробовать снова",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        typedAnswers.clear();
+                                    }
+                                });
+                        canRetry = false;
+                    }
+
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
@@ -345,17 +357,6 @@ public class ReadingTaskActivity extends AppCompatActivity {
                     radioButton.setTextColor(getResources().getColor(R.color.colorPrimaryText));
                 }
             });
-        }
-    }
-
-    private int getRandomText(int category) {
-        switch (category) {
-            case 0:
-                return R.string.task9_task1_texts1;
-            case 1:
-                return R.string.reading_topic2_text1;
-            default:
-                return 0;
         }
     }
 
