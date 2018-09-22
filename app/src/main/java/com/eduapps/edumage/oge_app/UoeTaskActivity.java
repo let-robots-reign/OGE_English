@@ -2,6 +2,8 @@ package com.eduapps.edumage.oge_app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -13,18 +15,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.eduapps.edumage.oge_app.data.Tables;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class UoeTaskActivity extends AppCompatActivity {
 
     String[] answersTyped = new String[10];
+    private List<UoeTask> tasks;
+    private List<String> rightAnswersList;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.uoe_tasks_page);
 
+        db = new DbHelper(this).getReadableDatabase();
 
         for (int i = 0; i < 10; i++) {
             answersTyped[i] = "";
@@ -36,8 +44,8 @@ public class UoeTaskActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         uoeTasksList.setLayoutManager(layoutManager);
 
-        final List<UoeTask> tasks = new ArrayList<>();
-        final List<String> rightAnswersList = new ArrayList<>();
+        tasks = new ArrayList<>();
+        rightAnswersList = new ArrayList<>();
 
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
@@ -48,40 +56,7 @@ public class UoeTaskActivity extends AppCompatActivity {
 
         setTitle(getResources().getStringArray(R.array.uoe_topics)[category]);
 
-        switch (category) {
-            case 0:
-                tasks.add(new UoeTask(R.string.uoe_topic1_task1, R.string.uoe_topic1_origin1, R.string.uoe_topic1_answer1));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer1));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task2, R.string.uoe_topic1_origin2, R.string.uoe_topic1_answer2));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer2));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task3, R.string.uoe_topic1_origin3, R.string.uoe_topic1_answer3));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer3));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task4, R.string.uoe_topic1_origin4, R.string.uoe_topic1_answer4));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer4));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task5, R.string.uoe_topic1_origin5, R.string.uoe_topic1_answer5));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer5));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task6, R.string.uoe_topic1_origin6, R.string.uoe_topic1_answer6));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer6));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task7, R.string.uoe_topic1_origin7, R.string.uoe_topic1_answer7));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer7));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task8, R.string.uoe_topic1_origin8, R.string.uoe_topic1_answer8));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer8));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task9, R.string.uoe_topic1_origin9, R.string.uoe_topic1_answer9));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer9));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task10, R.string.uoe_topic1_origin10, R.string.uoe_topic1_answer10));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer10));
-                break;
-            case 1:
-                tasks.add(new UoeTask(R.string.uoe_topic1_task1, R.string.uoe_topic1_origin1, R.string.uoe_topic1_answer1));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer1));
-                tasks.add(new UoeTask(R.string.uoe_topic1_task2, R.string.uoe_topic1_origin2, R.string.uoe_topic1_answer2));
-                rightAnswersList.add(getResources().getString(R.string.uoe_topic1_answer2));
-                break;
-        }
-
-//        for (int i = 1; i <= 2; i++) {
-//            tasks.add(generateRandomTask(category));
-//        }
+        generateRandomTasks(category);
 
         RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
         uoeTasksList.setAdapter(adapter);
@@ -133,7 +108,41 @@ public class UoeTaskActivity extends AppCompatActivity {
         });
     }
 
-    public void generateRandomTask(int category) {
-        // TODO: get tasks from DB
+    public void generateRandomTasks(int category) {
+        Cursor cursor;
+        String selection = Tables.UseOfEnglishTask.COLUMN_TOPIC + " = ?";
+        String[] selectionArgs = null;
+        switch (category) {
+            case 0:
+                selectionArgs = new String[]{"Множественное число существительных"};
+                break;
+            case 1:
+                selectionArgs = new String[]{"Порядковые числительные"};
+                break;
+            case 2:
+                selectionArgs = new String[]{"Объектные местоимения"};
+                break;
+        }
+        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                selectionArgs, null, null, "RANDOM()", "10");
+
+        if (cursor != null) {
+            try {
+                int taskColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_TASK);
+                int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
+                int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
+
+                cursor.moveToFirst();
+                for (int i = 0; i < 10; i++) {
+                    tasks.add(new UoeTask(cursor.getString(taskColumnIndex),
+                            cursor.getString(originColumnIndex),
+                            cursor.getString(answerColumnIndex)));
+                    rightAnswersList.add(cursor.getString(answerColumnIndex));
+                    cursor.moveToNext();
+                }
+            } finally {
+                cursor.close();
+            }
+        }
     }
 }

@@ -39,7 +39,7 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.6"
                 android:layout_gravity="center_vertical">
 
                 <EditText
@@ -52,7 +52,7 @@
                     android:focusableInTouchMode="true"
                     android:imeOptions="actionDone"
                     android:inputType="textCapCharacters"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     app:fontFamily="@font/roboto_regular"/>
 

@@ -1,29 +1,25 @@
 package com.eduapps.edumage.oge_app;
 
 public class UoeTask {
-    private int question;
-    private int origin;
-    private int answer;
+    private String question;
+    private String origin;
+    private String answer;
 
-    UoeTask(int question, int origin, int answer) {
+    UoeTask(String question, String origin, String answer) {
         this.question = question;
         this.origin = origin;
         this.answer = answer;
     }
 
-    public int getQuestion() {
+    public String getQuestion() {
         return this.question;
     }
 
-    public int getOrigin() {
+    public String getOrigin() {
         return this.origin;
     }
 
-    public int getAnswer() {
+    public String getAnswer() {
         return this.answer;
     }
-
-//    public void setCategory(int category) {
-//        this.category = category;
-//    }
 }

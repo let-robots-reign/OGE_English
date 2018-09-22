@@ -49,4 +49,13 @@ public final class Tables {
         public static final String COLUMN_EXPLANATION = "explanation";
         public static final String COLUMN_HEADING = "heading";
     }
+
+    public static abstract class UseOfEnglishTask implements BaseColumns {
+        public static final String TABLE_NAME = "UseOfEnglish";
+        public static final String COLUMN_ID = BaseColumns._ID;
+        public static final String COLUMN_TOPIC = "topic";
+        public static final String COLUMN_TASK = "task";
+        public static final String COLUMN_ORIGIN = "origin";
+        public static final String COLUMN_ANSWER = "answer";
+    }
 }

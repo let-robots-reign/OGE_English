@@ -67,7 +67,7 @@ public class RVUoeTasksAdapter extends RecyclerView.Adapter<RVUoeTasksAdapter.Uo
 
         /* if user tapped Submit, checking their answers */
         if (ifCheck) {
-            if (answersTyped[position].equals(holder.answer.getContext().getString(tasks.get(position).getAnswer()))) {
+            if (answersTyped[position].equals(tasks.get(position).getAnswer())) {
                 holder.answer.setTextColor(holder.answer.getContext().getResources().getColor(R.color.right_answer));
             } else {
                 holder.answer.setTextColor(holder.answer.getContext().getResources().getColor(R.color.wrong_answer));
