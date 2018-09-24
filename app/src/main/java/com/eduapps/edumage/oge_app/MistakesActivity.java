@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
@@ -69,7 +70,7 @@ public class MistakesActivity extends AppCompatActivity {
                             } else {
                                 try {
                                     annotations[i] = (i + 1) + ") " + question[Integer.parseInt(typedAnswers[i]) - 1];
-                                } catch (NumberFormatException e) {
+                                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                                     annotations[i] = (i + 1) + ") " + typedAnswers[i];
                                 }
                             }
@@ -94,7 +95,7 @@ public class MistakesActivity extends AppCompatActivity {
                             } else {
                                 try {
                                     annotations[i] = (i + 1) + ") " + question[Integer.parseInt(typedAnswers[i]) - 1];
-                                } catch (NumberFormatException e) {
+                                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                                     annotations[i] = (i + 1) + ") " + typedAnswers[i];
                                 }
                             }
@@ -221,6 +222,12 @@ public class MistakesActivity extends AppCompatActivity {
             }
             explanations.put(userAnswers.get(i), explanation);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MistakesActivity.this, TrainingsActivity.class);
+        startActivity(intent);
     }
 
     private String getExplanations(int id) {

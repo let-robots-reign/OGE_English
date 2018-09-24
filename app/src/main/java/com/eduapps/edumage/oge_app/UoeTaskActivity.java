@@ -124,7 +124,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                 break;
         }
         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
-                selectionArgs, null, null, "RANDOM()", "10");
+                selectionArgs, null, null, "RANDOM()", "1");
 
         if (cursor != null) {
             try {
@@ -132,13 +132,29 @@ public class UoeTaskActivity extends AppCompatActivity {
                 int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
                 int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
 
+                List<String> wordsList = new ArrayList<>();
                 cursor.moveToFirst();
                 for (int i = 0; i < 10; i++) {
-                    tasks.add(new UoeTask(cursor.getString(taskColumnIndex),
-                            cursor.getString(originColumnIndex),
-                            cursor.getString(answerColumnIndex)));
+                    String task = cursor.getString(taskColumnIndex);
+                    String origin = cursor.getString(originColumnIndex);
+                    String answer = cursor.getString(answerColumnIndex);
+                    UoeTask elem = new UoeTask(task, origin, answer);
+                    while ((wordsList.contains(origin)&& category != 2) ||
+                            (wordsList.size() > 0 && wordsList.get(i - 1).equals(origin))) {
+                        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                                selectionArgs, null, null, "RANDOM()", "1");
+                        cursor.moveToFirst();
+                        task = cursor.getString(taskColumnIndex);
+                        origin = cursor.getString(originColumnIndex);
+                        answer = cursor.getString(answerColumnIndex);
+                        elem = new UoeTask(task, origin, answer);
+                    }
+                    tasks.add(elem);
+                    wordsList.add(origin);
                     rightAnswersList.add(cursor.getString(answerColumnIndex));
-                    cursor.moveToNext();
+                    cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                            selectionArgs, null, null, "RANDOM()", "1");
+                    cursor.moveToFirst();
                 }
             } finally {
                 cursor.close();
