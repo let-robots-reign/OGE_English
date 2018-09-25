@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.eduapps.edumage.oge_app.data.Tables;
 
@@ -22,10 +22,11 @@ import java.util.List;
 
 public class UoeTaskActivity extends AppCompatActivity {
 
-    String[] answersTyped = new String[10];
+    String[] typedAnswers = new String[10];
     private List<UoeTask> tasks;
     private List<String> rightAnswersList;
     private SQLiteDatabase db;
+    private int rightAnswers;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,14 +36,8 @@ public class UoeTaskActivity extends AppCompatActivity {
         db = new DbHelper(this).getReadableDatabase();
 
         for (int i = 0; i < 10; i++) {
-            answersTyped[i] = "";
+            typedAnswers[i] = "";
         }
-
-        final RecyclerView uoeTasksList = findViewById(R.id.uoe_tasks_list);
-
-        uoeTasksList.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        uoeTasksList.setLayoutManager(layoutManager);
 
         tasks = new ArrayList<>();
         rightAnswersList = new ArrayList<>();
@@ -58,8 +53,58 @@ public class UoeTaskActivity extends AppCompatActivity {
 
         generateRandomTasks(category);
 
-        RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
-        uoeTasksList.setAdapter(adapter);
+        TextView question1 = findViewById(R.id.uoe_task1);
+        final EditText origin1 = findViewById(R.id.uoe_answer1);
+        TextView question2 = findViewById(R.id.uoe_task2);
+        final EditText origin2 = findViewById(R.id.uoe_answer2);
+        TextView question3 = findViewById(R.id.uoe_task3);
+        final EditText origin3 = findViewById(R.id.uoe_answer3);
+        TextView question4 = findViewById(R.id.uoe_task4);
+        final EditText origin4 = findViewById(R.id.uoe_answer4);
+        TextView question5 = findViewById(R.id.uoe_task5);
+        final EditText origin5 = findViewById(R.id.uoe_answer5);
+        TextView question6 = findViewById(R.id.uoe_task6);
+        final EditText origin6 = findViewById(R.id.uoe_answer6);
+        TextView question7 = findViewById(R.id.uoe_task7);
+        final EditText origin7 = findViewById(R.id.uoe_answer7);
+        TextView question8 = findViewById(R.id.uoe_task8);
+        final EditText origin8 = findViewById(R.id.uoe_answer8);
+        TextView question9 = findViewById(R.id.uoe_task9);
+        final EditText origin9 = findViewById(R.id.uoe_answer9);
+        TextView question10 = findViewById(R.id.uoe_task10);
+        final EditText origin10 = findViewById(R.id.uoe_answer10);
+
+        question1.setText(tasks.get(0).getQuestion());
+        origin1.setHint(tasks.get(0).getOrigin());
+        question2.setText(tasks.get(1).getQuestion());
+        origin2.setHint(tasks.get(1).getOrigin());
+        question3.setText(tasks.get(2).getQuestion());
+        origin3.setHint(tasks.get(2).getOrigin());
+        question4.setText(tasks.get(3).getQuestion());
+        origin4.setHint(tasks.get(3).getOrigin());
+        question5.setText(tasks.get(4).getQuestion());
+        origin5.setHint(tasks.get(4).getOrigin());
+        question6.setText(tasks.get(5).getQuestion());
+        origin6.setHint(tasks.get(5).getOrigin());
+        question7.setText(tasks.get(6).getQuestion());
+        origin7.setHint(tasks.get(6).getOrigin());
+        question8.setText(tasks.get(7).getQuestion());
+        origin8.setHint(tasks.get(7).getOrigin());
+        question9.setText(tasks.get(8).getQuestion());
+        origin9.setHint(tasks.get(8).getOrigin());
+        question10.setText(tasks.get(9).getQuestion());
+        origin10.setHint(tasks.get(9).getOrigin());
+
+        applyTextListener(origin1);
+        applyTextListener(origin2);
+        applyTextListener(origin3);
+        applyTextListener(origin4);
+        applyTextListener(origin5);
+        applyTextListener(origin6);
+        applyTextListener(origin7);
+        applyTextListener(origin8);
+        applyTextListener(origin9);
+        applyTextListener(origin10);
 
         Button exitButton = findViewById(R.id.exit_button);
         Button submitButton = findViewById(R.id.submit_button);
@@ -75,15 +120,18 @@ public class UoeTaskActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, true);
-                uoeTasksList.setAdapter(adapter);
+                rightAnswers = 0;
 
-                int rightAnswers = 0;
-                for (int i = 0; i < 10; i++) {
-                    if (answersTyped[i].equals(rightAnswersList.get(i))) {
-                        rightAnswers += 1;
-                    }
-                }
+                checkEditTextAnswer(origin1, 0);
+                checkEditTextAnswer(origin2, 1);
+                checkEditTextAnswer(origin3, 2);
+                checkEditTextAnswer(origin4, 3);
+                checkEditTextAnswer(origin5, 4);
+                checkEditTextAnswer(origin6, 5);
+                checkEditTextAnswer(origin7, 6);
+                checkEditTextAnswer(origin8, 7);
+                checkEditTextAnswer(origin9, 8);
+                checkEditTextAnswer(origin10, 9);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
                 builder.setTitle("Ваш результат:")
@@ -94,12 +142,6 @@ public class UoeTaskActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
-                                                // clear the typed answers
-//                                                for (int i = 0; i < 10; i++) {
-//                                                    answersTyped[i] = "";
-//                                                }
-//                                                RVUoeTasksAdapter adapter = new RVUoeTasksAdapter(tasks, answersTyped, false);
-//                                                uoeTasksList.setAdapter(adapter);
                                             }
                                         });
                 AlertDialog alert = builder.create();
@@ -108,7 +150,36 @@ public class UoeTaskActivity extends AppCompatActivity {
         });
     }
 
-    public void generateRandomTasks(int category) {
+    private void checkEditTextAnswer(EditText answer, int position) {
+        if (answer.getText().toString().equals(rightAnswersList.get(position))) {
+            answer.setTextColor(getResources().getColor(R.color.right_answer));
+            rightAnswers += 1;
+        } else {
+            answer.setTextColor(getResources().getColor(R.color.wrong_answer));
+        }
+        typedAnswers[position] = answer.getText().toString();
+    }
+
+    private void applyTextListener(final EditText answer) {
+        answer.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                answer.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void generateRandomTasks(int category) {
         Cursor cursor;
         String selection = Tables.UseOfEnglishTask.COLUMN_TOPIC + " = ?";
         String[] selectionArgs = null;

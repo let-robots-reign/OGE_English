@@ -5,11 +5,535 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryLight">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/uoe_tasks_list"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task1"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task2"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task3"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task4"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task5"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task6"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task7"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task8"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task9"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="70dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/uoe_task10"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_regular"
+                        tools:text="@string/uoe_topic1_task1"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/uoe_answer10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:hint="@string/uoe_topic1_origin1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapCharacters"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/roboto_regular"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <Button
         android:id="@+id/exit_button"
