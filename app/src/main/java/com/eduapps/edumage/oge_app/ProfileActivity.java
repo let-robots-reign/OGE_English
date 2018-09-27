@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -24,10 +25,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
 
-        TextView username = findViewById(R.id.username);
-        TextView goal = findViewById(R.id.goal);
-        TextView deadline = findViewById(R.id.deadline);
-        TextView plan = findViewById(R.id.plan);
+        View user_card = LayoutInflater.from(this).inflate(R.layout.user_card, null, false);
+
+        TextView username = user_card.findViewById(R.id.username);
+        TextView goal = user_card.findViewById(R.id.goal);
+        TextView deadline = user_card.findViewById(R.id.deadline);
+        TextView plan = user_card.findViewById(R.id.plan);
 
         username.setText(getUserName());
         goal.setText(getUserGoal());
@@ -35,16 +38,17 @@ public class ProfileActivity extends AppCompatActivity {
         plan.setText(getUserPlanPercentage());
         plan.setTextColor(colorUserPlan());
 
-        ProgressBar levelBar = findViewById(R.id.level_bar);
+        ProgressBar levelBar = user_card.findViewById(R.id.level_bar);
         levelBar.setProgress(getUserProgress());
 
-        TextView userLevel = findViewById(R.id.user_level);
+        TextView userLevel = user_card.findViewById(R.id.user_level);
         userLevel.setText(getUserLevel());
 
         List<ActivityItem> activities = getLatestActivities();
 
         ListView activitiesListView = findViewById(R.id.activities_list);
         ActivitiesAdapter adapter = new ActivitiesAdapter(ProfileActivity.this, activities);
+        activitiesListView.addHeaderView(user_card.findViewById(R.id.user_card), null, false);
         activitiesListView.setAdapter(adapter);
         //setListViewHeightBasedOnChildren(activitiesListView);
     }
