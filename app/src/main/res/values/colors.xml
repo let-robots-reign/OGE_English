@@ -19,4 +19,7 @@
 
     <color name="wrong_answer">#ff0000</color>
     <color name="right_answer">#aeea00</color>
+
+    <color name="experience">#4C4A9E</color>
+    <color name="middling">#EB9800</color>
 </resources>

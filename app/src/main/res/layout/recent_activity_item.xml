@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Задание 1"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp"
+        app:fontFamily="@font/merriweather_regular"
+        android:gravity="center"
+        android:padding="16dp"/>
+
+    <ImageView
+        android:id="@+id/dynamics"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_toRightOf="@id/category_name"
+        android:layout_marginTop="16dp"
+        android:foregroundGravity="center"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@drawable/positive_dynamics" />
+
+    <RelativeLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@id/category_name">
+
+        <TextView
+            android:id="@+id/experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="10 ед. опыта"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/experience"
+            android:textSize="16sp"
+            app:fontFamily="@font/merriweather_regular"/>
+
+        <TextView
+            android:id="@+id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="5/6 верно"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_above="@id/experience"
+            tools:textColor="@color/right_answer"
+            android:textSize="16sp"
+            app:fontFamily="@font/merriweather_regular"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
