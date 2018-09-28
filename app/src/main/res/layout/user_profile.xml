@@ -5,7 +5,8 @@
     android:background="@color/colorPrimaryLight"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true">
+    android:id="@+id/scroll"
+    android:focusableInTouchMode="true">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -76,7 +77,7 @@
                         android:layout_height="wrap_content"
                         tools:text="план выполнен на 20%"
                         android:textSize="14sp"
-                        android:textColor="@color/wrong_answer"
+                        tools:textColor="@color/wrong_answer"
                         app:fontFamily="@font/merriweather_regular"/>
 
                 </LinearLayout>
@@ -130,17 +131,18 @@
             android:layout_height="wrap_content"
             android:elevation="12dp"
             app:cardCornerRadius="20dp"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ListView
+                <com.eduapps.edumage.oge_app.ScrollDisabledListView
                     android:id="@+id/activities_list"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="704dp"/>
 
             </RelativeLayout>
 

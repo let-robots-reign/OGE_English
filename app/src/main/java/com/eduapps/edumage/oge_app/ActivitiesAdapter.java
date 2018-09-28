@@ -41,13 +41,18 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
             TextView summary = listItemView.findViewById(R.id.summary);
             desc = currentActivity.getRightAnswers() + "/" + currentActivity.getTotalPoints() + " верно";
             summary.setText(desc);
-            //Log.v("ActivitiesAdapter", "" + currentActivity.getRightAnswers() / currentActivity.getTotalPoints());
             if ((float) currentActivity.getRightAnswers() / currentActivity.getTotalPoints() > 0.75) {
                 summary.setTextColor(getContext().getResources().getColor(R.color.right_answer));
             } else if ((float) currentActivity.getRightAnswers() / currentActivity.getTotalPoints() >= 0.5) {
                 summary.setTextColor(getContext().getResources().getColor(R.color.middling));
             } else {
                 summary.setTextColor(getContext().getResources().getColor(R.color.wrong_answer));
+            }
+
+            if (currentActivity.getTopicName().equals("Недавняя активность")) {
+                experience.setVisibility(View.GONE);
+                summary.setVisibility(View.GONE);
+                dynamics.setVisibility(View.GONE);
             }
         }
         return listItemView;

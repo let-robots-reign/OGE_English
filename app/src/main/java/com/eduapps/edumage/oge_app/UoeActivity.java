@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -30,5 +31,11 @@ public class UoeActivity extends AppCompatActivity {
 
         RVCategoryAdapter adapter = new RVCategoryAdapter(categories, 2);
         uoeTopicsList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(UoeActivity.this, TrainingsActivity.class);
+        startActivity(intent);
     }
 }

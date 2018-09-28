@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -30,5 +31,11 @@ public class AudioActivity extends AppCompatActivity {
 
         RVCategoryAdapter adapter = new RVCategoryAdapter(categories, 0);
         audioTopicsList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AudioActivity.this, TrainingsActivity.class);
+        startActivity(intent);
     }
 }
