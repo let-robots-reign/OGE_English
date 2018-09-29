@@ -1,6 +1,7 @@
 package com.eduapps.edumage.oge_app;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -49,10 +50,21 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
                 summary.setTextColor(getContext().getResources().getColor(R.color.wrong_answer));
             }
 
-            if (currentActivity.getTopicName().equals("Недавняя активность")) {
+            // making topicName smaller if it's too big for a card
+            if (currentActivity.getTopicName().length() > 20) {
+                activityName.setTextSize(10);
+                activityName.setMaxWidth(230);
+            }
+
+            if (currentActivity.getTopicName().equals("Недавняя активность")
+                    || currentActivity.getTopicName().equals("Ничего не найдено")) {
                 experience.setVisibility(View.GONE);
                 summary.setVisibility(View.GONE);
                 dynamics.setVisibility(View.GONE);
+                if (currentActivity.getTopicName().equals("Ничего не найдено")) {
+                    activityName.setTextSize(16);
+                    activityName.setTypeface(null, Typeface.ITALIC);
+                }
             }
         }
         return listItemView;

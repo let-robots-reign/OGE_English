@@ -568,9 +568,9 @@ public class AudioTaskActivity extends AppCompatActivity {
         int exp;
         int dynamics = 0;
         if (category == 0 || category == 1) {
-            exp = rightAnswers * 2;
+            exp = rightAnswers * 2 * 10;
         } else {
-            exp = rightAnswers;
+            exp = rightAnswers * 10;
         }
 
         // searching for records of the same topic to define dynamics

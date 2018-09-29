@@ -438,13 +438,15 @@ public class ReadingTaskActivity extends AppCompatActivity {
         Cursor cursor;
 
         // forming the data to write
-        String topicName = getResources().getStringArray(R.array.audio_topics)[category];
         int exp;
         int dynamics = 0;
+        String topicName;
         if (category == 0) {
-            exp = rightAnswers * 2;
+            topicName = "Задание 9";
+            exp = rightAnswers * 2 * 10;
         } else {
-            exp = rightAnswers;
+            topicName = "Задания 10-17";
+            exp = rightAnswers * 10;
         }
 
         // searching for records of the same topic to define dynamics

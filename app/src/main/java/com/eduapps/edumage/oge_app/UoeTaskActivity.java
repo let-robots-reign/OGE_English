@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -25,15 +26,18 @@ public class UoeTaskActivity extends AppCompatActivity {
     String[] typedAnswers = new String[10];
     private List<UoeTask> tasks;
     private List<String> rightAnswersList;
-    private SQLiteDatabase db;
+    private SQLiteDatabase dbTasks;
+    private SQLiteDatabase dbRecent;
     private int rightAnswers;
+    private int category;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.uoe_tasks_page);
 
-        db = new DbHelper(this).getReadableDatabase();
+        dbTasks = new DbHelper(this).getReadableDatabase();
+        dbRecent = new DbHelper(this).getReadableDatabase();
 
         for (int i = 0; i < 10; i++) {
             typedAnswers[i] = "";
@@ -44,7 +48,7 @@ public class UoeTaskActivity extends AppCompatActivity {
 
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
-        int category = 0;
+        category = 0;
         if (extras != null) {
             category = extras.getInt("category");
         }
@@ -142,6 +146,8 @@ public class UoeTaskActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
+
+                                                recordRecentActivity();
                                             }
                                         });
                 AlertDialog alert = builder.create();
@@ -194,7 +200,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                 selectionArgs = new String[]{"Объектные местоимения"};
                 break;
         }
-        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+        cursor = dbTasks.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                 selectionArgs, null, null, "RANDOM()", "1");
 
         if (cursor != null) {
@@ -212,7 +218,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                     UoeTask elem = new UoeTask(task, origin, answer);
                     while ((wordsList.contains(origin)&& category != 2) ||
                             (wordsList.size() > 0 && wordsList.get(i - 1).equals(origin))) {
-                        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                        cursor = dbTasks.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                                 selectionArgs, null, null, "RANDOM()", "1");
                         cursor.moveToFirst();
                         task = cursor.getString(taskColumnIndex);
@@ -223,7 +229,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                     tasks.add(elem);
                     wordsList.add(origin);
                     rightAnswersList.add(cursor.getString(answerColumnIndex));
-                    cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                    cursor = dbTasks.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                             selectionArgs, null, null, "RANDOM()", "1");
                     cursor.moveToFirst();
                 }
@@ -231,5 +237,47 @@ public class UoeTaskActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
+    }
+
+    private void recordRecentActivity() {
+        Cursor cursor;
+
+        // forming the data to write
+        int exp;
+        int dynamics = 0;
+        int totalQuestions = 10;  // in UoE there are always 10 tasks
+        String topicName = getResources().getStringArray(R.array.uoe_topics)[category];
+        exp = 10 * rightAnswers;
+
+        // searching for records of the same topic to define dynamics
+        String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";
+        String[] selectionArgs = new String[]{topicName};
+        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, selection,
+                selectionArgs, null, null, null);
+        if (cursor != null) {
+            try {
+                if (cursor.getCount() > 0) {
+                    cursor.moveToLast();
+                    int idRightAnswersColumn = cursor.getColumnIndex(Tables.RecentActivities.COLUMN_RIGHT);
+                    int lastResult = cursor.getInt(idRightAnswersColumn);
+                    if (rightAnswers > lastResult) {
+                        dynamics = 1;
+                    } else if (rightAnswers < lastResult) {
+                        dynamics = -1;
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+
+        // putting all the data in the dbRecent
+        ContentValues values = new ContentValues();
+        values.put(Tables.RecentActivities.COLUMN_TOPIC, topicName);
+        values.put(Tables.RecentActivities.COLUMN_RIGHT, rightAnswers);
+        values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
+        values.put(Tables.RecentActivities.COLUMN_EXP, exp);
+        values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
+        dbRecent.insert(Tables.RecentActivities.TABLE_NAME, null, values);
     }
 }

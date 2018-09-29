@@ -13,15 +13,15 @@
         android:textColor="@color/colorPrimaryText"
         android:textSize="20sp"
         app:fontFamily="@font/merriweather_regular"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:padding="16dp"/>
 
     <ImageView
         android:id="@+id/dynamics"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_toRightOf="@id/category_name"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:foregroundGravity="center"
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/positive_dynamics" />
@@ -43,7 +43,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:textColor="@color/experience"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:fontFamily="@font/merriweather_regular"/>
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_alignParentEnd="true"
             android:layout_above="@id/experience"
             tools:textColor="@color/right_answer"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:fontFamily="@font/merriweather_regular"/>
 
     </RelativeLayout>
