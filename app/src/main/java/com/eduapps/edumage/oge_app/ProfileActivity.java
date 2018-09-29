@@ -24,14 +24,14 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private SQLiteDatabase dbRecent;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
 
-        dbRecent = new DbHelper(this).getWritableDatabase();
+        db = new DbHelper(this).getWritableDatabase();
 
         TextView username = findViewById(R.id.username);
         TextView goal = findViewById(R.id.goal);
@@ -113,7 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
                 0));
 
         Cursor cursor;
-        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, null,
+        cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, null,
                 null, null, null, null);
         if (cursor != null) {
             try {
@@ -154,7 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
         List<ActivityItem> activitiesList = new ArrayList<>();
 
         Cursor cursor;
-        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, null,
+        cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, null,
                 null, null, null, null);
         if (cursor != null) {
             try {
@@ -178,8 +178,8 @@ public class ProfileActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
-        dbRecent.execSQL("DELETE FROM " + Tables.RecentActivities.TABLE_NAME + " ;");
-        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, null,
+        db.execSQL("DELETE FROM " + Tables.RecentActivities.TABLE_NAME + " ;");
+        cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, null,
                 null, null, null, null);
         Log.v("AudioTaskActivity", ""+cursor.getCount());
         // putting all the data in the dbRecent
@@ -190,7 +190,7 @@ public class ProfileActivity extends AppCompatActivity {
             values.put(Tables.RecentActivities.COLUMN_TOTAL, activitiesList.get(activitiesList.size() - j - 1).getTotalPoints());
             values.put(Tables.RecentActivities.COLUMN_EXP, activitiesList.get(activitiesList.size() - j - 1).getExpCollected());
             values.put(Tables.RecentActivities.COLUMN_DYNAMICS, activitiesList.get(activitiesList.size() - j - 1).getDynamics());
-            dbRecent.insert(Tables.RecentActivities.TABLE_NAME, null, values);
+            db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
         }
         return activitiesList;
     }

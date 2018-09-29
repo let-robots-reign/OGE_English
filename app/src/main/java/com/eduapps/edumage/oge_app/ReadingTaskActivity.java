@@ -32,8 +32,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private String heading;
     private boolean canRetry;
 
-    private SQLiteDatabase dbTasks;
-    private SQLiteDatabase dbRecent;
+    private SQLiteDatabase db;
 
     private int currentID;
     private String currentText;
@@ -43,8 +42,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dbTasks = new DbHelper(this).getReadableDatabase();
-        dbRecent = new DbHelper(this).getWritableDatabase();
+        db = new DbHelper(this).getWritableDatabase();
 
         canRetry = true;
         // retrieving the tasks' category passed from adapter class
@@ -400,11 +398,11 @@ public class ReadingTaskActivity extends AppCompatActivity {
         Cursor cursor;
         switch (category) {
             case 0:
-                cursor = dbTasks.query(Tables.ReadingTask1.TABLE_NAME, null, null,
+                cursor = db.query(Tables.ReadingTask1.TABLE_NAME, null, null,
                         null, null, null, "RANDOM()", "1");
                 break;
             case 1:
-                cursor = dbTasks.query(Tables.ReadingTask2.TABLE_NAME, null, null,
+                cursor = db.query(Tables.ReadingTask2.TABLE_NAME, null, null,
                         null, null, null, "RANDOM()", "1");
                 int headingColumnIndex = cursor.getColumnIndex(Tables.ReadingTask2.COLUMN_HEADING);
                 cursor.moveToFirst();
@@ -452,7 +450,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
         // searching for records of the same topic to define dynamics
         String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";
         String[] selectionArgs = new String[]{topicName};
-        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, selection,
+        cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, selection,
                 selectionArgs, null, null, null);
         if (cursor != null) {
             try {
@@ -478,6 +476,6 @@ public class ReadingTaskActivity extends AppCompatActivity {
         values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
         values.put(Tables.RecentActivities.COLUMN_EXP, exp);
         values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
-        dbRecent.insert(Tables.RecentActivities.TABLE_NAME, null, values);
+        db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
     }
 }

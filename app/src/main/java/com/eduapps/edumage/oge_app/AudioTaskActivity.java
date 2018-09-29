@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -44,8 +43,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     private int rightAnswers;
     private boolean canRetry;
 
-    private SQLiteDatabase dbTasks;
-    private SQLiteDatabase dbRecent;
+    private SQLiteDatabase db;
 
     private int currentID;
     private String currentQuestion;
@@ -77,8 +75,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dbTasks = new DbHelper(this).getReadableDatabase();
-        dbRecent = new DbHelper(this).getWritableDatabase();
+        db = new DbHelper(this).getWritableDatabase();
 
         canRetry = true;
         // retrieving the tasks' category passed from adapter class
@@ -521,15 +518,15 @@ public class AudioTaskActivity extends AppCompatActivity {
         Cursor cursor;
         switch(category) {
             case 0:
-                cursor = dbTasks.query(Tables.AudioTask1.TABLE_NAME, null,null,
+                cursor = db.query(Tables.AudioTask1.TABLE_NAME, null,null,
                         null, null, null, "RANDOM()", "1");
                 break;
             case 1:
-                cursor = dbTasks.query(Tables.AudioTask2.TABLE_NAME, null, null,
+                cursor = db.query(Tables.AudioTask2.TABLE_NAME, null, null,
                         null, null,null, "RANDOM()", "1");
                 break;
             case 2:
-                cursor = dbTasks.query(Tables.AudioTask3.TABLE_NAME, null, null,
+                cursor = db.query(Tables.AudioTask3.TABLE_NAME, null, null,
                         null, null,null, "RANDOM()", "1");
                 break;
             default:
@@ -576,7 +573,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         // searching for records of the same topic to define dynamics
         String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";
         String[] selectionArgs = new String[]{topicName};
-        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, selection,
+        cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, selection,
                 selectionArgs, null, null, null);
         if (cursor != null) {
             try {
@@ -602,7 +599,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
         values.put(Tables.RecentActivities.COLUMN_EXP, exp);
         values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
-        dbRecent.insert(Tables.RecentActivities.TABLE_NAME, null, values);
+        db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
     }
 
     private void releaseMediaPlayer() {

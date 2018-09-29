@@ -26,8 +26,7 @@ public class UoeTaskActivity extends AppCompatActivity {
     String[] typedAnswers = new String[10];
     private List<UoeTask> tasks;
     private List<String> rightAnswersList;
-    private SQLiteDatabase dbTasks;
-    private SQLiteDatabase dbRecent;
+    private SQLiteDatabase db;
     private int rightAnswers;
     private int category;
 
@@ -36,8 +35,7 @@ public class UoeTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.uoe_tasks_page);
 
-        dbTasks = new DbHelper(this).getReadableDatabase();
-        dbRecent = new DbHelper(this).getReadableDatabase();
+        db = new DbHelper(this).getWritableDatabase();
 
         for (int i = 0; i < 10; i++) {
             typedAnswers[i] = "";
@@ -200,7 +198,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                 selectionArgs = new String[]{"Объектные местоимения"};
                 break;
         }
-        cursor = dbTasks.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                 selectionArgs, null, null, "RANDOM()", "1");
 
         if (cursor != null) {
@@ -218,7 +216,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                     UoeTask elem = new UoeTask(task, origin, answer);
                     while ((wordsList.contains(origin)&& category != 2) ||
                             (wordsList.size() > 0 && wordsList.get(i - 1).equals(origin))) {
-                        cursor = dbTasks.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                                 selectionArgs, null, null, "RANDOM()", "1");
                         cursor.moveToFirst();
                         task = cursor.getString(taskColumnIndex);
@@ -229,7 +227,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                     tasks.add(elem);
                     wordsList.add(origin);
                     rightAnswersList.add(cursor.getString(answerColumnIndex));
-                    cursor = dbTasks.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                    cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                             selectionArgs, null, null, "RANDOM()", "1");
                     cursor.moveToFirst();
                 }
@@ -252,7 +250,7 @@ public class UoeTaskActivity extends AppCompatActivity {
         // searching for records of the same topic to define dynamics
         String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";
         String[] selectionArgs = new String[]{topicName};
-        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, selection,
+        cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, selection,
                 selectionArgs, null, null, null);
         if (cursor != null) {
             try {
@@ -278,6 +276,6 @@ public class UoeTaskActivity extends AppCompatActivity {
         values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
         values.put(Tables.RecentActivities.COLUMN_EXP, exp);
         values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
-        dbRecent.insert(Tables.RecentActivities.TABLE_NAME, null, values);
+        db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
     }
 }
