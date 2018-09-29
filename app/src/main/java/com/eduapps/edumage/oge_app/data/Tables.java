@@ -58,4 +58,14 @@ public final class Tables {
         public static final String COLUMN_ORIGIN = "origin";
         public static final String COLUMN_ANSWER = "answer";
     }
+
+    public static abstract class RecentActivities implements BaseColumns {
+        public static final String TABLE_NAME = "Recent_activities";
+        public static final String COLUMN_ID = BaseColumns._ID;
+        public static final String COLUMN_TOPIC = "topic";
+        public static final String COLUMN_RIGHT = "right_answers";
+        public static final String COLUMN_TOTAL = "total_questions";
+        public static final String COLUMN_EXP = "experience";
+        public static final String COLUMN_DYNAMICS = "dynamics";
+    }
 }

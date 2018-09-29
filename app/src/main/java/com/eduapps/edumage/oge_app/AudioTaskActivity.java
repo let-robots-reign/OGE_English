@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +44,8 @@ public class AudioTaskActivity extends AppCompatActivity {
     private int rightAnswers;
     private boolean canRetry;
 
-    private SQLiteDatabase db;
+    private SQLiteDatabase dbTasks;
+    private SQLiteDatabase dbRecent;
 
     private int currentID;
     private String currentQuestion;
@@ -74,7 +77,8 @@ public class AudioTaskActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = new DbHelper(this).getReadableDatabase();
+        dbTasks = new DbHelper(this).getReadableDatabase();
+        dbRecent = new DbHelper(this).getWritableDatabase();
 
         canRetry = true;
         // retrieving the tasks' category passed from adapter class
@@ -190,7 +194,7 @@ public class AudioTaskActivity extends AppCompatActivity {
                     setPauseMode();
 
                     rightAnswers = 0;
-                    int maxRightAnswers;
+                    final int maxRightAnswers;
                     if (category == 0) {
                         maxRightAnswers = 4;
                     } else {
@@ -244,6 +248,9 @@ public class AudioTaskActivity extends AppCompatActivity {
                                                     intent.putExtra("question", currentQuestion);
                                                     // id of the task
                                                     intent.putExtra("id", currentID);
+
+                                                    // the result should appear in 'recent activities'
+                                                    recordRecentActivity(maxRightAnswers);
 
                                                     startActivity(intent);
                                                 }
@@ -326,6 +333,9 @@ public class AudioTaskActivity extends AppCompatActivity {
                                             intent.putExtra("question", currentQuestion);
                                             // id of the task
                                             intent.putExtra("id", currentID);
+
+                                            // the result should appear in 'recent activities'
+                                            recordRecentActivity(6);
 
                                             startActivity(intent);
                                         }
@@ -511,15 +521,15 @@ public class AudioTaskActivity extends AppCompatActivity {
         Cursor cursor;
         switch(category) {
             case 0:
-                cursor = db.query(Tables.AudioTask1.TABLE_NAME, null,null,
+                cursor = dbTasks.query(Tables.AudioTask1.TABLE_NAME, null,null,
                         null, null, null, "RANDOM()", "1");
                 break;
             case 1:
-                cursor = db.query(Tables.AudioTask2.TABLE_NAME, null, null,
+                cursor = dbTasks.query(Tables.AudioTask2.TABLE_NAME, null, null,
                         null, null,null, "RANDOM()", "1");
                 break;
             case 2:
-                cursor = db.query(Tables.AudioTask3.TABLE_NAME, null, null,
+                cursor = dbTasks.query(Tables.AudioTask3.TABLE_NAME, null, null,
                         null, null,null, "RANDOM()", "1");
                 break;
             default:
@@ -548,6 +558,51 @@ public class AudioTaskActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
+    }
+
+    private void recordRecentActivity(int totalQuestions) {
+        Cursor cursor;
+
+        // forming the data to write
+        String topicName = getResources().getStringArray(R.array.audio_topics)[category];
+        int exp;
+        int dynamics = 0;
+        if (category == 0 || category == 1) {
+            exp = rightAnswers * 2;
+        } else {
+            exp = rightAnswers;
+        }
+
+        // searching for records of the same topic to define dynamics
+        String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";
+        String[] selectionArgs = new String[]{topicName};
+        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, selection,
+                selectionArgs, null, null, null);
+        if (cursor != null) {
+            try {
+                if (cursor.getCount() > 0) {
+                    cursor.moveToLast();
+                    int idRightAnswersColumn = cursor.getColumnIndex(Tables.RecentActivities.COLUMN_RIGHT);
+                    int lastResult = cursor.getInt(idRightAnswersColumn);
+                    if (rightAnswers > lastResult) {
+                        dynamics = 1;
+                    } else if (rightAnswers < lastResult) {
+                        dynamics = -1;
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+
+        // putting all the data in the db
+        ContentValues values = new ContentValues();
+        values.put(Tables.RecentActivities.COLUMN_TOPIC, topicName);
+        values.put(Tables.RecentActivities.COLUMN_RIGHT, rightAnswers);
+        values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
+        values.put(Tables.RecentActivities.COLUMN_EXP, exp);
+        values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
+        dbRecent.insert(Tables.RecentActivities.TABLE_NAME, null, values);
     }
 
     private void releaseMediaPlayer() {

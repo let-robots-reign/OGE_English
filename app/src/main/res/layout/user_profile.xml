@@ -135,14 +135,15 @@
             android:layout_marginBottom="10dp">
 
             <RelativeLayout
+                android:id="@+id/listview_box"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="704dp">
 
                 <com.eduapps.edumage.oge_app.ScrollDisabledListView
                     android:id="@+id/activities_list"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="704dp"/>
+                    android:layout_height="match_parent"/>
 
             </RelativeLayout>
 

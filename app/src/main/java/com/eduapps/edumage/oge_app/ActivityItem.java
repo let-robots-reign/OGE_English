@@ -5,12 +5,14 @@ public class ActivityItem {
     private int expCollected;
     private int rightAnswers;
     private int totalPoints;
+    private int dynamics;
 
-    ActivityItem (String name, int exp, int right, int total) {
+    ActivityItem (String name, int exp, int right, int total, int dynamics) {
         this.topicName = name;
         this.expCollected = exp;
         this.rightAnswers = right;
         this.totalPoints = total;
+        this.dynamics = dynamics;
     }
 
     public String getTopicName() {
@@ -27,5 +29,9 @@ public class ActivityItem {
 
     public int getTotalPoints() {
         return totalPoints;
+    }
+
+    public int getDynamics() {
+        return dynamics;
     }
 }

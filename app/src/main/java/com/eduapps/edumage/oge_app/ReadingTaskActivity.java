@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,9 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -31,10 +30,10 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private int category;
     private int rightAnswers;
     private String heading;
-    private ArrayAdapter<String> adapter; // adapter for spinners
     private boolean canRetry;
 
-    private SQLiteDatabase db;
+    private SQLiteDatabase dbTasks;
+    private SQLiteDatabase dbRecent;
 
     private int currentID;
     private String currentText;
@@ -44,7 +43,8 @@ public class ReadingTaskActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = new DbHelper(this).getReadableDatabase();
+        dbTasks = new DbHelper(this).getReadableDatabase();
+        dbRecent = new DbHelper(this).getWritableDatabase();
 
         canRetry = true;
         // retrieving the tasks' category passed from adapter class
@@ -57,6 +57,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
         assignRandomQuestion();
 
         String[] question = new String[]{};
+        ArrayAdapter<String> adapter; // adapter for spinners
         // the layout depends on the type of the task
         if (category == 0) {
             setContentView(R.layout.reading_task_9);
@@ -212,6 +213,9 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                             // id of the task
                                             intent.putExtra("id", currentID);
 
+                                            // the result should appear in 'recent activities'
+                                            recordRecentActivity(7);
+
                                             startActivity(intent);
                                         }
                                     });
@@ -298,6 +302,9 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                             intent.putExtra("right_answers", rightAnswersArray);
                                             // id of the task
                                             intent.putExtra("id", currentID);
+
+                                            // the result should appear in 'recent activities'
+                                            recordRecentActivity(8);
 
                                             startActivity(intent);
                                         }
@@ -393,11 +400,11 @@ public class ReadingTaskActivity extends AppCompatActivity {
         Cursor cursor;
         switch (category) {
             case 0:
-                cursor = db.query(Tables.ReadingTask1.TABLE_NAME, null, null,
+                cursor = dbTasks.query(Tables.ReadingTask1.TABLE_NAME, null, null,
                         null, null, null, "RANDOM()", "1");
                 break;
             case 1:
-                cursor = db.query(Tables.ReadingTask2.TABLE_NAME, null, null,
+                cursor = dbTasks.query(Tables.ReadingTask2.TABLE_NAME, null, null,
                         null, null, null, "RANDOM()", "1");
                 int headingColumnIndex = cursor.getColumnIndex(Tables.ReadingTask2.COLUMN_HEADING);
                 cursor.moveToFirst();
@@ -425,5 +432,50 @@ public class ReadingTaskActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
+    }
+
+    private void recordRecentActivity(int totalQuestions) {
+        Cursor cursor;
+
+        // forming the data to write
+        String topicName = getResources().getStringArray(R.array.audio_topics)[category];
+        int exp;
+        int dynamics = 0;
+        if (category == 0) {
+            exp = rightAnswers * 2;
+        } else {
+            exp = rightAnswers;
+        }
+
+        // searching for records of the same topic to define dynamics
+        String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";
+        String[] selectionArgs = new String[]{topicName};
+        cursor = dbRecent.query(Tables.RecentActivities.TABLE_NAME, null, selection,
+                selectionArgs, null, null, null);
+        if (cursor != null) {
+            try {
+                if (cursor.getCount() > 0) {
+                    cursor.moveToLast();
+                    int idRightAnswersColumn = cursor.getColumnIndex(Tables.RecentActivities.COLUMN_RIGHT);
+                    int lastResult = cursor.getInt(idRightAnswersColumn);
+                    if (rightAnswers > lastResult) {
+                        dynamics = 1;
+                    } else if (rightAnswers < lastResult) {
+                        dynamics = -1;
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+
+        // putting all the data in the dbRecent
+        ContentValues values = new ContentValues();
+        values.put(Tables.RecentActivities.COLUMN_TOPIC, topicName);
+        values.put(Tables.RecentActivities.COLUMN_RIGHT, rightAnswers);
+        values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
+        values.put(Tables.RecentActivities.COLUMN_EXP, exp);
+        values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
+        dbRecent.insert(Tables.RecentActivities.TABLE_NAME, null, values);
     }
 }
