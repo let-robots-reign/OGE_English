@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -104,6 +106,18 @@ public class AudioTaskActivity extends AppCompatActivity {
                 findViewById(R.id.audio_cell_5).setVisibility(GONE);
             }
 
+            EditText answer1 = findViewById(R.id.audio_cell_1);
+            EditText answer2 = findViewById(R.id.audio_cell_2);
+            EditText answer3 = findViewById(R.id.audio_cell_3);
+            EditText answer4 = findViewById(R.id.audio_cell_4);
+            EditText answer5 = findViewById(R.id.audio_cell_5);
+            // change the question color to black again when user changes answer
+            // also, hide keyboard when user wrote a number
+            applyTextListener(answer1);
+            applyTextListener(answer2);
+            applyTextListener(answer3);
+            applyTextListener(answer4);
+            applyTextListener(answer5);
         } else {
             setContentView(R.layout.audio_tasks_3_8);
             String[] question = currentQuestion.split("\n");
@@ -198,30 +212,26 @@ public class AudioTaskActivity extends AppCompatActivity {
                         maxRightAnswers = 5;
                     }
 
-                    // color the question green or red
-                    final EditText answer1 = findViewById(R.id.audio_cell_1);
-                    checkEditTextAnswer(answer1, 0);
-
-                    final EditText answer2 = findViewById(R.id.audio_cell_2);
-                    checkEditTextAnswer(answer2, 1);
-
-                    final EditText answer3 = findViewById(R.id.audio_cell_3);
-                    checkEditTextAnswer(answer3, 2);
-
-                    final EditText answer4 = findViewById(R.id.audio_cell_4);
-                    checkEditTextAnswer(answer4, 3);
-
-                    final EditText answer5 = findViewById(R.id.audio_cell_5);
-                    if (category == 1) {
-                        checkEditTextAnswer(answer5, 4);
-                    }
-
+                    EditText answer1 = findViewById(R.id.audio_cell_1);
+                    EditText answer2 = findViewById(R.id.audio_cell_2);
+                    EditText answer3 = findViewById(R.id.audio_cell_3);
+                    EditText answer4 = findViewById(R.id.audio_cell_4);
+                    EditText answer5 = findViewById(R.id.audio_cell_5);
                     // change the question color to black again when user changes answer
+                    // also, hide keyboard when user wrote a number
                     applyTextListener(answer1);
                     applyTextListener(answer2);
                     applyTextListener(answer3);
                     applyTextListener(answer4);
                     applyTextListener(answer5);
+                    // color the question green or red
+                    checkEditTextAnswer(answer1, 0);
+                    checkEditTextAnswer(answer2, 1);
+                    checkEditTextAnswer(answer3, 2);
+                    checkEditTextAnswer(answer4, 3);
+                    if (category == 1) {
+                        checkEditTextAnswer(answer5, 4);
+                    }
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(AudioTaskActivity.this);
                     builder.setTitle("Ваш результат:")
@@ -479,13 +489,26 @@ public class AudioTaskActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 answer.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                if (s.toString().length() > 0) {
+                    hideKeyboard(AudioTaskActivity.this);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void applyRadioListener(RadioGroup options, final RadioButton radioButton) {
