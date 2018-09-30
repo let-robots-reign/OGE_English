@@ -1,10 +1,12 @@
 package com.eduapps.edumage.oge_app;
 
 import android.content.ContentValues;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
@@ -25,6 +27,8 @@ import java.util.List;
 public class ProfileActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
+    final String EXPERIENCE_KEY = "Experience";
+    final int EXP_PER_LEVEL = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         ProgressBar levelBar = findViewById(R.id.level_bar);
         levelBar.setProgress(getUserProgress());
+        levelBar.setMax(EXP_PER_LEVEL);
 
         TextView userLevel = findViewById(R.id.user_level);
         userLevel.setText(getUserLevel());
@@ -100,11 +105,16 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private int getUserProgress() {
-        return 42;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+        //Log.v("ProfileActivity", collectedXP+"");
+        return collectedXP % EXP_PER_LEVEL;
     }
 
     private String getUserLevel() {
-        return "" + 1;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+        return String.valueOf(collectedXP / EXP_PER_LEVEL + 1);
     }
 
     private List<ActivityItem> getLatestActivities() {

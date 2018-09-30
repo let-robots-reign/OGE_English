@@ -3,14 +3,17 @@ package com.eduapps.edumage.oge_app;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +30,7 @@ public class UoeTaskActivity extends AppCompatActivity {
     private List<UoeTask> tasks;
     private List<String> rightAnswersList;
     private SQLiteDatabase db;
+    final String EXPERIENCE_KEY = "Experience";
     private int rightAnswers;
     private int category;
 
@@ -277,5 +281,16 @@ public class UoeTaskActivity extends AppCompatActivity {
         values.put(Tables.RecentActivities.COLUMN_EXP, exp);
         values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
         db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
+
+        // add collected experience to user's level
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.contains(EXPERIENCE_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+            editor.putInt(EXPERIENCE_KEY, collectedXP + exp);
+        } else {
+            editor.putInt(EXPERIENCE_KEY, exp);
+        }
+        editor.apply();
     }
 }
