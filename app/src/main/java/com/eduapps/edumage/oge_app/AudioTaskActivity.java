@@ -16,10 +16,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -402,6 +405,20 @@ public class AudioTaskActivity extends AppCompatActivity {
             }
         });
 
+        // "Don't show" checkbox goes with the instructions
+        View view = getLayoutInflater().inflate(R.layout.dont_show_checkbox, null);
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    storeDialogStatus(true);
+                } else {
+                    storeDialogStatus(false);
+                }
+            }
+        });
+
         // when a user enters, he should see an instruction to the task
         AlertDialog.Builder builder = new AlertDialog.Builder(AudioTaskActivity.this);
         builder.setTitle("Инструкция")
@@ -434,8 +451,37 @@ public class AudioTaskActivity extends AppCompatActivity {
                 break;
         }
 
+        builder.setView(view);
         AlertDialog alert = builder.create();
-        alert.show();
+        if (getDialogStatus()) {
+            alert.hide();
+        } else {
+            alert.show();
+        }
+    }
+
+    private void storeDialogStatus(boolean isChecked) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (category == 0) {
+            editor.putBoolean("Dont_show_listening1", isChecked);
+        } else if (category == 1) {
+            editor.putBoolean("Dont_show_listening2", isChecked);
+        } else {
+            editor.putBoolean("Dont_show_listening3", isChecked);
+        }
+        editor.apply();
+    }
+
+    private boolean getDialogStatus() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (category == 0) {
+            return preferences.getBoolean("Dont_show_listening1", false);
+        } else if (category == 1) {
+            return preferences.getBoolean("Dont_show_listening2", false);
+        } else {
+            return preferences.getBoolean("Dont_show_listening3", false);
+        }
     }
 
     @Override
