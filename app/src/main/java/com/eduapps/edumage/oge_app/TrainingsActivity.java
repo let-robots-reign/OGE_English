@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,5 +46,11 @@ public class TrainingsActivity extends AppCompatActivity {
     protected void onPause() {
         state = layoutManager.onSaveInstanceState();
         super.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TrainingsActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

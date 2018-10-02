@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -33,8 +34,6 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
             TextView activityName = listItemView.findViewById(R.id.category_name);
             activityName.setText(currentActivity.getTopicName());
 
-            View dynamics = listItemView.findViewById(R.id.dynamics);
-
             TextView experience = listItemView.findViewById(R.id.experience);
             String desc = currentActivity.getExpCollected() + " ед. опыта";
             experience.setText(desc);
@@ -50,10 +49,19 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
                 summary.setTextColor(getContext().getResources().getColor(R.color.wrong_answer));
             }
 
+            ImageView dynamics = listItemView.findViewById(R.id.dynamics);
+            if (currentActivity.getDynamics() == 1) {
+                dynamics.setImageResource(R.drawable.positive_dynamics);
+            } else if (currentActivity.getDynamics() == -1) {
+                dynamics.setImageResource(R.drawable.negative_dynamics);
+                ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) dynamics.getLayoutParams();
+                marginParams.setMargins(0, 40, 0, 0);
+            }
+
             // making topicName smaller if it's too big for a card
             if (currentActivity.getTopicName().length() > 20) {
                 activityName.setTextSize(10);
-                activityName.setMaxWidth(230);
+                activityName.setMaxWidth(240);
             }
 
             if (currentActivity.getTopicName().equals("Недавняя активность")

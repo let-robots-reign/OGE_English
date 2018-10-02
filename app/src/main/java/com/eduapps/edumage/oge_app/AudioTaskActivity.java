@@ -611,6 +611,8 @@ public class AudioTaskActivity extends AppCompatActivity {
                         dynamics = 1;
                     } else if (rightAnswers < lastResult) {
                         dynamics = -1;
+                    } else {
+                        dynamics = 0;
                     }
                 }
             } finally {
