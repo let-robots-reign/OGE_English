@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="uoe_topics">
+        <item>По всем темам</item>
         <item>Множественное число существительных</item>
         <item>Порядковые числительные</item>
         <item>Объектные местоимения</item>
+        <item>Степени сравнения прилагательных и наречий</item>
+        <item>Притяжательные и возвратные местоимения</item>
+        <item>Пассивный залог</item>
     </string-array>
 </resources>

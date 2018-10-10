@@ -25,9 +25,10 @@ public class AudioActivity extends AppCompatActivity {
 
         List<Category> categories = new ArrayList<>();
 
-        categories.add(new Category(R.string.audio_topic1));
-        categories.add(new Category(R.string.audio_topic2));
-        categories.add(new Category(R.string.audio_topic3));
+        String[] topicsArray = getResources().getStringArray(R.array.audio_topics);
+        for (String topic: topicsArray) {
+            categories.add(new Category(topic));
+        }
 
         RVCategoryAdapter adapter = new RVCategoryAdapter(categories, 0);
         audioTopicsList.setAdapter(adapter);

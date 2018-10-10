@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="reading_topics">
+        <item>Задание 9</item>
+        <item>Задания 10&#8211;17</item>
+    </string-array>
+</resources>

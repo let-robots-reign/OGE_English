@@ -1,13 +1,13 @@
 package com.eduapps.edumage.oge_app;
 
 public class Category {
-    private int topicName;
+    private String topicName;
 
-    Category(int name) {
+    Category(String name) {
         this.topicName = name;
     }
 
-    public int getTopicName() {
+    public String getTopicName() {
         return this.topicName;
     }
 }

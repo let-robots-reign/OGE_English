@@ -11,10 +11,13 @@
         android:layout_height="wrap_content"
         tools:text="Задание 1"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:fontFamily="@font/merriweather_regular"
         android:gravity="center_vertical"
-        android:padding="16dp"/>
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="12dp"/>
 
     <ImageView
         android:id="@+id/dynamics"

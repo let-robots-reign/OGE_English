@@ -26,8 +26,10 @@ public class ReadingActivity extends AppCompatActivity {
 
         List<Category> categories = new ArrayList<>();
 
-        categories.add(new Category(R.string.reading_topic1));
-        categories.add(new Category(R.string.reading_topic2));
+        String[] topicsArray = getResources().getStringArray(R.array.reading_topics);
+        for (String topic: topicsArray) {
+            categories.add(new Category(topic));
+        }
 
         RVCategoryAdapter adapter = new RVCategoryAdapter(categories, 1);
         readingTopicsList.setAdapter(adapter);

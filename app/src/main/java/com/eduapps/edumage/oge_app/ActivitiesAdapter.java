@@ -69,6 +69,7 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
                 experience.setVisibility(View.GONE);
                 summary.setVisibility(View.GONE);
                 dynamics.setVisibility(View.GONE);
+                activityName.setTextSize(20);
                 if (currentActivity.getTopicName().equals("Ничего не найдено")) {
                     activityName.setTextSize(16);
                     activityName.setTypeface(null, Typeface.ITALIC);

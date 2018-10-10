@@ -191,17 +191,20 @@ public class UoeTaskActivity extends AppCompatActivity {
         Cursor cursor;
         String selection = Tables.UseOfEnglishTask.COLUMN_TOPIC + " = ?";
         String[] selectionArgs = null;
-        switch (category) {
-            case 0:
-                selectionArgs = new String[]{"Множественное число существительных"};
-                break;
-            case 1:
-                selectionArgs = new String[]{"Порядковые числительные"};
-                break;
-            case 2:
-                selectionArgs = new String[]{"Объектные местоимения"};
-                break;
+
+        String[] topicsArray = getResources().getStringArray(R.array.uoe_topics);
+        if (category == 0) {
+            // no filtration if "по всем темам"
+            selection = null;
+        } else {
+            for (int i = 0; i < topicsArray.length; i++) {
+                if (i == category) {
+                    selectionArgs = new String[]{topicsArray[i]}; // filter by topic name
+
+                }
+            }
         }
+
         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                 selectionArgs, null, null, "RANDOM()", "1");
 
@@ -218,7 +221,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                     String origin = cursor.getString(originColumnIndex);
                     String answer = cursor.getString(answerColumnIndex);
                     UoeTask elem = new UoeTask(task, origin, answer);
-                    while ((wordsList.contains(origin)&& category != 2) ||
+                    while ((wordsList.contains(origin) && category != 3 && category != 5) ||
                             (wordsList.size() > 0 && wordsList.get(i - 1).equals(origin))) {
                         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                                 selectionArgs, null, null, "RANDOM()", "1");
