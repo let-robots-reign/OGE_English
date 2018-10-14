@@ -7,7 +7,7 @@ import android.util.Log;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class DbHelper extends SQLiteAssetHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "tasks.db";
 
     public DbHelper(Context context) {

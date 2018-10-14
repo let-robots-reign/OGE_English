@@ -221,7 +221,8 @@ public class UoeTaskActivity extends AppCompatActivity {
                     String origin = cursor.getString(originColumnIndex);
                     String answer = cursor.getString(answerColumnIndex);
                     UoeTask elem = new UoeTask(task, origin, answer);
-                    while ((wordsList.contains(origin) && category != 3 && category != 5) ||
+                    while ((wordsList.contains(origin) && category != 3 && category != 5
+                            && category != 7 && category != 9 && category != 11) ||
                             (wordsList.size() > 0 && wordsList.get(i - 1).equals(origin))) {
                         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                                 selectionArgs, null, null, "RANDOM()", "1");

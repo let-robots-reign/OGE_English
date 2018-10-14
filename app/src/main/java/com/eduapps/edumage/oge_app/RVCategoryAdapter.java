@@ -51,12 +51,10 @@ public class RVCategoryAdapter extends RecyclerView.Adapter<RVCategoryAdapter.Ca
     public void onBindViewHolder(final @NonNull CategoryViewHolder holder, int position) {
         holder.topicCardName.setText(categoryList.get(position).getTopicName());
 
-        if (position == getItemCount()) {
+        if (position == getItemCount() - 1) {
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
         }
-
-        //Log.v("RVCategoryAdapter", String.valueOf(currentCategory));
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
