@@ -300,6 +300,8 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                             // answers user typed (transforming to String[] array)
                                             String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
                                             intent.putExtra("typed_answers", answersArray);
+                                            // the questions
+                                            intent.putExtra("question", currentQuestion.split("\n"));
                                             // right answers indices (transforming to String[] array)
                                             String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
                                             intent.putExtra("right_answers", rightAnswersArray);

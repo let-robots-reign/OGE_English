@@ -153,20 +153,22 @@ public class MistakesActivity extends AppCompatActivity {
                         break;
 
                     case "task_10_17":
+                        question = extras.getStringArray("question");
+                        assert question != null;
                         annotations = new String[typedAnswers.length];
                         for (int i = 0; i < typedAnswers.length; i++) {
                             if (typedAnswers[i].equals("-1")) {
-                                annotations[i] = (i + 1) + ") Нет ответа";
+                                annotations[i] = (i + 1) + ") " + question[i] + "\n" + "Нет ответа";
                             } else {
                                 switch (typedAnswers[i]) {
                                     case "0":
-                                        annotations[i] = (i + 1) + ") True";
+                                        annotations[i] = (i + 1) + ") " + question[i] + "\n" + "True";
                                         break;
                                     case "1":
-                                        annotations[i] = (i + 1) + ") False";
+                                        annotations[i] = (i + 1) + ") " + question[i] + "\n" + "False";
                                         break;
                                     case "2":
-                                        annotations[i] = (i + 1) + ") Not stated";
+                                        annotations[i] = (i + 1) + ") " + question[i] + "\n" + "Not stated";
                                         break;
                                 }
                             }

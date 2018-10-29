@@ -63,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
         // adjust listView's height
         RelativeLayout listBox = findViewById(R.id.listview_box);
         int width = FrameLayout.LayoutParams.WRAP_CONTENT;
-        int height = convertDpsToPixels(64 * activities.size());  // one activity takes up 64 dps
+        int height = convertDpsToPixels(68 * activities.size());  // one activity takes up 68 dps
         listBox.setLayoutParams(new FrameLayout.LayoutParams(width, height));
         // make scrollView and listView work together
         activitiesListView.setFocusable(false);

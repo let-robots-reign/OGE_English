@@ -55,7 +55,7 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
             } else if (currentActivity.getDynamics() == -1) {
                 dynamics.setImageResource(R.drawable.negative_dynamics);
                 ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) dynamics.getLayoutParams();
-                marginParams.setMargins(0, 40, 0, 0);
+                marginParams.setMargins(0, 48, 0, 0);
             }
 
             // making topicName smaller if it's too big for a card

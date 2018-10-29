@@ -64,7 +64,7 @@
 
         <activity
             android:name=".UoeTaskActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustNothing"
             android:parentActivityName=".UoeActivity"
             android:theme="@style/AppTheme">
             <meta-data
@@ -84,7 +84,7 @@
 
         <activity
             android:name=".ReadingTaskActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustNothing"
             android:parentActivityName=".ReadingActivity"
             android:theme="@style/AppTheme">
             <meta-data
@@ -104,7 +104,7 @@
 
         <activity
             android:name=".AudioTaskActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustNothing"
             android:parentActivityName=".AudioActivity"
             android:theme="@style/AppTheme">
             <meta-data
