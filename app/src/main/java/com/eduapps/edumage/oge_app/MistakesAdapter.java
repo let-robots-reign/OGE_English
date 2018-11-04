@@ -87,9 +87,19 @@ public class MistakesAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.simple_item, null);
         }
 
-        TextView answer = convertView.findViewById(R.id.text2);
+        TextView question = convertView.findViewById(R.id.text2);
+        TextView answer = convertView.findViewById(R.id.text3);
+
         answer.setTypeface(null, Typeface.BOLD);
-        answer.setText(headerTitle);
+//        answer.setText(headerTitle.split("\n")[1]);
+//        question.setText(headerTitle.split("\n")[0]);
+        if (headerTitle.contains("\n")) {    // if the task is "Задания 10-17": there are two strings
+            answer.setText(headerTitle.split("\n")[1]);
+            question.setText(headerTitle.split("\n")[0]);
+        } else {
+            question.setVisibility(View.GONE);
+            answer.setText(headerTitle);
+        }
 
         if (correctness[groupPosition]) {
             answer.setTextColor(context.getResources().getColor(R.color.right_answer));

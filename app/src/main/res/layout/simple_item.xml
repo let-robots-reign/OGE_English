@@ -8,7 +8,16 @@
 
     <TextView
         android:id="@+id/text2"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryText"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="14sp"
+        app:fontFamily="@font/merriweather_regular"/>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryText"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
