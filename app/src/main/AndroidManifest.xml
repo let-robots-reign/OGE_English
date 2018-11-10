@@ -43,6 +43,15 @@
         </activity>
 
         <activity
+            android:name=".VariantTask"
+            android:parentActivityName=".VariantsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".VariantsActivity" />
+        </activity>
+
+        <activity
             android:name=".TheoryActivity"
             android:label="@string/theory"
             android:parentActivityName=".MainActivity"
