@@ -25,16 +25,18 @@ public class AudioTaskFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.audio_tasks_1_2, container, false);
-        return rootView;
-    }
+        int layout = position < 3 ? R.layout.audio_tasks_1_2 : R.layout.audio_tasks_3_8;
+        View rootView = inflater.inflate(layout, container, false);
 
-    @Override
-    public void onStop() {
-        super.onStop();
+        return rootView;
     }
 }

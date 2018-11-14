@@ -28,6 +28,7 @@ public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
             case 0:
             case 1:
             case 2:
+            case 3:
                 return createAudioFragment(position);
 //            case 3:
 //            case 4:
