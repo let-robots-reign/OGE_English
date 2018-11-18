@@ -8,14 +8,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,6 +94,7 @@ public class AudioTaskFragment extends Fragment {
 
     @Override
     public void onStop() {
+        releaseMediaPlayer();
         super.onStop();
     }
 
@@ -100,6 +105,17 @@ public class AudioTaskFragment extends Fragment {
 
         int layout = position < 2 ? R.layout.audio_tasks_1_2 : R.layout.audio_tasks_3_8;
         View rootView = inflater.inflate(layout, container, false);
+
+        CardView audioCard = rootView.findViewById(R.id.audio_task);
+        if (position < 2) {
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) audioCard.getLayoutParams();
+            lp.setMargins(16, 8, 16, 8);
+            audioCard.setLayoutParams(lp);
+        } else {
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) audioCard.getLayoutParams();
+            lp.setMargins(16, 8, 16, 8);
+            audioCard.setLayoutParams(lp);
+        }
 
         db = new DbHelper(getActivity()).getReadableDatabase();
         retriesCount = 1; // in варианты user can retry only once
@@ -210,7 +226,6 @@ public class AudioTaskFragment extends Fragment {
                     Toast.makeText(getActivity(), "Вы больше не можете слушать запись",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    ifAudioPlaying = !ifAudioPlaying;
                     if (mediaPlayer == null) {
                         int res = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC,
                                 AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -223,7 +238,9 @@ public class AudioTaskFragment extends Fragment {
                         }
                     } else {
                         if (ifAudioPlaying) {
-                            setPauseMode();
+                            //setPauseMode();
+                            Toast.makeText(getActivity(), "Вы не можете останавливать запись",
+                                    Toast.LENGTH_SHORT).show();
                         } else {
                             setPlayMode();
                         }
@@ -283,6 +300,7 @@ public class AudioTaskFragment extends Fragment {
         if (mediaPlayer != null) {
             mediaPlayer.start();
         }
+        ifAudioPlaying = true;
         playPauseIcon.setImageResource(R.drawable.pause_icon);
     }
 
@@ -290,6 +308,7 @@ public class AudioTaskFragment extends Fragment {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
         }
+        ifAudioPlaying = false;
         playPauseIcon.setImageResource(R.drawable.play_triangle);
     }
 

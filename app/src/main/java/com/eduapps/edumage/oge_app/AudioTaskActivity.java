@@ -384,8 +384,6 @@ public class AudioTaskActivity extends AppCompatActivity {
         audioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ifAudioPlaying = !ifAudioPlaying;
-                //Log.v("AudioTaskActivity", "" + ifAudioPlaying);
                 if (mediaPlayer == null) {
                     int res = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC,
                             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -575,6 +573,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             mediaPlayer.start();
         }
+        ifAudioPlaying = true;
         playPauseIcon.setImageResource(R.drawable.pause_icon);
     }
 
@@ -582,6 +581,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
         }
+        ifAudioPlaying = false;
         playPauseIcon.setImageResource(R.drawable.play_triangle);
     }
 
