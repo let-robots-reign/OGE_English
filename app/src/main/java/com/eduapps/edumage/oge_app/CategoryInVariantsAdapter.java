@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import com.eduapps.edumage.oge_app.VariantsTasks.AudioTaskFragment;
 import com.eduapps.edumage.oge_app.VariantsTasks.ReadingTaskFragment;
@@ -13,8 +14,9 @@ import com.eduapps.edumage.oge_app.VariantsTasks.WritingTaskFragment;
 
 
 public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
-    final int PAGES = 8;
-    private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26", "27-32", "33"};
+    final int PAGES = 3;
+    //private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26", "27-32", "33"};
+    private String tabTitles[] = new String[] {"1", "2", "3-8"};
     private static int number;
 
     public CategoryInVariantsAdapter(FragmentManager fm, int n) {
@@ -28,7 +30,6 @@ public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
             case 0:
             case 1:
             case 2:
-            case 3:
                 return createAudioFragment(position);
 //            case 3:
 //            case 4:
