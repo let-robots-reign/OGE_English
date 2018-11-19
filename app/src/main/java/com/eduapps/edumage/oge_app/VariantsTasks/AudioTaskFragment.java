@@ -13,9 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -49,7 +47,6 @@ public class AudioTaskFragment extends Fragment {
 
     private SQLiteDatabase db;
 
-    private int currentID;
     private String currentQuestion;
     private String currentAudioFile;
 

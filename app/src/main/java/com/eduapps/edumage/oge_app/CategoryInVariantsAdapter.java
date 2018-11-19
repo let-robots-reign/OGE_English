@@ -14,9 +14,9 @@ import com.eduapps.edumage.oge_app.VariantsTasks.WritingTaskFragment;
 
 
 public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
-    final int PAGES = 3;
+    final int PAGES = 5;
     //private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26", "27-32", "33"};
-    private String tabTitles[] = new String[] {"1", "2", "3-8"};
+    private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17"};
     private static int number;
 
     public CategoryInVariantsAdapter(FragmentManager fm, int n) {
@@ -31,9 +31,9 @@ public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
             case 1:
             case 2:
                 return createAudioFragment(position);
-//            case 3:
-//            case 4:
-//                return createReadingFragment(position);
+            case 3:
+            case 4:
+                return createReadingFragment(position);
 //            case 5:
 //            case 6:
 //                return createUoeFragment(position);
@@ -64,14 +64,14 @@ public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
         return fragment;
     }
 
-//    private static ReadingTaskFragment createReadingFragment(int position) {
-//        ReadingTaskFragment fragment = new ReadingTaskFragment();
-//        Bundle bundle = new Bundle(2);
-//        bundle.putInt("number", number);  // number of the variant
-//        bundle.putInt("position", position);  // type of the task
-//        fragment.setArguments(bundle);
-//        return fragment;
-//    }
+    private static ReadingTaskFragment createReadingFragment(int position) {
+        ReadingTaskFragment fragment = new ReadingTaskFragment();
+        Bundle bundle = new Bundle(2);
+        bundle.putInt("number", number);  // number of the variant
+        bundle.putInt("position", position - 3);  // type of the task
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 //
 //    private static UoeTaskFragment createUoeFragment(int position) {
 //        UoeTaskFragment fragment = new UoeTaskFragment();
