@@ -14,9 +14,9 @@ import com.eduapps.edumage.oge_app.VariantsTasks.WritingTaskFragment;
 
 
 public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
-    final int PAGES = 5;
+    final int PAGES = 6;
     //private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26", "27-32", "33"};
-    private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17"};
+    private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26"};
     private static int number;
 
     public CategoryInVariantsAdapter(FragmentManager fm, int n) {
@@ -34,9 +34,9 @@ public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
             case 3:
             case 4:
                 return createReadingFragment(position);
-//            case 5:
-//            case 6:
-//                return createUoeFragment(position);
+            case 5:
+            case 6:
+                return createUoeFragment(position);
 //            case 7:
 //                return new WritingTaskFragment();
             default:
@@ -72,13 +72,13 @@ public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
         fragment.setArguments(bundle);
         return fragment;
     }
-//
-//    private static UoeTaskFragment createUoeFragment(int position) {
-//        UoeTaskFragment fragment = new UoeTaskFragment();
-//        Bundle bundle = new Bundle(2);
-//        bundle.putInt("number", number);  // number of the variant
-//        bundle.putInt("position", position);  // type of the task
-//        fragment.setArguments(bundle);
-//        return fragment;
-//    }
+
+    private static UoeTaskFragment createUoeFragment(int position) {
+        UoeTaskFragment fragment = new UoeTaskFragment();
+        Bundle bundle = new Bundle(2);
+        bundle.putInt("number", number);  // number of the variant
+        bundle.putInt("position", position - 5);  // type of the task
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 }

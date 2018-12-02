@@ -345,6 +345,7 @@
                 android:layout_marginTop="10dp">
 
                 <LinearLayout
+                    android:id="@+id/uoe_card7"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_width="match_parent"
@@ -398,6 +399,7 @@
                 android:layout_marginTop="10dp">
 
                 <LinearLayout
+                    android:id="@+id/uoe_card8"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_width="match_parent"
@@ -451,6 +453,7 @@
                 android:layout_marginTop="10dp">
 
                 <LinearLayout
+                    android:id="@+id/uoe_card9"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_width="match_parent"
@@ -505,6 +508,7 @@
                 android:layout_marginBottom="70dp">
 
                 <LinearLayout
+                    android:id="@+id/uoe_card10"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_width="match_parent"

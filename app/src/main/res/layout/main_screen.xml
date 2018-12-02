@@ -46,6 +46,7 @@
         android:textStyle="bold"/>
 
     <LinearLayout
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -62,7 +63,6 @@
             android:textSize="24sp"
             app:fontFamily="@font/lobster"
             android:textAllCaps="false"
-            android:gravity="center"
             android:layout_marginBottom="23dp"/>
 
         <Button
@@ -74,7 +74,6 @@
             android:textColor="@color/colorPrimaryText"
             android:textSize="24sp"
             android:textAllCaps="false"
-            android:gravity="center"
             android:layout_marginBottom="23dp"
             app:fontFamily="@font/lobster"/>
 
@@ -83,12 +82,12 @@
             android:layout_height="47dp"
             android:background="@drawable/layout_bg"
             android:id="@+id/theory"
-            android:gravity="center"
             android:text="@string/theory"
             android:textColor="@color/colorPrimaryText"
             android:textSize="24sp"
             android:textAllCaps="false"
-            app:fontFamily="@font/lobster"/>
+            app:fontFamily="@font/lobster"
+            android:layout_marginBottom="8dp"/>
 
     </LinearLayout>
 

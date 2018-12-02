@@ -197,12 +197,7 @@ public class UoeTaskActivity extends AppCompatActivity {
             // no filtration if "по всем темам"
             selection = null;
         } else {
-            for (int i = 0; i < topicsArray.length; i++) {
-                if (i == category) {
-                    selectionArgs = new String[]{topicsArray[i]}; // filter by topic name
-
-                }
-            }
+            selectionArgs = new String[]{topicsArray[category]}; // filter by topic name
         }
 
         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
@@ -233,7 +228,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                         elem = new UoeTask(task, origin, answer);
                     }
                     tasks.add(elem);
-                    wordsList.add(origin);
+                    wordsList.add(task);
                     rightAnswersList.add(cursor.getString(answerColumnIndex));
                     cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                             selectionArgs, null, null, "RANDOM()", "1");
