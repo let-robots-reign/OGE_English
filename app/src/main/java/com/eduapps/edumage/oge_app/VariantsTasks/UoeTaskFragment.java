@@ -17,6 +17,7 @@ import com.eduapps.edumage.oge_app.DbHelper;
 import com.eduapps.edumage.oge_app.R;
 import com.eduapps.edumage.oge_app.UoeTask;
 import com.eduapps.edumage.oge_app.data.Tables;
+import com.eduapps.edumage.oge_app.VariantTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,8 @@ public class UoeTaskFragment extends Fragment {
         int numberOfQuestions = position == 0 ? 9 : 6;
         View rootView = inflater.inflate(R.layout.uoe_tasks_page, container, false);
 
-        db = new DbHelper(getActivity()).getReadableDatabase();
+        db = VariantTask.getDb();
+        //db = new DbHelper(getActivity()).getReadableDatabase();
 
 //        for (int i = 0; i < numberOfQuestions; i++) {
 //            typedAnswers[i] = "";

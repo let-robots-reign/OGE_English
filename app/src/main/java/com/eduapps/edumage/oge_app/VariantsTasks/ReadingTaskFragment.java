@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.eduapps.edumage.oge_app.DbHelper;
 import com.eduapps.edumage.oge_app.R;
 import com.eduapps.edumage.oge_app.data.Tables;
+import com.eduapps.edumage.oge_app.VariantTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +59,8 @@ public class ReadingTaskFragment extends Fragment {
         int layout = position == 0 ? R.layout.reading_task_9 : R.layout.reading_tasks_10_17;
         View rootView = inflater.inflate(layout, container, false);
 
-        db = new DbHelper(getActivity()).getReadableDatabase();
+        db = VariantTask.getDb();
+        //db = new DbHelper(getActivity()).getReadableDatabase();
 
         assignQuestion();
 
