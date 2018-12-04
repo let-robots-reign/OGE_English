@@ -2,6 +2,7 @@
 <resources>
     <string-array name="uoe_topics">
         <item>По всем темам</item>
+        <item>Словообразование</item>
         <item>Множественное число существительных</item>
         <item>Порядковые числительные</item>
         <item>Объектные местоимения</item>

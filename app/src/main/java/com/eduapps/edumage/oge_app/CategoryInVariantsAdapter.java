@@ -14,9 +14,9 @@ import com.eduapps.edumage.oge_app.VariantsTasks.WritingTaskFragment;
 
 
 public class CategoryInVariantsAdapter extends FragmentPagerAdapter {
-    final int PAGES = 6;
+    final int PAGES = 7;
     //private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26", "27-32", "33"};
-    private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26"};
+    private String tabTitles[] = new String[] {"1", "2", "3-8", "9", "10-17", "18-26", "27-32"};
     private static int number;
 
     public CategoryInVariantsAdapter(FragmentManager fm, int n) {

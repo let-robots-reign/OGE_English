@@ -112,6 +112,11 @@ public class UoeTaskFragment extends Fragment {
         }
 
         rootView.findViewById(R.id.uoe_card10).setVisibility(View.GONE);
+        if (numberOfQuestions == 6) {
+            rootView.findViewById(R.id.uoe_card9).setVisibility(View.GONE);
+            rootView.findViewById(R.id.uoe_card8).setVisibility(View.GONE);
+            rootView.findViewById(R.id.uoe_card7).setVisibility(View.GONE);
+        }
 
         // we hide "Проверка" and "Выход" buttons
         rootView.findViewById(R.id.exit_button).setVisibility(View.GONE);
@@ -147,11 +152,19 @@ public class UoeTaskFragment extends Fragment {
             } else if (number == 9) {
                 questionsIds = new int[]{220, 728, 288, 634, 708, 347, 401, 435, 195};
             }
+        } else if (position == 1) {
+            questionsIds = new int[6];
+            int start = 729 + 6 * number;
+            int end = 729 + 6 * (number + 1);
+            int idx = 0;
+            for (int i = start; i < end; i++) {
+                questionsIds[idx] = i;
+                idx++;
+            }
         }
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < (position == 0 ? 9 : 6); i++) {
             String[] selectionArg = new String[]{String.valueOf(questionsIds[i])};
-            //Log.v("UoeTaskFragment", selectionArg[0]);
             cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                     selectionArg, null, null, null, null);
 
