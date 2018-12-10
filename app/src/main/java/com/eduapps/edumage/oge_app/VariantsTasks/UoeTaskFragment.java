@@ -22,16 +22,18 @@ import com.eduapps.edumage.oge_app.VariantTask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UoeTaskFragment extends Fragment {
+public class UoeTaskFragment extends TaskFragment {
     private int number;
     private int position;
 
+    private int rightAnswers;
     private List<String> rightAnswersList;
-    String[] typedAnswers;
-    //private int rightAnswers;
+    private String[] typedAnswers;
     private SQLiteDatabase db;
     private List<UoeTask> tasks;
 
+    private View rootView;
+    private int numberOfQuestions;
 
     public UoeTaskFragment() {
         // required empty
@@ -54,18 +56,14 @@ public class UoeTaskFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        int numberOfQuestions = position == 0 ? 9 : 6;
-        View rootView = inflater.inflate(R.layout.uoe_tasks_page, container, false);
+        numberOfQuestions = position == 0 ? 9 : 6;
+        rootView = inflater.inflate(R.layout.uoe_tasks_page, container, false);
 
         db = VariantTask.getDb();
-        //db = new DbHelper(getActivity()).getReadableDatabase();
-
-//        for (int i = 0; i < numberOfQuestions; i++) {
-//            typedAnswers[i] = "";
-//        }
 
         tasks = new ArrayList<>();
         rightAnswersList = new ArrayList<>();
+        typedAnswers = new String[numberOfQuestions];
 
         assignTasks();
 
@@ -123,6 +121,46 @@ public class UoeTaskFragment extends Fragment {
         rootView.findViewById(R.id.submit_button).setVisibility(View.GONE);
 
         return rootView;
+    }
+
+    @Override
+    public void checkUoe() {
+        rightAnswers = 0;
+
+        final EditText origin1 = rootView.findViewById(R.id.uoe_answer1);
+        final EditText origin2 = rootView.findViewById(R.id.uoe_answer2);
+        final EditText origin3 = rootView.findViewById(R.id.uoe_answer3);
+        final EditText origin4 = rootView.findViewById(R.id.uoe_answer4);
+        final EditText origin5 = rootView.findViewById(R.id.uoe_answer5);
+        final EditText origin6 = rootView.findViewById(R.id.uoe_answer6);
+
+        checkEditTextAnswer(origin1, 0);
+        checkEditTextAnswer(origin2, 1);
+        checkEditTextAnswer(origin3, 2);
+        checkEditTextAnswer(origin4, 3);
+        checkEditTextAnswer(origin5, 4);
+        checkEditTextAnswer(origin6, 5);
+
+        if (numberOfQuestions == 9) {
+            final EditText origin7 = rootView.findViewById(R.id.uoe_answer7);
+            final EditText origin8 = rootView.findViewById(R.id.uoe_answer8);
+            final EditText origin9 = rootView.findViewById(R.id.uoe_answer9);
+
+            checkEditTextAnswer(origin7, 6);
+            checkEditTextAnswer(origin8, 7);
+            checkEditTextAnswer(origin9, 8);
+        }
+    }
+
+
+    private void checkEditTextAnswer(EditText answer, int position) {
+        if (answer.getText().toString().equals(rightAnswersList.get(position))) {
+            answer.setTextColor(getResources().getColor(R.color.right_answer));
+            rightAnswers += 1;
+        } else {
+            answer.setTextColor(getResources().getColor(R.color.wrong_answer));
+        }
+        typedAnswers[position] = answer.getText().toString();
     }
 
     private void assignTasks() {

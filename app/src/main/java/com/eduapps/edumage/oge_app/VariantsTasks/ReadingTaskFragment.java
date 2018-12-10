@@ -5,15 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.eduapps.edumage.oge_app.DbHelper;
 import com.eduapps.edumage.oge_app.R;
 import com.eduapps.edumage.oge_app.data.Tables;
 import com.eduapps.edumage.oge_app.VariantTask;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ReadingTaskFragment extends Fragment {
+public class ReadingTaskFragment extends TaskFragment {
     private int number;
     private int position;
 
@@ -33,6 +33,8 @@ public class ReadingTaskFragment extends Fragment {
     private SQLiteDatabase db;
     private String currentText;
     private String currentQuestion;
+
+    private View rootView;
 
 
     public ReadingTaskFragment() {
@@ -57,12 +59,13 @@ public class ReadingTaskFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         int layout = position == 0 ? R.layout.reading_task_9 : R.layout.reading_tasks_10_17;
-        View rootView = inflater.inflate(layout, container, false);
+        rootView = inflater.inflate(layout, container, false);
 
         db = VariantTask.getDb();
         //db = new DbHelper(getActivity()).getReadableDatabase();
 
         assignQuestion();
+        typedAnswers = new ArrayList<>();
 
         String[] question = new String[]{};
         if (position == 0) {
@@ -158,6 +161,96 @@ public class ReadingTaskFragment extends Fragment {
         rootView.findViewById(R.id.submit_button).setVisibility(View.GONE);
 
         return rootView;
+    }
+
+    @Override
+    public void checkReading0() {
+        rightAnswers = 0;
+
+        Spinner spinner1 = rootView.findViewById(R.id.spinner1);
+        checkSpinnerSelection(spinner1, 0);
+
+        Spinner spinner2 = rootView.findViewById(R.id.spinner2);
+        checkSpinnerSelection(spinner2, 1);
+
+        Spinner spinner3 = rootView.findViewById(R.id.spinner3);
+        checkSpinnerSelection(spinner3, 2);
+
+        Spinner spinner4 = rootView.findViewById(R.id.spinner4);
+        checkSpinnerSelection(spinner4, 3);
+
+        Spinner spinner5 = rootView.findViewById(R.id.spinner5);
+        checkSpinnerSelection(spinner5, 4);
+
+        Spinner spinner6 = rootView.findViewById(R.id.spinner6);
+        checkSpinnerSelection(spinner6, 5);
+
+        Spinner spinner7 = rootView.findViewById(R.id.spinner7);
+        checkSpinnerSelection(spinner7, 6);
+    }
+
+    @Override
+    public void checkReading1() {
+        rightAnswers = 0;
+
+        final RadioGroup options1 = rootView.findViewById(R.id.options1);
+        final RadioButton radioButton1 = options1.findViewById(options1.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options1, radioButton1, 0);
+
+        final RadioGroup options2 = rootView.findViewById(R.id.options2);
+        final RadioButton radioButton2 = options2.findViewById(options2.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options2, radioButton2, 1);
+
+        final RadioGroup options3 = rootView.findViewById(R.id.options3);
+        final RadioButton radioButton3 = options3.findViewById(options3.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options3, radioButton3, 2);
+
+        final RadioGroup options4 = rootView.findViewById(R.id.options4);
+        final RadioButton radioButton4 = options4.findViewById(options4.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options4, radioButton4, 3);
+
+        final RadioGroup options5 = rootView.findViewById(R.id.options5);
+        final RadioButton radioButton5 = options5.findViewById(options5.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options5, radioButton5, 4);
+
+        final RadioGroup options6 = rootView.findViewById(R.id.options6);
+        final RadioButton radioButton6 = options6.findViewById(options6.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options6, radioButton6, 5);
+
+        final RadioGroup options7 = rootView.findViewById(R.id.options7);
+        final RadioButton radioButton7 = options7.findViewById(options7.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options7, radioButton7, 6);
+
+        final RadioGroup options8 = rootView.findViewById(R.id.options8);
+        final RadioButton radioButton8 = options8.findViewById(options8.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options8, radioButton8, 7);
+    }
+
+    private void checkSpinnerSelection(Spinner spinner, int position) {
+        if (spinner.getSelectedItemPosition() ==
+                Integer.parseInt(rightAnswersList.get(position))) {
+            TextView text = (TextView) spinner.getSelectedView();
+            text.setTextColor(getResources().getColor(R.color.right_answer));
+            rightAnswers += 1;
+        } else {
+            TextView text = (TextView) spinner.getSelectedView();
+            text.setTextColor(getResources().getColor(R.color.wrong_answer));
+        }
+        typedAnswers.add(spinner.getSelectedItem().toString());
+    }
+
+    private void checkRadioButtonAnswer(RadioGroup options, RadioButton radioButton, int position) {
+        if (radioButton != null) {
+            if (options.indexOfChild(radioButton) == Integer.parseInt(rightAnswersList.get(position)) - 1) {
+                rightAnswers += 1;
+                radioButton.setTextColor(getResources().getColor(R.color.right_answer));
+            } else {
+                radioButton.setTextColor(getResources().getColor(R.color.wrong_answer));
+            }
+            typedAnswers.add("" + options.indexOfChild(radioButton));
+        } else {
+            typedAnswers.add("-1");
+        }
     }
 
     private void assignQuestion() {

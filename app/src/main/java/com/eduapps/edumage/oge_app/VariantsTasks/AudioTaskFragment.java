@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eduapps.edumage.oge_app.AudioTaskActivity;
 import com.eduapps.edumage.oge_app.DbHelper;
 import com.eduapps.edumage.oge_app.R;
 import com.eduapps.edumage.oge_app.data.Tables;
@@ -31,8 +35,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import static android.content.Context.AUDIO_SERVICE;
+import static com.eduapps.edumage.oge_app.AudioTaskActivity.hideKeyboard;
 
-public class AudioTaskFragment extends Fragment {
+public class AudioTaskFragment extends TaskFragment {
     private int position;
     private int number;
 
@@ -50,6 +55,8 @@ public class AudioTaskFragment extends Fragment {
 
     private String currentQuestion;
     private String currentAudioFile;
+
+    private View rootView;
 
     private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
         @Override
@@ -102,7 +109,7 @@ public class AudioTaskFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         int layout = position < 2 ? R.layout.audio_tasks_1_2 : R.layout.audio_tasks_3_8;
-        View rootView = inflater.inflate(layout, container, false);
+        rootView = inflater.inflate(layout, container, false);
 
         CardView audioCard = rootView.findViewById(R.id.audio_task);
         if (position < 2) {
@@ -119,6 +126,7 @@ public class AudioTaskFragment extends Fragment {
         //db = new DbHelper(getActivity()).getReadableDatabase();
         retriesCount = 1; // in варианты user can retry only once
         assignQuestionAndAudio();
+        typedAnswers = new ArrayList<>();
 
         if (position < 2) {
             TextView question = rootView.findViewById(R.id.audio_question);
@@ -141,11 +149,11 @@ public class AudioTaskFragment extends Fragment {
             EditText answer5 = rootView.findViewById(R.id.audio_cell_5);
 //            // change the question color to black again when user changes answer
 //            // also, hide keyboard when user wrote a number
-//            applyTextListener(answer1);
-//            applyTextListener(answer2);
-//            applyTextListener(answer3);
-//            applyTextListener(answer4);
-//            applyTextListener(answer5);
+            applyTextListener(answer1);
+            applyTextListener(answer2);
+            applyTextListener(answer3);
+            applyTextListener(answer4);
+            applyTextListener(answer5);
         } else {
             String[] question = currentQuestion.split("\n");
 
@@ -249,6 +257,118 @@ public class AudioTaskFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void checkAudio0_1() {
+        releaseMediaPlayer();
+        setPauseMode();
+
+        rightAnswers = 0;
+        final int maxRightAnswers;
+        if (position == 0) {
+            maxRightAnswers = 4;
+        } else {
+            maxRightAnswers = 5;
+        }
+
+        EditText answer1 = rootView.findViewById(R.id.audio_cell_1);
+        EditText answer2 = rootView.findViewById(R.id.audio_cell_2);
+        EditText answer3 = rootView.findViewById(R.id.audio_cell_3);
+        EditText answer4 = rootView.findViewById(R.id.audio_cell_4);
+        EditText answer5 = rootView.findViewById(R.id.audio_cell_5);
+        // change the question color to black again when user changes answer
+        // also, hide keyboard when user wrote a number
+        applyTextListener(answer1);
+        applyTextListener(answer2);
+        applyTextListener(answer3);
+        applyTextListener(answer4);
+        applyTextListener(answer5);
+        // color the question green or red
+        checkEditTextAnswer(answer1, 0);
+        checkEditTextAnswer(answer2, 1);
+        checkEditTextAnswer(answer3, 2);
+        checkEditTextAnswer(answer4, 3);
+        if (position == 1) {
+            checkEditTextAnswer(answer5, 4);
+        }
+    }
+
+    @Override
+    public void checkAudio2() {
+        releaseMediaPlayer();
+        setPauseMode();
+
+        rightAnswers = 0;
+
+        final RadioGroup options1 = rootView.findViewById(R.id.options1);
+        final RadioButton radioButton1 = options1.findViewById(options1.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options1, radioButton1, 0);
+
+        final RadioGroup options2 = rootView.findViewById(R.id.options2);
+        final RadioButton radioButton2 = options2.findViewById(options2.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options2, radioButton2, 1);
+
+        final RadioGroup options3 = rootView.findViewById(R.id.options3);
+        final RadioButton radioButton3 = options3.findViewById(options3.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options3, radioButton3, 2);
+
+        final RadioGroup options4 = rootView.findViewById(R.id.options4);
+        final RadioButton radioButton4 = options4.findViewById(options4.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options4, radioButton4, 3);
+
+        final RadioGroup options5 = rootView.findViewById(R.id.options5);
+        final RadioButton radioButton5 = options5.findViewById(options5.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options5, radioButton5, 4);
+
+        final RadioGroup options6 = rootView.findViewById(R.id.options6);
+        final RadioButton radioButton6 = options6.findViewById(options6.getCheckedRadioButtonId());
+        checkRadioButtonAnswer(options6, radioButton6, 5);
+    }
+
+    public void checkEditTextAnswer(EditText answer, int position) {
+        if (answer.getText().toString().equals(rightAnswersList.get(position))) {
+            answer.setTextColor(getResources().getColor(R.color.right_answer));
+            rightAnswers += 1;
+        } else {
+            answer.setTextColor(getResources().getColor(R.color.wrong_answer));
+        }
+        typedAnswers.add(answer.getText().toString());
+    }
+
+    public void checkRadioButtonAnswer(RadioGroup options, RadioButton radioButton, int position) {
+        if (radioButton != null) {
+            if (options.indexOfChild(radioButton) == Integer.parseInt(rightAnswersList.get(position)) - 1) {
+                rightAnswers += 1;
+                radioButton.setTextColor(getResources().getColor(R.color.right_answer));
+            } else {
+                radioButton.setTextColor(getResources().getColor(R.color.wrong_answer));
+            }
+            typedAnswers.add("" + options.indexOfChild(radioButton));
+        } else {
+            typedAnswers.add("-1");
+        }
+    }
+
+    private void applyTextListener(final EditText answer) {
+        answer.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                answer.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                if (s.toString().length() > 0) {
+                    hideKeyboard(getActivity());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     private void assignQuestionAndAudio() {
