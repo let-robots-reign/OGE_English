@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,7 +122,7 @@ public class UoeTaskFragment extends TaskFragment {
     }
 
     @Override
-    public void checkUoe() {
+    public int checkUoe() {
         rightAnswers = 0;
 
         final EditText origin1 = rootView.findViewById(R.id.uoe_answer1);
@@ -150,6 +148,8 @@ public class UoeTaskFragment extends TaskFragment {
             checkEditTextAnswer(origin8, 7);
             checkEditTextAnswer(origin9, 8);
         }
+
+        return rightAnswers;
     }
 
 

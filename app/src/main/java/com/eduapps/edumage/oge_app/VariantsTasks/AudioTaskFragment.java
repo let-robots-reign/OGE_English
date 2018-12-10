@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,8 +23,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eduapps.edumage.oge_app.AudioTaskActivity;
-import com.eduapps.edumage.oge_app.DbHelper;
 import com.eduapps.edumage.oge_app.R;
 import com.eduapps.edumage.oge_app.data.Tables;
 import com.eduapps.edumage.oge_app.VariantTask;
@@ -260,17 +257,17 @@ public class AudioTaskFragment extends TaskFragment {
     }
 
     @Override
-    public void checkAudio0_1() {
+    public int checkAudio0_1() {
         releaseMediaPlayer();
         setPauseMode();
 
         rightAnswers = 0;
-        final int maxRightAnswers;
-        if (position == 0) {
-            maxRightAnswers = 4;
-        } else {
-            maxRightAnswers = 5;
-        }
+//        final int maxRightAnswers;
+//        if (position == 0) {
+//            maxRightAnswers = 4;
+//        } else {
+//            maxRightAnswers = 5;
+//        }
 
         EditText answer1 = rootView.findViewById(R.id.audio_cell_1);
         EditText answer2 = rootView.findViewById(R.id.audio_cell_2);
@@ -292,10 +289,12 @@ public class AudioTaskFragment extends TaskFragment {
         if (position == 1) {
             checkEditTextAnswer(answer5, 4);
         }
+
+        return rightAnswers;
     }
 
     @Override
-    public void checkAudio2() {
+    public int checkAudio2() {
         releaseMediaPlayer();
         setPauseMode();
 
@@ -324,6 +323,8 @@ public class AudioTaskFragment extends TaskFragment {
         final RadioGroup options6 = rootView.findViewById(R.id.options6);
         final RadioButton radioButton6 = options6.findViewById(options6.getCheckedRadioButtonId());
         checkRadioButtonAnswer(options6, radioButton6, 5);
+
+        return rightAnswers;
     }
 
     public void checkEditTextAnswer(EditText answer, int position) {

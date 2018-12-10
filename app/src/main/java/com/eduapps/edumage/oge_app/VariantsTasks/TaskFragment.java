@@ -7,18 +7,23 @@ public class TaskFragment extends Fragment {
     public TaskFragment() {
     }
 
-    public void checkAudio0_1() {
+    public int checkAudio0_1() {
+        return 0;
     }
 
-    public void checkAudio2() {
+    public int checkAudio2() {
+        return 0;
     }
 
-    public void checkReading0() {
+    public int checkReading0() {
+        return 0;
     }
 
-    public void checkReading1() {
+    public int checkReading1() {
+        return 0;
     }
 
-    public void checkUoe() {
+    public int checkUoe() {
+        return 0;
     }
 }

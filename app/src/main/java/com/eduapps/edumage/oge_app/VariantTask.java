@@ -1,14 +1,17 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.eduapps.edumage.oge_app.VariantsTasks.AudioTaskFragment;
 import com.eduapps.edumage.oge_app.VariantsTasks.ReadingTaskFragment;
@@ -38,7 +41,7 @@ public class VariantTask extends AppCompatActivity {
 
         setTitle("Вариант " + (number + 1));
 
-        ViewPager viewpager = findViewById(R.id.viewpager);
+        final ViewPager viewpager = findViewById(R.id.viewpager);
         viewpager.setOffscreenPageLimit(7);
 
         final List<Fragment> fragments = new ArrayList<>();
@@ -56,17 +59,36 @@ public class VariantTask extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.category_tabs);
         tabLayout.setupWithViewPager(viewpager);
 
-        Button checkButton = findViewById(R.id.check_button);
+        final Button checkButton = findViewById(R.id.check_button);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TaskFragment) fragments.get(0)).checkAudio0_1();
-                ((TaskFragment) fragments.get(1)).checkAudio0_1();
-                ((TaskFragment) fragments.get(2)).checkAudio2();
-                ((TaskFragment) fragments.get(3)).checkReading0();
-                ((TaskFragment) fragments.get(4)).checkReading1();
-                ((TaskFragment) fragments.get(5)).checkUoe();
-                ((TaskFragment) fragments.get(6)).checkUoe();
+                checkButton.setVisibility(View.GONE);
+
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) viewpager.getLayoutParams();
+                lp.setMargins(0, 0, 0, 0);
+                viewpager.setLayoutParams(lp);
+
+                int totalRightAnswers = 0;
+                totalRightAnswers += ((TaskFragment) fragments.get(0)).checkAudio0_1();
+                totalRightAnswers += ((TaskFragment) fragments.get(1)).checkAudio0_1();
+                totalRightAnswers += ((TaskFragment) fragments.get(2)).checkAudio2();
+                totalRightAnswers += ((TaskFragment) fragments.get(3)).checkReading0();
+                totalRightAnswers += ((TaskFragment) fragments.get(4)).checkReading1();
+                totalRightAnswers += ((TaskFragment) fragments.get(5)).checkUoe();
+                totalRightAnswers += ((TaskFragment) fragments.get(6)).checkUoe();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
+                builder.setTitle("Ваш результат:")
+                        .setCancelable(false)
+                        .setMessage("You have " + totalRightAnswers + "/45 right answers")
+                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                builder.show();
             }
         });
     }

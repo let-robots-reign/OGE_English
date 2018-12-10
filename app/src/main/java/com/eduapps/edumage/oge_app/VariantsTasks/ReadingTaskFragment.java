@@ -5,10 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -60,6 +62,11 @@ public class ReadingTaskFragment extends TaskFragment {
 
         int layout = position == 0 ? R.layout.reading_task_9 : R.layout.reading_tasks_10_17;
         rootView = inflater.inflate(layout, container, false);
+
+        CardView readingCard = rootView.findViewById(R.id.reading_task);
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) readingCard.getLayoutParams();
+        lp.setMargins(16, 8, 16, 8);
+        readingCard.setLayoutParams(lp);
 
         db = VariantTask.getDb();
         //db = new DbHelper(getActivity()).getReadableDatabase();
@@ -164,7 +171,7 @@ public class ReadingTaskFragment extends TaskFragment {
     }
 
     @Override
-    public void checkReading0() {
+    public int checkReading0() {
         rightAnswers = 0;
 
         Spinner spinner1 = rootView.findViewById(R.id.spinner1);
@@ -187,10 +194,12 @@ public class ReadingTaskFragment extends TaskFragment {
 
         Spinner spinner7 = rootView.findViewById(R.id.spinner7);
         checkSpinnerSelection(spinner7, 6);
+
+        return rightAnswers;
     }
 
     @Override
-    public void checkReading1() {
+    public int checkReading1() {
         rightAnswers = 0;
 
         final RadioGroup options1 = rootView.findViewById(R.id.options1);
@@ -224,6 +233,8 @@ public class ReadingTaskFragment extends TaskFragment {
         final RadioGroup options8 = rootView.findViewById(R.id.options8);
         final RadioButton radioButton8 = options8.findViewById(options8.getCheckedRadioButtonId());
         checkRadioButtonAnswer(options8, radioButton8, 7);
+
+        return rightAnswers;
     }
 
     private void checkSpinnerSelection(Spinner spinner, int position) {
