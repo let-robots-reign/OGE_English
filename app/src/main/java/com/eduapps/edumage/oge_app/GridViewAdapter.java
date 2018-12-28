@@ -42,6 +42,7 @@ public class GridViewAdapter extends BaseAdapter {
             button = new Button(context);
             button.setPadding(8, 8,8 ,8);
             button.setText(source.get(position));
+            button.setTextSize(12);
             button.setBackgroundColor(context.getResources().getColor(R.color.colorSecondary));
             button.setTextColor(context.getResources().getColor(R.color.colorPrimaryText));
             button.setOnClickListener(new View.OnClickListener() {
