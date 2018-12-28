@@ -47,7 +47,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = new DbHelper(this).getWritableDatabase();
+        db = new DbHelper(this).getReadableDatabase();
 
         canRetry = true;
         // retrieving the tasks' category passed from adapter class

@@ -5,7 +5,7 @@ public class UoeTask {
     private String origin;
     private String answer;
 
-    UoeTask(String question, String origin, String answer) {
+    public UoeTask(String question, String origin, String answer) {
         this.question = question;
         this.origin = origin;
         this.answer = answer;

@@ -197,12 +197,7 @@ public class UoeTaskActivity extends AppCompatActivity {
             // no filtration if "по всем темам"
             selection = null;
         } else {
-            for (int i = 0; i < topicsArray.length; i++) {
-                if (i == category) {
-                    selectionArgs = new String[]{topicsArray[i]}; // filter by topic name
-
-                }
-            }
+            selectionArgs = new String[]{topicsArray[category]}; // filter by topic name
         }
 
         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
@@ -221,8 +216,8 @@ public class UoeTaskActivity extends AppCompatActivity {
                     String origin = cursor.getString(originColumnIndex);
                     String answer = cursor.getString(answerColumnIndex);
                     UoeTask elem = new UoeTask(task, origin, answer);
-                    while ((wordsList.contains(origin) && category != 3 && category != 5
-                            && category != 7 && category != 9 && category != 11) ||
+                    while ((wordsList.contains(origin) && category != 4 && category != 6
+                            && category != 8 && category != 10 && category != 12) ||
                             (wordsList.size() > 0 && wordsList.get(i - 1).equals(origin))) {
                         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                                 selectionArgs, null, null, "RANDOM()", "1");
@@ -233,7 +228,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                         elem = new UoeTask(task, origin, answer);
                     }
                     tasks.add(elem);
-                    wordsList.add(origin);
+                    wordsList.add(task);
                     rightAnswersList.add(cursor.getString(answerColumnIndex));
                     cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                             selectionArgs, null, null, "RANDOM()", "1");

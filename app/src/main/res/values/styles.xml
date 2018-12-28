@@ -17,4 +17,9 @@
         <item name="android:shadowRadius">4</item>
     </style>
 
+    <style name="tabText">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

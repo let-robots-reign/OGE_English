@@ -1,8 +1,11 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 // import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +52,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VariantsViewHolder holder, int position) {
+    public void onBindViewHolder(final @NonNull VariantsViewHolder holder, int position) {
         String variantNumber = "Вариант " + variants.get(position).getVariantNumber();
         holder.variantNumber.setText(variantNumber);
         holder.tick.setImageResource(R.drawable.ic_tick);
@@ -65,6 +68,16 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
         }
+
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = holder.layout.getContext();
+                Intent intent = new Intent(context, VariantTask.class);
+                intent.putExtra("number", holder.getAdapterPosition());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

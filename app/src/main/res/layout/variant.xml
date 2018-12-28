@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryLight"
+    tools:context=".VariantTask">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/category_tabs"
+        app:tabMode="scrollable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabBackground="@color/colorPrimaryDark"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextAppearance="@style/tabText"/>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/category_tabs"
+        android:layout_marginBottom="48dp"/>
+
+    <Button
+        android:id="@+id/check_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/check_variant"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_regular"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorSecondary"/>
+
+</RelativeLayout>

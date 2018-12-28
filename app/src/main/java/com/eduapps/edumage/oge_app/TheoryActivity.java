@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,5 +31,11 @@ public class TheoryActivity extends AppCompatActivity {
 
         RVTheoryAdapter adapter = new RVTheoryAdapter(theory);
         theoryList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TheoryActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

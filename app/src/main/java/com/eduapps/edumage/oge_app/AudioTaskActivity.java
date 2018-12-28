@@ -60,6 +60,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         @Override
         public void onCompletion(MediaPlayer mp) {
             releaseMediaPlayer();
+            setPauseMode();
         }
     };
 
@@ -383,8 +384,6 @@ public class AudioTaskActivity extends AppCompatActivity {
         audioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ifAudioPlaying = !ifAudioPlaying;
-                //Log.v("AudioTaskActivity", "" + ifAudioPlaying);
                 if (mediaPlayer == null) {
                     int res = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC,
                             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -574,6 +573,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             mediaPlayer.start();
         }
+        ifAudioPlaying = true;
         playPauseIcon.setImageResource(R.drawable.pause_icon);
     }
 
@@ -581,28 +581,30 @@ public class AudioTaskActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
         }
+        ifAudioPlaying = false;
         playPauseIcon.setImageResource(R.drawable.play_triangle);
     }
 
     private void assignRandomQuestionAndAudio() {
         rightAnswersList = new ArrayList<>();
         Cursor cursor;
+        String table;
         switch(category) {
             case 0:
-                cursor = db.query(Tables.AudioTask1.TABLE_NAME, null,null,
-                        null, null, null, "RANDOM()", "1");
+                table = Tables.AudioTask1.TABLE_NAME;
                 break;
             case 1:
-                cursor = db.query(Tables.AudioTask2.TABLE_NAME, null, null,
-                        null, null,null, "RANDOM()", "1");
+                table = Tables.AudioTask2.TABLE_NAME;
                 break;
             case 2:
-                cursor = db.query(Tables.AudioTask3.TABLE_NAME, null, null,
-                        null, null,null, "RANDOM()", "1");
+                table = Tables.AudioTask3.TABLE_NAME;
                 break;
             default:
-                cursor = null;
+                table = null;
         }
+
+        cursor = db.query(table, null,null,
+                null, null, null, "RANDOM()", "1");
 
         if (cursor != null) {
             try {

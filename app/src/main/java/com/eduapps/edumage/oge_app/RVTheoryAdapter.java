@@ -1,5 +1,7 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 // import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
     }
 
     public static class TheoryViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout layout;
         //  CardView theoryCard;
         TextView theoryCardName;
         TextView cardsWatched;
@@ -29,6 +33,7 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
 
         TheoryViewHolder(View itemView) {
             super(itemView);
+            layout = itemView.findViewById(R.id.layout_theory_card);
             // theoryCard = itemView.findViewById(R.id.theory_card);
             theoryCardName = itemView.findViewById(R.id.theory_card_name);
             cardsWatched = itemView.findViewById(R.id.cards_watched);
@@ -50,7 +55,7 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TheoryViewHolder holder, int position) {
+    public void onBindViewHolder(final @NonNull TheoryViewHolder holder, int position) {
         holder.theoryCardName.setText(theory.get(position).getCardName());
         // making progress bar
         int watched = theory.get(position).getCardsWatched();
@@ -59,8 +64,20 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
         holder.cardsWatched.setText(progress);
         holder.progressBar.setProgress(watched);
         holder.progressBar.setMax(total);
-        //
+
         holder.theoryCardIcon.setImageResource(theory.get(position).getIconResourse());
+
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Context context = holder.layout.getContext();
+                Intent intent;
+                intent = new Intent(context, TheoryItemsActivity.class);
+                intent.putExtra("category", position);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
