@@ -209,16 +209,17 @@ public class UoeTaskActivity extends AppCompatActivity {
                 int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
                 int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
 
-                List<String> wordsList = new ArrayList<>();
+                List<String> tasksList = new ArrayList<>();
+                List<String> originsList = new ArrayList<>();
                 cursor.moveToFirst();
                 for (int i = 0; i < 10; i++) {
                     String task = cursor.getString(taskColumnIndex);
                     String origin = cursor.getString(originColumnIndex);
                     String answer = cursor.getString(answerColumnIndex);
                     UoeTask elem = new UoeTask(task, origin, answer);
-                    while ((wordsList.contains(origin) && category != 4 && category != 6
-                            && category != 8 && category != 10 && category != 12) ||
-                            (wordsList.size() > 0 && wordsList.get(i - 1).equals(origin))) {
+                    while (tasksList.contains(task) || (originsList.contains(origin) && category != 4
+                            && category != 6 && category != 8 && category != 10 && category != 12) ||
+                            (tasksList.size() > 0 && tasksList.get(i - 1).equals(task))) {
                         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                                 selectionArgs, null, null, "RANDOM()", "1");
                         cursor.moveToFirst();
@@ -228,7 +229,8 @@ public class UoeTaskActivity extends AppCompatActivity {
                         elem = new UoeTask(task, origin, answer);
                     }
                     tasks.add(elem);
-                    wordsList.add(task);
+                    tasksList.add(task);
+                    originsList.add(origin);
                     rightAnswersList.add(cursor.getString(answerColumnIndex));
                     cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                             selectionArgs, null, null, "RANDOM()", "1");

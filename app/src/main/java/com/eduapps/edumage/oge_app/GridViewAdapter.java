@@ -6,18 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.List;
 
 public class GridViewAdapter extends BaseAdapter {
     List<String> source;
     Context context;
+    int category;
 
-    public GridViewAdapter(List<String> source, Context c) {
+    public GridViewAdapter(List<String> source, int category, Context c) {
         this.source = source;
         this.context = c;
+        this.category = category;
     }
 
     @Override
@@ -49,7 +49,8 @@ public class GridViewAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, TheoryItemActivity.class);
-                    intent.putExtra("layout", position);
+                    intent.putExtra("position", position);
+                    intent.putExtra("category", category);
                     context.startActivity(intent);
                 }
             });

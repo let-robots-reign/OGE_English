@@ -167,4 +167,28 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \n\n5) Использовать разнообразную лексику и грамматику уровня 9 класса и неформальный стиль письма.
     </string>
 
+    <!-- Uoe theory -->
+    <string name="plurals_html">
+        <b>Большинство существительных</b>
+        \n\nЧтобы образовать множественное число, нужно прибавить к существительному букву <b>-s</b>.
+        \nНапример: a dog – dog<b>s</b>; a game – game<b>s</b>; a toy – toy<b>s</b>.
+        \n\n<b>Существительные, оканчивающиеся на определённые буквы</b>
+        \n\nЕсли существительное оканчивается на <b>-o, -ch, -sh, -s, -ss, -x</b>,  добавляем <b>-es</b>.
+        \nНапример: a potato-potato<b>es</b>; a match – match<b>es</b>; a bush – bush<b>es</b>; a bus – bus<b>es</b>; a glass – glass<b>es</b>; a box – box<b>es</b>.
+        \n\nЕсли существительное оканчивается на <b>согласная+y</b>, то <b>y</b> меняется на <b>-i</b> и добавляется <b>-es</b>.
+        \nНапример: a country – countr<b>ies</b>; a party – part<b>ies</b>; a story – stor<b>ies</b>.
+        \n\nЕсли существительное оканчивается на <b>-f</b> или <b>-fe</b>, то <b>-f/-fe</b> меняется на <b>-v</b> и добавляется <b>-es</b>.
+        \nНапример: a life – li<b>ves</b>; a leaf – lea<b>ves</b>, a wolf – wol<b>ves</b>.
+        \n\n<b>Исключения</b>
+        \n\nК исключениям, которые могут встретиться в ОГЭ, относятся следующие:
+        \na m<b>a</b>n – m<b>e</b>n
+        \na wom<b>a</b>n – wom<b>e</b>n
+        \na child – child<b>ren</b>b>
+        \na fish – fish
+        \na m<b>ous</b>e – m<b>ic</b>e
+        \na f<b>oo</b>t – f<b>ee</b>t
+        \na t<b>oo</b>th – t<b>ee</b>th
+        \na g<b>oo</b>se – g<b>ee</b>se
+    </string>
+
 </resources>

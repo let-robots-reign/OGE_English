@@ -24,12 +24,29 @@ public class TheoryItemsActivity extends AppCompatActivity {
 
         setContentView(R.layout.theory_cards);
 
-        String[] writingCards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки",
-        "Полный ответ на вопрос", "Тренинг"};
-        List<String> items = new ArrayList<>(Arrays.asList(writingCards));
+        String[] cards;
+        List<String> items;
+        switch (category) {
+            case 0:
+                cards = new String[]{};  // empty for now
+                break;
+            case 1:
+                cards = new String[]{};  // empty for now
+                break;
+            case 2:
+                cards = new String[]{"Множ. число сущ."};
+                break;
+            case 3:
+                cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки",
+                        "Полный ответ на вопрос", "Тренинг"};
+                break;
+            default:
+                cards = null;
+        }
 
+        items = new ArrayList<>(Arrays.asList(cards));
         GridView grid = findViewById(R.id.gridview);
-        GridViewAdapter adapter = new GridViewAdapter(items, this);
+        GridViewAdapter adapter = new GridViewAdapter(items, category, this);
         grid.setAdapter(adapter);
     }
 }
