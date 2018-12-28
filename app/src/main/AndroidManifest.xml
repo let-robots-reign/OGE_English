@@ -63,6 +63,22 @@
         </activity>
 
         <activity
+            android:name=".TheoryItemsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TheoryActivity"/>
+        </activity>
+
+        <activity
+            android:name=".TheoryItemActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TheoryItemsActivity"/>
+        </activity>
+
+        <activity
             android:name=".UoeActivity"
             android:label="@string/use_of_english"
             android:parentActivityName=".TrainingsActivity"

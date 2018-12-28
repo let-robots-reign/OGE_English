@@ -157,4 +157,14 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     Jeans are good because they don\'t show the dirt. You can easily go a month without washing them and they don\'t look shocking. They don\'t need to be washed as often as other trousers and you don\'t need to iron them. What\'s more, because of the strong material you can wear your favorite jeans for years. Even the occasional hole or spot doesn\'t spoil them at all.\n
     In the 30s and 40s many people began to spend their spare time watching movies where adventurous cowboys rode horses, fought bad guys and wore blue jeans. The actors made jeans popular in movies and everyone wanted to wear them. Young people wished to imitate the casual “cowboyish” look they saw in films, and they began to wear jeans as casual wear.</string>
 
+
+
+    <!-- Writing theory-->
+    <string name="algorythm">Для написания успешного письма необходимо:\n\n1) Соблюдать объём 100-120 (+-10%) слов, то есть допустимо 90-132 слова. Если написано менее 90 слов, Вы получаете 0 баллов за письмо. Если написано более 132 слов, все слова после 132-го зачёркиваются, то есть окончание письма у Вас отсутствует.
+        \n\n2) Соблюдать структуру письма. Для этого нужно заучить наизусть фразы-клише (начало и конец письма) и знать их порядок. Фразы можно найти здесь.
+        \n\n3) Использовать несколько слов-связок. Самые частотные слова-связки можно найти здесь.
+        \n\n4) Дать полные ответы на 3 заданных вопроса. Что такое полный ответ, можно узнать здесь.
+        \n\n5) Использовать разнообразную лексику и грамматику уровня 9 класса и неформальный стиль письма.
+    </string>
+
 </resources>
