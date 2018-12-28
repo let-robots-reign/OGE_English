@@ -1,10 +1,13 @@
 package com.eduapps.edumage.oge_app.VariantsTasks;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -67,6 +70,13 @@ public class AudioTaskFragment extends TaskFragment {
             setPauseMode();
         }
     };
+
+//    private View.OnTouchListener disableTouch = new View.OnTouchListener() {
+//        @Override
+//        public boolean onTouch(View v, MotionEvent event) {
+//            return false;
+//        }
+//    };
 
     private AudioManager.OnAudioFocusChangeListener changeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
@@ -221,6 +231,7 @@ public class AudioTaskFragment extends TaskFragment {
 
         audioManager = (AudioManager) getActivity().getSystemService(AUDIO_SERVICE);
         ifAudioPlaying = false;
+
         ImageView audioButton = rootView.findViewById(R.id.play_pause_button);
         playPauseIcon = rootView.findViewById(R.id.play_pause_icon);
         audioButton.setOnClickListener(new View.OnClickListener() {
@@ -262,32 +273,33 @@ public class AudioTaskFragment extends TaskFragment {
         setPauseMode();
 
         rightAnswers = 0;
-//        final int maxRightAnswers;
-//        if (position == 0) {
-//            maxRightAnswers = 4;
-//        } else {
-//            maxRightAnswers = 5;
-//        }
 
         EditText answer1 = rootView.findViewById(R.id.audio_cell_1);
         EditText answer2 = rootView.findViewById(R.id.audio_cell_2);
         EditText answer3 = rootView.findViewById(R.id.audio_cell_3);
         EditText answer4 = rootView.findViewById(R.id.audio_cell_4);
         EditText answer5 = rootView.findViewById(R.id.audio_cell_5);
-        // change the question color to black again when user changes answer
-        // also, hide keyboard when user wrote a number
-        applyTextListener(answer1);
-        applyTextListener(answer2);
-        applyTextListener(answer3);
-        applyTextListener(answer4);
-        applyTextListener(answer5);
+//        // change the question color to black again when user changes answer
+//        // also, hide keyboard when user wrote a number
+//        applyTextListener(answer1);
+//        applyTextListener(answer2);
+//        applyTextListener(answer3);
+//        applyTextListener(answer4);
+//        applyTextListener(answer5);
         // color the question green or red
         checkEditTextAnswer(answer1, 0);
         checkEditTextAnswer(answer2, 1);
         checkEditTextAnswer(answer3, 2);
         checkEditTextAnswer(answer4, 3);
+
+        disableEditText(answer1);
+        disableEditText(answer2);
+        disableEditText(answer3);
+        disableEditText(answer4);
+
         if (position == 1) {
             checkEditTextAnswer(answer5, 4);
+            disableEditText(answer5);
         }
 
         return rightAnswers;
@@ -323,6 +335,13 @@ public class AudioTaskFragment extends TaskFragment {
         final RadioGroup options6 = rootView.findViewById(R.id.options6);
         final RadioButton radioButton6 = options6.findViewById(options6.getCheckedRadioButtonId());
         checkRadioButtonAnswer(options6, radioButton6, 5);
+
+//        options1.setOnTouchListener(disableTouch);
+//        options2.setOnTouchListener(disableTouch);
+//        options3.setOnTouchListener(disableTouch);
+//        options4.setOnTouchListener(disableTouch);
+//        options5.setOnTouchListener(disableTouch);
+//        options6.setOnTouchListener(disableTouch);
 
         return rightAnswers;
     }
@@ -370,6 +389,15 @@ public class AudioTaskFragment extends TaskFragment {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+
+    private void disableEditText(EditText editText) {
+        editText.setHint("");
+        editText.setFocusable(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
+        editText.setBackgroundColor(Color.TRANSPARENT);
     }
 
     private void assignQuestionAndAudio() {
@@ -421,6 +449,7 @@ public class AudioTaskFragment extends TaskFragment {
             mediaPlayer.start();
         }
         ifAudioPlaying = true;
+        //setAudioPlayingStatus(true);
         playPauseIcon.setImageResource(R.drawable.pause_icon);
     }
 
@@ -429,8 +458,21 @@ public class AudioTaskFragment extends TaskFragment {
             mediaPlayer.pause();
         }
         ifAudioPlaying = false;
+        //setAudioPlayingStatus(false);
         playPauseIcon.setImageResource(R.drawable.play_triangle);
     }
+//
+//    private void setAudioPlayingStatus(boolean status) {
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putBoolean("ifAudioPlaying", status);
+//        editor.apply();
+//    }
+//
+//    private boolean getAudioPlayingStatus() {
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        return preferences.getBoolean("ifAudioPlaying", false);
+//    }
 
     private void releaseMediaPlayer() {
         if (mediaPlayer != null) {

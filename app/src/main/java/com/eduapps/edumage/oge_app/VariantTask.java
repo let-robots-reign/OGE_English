@@ -1,8 +1,10 @@
 package com.eduapps.edumage.oge_app;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -11,6 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 
 import com.eduapps.edumage.oge_app.VariantsTasks.AudioTaskFragment;
@@ -29,6 +33,42 @@ public class VariantTask extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.variant);
+
+        // instruction
+        View view = getLayoutInflater().inflate(R.layout.dont_show_checkbox, null);
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    storeDialogStatus(true);
+                } else {
+                    storeDialogStatus(false);
+                }
+            }
+        });
+
+        // when a user enters, he should see an instruction to the task
+        AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
+        builder.setTitle("Инструкция")
+                .setCancelable(false)
+                .setMessage("Вариант содержит задания 1-32 и проверяют письменные компетенции " +
+                        "учащегося. После выполнения всех заданий вы можете нажать на кнопку " +
+                        "\"Проверить вариант\" и получить свой результат. После проверки варианта " +
+                        "вы не сможете редактировать свои ответы, но сможете просмотреть свои ошибки.")
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.setView(view);
+        AlertDialog alert = builder.create();
+        if (getDialogStatus()) {
+            alert.hide();
+        } else {
+            alert.show();
+        }
 
         db = new DbHelper(this).getReadableDatabase();
 
@@ -91,6 +131,18 @@ public class VariantTask extends AppCompatActivity {
                 builder.show();
             }
         });
+    }
+
+    private void storeDialogStatus(boolean isChecked) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("Dont_show_variant", isChecked);
+        editor.apply();
+    }
+
+    private boolean getDialogStatus() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getBoolean("Dont_show_variant", false);
     }
 
     public static SQLiteDatabase getDb() {
