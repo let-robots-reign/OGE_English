@@ -1,5 +1,8 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.SharedPreferences;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,16 +27,23 @@ public class VariantsActivity extends AppCompatActivity {
         List<VariantCard> variants = new ArrayList<>();
 
         for (int i = 1; i <= 10; i++) {
-            variants.add(new VariantCard(i, readIfSolvedFromDB(i)));
+            variants.add(new VariantCard(i, readResultFromPreferences(i)));
         }
 
-        RVVariantsAdapter adapter = new RVVariantsAdapter(variants);
+        RVVariantsAdapter adapter = new RVVariantsAdapter(variants, this);
         variants_list.setAdapter(adapter);
     }
 
-    /** read if user completed the variant #number from the database */
-    public boolean readIfSolvedFromDB(int number) {
-        // TODO: read from DB
-        return (number >= 2 && number <= 6);
+    /** read the result of the variant #number from preferences */
+    public int readResultFromPreferences(int number) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.contains("Variant_" + number)) {
+            return preferences.getInt("Variant_" + number, -1);
+        } else {
+            editor.putInt("Variant_" + number, -1);
+            editor.apply();
+            return -1;
+        }
     }
 }

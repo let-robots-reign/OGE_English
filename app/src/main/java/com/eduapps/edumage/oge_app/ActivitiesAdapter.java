@@ -41,13 +41,15 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
             TextView summary = listItemView.findViewById(R.id.summary);
             desc = currentActivity.getRightAnswers() + "/" + currentActivity.getTotalPoints() + " верно";
             summary.setText(desc);
+            int color;
             if ((float) currentActivity.getRightAnswers() / currentActivity.getTotalPoints() > 0.75) {
-                summary.setTextColor(getContext().getResources().getColor(R.color.right_answer));
+                color = R.color.right_answer;
             } else if ((float) currentActivity.getRightAnswers() / currentActivity.getTotalPoints() >= 0.5) {
-                summary.setTextColor(getContext().getResources().getColor(R.color.middling));
+                color = R.color.middling;
             } else {
-                summary.setTextColor(getContext().getResources().getColor(R.color.wrong_answer));
+                color = R.color.wrong_answer;
             }
+            summary.setTextColor(getContext().getResources().getColor(color));
 
             ImageView dynamics = listItemView.findViewById(R.id.dynamics);
             if (currentActivity.getDynamics() == 1) {

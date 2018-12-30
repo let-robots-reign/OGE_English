@@ -52,10 +52,10 @@ public class VariantTask extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
         builder.setTitle("Инструкция")
                 .setCancelable(false)
-                .setMessage("Вариант содержит задания 1-32 и проверяют письменные компетенции " +
-                        "учащегося. После выполнения всех заданий вы можете нажать на кнопку " +
-                        "\"Проверить вариант\" и получить свой результат. После проверки варианта " +
-                        "вы не сможете редактировать свои ответы, но сможете просмотреть свои ошибки.")
+                .setMessage("Вариант содержит задания 1-32 письменной части экзамена. После " +
+                        "выполнения всех заданий вы можете нажать на кнопку \"Проверить вариант\" " +
+                        "и получить свой результат. После проверки варианта вы не сможете " +
+                        "редактировать свои ответы, но сможете просмотреть свои ошибки.")
                 .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -118,6 +118,8 @@ public class VariantTask extends AppCompatActivity {
                 totalRightAnswers += ((TaskFragment) fragments.get(5)).checkUoe();
                 totalRightAnswers += ((TaskFragment) fragments.get(6)).checkUoe();
 
+                recordVariantResult(totalRightAnswers);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
                 builder.setTitle("Ваш результат:")
                         .setCancelable(false)
@@ -174,5 +176,14 @@ public class VariantTask extends AppCompatActivity {
         bundle.putInt("position", position);  // type of the task
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    private void recordVariantResult(int res) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.contains("Variant_" + (number + 1))) {
+            editor.putInt("Variant_" + (number + 1), res);
+        }
+        editor.apply();
     }
 }

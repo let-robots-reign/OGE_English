@@ -17,9 +17,11 @@ import java.util.List;
 
 public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.VariantsViewHolder> {
     List<VariantCard> variants;
+    Context context;
 
-    RVVariantsAdapter(List<VariantCard> variants) {
+    RVVariantsAdapter(List<VariantCard> variants, Context context) {
         this.variants = variants;
+        this.context = context;
     }
 
     public static class VariantsViewHolder extends RecyclerView.ViewHolder {
@@ -27,7 +29,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
         // CardView variantCard;
         TextView variantNumber;
         TextView ifSolved;
-        ImageView tick;
+        //ImageView tick;
 
         VariantsViewHolder(View itemView) {
             super(itemView);
@@ -35,7 +37,7 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
             // variantCard = itemView.findViewById(R.id.variant_card);
             variantNumber = itemView.findViewById(R.id.variant_card_name);
             ifSolved = itemView.findViewById(R.id.variant_solved);
-            tick = itemView.findViewById(R.id.tick);
+            //tick = itemView.findViewById(R.id.tick);
         }
     }
 
@@ -55,13 +57,25 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
     public void onBindViewHolder(final @NonNull VariantsViewHolder holder, int position) {
         String variantNumber = "Вариант " + variants.get(position).getVariantNumber();
         holder.variantNumber.setText(variantNumber);
-        holder.tick.setImageResource(R.drawable.ic_tick);
-        boolean ifSolved = variants.get(position).getHasSolved();
-        if (!ifSolved) {
-            holder.tick.setVisibility(View.GONE);
+        //holder.tick.setImageResource(R.drawable.ic_tick);
+        int res = variants.get(position).getResult();
+        if (res == -1) {
+            //holder.tick.setVisibility(View.GONE);
             holder.ifSolved.setText(R.string.not_solved);
         } else {
-            holder.ifSolved.setText(R.string.solved);
+            //holder.ifSolved.setText(R.string.solved);
+            String message = "результат: " + res + "/45";
+            holder.ifSolved.setText(message);
+            int percentage = res / 45;
+            int color;
+            if (percentage >= 75) {
+                color = R.color.right_answer;
+            } else if (percentage / 45 >= 50) {
+                color = R.color.middling;
+            } else {
+                color = R.color.wrong_answer;
+            }
+            holder.ifSolved.setTextColor(context.getResources().getColor(color));
         }
         // alter paddingBottom of the last element
         if (position == getItemCount() - 1) {

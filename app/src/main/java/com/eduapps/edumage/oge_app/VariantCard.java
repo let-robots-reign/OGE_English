@@ -2,18 +2,18 @@ package com.eduapps.edumage.oge_app;
 
 public class VariantCard  {
     private int variantNumber;
-    private boolean hasSolved;
+    private int result;
 
-    public VariantCard(int number, boolean hasSolved) {
+    public VariantCard(int number, int res) {
         this.variantNumber = number;
-        this.hasSolved = hasSolved;
+        this.result = res;
     }
 
     public int getVariantNumber() {
         return variantNumber;
     }
 
-    public boolean getHasSolved() {
-        return hasSolved;
+    public int getResult() {
+        return result;
     }
 }
