@@ -90,7 +90,7 @@
 
         <activity
             android:name=".UoeTaskActivity"
-            android:windowSoftInputMode="adjustNothing"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".UoeActivity"
             android:theme="@style/AppTheme">
             <meta-data

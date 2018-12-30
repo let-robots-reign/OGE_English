@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -14,12 +15,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.eduapps.edumage.oge_app.data.Tables;
+
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,8 +118,8 @@ public class UoeTaskActivity extends AppCompatActivity {
         applyTextListener(origin9);
         applyTextListener(origin10);
 
-        Button exitButton = findViewById(R.id.exit_button);
-        Button submitButton = findViewById(R.id.submit_button);
+        final Button exitButton = findViewById(R.id.exit_button);
+        final Button submitButton = findViewById(R.id.submit_button);
 
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +162,29 @@ public class UoeTaskActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+
+        KeyboardVisibilityEvent.setEventListener(
+                this,
+                new KeyboardVisibilityEventListener() {
+                    @Override
+                    public void onVisibilityChanged(boolean isOpen) {
+                        // some code depending on keyboard visiblity status
+                        if (isOpen) {
+                            exitButton.setVisibility(View.GONE);
+                            submitButton.setVisibility(View.GONE);
+                        } else {
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    exitButton.setVisibility(View.VISIBLE);
+                                    submitButton.setVisibility(View.VISIBLE);
+                                }
+                            }, 100);
+
+                        }
+                    }
+                });
     }
 
     private void checkEditTextAnswer(EditText answer, int position) {
@@ -172,7 +201,6 @@ public class UoeTaskActivity extends AppCompatActivity {
         answer.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -182,7 +210,6 @@ public class UoeTaskActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
     }
