@@ -138,7 +138,8 @@
                     android:layout_marginStart="4dp"
                     android:hint="1"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"
+                    android:inputType="number"
+                    android:digits="0123456789."
                     android:focusableInTouchMode="true"
                     android:imeOptions="actionDone"/>
 
@@ -159,7 +160,8 @@
                     android:layout_marginStart="32dp"
                     android:hint="2"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"
+                    android:inputType="number"
+                    android:digits="0123456789."
                     android:focusableInTouchMode="true"
                     android:imeOptions="actionDone"/>
 
@@ -180,7 +182,8 @@
                     android:layout_marginStart="60dp"
                     android:hint="3"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"
+                    android:inputType="number"
+                    android:digits="0123456789."
                     android:focusableInTouchMode="true"
                     android:imeOptions="actionDone"/>
 
@@ -201,7 +204,8 @@
                     android:layout_marginStart="88dp"
                     android:hint="4"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"
+                    android:inputType="number"
+                    android:digits="0123456789."
                     android:focusableInTouchMode="true"
                     android:imeOptions="actionDone"/>
 
@@ -223,7 +227,8 @@
                     android:layout_marginStart="116dp"
                     android:hint="5"
                     android:maxLength="1"
-                    android:inputType="textCapCharacters"
+                    android:inputType="number"
+                    android:digits="0123456789."
                     android:focusableInTouchMode="true"
                     android:imeOptions="actionDone"/>
 

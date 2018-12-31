@@ -55,7 +55,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
                 android:gravity="end"
-                android:textColor="@color/cards"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 app:fontFamily="@font/merriweather_bold"
                 tools:text="@string/solved" />

@@ -66,11 +66,12 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
             //holder.ifSolved.setText(R.string.solved);
             String message = "результат: " + res + "/45";
             holder.ifSolved.setText(message);
-            int percentage = res / 45;
             int color;
-            if (percentage >= 75) {
+            if (res >= 40) {
+                color = R.color.cards;
+            } else if (res >= 35) {
                 color = R.color.right_answer;
-            } else if (percentage / 45 >= 50) {
+            } else if (res >= 19) {
                 color = R.color.middling;
             } else {
                 color = R.color.wrong_answer;
