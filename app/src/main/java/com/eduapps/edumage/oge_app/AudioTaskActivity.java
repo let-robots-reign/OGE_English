@@ -655,7 +655,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             exp = rightAnswers * 10;
         }
 
-        // if user does the task for the firs time, he gets more experience
+        // if user does the task for the first time, they get more experience
         if (currentCompletion == 50) {
             exp /= 2;
         } else if (currentCompletion == 100) {

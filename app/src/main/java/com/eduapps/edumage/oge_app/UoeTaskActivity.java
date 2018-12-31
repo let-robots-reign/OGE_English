@@ -34,7 +34,6 @@ public class UoeTaskActivity extends AppCompatActivity {
 
     String[] typedAnswers = new String[10];
     private List<UoeTask> tasks;
-    private List<String> rightAnswersList;
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
     private int rightAnswers;
@@ -52,7 +51,6 @@ public class UoeTaskActivity extends AppCompatActivity {
         }
 
         tasks = new ArrayList<>();
-        rightAnswersList = new ArrayList<>();
 
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
@@ -145,6 +143,8 @@ public class UoeTaskActivity extends AppCompatActivity {
                 checkEditTextAnswer(origin9, 8);
                 checkEditTextAnswer(origin10, 9);
 
+                recordRecentActivity();
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
                 builder.setTitle("Ваш результат:")
                                 .setMessage("You have " + rightAnswers + "/" + "10 right answers")
@@ -154,8 +154,6 @@ public class UoeTaskActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
-
-                                                recordRecentActivity();
                                             }
                                         });
                 AlertDialog alert = builder.create();
@@ -188,7 +186,7 @@ public class UoeTaskActivity extends AppCompatActivity {
     }
 
     private void checkEditTextAnswer(EditText answer, int position) {
-        if (answer.getText().toString().equals(rightAnswersList.get(position))) {
+        if (answer.getText().toString().equals(tasks.get(position).getAnswer())) {
             answer.setTextColor(getResources().getColor(R.color.right_answer));
             rightAnswers += 1;
         } else {
@@ -227,40 +225,66 @@ public class UoeTaskActivity extends AppCompatActivity {
             selectionArgs = new String[]{topicsArray[category]}; // filter by topic name
         }
 
-        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
-                selectionArgs, null, null, "RANDOM()", "1");
+        // select the tasks that were done less than twice
+        String completionSelect = Tables.UseOfEnglishTask.COLUMN_COMPLETION + " < ?";
+        String[] completionSelectArgs = new String[]{"100"};
+        String totalSelection;
+        String[] totalSelectionArgs;
+        if (selection != null) {
+            totalSelection = selection + " AND " + completionSelect;
+            totalSelectionArgs = new String[]{selectionArgs[0], completionSelectArgs[0]};
+        } else {
+            totalSelection = completionSelect;
+            totalSelectionArgs = completionSelectArgs;
+        }
+
+        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, totalSelection,
+                totalSelectionArgs,null, null, "RANDOM()", "1");
+        if (cursor == null) {
+            cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                    selectionArgs, null,null, "RANDOM()", "1");
+        }
 
         if (cursor != null) {
             try {
+                int idColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ID);
                 int taskColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_TASK);
                 int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
                 int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
+                int completionColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_COMPLETION);
 
                 List<String> tasksList = new ArrayList<>();
                 List<String> originsList = new ArrayList<>();
                 cursor.moveToFirst();
                 for (int i = 0; i < 10; i++) {
+                    int id = cursor.getInt(idColumnIndex);
                     String task = cursor.getString(taskColumnIndex);
                     String origin = cursor.getString(originColumnIndex);
                     String answer = cursor.getString(answerColumnIndex);
-                    UoeTask elem = new UoeTask(task, origin, answer);
+                    int completion = cursor.getInt(completionColumnIndex);
+                    UoeTask elem = new UoeTask(id, task, origin, answer, completion);
                     while (tasksList.contains(task) || (originsList.contains(origin) && category != 4
                             && category != 6 && category != 8 && category != 10 && category != 12) ||
                             (tasksList.size() > 0 && tasksList.get(i - 1).equals(task))) {
                         cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
                                 selectionArgs, null, null, "RANDOM()", "1");
                         cursor.moveToFirst();
+                        id = cursor.getInt(idColumnIndex);
                         task = cursor.getString(taskColumnIndex);
                         origin = cursor.getString(originColumnIndex);
                         answer = cursor.getString(answerColumnIndex);
-                        elem = new UoeTask(task, origin, answer);
+                        completion = cursor.getInt(completionColumnIndex);
+                        elem = new UoeTask(id, task, origin, answer, completion);
                     }
                     tasks.add(elem);
                     tasksList.add(task);
                     originsList.add(origin);
-                    rightAnswersList.add(cursor.getString(answerColumnIndex));
-                    cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
-                            selectionArgs, null, null, "RANDOM()", "1");
+                    cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, totalSelection,
+                            totalSelectionArgs,null, null, "RANDOM()", "1");
+                    if (cursor == null) {
+                        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                                selectionArgs, null,null, "RANDOM()", "1");
+                    }
                     cursor.moveToFirst();
                 }
             } finally {
@@ -273,11 +297,34 @@ public class UoeTaskActivity extends AppCompatActivity {
         Cursor cursor;
 
         // forming the data to write
-        int exp;
         int dynamics = 0;
         int totalQuestions = 10;  // in UoE there are always 10 tasks
         String topicName = getResources().getStringArray(R.array.uoe_topics)[category];
-        exp = 10 * rightAnswers;
+
+        // building exp points. If user does the task correctly for the first time, they get 2exp
+        // if they did it correctly once, they get 1xp
+        // if they did it correctly twice or more, no exp
+        int exp = 0;
+        for (int i = 0; i < typedAnswers.length; i++) {
+            UoeTask elem = tasks.get(i);
+            if (typedAnswers[i].equals(elem.getAnswer())) {
+                // user answered question #i correctly
+                int comp = elem.getCompletion();
+                if (comp == 0) {
+                    exp += 2;
+                } else if (comp == 50) {
+                    exp += 1;
+                }
+                // also, update completion if user answered the question correctly (and completion < 100)
+                if (comp < 100) {
+                    Log.v("UoeTaskActivity", comp+"");
+                    ContentValues values = new ContentValues();
+                    values.put("completion", comp + 50);
+                    db.update(Tables.UseOfEnglishTask.TABLE_NAME, values,
+                            "_id=" + elem.getId(), null);
+                }
+            }
+        }
 
         // searching for records of the same topic to define dynamics
         String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";

@@ -221,7 +221,7 @@ public class UoeTaskFragment extends TaskFragment {
                     }
                     String origin = cursor.getString(originColumnIndex);
                     String answer = cursor.getString(answerColumnIndex);
-                    UoeTask elem = new UoeTask(task, origin, answer);
+                    UoeTask elem = new UoeTask(questionsIds[i], task, origin, answer, 0);
                     tasks.add(elem);
                     rightAnswersList.add(cursor.getString(answerColumnIndex));
                 } finally {
