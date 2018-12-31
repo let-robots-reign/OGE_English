@@ -42,6 +42,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private int currentID;
     private String currentText;
     private String currentQuestion;
+    private int currentCompletion;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -442,20 +443,28 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private void assignRandomQuestion() {
         rightAnswersList = new ArrayList<>();
         Cursor cursor;
+        String table;
         switch (category) {
             case 0:
-                cursor = db.query(Tables.ReadingTask1.TABLE_NAME, null, null,
-                        null, null, null, "RANDOM()", "1");
+                table = Tables.ReadingTask1.TABLE_NAME;
                 break;
             case 1:
-                cursor = db.query(Tables.ReadingTask2.TABLE_NAME, null, null,
-                        null, null, null, "RANDOM()", "1");
-                int headingColumnIndex = cursor.getColumnIndex(Tables.ReadingTask2.COLUMN_HEADING);
-                cursor.moveToFirst();
-                heading = cursor.getString(headingColumnIndex);
+                table = Tables.ReadingTask2.TABLE_NAME;
                 break;
             default:
-                cursor = null;
+                table = null;
+        }
+
+        // select the tasks that were done less than twice
+        String selection = Tables.ReadingTask1.COLUMN_COMPLETION + " < ?";
+        String[] selectionArgs = new String[]{"100"};
+
+        cursor = db.query(table, null, selection, selectionArgs, null,
+                null, "RANDOM()", "1");
+
+        if (cursor == null) {
+            cursor = db.query(table, null, null, null, null,
+                    null, "RANDOM()", "1");
         }
 
         if (cursor != null) {
@@ -470,6 +479,10 @@ public class ReadingTaskActivity extends AppCompatActivity {
                 currentText = cursor.getString(textColumnIndex);
                 currentQuestion = cursor.getString(taskColumnIndex);
                 String currentAnswer = cursor.getString(answerColumnIndex);
+                if (category == 1) {
+                    int headingColumnIndex = cursor.getColumnIndex(Tables.ReadingTask2.COLUMN_HEADING);
+                    heading = cursor.getString(headingColumnIndex);
+                }
 
                 rightAnswersList.addAll(Arrays.asList(currentAnswer.split(" ")));
             } finally {
@@ -491,6 +504,13 @@ public class ReadingTaskActivity extends AppCompatActivity {
         } else {
             topicName = "Задания 10-17";
             exp = rightAnswers * 10;
+        }
+
+        // if user does the task for the firs time, he gets more experience
+        if (currentCompletion == 50) {
+            exp /= 2;
+        } else if (currentCompletion == 100) {
+            exp = 0;
         }
 
         // searching for records of the same topic to define dynamics

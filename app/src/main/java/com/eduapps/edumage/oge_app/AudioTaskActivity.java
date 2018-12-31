@@ -55,6 +55,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     private int currentID;
     private String currentQuestion;
     private String currentAudioFile;
+    private int currentCompletion;
 
     private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
         @Override
@@ -603,8 +604,17 @@ public class AudioTaskActivity extends AppCompatActivity {
                 table = null;
         }
 
-        cursor = db.query(table, null,null,
-                null, null, null, "RANDOM()", "1");
+        // select the tasks that were done less than twice
+        String selection = Tables.AudioTask1.COLUMN_COMPLETION + " < ?";
+        String[] selectionArgs = new String[]{"100"};
+
+        cursor = db.query(table, null, selection, selectionArgs, null,
+                null, "RANDOM()", "1");
+
+        if (cursor == null) {
+            cursor = db.query(table, null, null, null, null,
+                    null, "RANDOM()", "1");
+        }
 
         if (cursor != null) {
             try {
@@ -613,12 +623,14 @@ public class AudioTaskActivity extends AppCompatActivity {
                 int taskColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_TASK);
                 int answerColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_ANSWER);
                 int audioColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_AUDIO);
+                int completionColumnIndex = cursor.getColumnIndex(Tables.AudioTask1.COLUMN_COMPLETION);
 
                 cursor.moveToFirst();
                 currentID = cursor.getInt(idColumnIndex);
                 currentQuestion = cursor.getString(taskColumnIndex);
                 String currentAnswer = cursor.getString(answerColumnIndex);
                 currentAudioFile = cursor.getString(audioColumnIndex);
+                currentCompletion = cursor.getInt(completionColumnIndex);
 
                 rightAnswersList.addAll(Arrays.asList(currentAnswer.split(" ")));
                 if (category == 0) {
@@ -641,6 +653,13 @@ public class AudioTaskActivity extends AppCompatActivity {
             exp = rightAnswers * 2 * 10;
         } else {
             exp = rightAnswers * 10;
+        }
+
+        // if user does the task for the firs time, he gets more experience
+        if (currentCompletion == 50) {
+            exp /= 2;
+        } else if (currentCompletion == 100) {
+            exp = 0;
         }
 
         // searching for records of the same topic to define dynamics
@@ -675,6 +694,27 @@ public class AudioTaskActivity extends AppCompatActivity {
         values.put(Tables.RecentActivities.COLUMN_EXP, exp);
         values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
         db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
+
+        // also, update completion if user did the task well
+        if (rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
+            ContentValues v = new ContentValues();
+            v.put("completion", currentCompletion + 50);
+            String table;
+            switch(category) {
+                case 0:
+                    table = Tables.AudioTask1.TABLE_NAME;
+                    break;
+                case 1:
+                    table = Tables.AudioTask2.TABLE_NAME;
+                    break;
+                case 2:
+                    table = Tables.AudioTask3.TABLE_NAME;
+                    break;
+                default:
+                    table = null;
+            }
+            db.update(table, v, "_id=" + currentID, null);
+        }
 
         // add collected experience to user's level
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);

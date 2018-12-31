@@ -11,6 +11,7 @@ public final class Tables {
         public static final String COLUMN_ANSWER = "answer";
         public static final String COLUMN_EXPLANATION = "explanation";
         public static final String COLUMN_AUDIO = "audio";
+        public static final String COLUMN_COMPLETION = "completion";
     }
 
     public static abstract class AudioTask2 implements BaseColumns {
@@ -20,6 +21,7 @@ public final class Tables {
         public static final String COLUMN_ANSWER = "answer";
         public static final String COLUMN_EXPLANATION = "explanation";
         public static final String COLUMN_AUDIO = "audio";
+        public static final String COLUMN_COMPLETION = "completion";
     }
 
     public static abstract class AudioTask3 implements BaseColumns {
@@ -29,6 +31,7 @@ public final class Tables {
         public static final String COLUMN_ANSWER = "answer";
         public static final String COLUMN_EXPLANATION = "explanation";
         public static final String COLUMN_AUDIO = "audio";
+        public static final String COLUMN_COMPLETION = "completion";
     }
 
     public static abstract class ReadingTask1 implements BaseColumns {
@@ -38,6 +41,7 @@ public final class Tables {
         public static final String COLUMN_TASK = "task";
         public static final String COLUMN_ANSWER = "answer";
         public static final String COLUMN_EXPLANATION = "explanation";
+        public static final String COLUMN_COMPLETION = "completion";
     }
 
     public static abstract class ReadingTask2 implements BaseColumns {
@@ -48,6 +52,7 @@ public final class Tables {
         public static final String COLUMN_ANSWER = "answer";
         public static final String COLUMN_EXPLANATION = "explanation";
         public static final String COLUMN_HEADING = "heading";
+        public static final String COLUMN_COMPLETION = "completion";
     }
 
     public static abstract class UseOfEnglishTask implements BaseColumns {
@@ -57,6 +62,7 @@ public final class Tables {
         public static final String COLUMN_TASK = "task";
         public static final String COLUMN_ORIGIN = "origin";
         public static final String COLUMN_ANSWER = "answer";
+        public static final String COLUMN_COMPLETION = "completion";
     }
 
     public static abstract class RecentActivities implements BaseColumns {
