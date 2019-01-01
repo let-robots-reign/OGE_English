@@ -16,6 +16,10 @@ public class VariantsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instantiate();
+    }
+
+    private void instantiate() {
         setContentView(R.layout.variants_list);
 
         RecyclerView variants_list = findViewById(R.id.variants_list);
@@ -45,5 +49,11 @@ public class VariantsActivity extends AppCompatActivity {
             editor.apply();
             return -1;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        instantiate();
     }
 }
