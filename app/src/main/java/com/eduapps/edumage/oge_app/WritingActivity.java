@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -35,6 +36,7 @@ public class WritingActivity extends AppCompatActivity {
 
         db = new DbHelper(this).getReadableDatabase();
 
+        /* упражнение на фразы-клише */
         List<Integer> ids = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
             ids.add(i);
@@ -92,6 +94,40 @@ public class WritingActivity extends AppCompatActivity {
 
             phrases.addView(question);
         }
+
+        /* упражнение на структуру письма */
+        int id = 7;
+        assignQuestion(id);
+        Collections.shuffle(Arrays.asList(currentQuestion));
+
+        LinearLayout structure = findViewById(R.id.structure);
+
+        for (int i = 0; i < 8; i++) {
+
+            while (TextUtils.join("\n", currentQuestion).equals(TextUtils.join("\n", currentAnswer))) {
+                Collections.shuffle(Arrays.asList(currentQuestion));
+            }
+
+            LinearLayout question = new LinearLayout(this);
+            question.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView questionNumber = new TextView(this);
+            questionNumber.setText((i + 1) + ")");
+            questionNumber.setTextSize(16);
+            questionNumber.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            questionNumber.setPadding(0, 0, 8, 0);
+            question.addView(questionNumber);
+
+            TextView line = new TextView(this);
+            line.setText(currentQuestion[i]);
+            line.setTextSize(16);
+            line.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            question.addView(line);
+
+            structure.addView(question);
+
+        }
+
     }
 
     private void assignQuestion(int currentId) {
@@ -110,8 +146,9 @@ public class WritingActivity extends AppCompatActivity {
                 int answerColumnIndex = cursor.getColumnIndex(Tables.WritingTask.COLUMN_ANSWER);
 
                 cursor.moveToFirst();
-                currentQuestion = cursor.getString(taskColumnIndex).split(" ");
-                currentAnswer = cursor.getString(answerColumnIndex).split(" ");
+                String delimiter = (currentId < 7) ? " " : "\n";
+                currentQuestion = cursor.getString(taskColumnIndex).split(delimiter);
+                currentAnswer = cursor.getString(answerColumnIndex).split(delimiter);
 
                 rightAnswersList.addAll(Arrays.asList(currentAnswer));
             } finally {

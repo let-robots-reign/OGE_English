@@ -147,6 +147,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="writing_task4">Дополните текст, используя слова-связки:</string>
     <string name="full_answers">Полные ответы</string>
     <string name="writing_task5">Выберите лучший ответ на вопрос:</string>
+    <string name="hint">Впишите номера предложений в нужном порядке</string>
 
     <string name="dont_show">Больше не показывать</string>
 

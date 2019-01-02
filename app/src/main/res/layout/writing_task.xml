@@ -79,13 +79,225 @@
                     android:textStyle="italic"/>
 
                 <LinearLayout
-                    android:id="@+id/pismo"
+                    android:id="@+id/structure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:layout_marginTop="12dp"
                     android:orientation="vertical">
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <View
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginStart="4dp"
+                        android:hint="1"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                    <View
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginStart="28dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginStart="32dp"
+                        android:hint="2"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                    <View
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="56dp"
+                        android:layout_marginStart="56dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginStart="60dp"
+                        android:hint="3"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                    <View
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="84dp"
+                        android:layout_marginStart="84dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="88dp"
+                        android:layout_marginStart="88dp"
+                        android:hint="4"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                    <View
+                        android:id="@+id/letter_e_view"
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="112dp"
+                        android:layout_marginStart="112dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="116dp"
+                        android:layout_marginStart="116dp"
+                        android:hint="5"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                    <View
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="140dp"
+                        android:layout_marginStart="140dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="144dp"
+                        android:layout_marginStart="144dp"
+                        android:hint="6"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                    <View
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="168dp"
+                        android:layout_marginStart="168dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="172dp"
+                        android:layout_marginStart="172dp"
+                        android:hint="7"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                    <View
+                        android:layout_width="28dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/answer_cell"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="196dp"
+                        android:layout_marginStart="196dp"/>
+
+                    <EditText
+                        android:id="@+id/writing_cell_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginStart="200dp"
+                        android:hint="8"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:focusableInTouchMode="true"
+                        android:imeOptions="actionDone"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/hint"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/linkers"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/merriweather_regular"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/writing_task3"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:textStyle="italic"/>
+
+
 
 
             </LinearLayout>
