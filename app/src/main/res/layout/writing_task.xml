@@ -297,7 +297,32 @@
                     android:textSize="16sp"
                     android:textStyle="italic"/>
 
+                <LinearLayout
+                    android:id="@+id/linkers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+                </LinearLayout>
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/writing_task4"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:textStyle="italic"/>
+
+                <LinearLayout
+                    android:id="@+id/sentences"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+                </LinearLayout>
 
 
             </LinearLayout>

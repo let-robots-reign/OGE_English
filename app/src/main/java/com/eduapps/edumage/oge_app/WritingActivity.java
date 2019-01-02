@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -125,8 +126,102 @@ public class WritingActivity extends AppCompatActivity {
             question.addView(line);
 
             structure.addView(question);
-
         }
+
+
+        /* упражнение на слова-связки (сопоставить перевод) */
+        id = 8;
+        assignQuestion(id);
+        Collections.shuffle(Arrays.asList(currentQuestion));
+        Collections.shuffle(Arrays.asList(currentAnswer));
+
+        LinearLayout linkers = findViewById(R.id.linkers);
+
+        for (int i = 0; i < 24; i++) {
+
+            LinearLayout question = new LinearLayout(this);
+            question.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView questionNumber = new TextView(this);
+            questionNumber.setText((i + 1) + ")");
+            questionNumber.setTextSize(16);
+            questionNumber.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            questionNumber.setPadding(0, 0, 8, 0);
+            question.addView(questionNumber);
+
+            TextView eng_phrase = new TextView(this);
+            eng_phrase.setText(currentQuestion[i]);
+            eng_phrase.setTextSize(16);
+            eng_phrase.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            question.addView(eng_phrase);
+
+            LayoutInflater inflater = LayoutInflater.from(this);
+            Spinner spinner = (Spinner) inflater.inflate(R.layout.writing_spinner,
+                    question, false);
+            adapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_spinner_item, currentAnswer);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+            spinner.setSelection(i);
+            question.addView(spinner);
+
+            linkers.addView(question);
+        }
+
+        /* слова-связки (дополнить предложения) */
+
+        LinearLayout sentences = findViewById(R.id.sentences);
+
+        for (int i = 9; i < 11; i++) {
+            assignQuestion(i);
+            Collections.shuffle(Arrays.asList(currentAnswer));
+
+            LinearLayout sentence = new LinearLayout(this);
+            sentence.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView questionNumber = new TextView(this);
+            questionNumber.setText((i - 8) + ")");
+            questionNumber.setTextSize(16);
+            questionNumber.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            questionNumber.setPadding(0, 0, 8, 0);
+            sentence.addView(questionNumber);
+
+            LinearLayout totalRows = new LinearLayout(this);
+            totalRows.setOrientation(LinearLayout.VERTICAL);
+
+            for (int j = 0; j < currentQuestion.length; j++) {
+                LinearLayout row = new LinearLayout(this);
+                row.setOrientation(LinearLayout.HORIZONTAL);
+
+                LayoutInflater inflater = LayoutInflater.from(this);
+                Spinner spinner = (Spinner) inflater.inflate(R.layout.writing_spinner, row, false);
+                adapter = new ArrayAdapter<>(this,
+                        android.R.layout.simple_spinner_item, currentAnswer);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+                spinner.setSelection(j);
+                row.addView(spinner);
+
+                TextView extract = new TextView(this);
+                extract.setText(currentQuestion[j]);
+                extract.setTextSize(16);
+                extract.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                FrameLayout.LayoutParams textLp = new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT);
+                textLp.setMargins(0, 0, 0, 12);
+                extract.setLayoutParams(textLp);
+                row.addView(extract);
+
+                totalRows.addView(row);
+
+            }
+
+            sentence.addView(totalRows);
+
+            sentences.addView(sentence);
+        }
+
 
     }
 
