@@ -65,6 +65,15 @@ public final class Tables {
         public static final String COLUMN_COMPLETION = "completion";
     }
 
+    public static abstract class WritingTask implements BaseColumns {
+        public static final String TABLE_NAME = "Writing";
+        public static final String COLUMN_ID = BaseColumns._ID;
+        public static final String COLUMN_TOPIC = "topic";
+        public static final String COLUMN_TASK = "task";
+        public static final String COLUMN_ANSWER = "answer";
+//        public static final String COLUMN_COMPLETION = "completion";
+    }
+
     public static abstract class RecentActivities implements BaseColumns {
         public static final String TABLE_NAME = "Recent_activities";
         public static final String COLUMN_ID = BaseColumns._ID;

@@ -137,6 +137,17 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="headings">Заголовки:</string>
     <string name="texts">Тексты:</string>
 
+    <!-- Writing task -->
+    <string name="phrases">Фразы-клише</string>
+    <string name="writing_task1">Расставьте слова по порядку:</string>
+    <string name="structure">Структура письма</string>
+    <string name="writing_task2">Поставьте предложения в правильном порядке, чтобы получилось письмо:</string>
+    <string name="linkers">Слова-связки</string>
+    <string name="writing_task3">Совместите слова-связки с их русскими эквивалентами:</string>
+    <string name="writing_task4">Дополните текст, используя слова-связки:</string>
+    <string name="full_answers">Полные ответы</string>
+    <string name="writing_task5">Выберите лучший ответ на вопрос:</string>
+
     <string name="dont_show">Больше не показывать</string>
 
     <string name="task9_task1_headings">Выберите заголовок\n1. Good for everyone\n2. Easy to care for\n3. Part of culture\n4. Screen fashion\n5. An innovative idea\n6. Working clothes\n7. Jeans’ labels\n8. Clothes to protest</string>
