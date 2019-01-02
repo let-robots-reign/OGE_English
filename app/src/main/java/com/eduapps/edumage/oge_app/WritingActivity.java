@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -222,7 +223,37 @@ public class WritingActivity extends AppCompatActivity {
             sentences.addView(sentence);
         }
 
+        /* упражнение на полные ответы */
 
+        ids.clear();
+        for (int i = 11; i < 14; i++) {
+            ids.add(i);
+        }
+        Collections.shuffle(ids);
+
+        assignQuestion(ids.get(0));
+        RadioButton option1_1 = findViewById(R.id.question1_option1);
+        option1_1.setText(currentQuestion[0]);
+        RadioButton option1_2 = findViewById(R.id.question1_option2);
+        option1_2.setText(currentQuestion[1]);
+        RadioButton option1_3 = findViewById(R.id.question1_option3);
+        option1_3.setText(currentQuestion[2]);
+
+        assignQuestion(ids.get(1));
+        RadioButton option2_1 = findViewById(R.id.question2_option1);
+        option2_1.setText(currentQuestion[0]);
+        RadioButton option2_2 = findViewById(R.id.question2_option2);
+        option2_2.setText(currentQuestion[1]);
+        RadioButton option2_3 = findViewById(R.id.question2_option3);
+        option2_3.setText(currentQuestion[2]);
+
+        assignQuestion(ids.get(2));
+        RadioButton option3_1 = findViewById(R.id.question3_option1);
+        option3_1.setText(currentQuestion[0]);
+        RadioButton option3_2 = findViewById(R.id.question3_option2);
+        option3_2.setText(currentQuestion[1]);
+        RadioButton option3_3 = findViewById(R.id.question3_option3);
+        option3_3.setText(currentQuestion[2]);
     }
 
     private void assignQuestion(int currentId) {
