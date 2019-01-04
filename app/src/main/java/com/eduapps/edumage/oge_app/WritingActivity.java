@@ -1,15 +1,25 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -38,6 +48,41 @@ public class WritingActivity extends AppCompatActivity {
 
         db = new DbHelper(this).getReadableDatabase();
 
+        addInstruction();
+
+        /* упражнение на структуру письма */
+        int id = 7;
+        assignQuestion(id);
+        Collections.shuffle(Arrays.asList(currentQuestion));
+
+        LinearLayout structure = findViewById(R.id.structure);
+
+        for (int i = 0; i < 8; i++) {
+
+            while (TextUtils.join("\n", currentQuestion).equals(TextUtils.join("\n", currentAnswer))) {
+                Collections.shuffle(Arrays.asList(currentQuestion));
+            }
+
+            LinearLayout question = new LinearLayout(this);
+            question.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView questionNumber = new TextView(this);
+            questionNumber.setText((i + 1) + ")");
+            questionNumber.setTextSize(16);
+            questionNumber.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            questionNumber.setPadding(0, 0, 8, 0);
+            question.addView(questionNumber);
+
+            TextView line = new TextView(this);
+            line.setText(currentQuestion[i]);
+            line.setTextSize(16);
+            line.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            question.addView(line);
+
+            structure.addView(question);
+        }
+
+
         /* упражнение на фразы-клише */
         List<Integer> ids = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
@@ -49,7 +94,7 @@ public class WritingActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(0, 0, 0, 12);
+        lp.setMargins(0, 0, 0, 32);
 
         for (int i = 0; i < 6; i++) {
 
@@ -96,39 +141,6 @@ public class WritingActivity extends AppCompatActivity {
 
             phrases.addView(question);
         }
-
-        /* упражнение на структуру письма */
-        int id = 7;
-        assignQuestion(id);
-        Collections.shuffle(Arrays.asList(currentQuestion));
-
-        LinearLayout structure = findViewById(R.id.structure);
-
-        for (int i = 0; i < 8; i++) {
-
-            while (TextUtils.join("\n", currentQuestion).equals(TextUtils.join("\n", currentAnswer))) {
-                Collections.shuffle(Arrays.asList(currentQuestion));
-            }
-
-            LinearLayout question = new LinearLayout(this);
-            question.setOrientation(LinearLayout.HORIZONTAL);
-
-            TextView questionNumber = new TextView(this);
-            questionNumber.setText((i + 1) + ")");
-            questionNumber.setTextSize(16);
-            questionNumber.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-            questionNumber.setPadding(0, 0, 8, 0);
-            question.addView(questionNumber);
-
-            TextView line = new TextView(this);
-            line.setText(currentQuestion[i]);
-            line.setTextSize(16);
-            line.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-            question.addView(line);
-
-            structure.addView(question);
-        }
-
 
         /* упражнение на слова-связки (сопоставить перевод) */
         id = 8;
@@ -281,5 +293,78 @@ public class WritingActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
+    }
+
+    private void addInstruction() {
+        LinearLayout addInfo = new LinearLayout(this);
+        addInfo.setOrientation(LinearLayout.VERTICAL);
+
+        // "Don't show" checkbox goes with the instructions
+        View view = getLayoutInflater().inflate(R.layout.dont_show_checkbox, addInfo, false);
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    storeDialogStatus(true);
+                } else {
+                    storeDialogStatus(false);
+                }
+            }
+        });
+
+        TextView link = new TextView(this);
+        SpannableString string = new SpannableString("Ссылка на теорию");
+        string.setSpan(new UnderlineSpan(), 0, string.length(), 0);
+        link.setPadding(64, 0, 0, 0);
+        link.setText(string);
+        link.setTextSize(16);
+        link.setTextColor(Color.BLUE);
+
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WritingActivity.this, TheoryItemActivity.class);
+                intent.putExtra("position", 0);
+                intent.putExtra("category", 3);
+                startActivity(intent);
+            }
+        });
+
+        addInfo.addView(view);
+        addInfo.addView(link);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(WritingActivity.this);
+        builder.setTitle("Инструкция")
+                .setCancelable(false)
+                .setMessage("Данная тренировка проверяет отдельные навыки, необходимые для " +
+                        "написания письма:\n1. Знание структуры письма\n2. Использование фраз-клише\n" +
+                        "3. Использование слов-связок.\n4. Умение дать полный ответ на вопрос.\n" +
+                        "Для получения подробной информации обратитесь к соответствующим разделам Теории")
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.setView(addInfo);
+        AlertDialog alert = builder.create();
+        if (getDialogStatus()) {
+            alert.hide();
+        } else {
+            alert.show();
+        }
+    }
+
+    private void storeDialogStatus(boolean isChecked) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("Dont_show_writing", isChecked);
+        editor.apply();
+    }
+
+    private boolean getDialogStatus() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getBoolean("Dont_show_writing", false);
     }
 }
