@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="0,1,2"
+    android:gravity="center">
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Личное местоимение"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="10sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Притяжательное местоимение + существительное"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="10sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Притяжательное местоимение без существительного"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="10sp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="I"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="My - мой"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Mine"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="You"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Yours - твой"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/yours_bold"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="He"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="His - его"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="His"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="She"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Her - её"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/hers_bold"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="It"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Its - этого"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Its"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="We"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Our - наш"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/ours_bold"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="They"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Their - их"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="1"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/theirs_bold"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:layout_column="2"
+            android:background="#FFFFFF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </TableRow>
+</TableLayout>

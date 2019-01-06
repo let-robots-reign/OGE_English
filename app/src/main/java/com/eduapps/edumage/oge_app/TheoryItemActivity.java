@@ -3,10 +3,12 @@ package com.eduapps.edumage.oge_app;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class TheoryItemActivity extends AppCompatActivity {
 
@@ -22,35 +24,76 @@ public class TheoryItemActivity extends AppCompatActivity {
         }
 
         String[] cards;
-        int[] layouts;
+        int[] topics;
         switch (category) {
             case 0:
-                layouts = new int[]{};
                 cards = new String[]{""};  // empty for now
+                topics = new int[]{};
                 break;
             case 1:
-                layouts = new int[]{};
                 cards = new String[]{""};  // empty for now
+                topics = new int[]{};
                 break;
             case 2:
-                layouts = new int[]{R.layout.uoe_theory_plural_nouns};
-                cards = new String[]{"Множ. число сущ."};
+                cards = new String[]{"Множественное число существительных", "Порядковые числительные",
+                        "Притяжательные местоимения", "Объектные местоимения", "Возвратные местоимения",
+                        "Пассивный залог", "I wish + V2", "Условное предложение (реальное)",
+                        "Условное предложение (нереальное)", "Формы глагола to be", "Модальные глаголы",
+                        "Настоящее простое", "Настоящее продолженное", "Настоящее совершённое",
+                        "Прошедшее простое", "Прошедшее продолженное", "Прошедшее совершённое",
+                        "Будущее простое", "Степени сравнения прилагательных", "Would + V"};
+                topics = new int[]{R.string.plurals_html, R.string.numerals_html, R.string.possessive_html,
+                                    R.string.objective_html, R.string.self_html, R.string.passive_html_part_1,
+                                    R.string.wish_html, R.string.if_real_html, R.string.if_unreal_html,
+                                    R.string.to_be_html, R.string.modals_html, R.string.blank,
+                                    R.string.blank, R.string.blank, R.string.blank, R.string.blank,
+                                    R.string.blank, R.string.blank, R.string.degrees_comparison_html,
+                                    R.string.would_html_part_1};
                 break;
             case 3:
-                layouts = new int[]{R.layout.writing_theory_algo, R.layout.writing_theory_algo,
-                        R.layout.writing_theory_algo, R.layout.writing_theory_algo,
-                        R.layout.writing_theory_algo};
                 cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки",
-                        "Полный ответ на вопрос", "Тренинг"};
+                        "Полный ответ на вопрос"};
+                topics = new int[]{R.string.algorythm};
                 break;
             default:
-                layouts = new int[]{};
                 cards = new String[]{""};  // empty for now
+                topics = new int[]{};
         }
-        
-        setTitle(cards[position]);
-        setContentView(layouts[position]);
-        
+
+        String topic = cards[position];
+        setTitle(topic);
+        setContentView(R.layout.theory_page);
+
+        LinearLayout layout = findViewById(R.id.theory_layout);
+
+        TextView heading = findViewById(R.id.theory_heading);
+        heading.setText(topic);
+        TextView main = findViewById(R.id.main_theory_block);
+        main.setText(topics[position]);
+
+        if (position == 2) {
+            View view = getLayoutInflater().inflate(R.layout.possessive_pronouns_table, layout, false);
+            layout.addView(view);
+        } else if (position == 3) {
+            View view = getLayoutInflater().inflate(R.layout.objective_pronouns_table, layout, false);
+            layout.addView(view);
+        } else if (position == 4) {
+            View view = getLayoutInflater().inflate(R.layout.self_pronouns_table, layout, false);
+            layout.addView(view);
+        } else if (position == 5) {
+            View view = getLayoutInflater().inflate(R.layout.passive_table, layout, false);
+            layout.addView(view);
+
+            TextView text = new TextView(this);
+            text.setText(R.string.passive_html_part_2);
+            text.setTextSize(16);
+            text.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+
+            layout.addView(text);
+        } else if (position == 9) {
+            View view = getLayoutInflater().inflate(R.layout.passive_table, layout, false);
+            layout.addView(view);
+        }
     }
 
     @Override

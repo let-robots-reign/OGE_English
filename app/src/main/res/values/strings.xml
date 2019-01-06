@@ -193,7 +193,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \n\n<b>Существительные, оканчивающиеся на определённые буквы</b>
         \n\nЕсли существительное оканчивается на <b>-o, -ch, -sh, -s, -ss, -x</b>,  добавляем <b>-es</b>.
         \nНапример: a potato-potato<b>es</b>; a match – match<b>es</b>; a bush – bush<b>es</b>; a bus – bus<b>es</b>; a glass – glass<b>es</b>; a box – box<b>es</b>.
-        \n\nЕсли существительное оканчивается на <b>согласная+y</b>, то <b>y</b> меняется на <b>-i</b> и добавляется <b>-es</b>.
+        \n\nЕсли существительное оканчивается на <b>согласная + y</b>, то <b>y</b> меняется на <b>-i</b> и добавляется <b>-es</b>.
         \nНапример: a country – countr<b>ies</b>; a party – part<b>ies</b>; a story – stor<b>ies</b>.
         \n\nЕсли существительное оканчивается на <b>-f</b> или <b>-fe</b>, то <b>-f/-fe</b> меняется на <b>-v</b> и добавляется <b>-es</b>.
         \nНапример: a life – li<b>ves</b>; a leaf – lea<b>ves</b>, a wolf – wol<b>ves</b>.
@@ -208,5 +208,153 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \na t<b>oo</b>th – t<b>ee</b>th
         \na g<b>oo</b>se – g<b>ee</b>se
     </string>
+    
+    <string name="numerals_html">
+        <b>Большинство числительных</b>
+        \n\nЧтобы образовать порядковое числительное, нужно прибавить к количественному числительному буквы <b>-th</b>.
+        \nНапример: four – four<b>th</b>, seven – seven<b>th</b>, twenty-six - twenty-six<b>th</b>.
+        \n\n<b>Числительные, оканчивающиеся на определённые буквы</b>
+        \n\nЕсли числительное оканчивается на <b>-ve</b> (в английском это 5 (fi<b>ve</b>) и 12 (twel<b>ve</b>)),  меняем <u>ve</u> на <u>f</u> и добавляем <b>-th</b>.
+        \nНапример: fi<u>ve</u> – fi<u>f</u><b>th</b>, twel<u>ve</u>-twel<b>f</b><b>th</b>.
+        \n\nЕсли числительное оканчивается на <b>-y</b> (в английском это 20, 30, 40 и т.д.), то <u>y</u> меняется на <u>i</u> и добавляется <b>-eth</b>.
+        \nНапример: twent<u>y</u> – twent<u>i</u><b>eth</b>, sixt<u>y</u> – sixt<u>i</u><b>eth</b>, ninet<u>y</u> - ninet<u>i</u><b>eth</b>.
+        \n\nВ числительном 8 добавляется только буква <b>h</b>:
+        \neight – eight<b>h</b>
+        \n\nВ числительном 9 исчезает буква <b>e</b>:
+        \nnin<strike>e</strike> - nin<b>th</b>
+        \n\n<b>Исключения</b>
+        \nК исключениям относятся числительные 1, 2 и 3:
+        \none – first
+        \ntwo – second
+        \nthree – third
+        \n\nОбратите внимание, что в составном числительном (из нескольких слов) меняется только последнее слово, как и в русском языке.
+        \nНапример:
+        \nthirty-<b>one</b> – thirty-<b>first</b> (тридцать <b>первый</b> — тридцать <b>первого</b>)
+        \none hundred and eighty-<b>four</b> - one hundred and eighty-<b>fourth</b> (сто восемьдесят <b>четыре</b> - сто восемьдесят <b>четвёртый</b>)
+    </string>
+
+    <string name="yours_bold">Your<b>s</b></string>
+    <string name="hers_bold">Her<b>s</b></string>
+    <string name="ours_bold">Our<b>s</b></string>
+    <string name="theirs_bold">Their<b>s</b></string>
+
+    <string name="possessive_html">
+        Притяжательные местоимения отвечают на вопрос <b>Чей? Чья? Чьё? Чьи?</b>
+        \nНапример: <b>my</b> room (<b>моя</b> комната), <b>his</b> phone (<b>его</b> телефон).
+        \n\nВ английском языке у притяжательных местоимений нет рода, числа и падежа, то есть они не изменяются: <b>моя</b> комната — <b>my</b> room, <b>мои</b> комнаты — <b>my</b> rooms, <b>моей</b> комнаты — <b>my room</b>, <b>мой</b> телефон — <b>my</b> phone.
+        \n\nПритяжательные местоимения делятся на 2 группы в зависимости от места в предложении:
+        \n1) Притяжательные местоимения, после которых стоит <i>существительное</i> (<b>my</b> <i>keys</i>, <b>his</b> <i>book</i>, <b>their</b> <i>money</i>).
+        \n2) Притяжательные местоимения, после которых нет существительного (The keys are <b>mine</b>, Whose book is this? - <b>His</b>, The money is <b>theirs</b>).
+    </string>
+
+    <string name="objective_html">
+        В английском языке у личных местоимений 2 падежа: именительный и объектный (косвенный: от родительного до предложного).
+        \nМестоимения в именительном падеже отвечают на вопросы Кто? Что? и в предложении являются <u>подлежащим</u>.
+        \nНапример: <u><b>She</b></u> likes fruit. <u><b>We</b></u> walk our dog twice a day. Can <u><b>you</b></u> open the door?
+        \n\nМестоимения в косвенном падеже отвечают на вопросы Кого? Чего? Кому? Чему? Кем? Чем? О ком? О чём? и в предложении являются дополнением.
+        \nНапример: Help me! Don’t ask him. They are waiting for us.
+    </string>
+
+    <string name="self_html">
+        Возвратные местоимения используются, когда <u>подлежащее</u> и <b>дополнение</b> — один и тот же человек/предмет.
+        \nНапример: <u>I</u> solved the problem <b>myself</b> — <u>Я</u> решил задачу <b>сам</b>.
+        \n<u>He</u> blames <b>himself</b> — <u>Он</u> винит <b>себя</b>. (Сравните: <u>He</u> blames <b>her</b> — <u>Он</u> винит <b>её</b>)
+        \n<u>We</u> can’t do it <b>ourselves</b> — <u>Мы</u> не можем сделать это <b>сами</b>.
+    </string>
+
+    <string name="passive_html_part_1">
+        Пассивный залог используется, когда <u>подлежащее</u> пассивно, то есть не выполняет действия, выраженного <b>сказуемым</b>.
+        \nНапример: <u>Книга</u> <b>была написана</b> в 17-ом веке (книга не писала, её кто-то написал). - The <u>book</u> <b>was written</b> in the 17th century.
+        \n\nОбщая формула пассивного залога: <b>be + V3</b>. Чтобы употребить пассивный залог в нужном простом времени (Present Simple, Past Simple, Future Simple), возьмём подходящую форму глагола <b>be</b> (быть) из таблицы и добавим смысловой глагол в 3-ей форме.
+    </string>
+
+    <string name="passive_html_part_2">
+        Вчера мой <u>велосипед</u> <b>угнали</b>. - Yesterday my <u>bike</u> <b>was stolen</b>.
+        \nКаждый год <u>Москву</u> <b>посещают</b> более миллиона туристов. - Every year <u>Moscow</u> <b>is visited</b> by more than one million tourists.
+        \nВ следующем году в нашем городе <b>построят</b> новый <u>стадион</u>. - Next year a new <u>stadium</u> <b>will be built</b> in our city.
+        \n\nПассивный залог во временах групп Perfect и Continuous строится по-другому (глагол <b>be</b> ставится в формулу соответствующего времени), но это не встретится в данном экзамене.
+    </string>
+    
+    <string name="wish_html">
+        I wish … - разновидность условного предложения. Возможны 2 варианта построения предложений:
+        \n<u>I wish</u> he <b>lived</b> here (<u>I wish</u> + <b>V2</b>) – жалеем о том, что он не живёт здесь сейчас.
+        \n<u>I wish</u> he <b>had lived</b> here (<u>I wish</u> + <b>had V3</b>) – жалеем о том,что он не жил здесь в прошлом.
+        \nВ ОГЭ вам понадобится только формула <u>I wish</u> + <b>V2</b>, поэтому смело ставьте глагол после I wish во вторую форму.
+        \nНапример: <u>I wish</u> I <b>could</b> speak French. <u>I wish</u> he <b>came</b> to visit us. <u>I wish</u> we <b>had</b> more money.
+    </string>
+
+    <string name="if_real_html">
+        Условное предложение - сложноподчинённое предложение, обе части которого относятся к <b>будущему</b> времени. Ситуация реальная, условие может исполниться.
+        \nНапример: Если <b>будет</b> хорошая погода, мы <b>пойдем</b> гулять.
+        \n\nВ английском языке обе части также относятся к <b>будущему</b> времени, но глагол в части с «если» используется в <u>настоящем</u> времени (Present Simple). То есть: Если <u>есть</u> хорошая погода, мы <b>пойдем</b> гулять. — If the weather <u>is</u> good, we <b>will go</b> for a walk.
+        \n\nФормула: <b>If</b> + <b>V/Vs, will V</b>
+    </string>
+
+    <string name="if_unreal_html">
+        Условное предложение - сложноподчинённое предложение, обе части которого относятся к настоящему времени. Ситуация нереальная, условие не может исполниться сейчас.
+        \nНапример: Если бы у меня <b>была</b> сестра, мы <b>бы делили</b> комнату (сестры у меня нет).
+        \n\nВ английском языке обе части также относятся к настоящему времени, но глагол в части с «если» используется в <u>прошедшем</u> времени (Past Simple), а в другой части используется <b>would</b> + <b>V</b>. То есть: If I <u>had</u> a sister, we <b>would share</b> a room.
+        \n\nФормула: <b>If</b> + <b>V2/Ved, would V</b>
+    </string>
+
+    <string name="to_be_html">
+        Глагол <b>be</b> имеет особые формы спряжения. Чтобы выбрать нужную форму, обратите внимание на то, в каком времени предложение.
+        \nНапример: I <u>passed</u> the exam that’s why I <b>was</b> happy (предложение в прошедшем времени).
+        \nThousands of tourists <u>visit</u> Italy every year as it <b>is</b> very famous (предложение в настоящем времени).
+        \nI <u>hope one day</u> people <b>will be</b> kinder (предложение о надеждах на будущее).
+    </string>
+
+    <string name="modals_html">
+        Модальные глаголы выражают отношение говорящего к действию (совет, разрешение, обязанность и т.д.). К ним относятся <b>can, must, should, may, have to</b> и др.
+        \n\nМодальные глаголы не изменяются, то есть, не добавляются -s, -ed, -ing.
+        \nПосле модальных глаголов следует <u>инфинитив</u>.
+        \nВ вопросах модальный глагол ставится в начале предложения, в отрицании добавляется <b>not / -n’t</b> после глагола; вспомогательные глаголы не нужны.
+        \n\nНапример:
+        \nWe <b>can</b> <u>swim</u>. We <b>can not</b> <u>swim</u>. <b>Can</b> we <u>swim</u>? - настоящее время
+        \nWe <b>could</b> <u>swim</u>. We <b>could not</b> <u>swim</u>. <b>Could</b> we <u>swim</u>? - прошедшее время
+        \nHe <b>should</b> <u>sleep</u> more. He <b>shouldn’t</b> <u>sleep</u> more. <b>Should</b> he <u>sleep</u> more?
+        \nThey <b>must</b> <u>go</u>. They <b>mustn’t</b> <u>go</u>. <b>Must</b> they <u>go</u>?
+    </string>
+
+    <string name="degrees_comparison_html">
+        В русском языке прилагательные изменяются по родам, числу и падежам (красивый, красивая, красивые, красивыми и т.д.). В английском языке прилагательные не изменяются. Однако можно образовать различные степени сравнения, как и в русском.
+        \n\nСтепени сравнения образуются двумя способами: к коротким словам добавляем суффиксы <b>-er</b> (=более) и <b>-est</b> (=самый), к длинным - слова <b>more</b> (=более) и <b>most</b> (=самый).
+        \nНапример: tall – tall<b>er</b> – the tall<b>est</b>, interesting – <b>more</b> interesting – the <b>most</b> interesting.
+        \n\nКороткие слова состоят из 1 слога (kind, slow, tall) или 2-х слогов, если оканчиваются на -y (happy, funny, crazy). Все остальные слова длинные (peaceful, interesting, dangerous).
+        \n\nПри образовании степеней сравнения коротких слов нужно помнить 3 правила написания:
+        \n1) Если слово оканчивается на согласная + гласная + согласная, то <b>последняя согласная</b> удваивается: thi<b>n</b> – thi<b>nn</b>er – the thi<b>nn</b>est.
+        \n2) Если слово оканчивается на <b>-y</b>, то <b>-y</b> заменяется на <b>-i</b>: happ<b>y</b> – happ<b>i</b>er – the happ<b>i</b>est.
+        \n3) Если слово оканчивается на <b>-e</b>, то <b>-e</b> исчезает: nic<b>e</b> – nic<i>er</i> – the nic<i>est</i>.
+        \n\nЕсть 2 исключения, которые очень часто встречаются в экзамене. Их нужно запомнить.
+        \n<b>Good</b> – <b>better</b> – <b>the best</b>
+        \n<b>Bad</b> – <b>worse</b> – <b>the worst</b>
+        \n\nПри выполнении заданий обращайте внимание на следующие слова:
+        \n<i>than</i> (чем) после пропуска указывает на сравнительную степень (taller <i>than</i>, more interesting <i>than</i>);
+        \n<i>the</i> перед пропуском указывает на превосходную степень (<i>the</i> tallest, <i>the</i> most interesting).
+    </string>
+
+    <string name="would_html_part_1">
+        Косвенная речь — передача одним человеком речи другого.
+        \nНапример: Мой друг сказал, что позвонит завтра.
+        \n\nВ русском языке глаголы <i>сказал, сообщила, объяснили</i> и т.д. не влияют на время  <b>глагола</b> в самом высказывании.
+        \nНапример: Катя <i>сказала</i>: «Мама <b>придёт</b> поздно» - Катя <i>сказала</i>, что мама <b>придёт</b> поздно.
+        \n\nВ английском же глаголы в прошедшем времени <i>сказал, сообщила, объяснили</i> и т.д. как бы отодвигают высказывание назад, поэтому время глагола в высказывании тоже меняется на «более прошедшее». Чаще всего первая форма глагола меняется на вторую.
+        \n\nВ таблице представлены наиболее употребимые формы глагола в косвенной речи. Постарайтесь понять логику изменений форм глаголов, а не заучивать их.
+    </string>
+
+    <string name="would_html_part_2">
+        *В ОГЭ проверяется знание правил косвенной речи именно в Future Simple, т.е. при раскрытии скобок нужно писать <b>would V</b> (go → would go, be → would be, come → would come)
+    </string>
+
+    <string name="blank"> </string>
+
+    <!-- Content for theory tables -->
+    <string name="to_be_heading"><b>Be</b> / быть</string>
+    <string name="to_be_1"><u>I/he/she/it</u>    <b>was</b></string>
+    <string name="to_be_2"><u>you/we/they</u>    <b>were</b></string>
+    <string name="to_be_3"><u>I</u>    <b>am</b></string>
+    <string name="to_be_4"><u>he/she/it</u>    <b>is</b></string>
+    <string name="to_be_5"><u>you/we/they</u>    <b>are</b></string>
+    <string name="to_be_6"><u>I/you/he/she/it/we/they</u>    <b>will be</b></string>
 
 </resources>
