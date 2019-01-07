@@ -45,9 +45,9 @@ public class TheoryItemActivity extends AppCompatActivity {
                 topics = new int[]{R.string.plurals_html, R.string.numerals_html, R.string.possessive_html,
                                     R.string.objective_html, R.string.self_html, R.string.passive_html_part_1,
                                     R.string.wish_html, R.string.if_real_html, R.string.if_unreal_html,
-                                    R.string.to_be_html, R.string.modals_html, R.string.blank,
-                                    R.string.blank, R.string.blank, R.string.blank, R.string.blank,
-                                    R.string.blank, R.string.blank, R.string.degrees_comparison_html,
+                                    R.string.to_be_html, R.string.modals_html, R.string.would_html_part_2,
+                                    R.string.objective_html, R.string.objective_html, R.string.objective_html, R.string.objective_html,
+                                    R.string.objective_html, R.string.objective_html, R.string.degrees_comparison_html,
                                     R.string.would_html_part_1};
                 break;
             case 3:
@@ -92,6 +92,12 @@ public class TheoryItemActivity extends AppCompatActivity {
             layout.addView(text);
         } else if (position == 9) {
             View view = getLayoutInflater().inflate(R.layout.passive_table, layout, false);
+            layout.addView(view);
+        } else if (position == 11) {
+            // crutch
+            main.setTextSize(4);
+            main.setVisibility(View.INVISIBLE);
+            View view = getLayoutInflater().inflate(R.layout.present_simple_table, layout, false);
             layout.addView(view);
         }
     }

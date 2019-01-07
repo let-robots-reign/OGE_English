@@ -357,4 +357,17 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="to_be_5"><u>you/we/they</u>    <b>are</b></string>
     <string name="to_be_6"><u>I/you/he/she/it/we/they</u>    <b>will be</b></string>
 
+    <string name="present_simple_1"><u>I/you/we/they</u></string>
+    <string name="present_simple_2"><u>He/she/it</u></string>
+    <string name="present_simple_3">
+        Регулярные действия/привычки:
+        \nI <b>clean</b> my teeth <u>twice a day</u>
+        \nShe <b>swims</b> in the sea <u>every summer</u>
+        \n\nРасписание:
+        \nThe train <b>leaves</b> <u>at 7</u>
+        \nThe TV show <b>starts</b> <u>in 15 minutes</u>
+    </string>
+
+    <string name="markers">Always, usually, sometimes, often,  never, every day/week/month/year, once/twice/three times a day/week/month/year</string>
+
 </resources>
