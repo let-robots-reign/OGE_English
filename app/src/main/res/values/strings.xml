@@ -368,6 +368,45 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \nThe TV show <b>starts</b> <u>in 15 minutes</u>
     </string>
 
-    <string name="markers">Always, usually, sometimes, often,  never, every day/week/month/year, once/twice/three times a day/week/month/year</string>
+    <string name="markers_1">Always, usually, sometimes, often,  never, every day/week/month/year, once/twice/three times a day/week/month/year</string>
+
+    <string name="present_cont_1"><u>I</u></string>
+    <string name="present_cont_2"><u>He/she/it</u></string>
+    <string name="present_cont_3"><u>We/you/they</u></string>
+
+    <string name="present_cont_4">
+        Прямо сейчас:
+        \nI <b>am learning</b> English tenses <u>at the moment</u>
+        \n\nПланы на будущее:
+        \nWe <b>are visiting</b> our grandparents <u>at the weekend</u>
+        \n\nРаздражение:
+        \nShe <b>is</b> <u>always</u> <b>crying</b>, I’m fed up with it!
+        \n\nВременные ситуации:
+        \n<u>This week</u> I <b>am studying</b> for my exams
+    </string>
+
+    <string name="markers_2">At the moment, (right) now, always, constantly (раздражение), this week/month/year, today</string>
+
+    <string name="present_perf_1"><u>I/you/we/they</u></string>
+    <string name="present_perf_2"><u>He/she/it</u></string>
+    <string name="present_perf_3">
+        Есть результат (время неизвестно/неважно):
+        \nI <b>have lost</b> my keys
+        \nShe <b>has broken</b> the vase
+        \n\nДействие произошло в период времени, который ещё не закончился:
+        \n<b>Have</b> you <b>seen</b> Mark <u>today</u>?
+        \nShe <b>has been</b> abroad <u>this month</u>
+    </string>
+    <string name="markers_3">Already, yet, just, recently, lately, ever, never, today, this week/month/year</string>
+
+    <string name="past_simple_1"><u>I/you/we/they/he/she/it</u></string>
+    <string name="past_simple_2">
+        Действия в прошлом, часто с указанием времени(>=24 часа):
+        \nI <b>visited</b> Paris <u>5 years ago</u>.
+        \nShe <b>swam</b> in the sea for the first time <u>last summer</u>.
+        \n\nПоследовательные действия в прошлом:
+        \nAnn <b>cleaned</b> her teeth, <b>had</b> breakfast, <b>got</b> dressed and <b>left</b> for work.
+    </string>
+    <string name="markers_4">Yesterday, last week/month/year, 2 days/1 week/4 months /10 years ago, in 1995</string>
 
 </resources>

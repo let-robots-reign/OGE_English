@@ -99,6 +99,21 @@ public class TheoryItemActivity extends AppCompatActivity {
             main.setVisibility(View.INVISIBLE);
             View view = getLayoutInflater().inflate(R.layout.present_simple_table, layout, false);
             layout.addView(view);
+        } else if (position == 12) {
+            main.setTextSize(4);
+            main.setVisibility(View.INVISIBLE);
+            View view = getLayoutInflater().inflate(R.layout.present_continuous_table, layout, false);
+            layout.addView(view);
+        } else if (position == 13) {
+            main.setTextSize(4);
+            main.setVisibility(View.INVISIBLE);
+            View view = getLayoutInflater().inflate(R.layout.present_perfect_table, layout, false);
+            layout.addView(view);
+        } else if (position == 14) {
+            main.setTextSize(4);
+            main.setVisibility(View.INVISIBLE);
+            View view = getLayoutInflater().inflate(R.layout.past_simple_table, layout, false);
+            layout.addView(view);
         }
     }
 

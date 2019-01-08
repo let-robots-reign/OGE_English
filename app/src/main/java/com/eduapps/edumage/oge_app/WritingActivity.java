@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -266,6 +267,15 @@ public class WritingActivity extends AppCompatActivity {
         option3_2.setText(currentQuestion[1]);
         RadioButton option3_3 = findViewById(R.id.question3_option3);
         option3_3.setText(currentQuestion[2]);
+
+        Button button = findViewById(R.id.submit_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* проверка упражнения на структуру */
+
+            }
+        });
     }
 
     private void assignQuestion(int currentId) {
