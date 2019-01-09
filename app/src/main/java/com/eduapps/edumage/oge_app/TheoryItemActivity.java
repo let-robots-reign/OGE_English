@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,6 +67,9 @@ public class TheoryItemActivity extends AppCompatActivity {
         setContentView(R.layout.theory_page);
 
         LinearLayout layout = findViewById(R.id.theory_layout);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0, 32, 0, 32);
 
         TextView heading = findViewById(R.id.theory_heading);
         heading.setText(topic);
@@ -95,24 +100,46 @@ public class TheoryItemActivity extends AppCompatActivity {
             layout.addView(view);
         } else if (position == 11) {
             // crutch
+            layout.setLayoutParams(lp);
             main.setTextSize(4);
             main.setVisibility(View.INVISIBLE);
             View view = getLayoutInflater().inflate(R.layout.present_simple_table, layout, false);
             layout.addView(view);
         } else if (position == 12) {
-            main.setTextSize(4);
+            layout.setLayoutParams(lp);
+            main.setTextSize(5);
             main.setVisibility(View.INVISIBLE);
             View view = getLayoutInflater().inflate(R.layout.present_continuous_table, layout, false);
             layout.addView(view);
         } else if (position == 13) {
-            main.setTextSize(4);
+            layout.setLayoutParams(lp);
+            main.setTextSize(5);
             main.setVisibility(View.INVISIBLE);
             View view = getLayoutInflater().inflate(R.layout.present_perfect_table, layout, false);
             layout.addView(view);
         } else if (position == 14) {
-            main.setTextSize(4);
+            layout.setLayoutParams(lp);
+            main.setTextSize(5);
             main.setVisibility(View.INVISIBLE);
             View view = getLayoutInflater().inflate(R.layout.past_simple_table, layout, false);
+            layout.addView(view);
+        } else if (position == 15) {
+            layout.setLayoutParams(lp);
+            main.setTextSize(5);
+            main.setVisibility(View.INVISIBLE);
+            View view = getLayoutInflater().inflate(R.layout.past_continuous_table, layout, false);
+            layout.addView(view);
+        } else if (position == 16) {
+            layout.setLayoutParams(lp);
+            main.setTextSize(5);
+            main.setVisibility(View.INVISIBLE);
+            View view = getLayoutInflater().inflate(R.layout.past_perfect_table, layout, false);
+            layout.addView(view);
+        } else if (position == 17) {
+            layout.setLayoutParams(lp);
+            main.setTextSize(5);
+            main.setVisibility(View.INVISIBLE);
+            View view = getLayoutInflater().inflate(R.layout.future_simple_table, layout, false);
             layout.addView(view);
         }
     }

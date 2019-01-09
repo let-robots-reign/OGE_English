@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:stretchColumns="0,1"
     android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Past Simple"
+            android:text="Future Simple"
             android:layout_weight="1"
             android:layout_margin="1dp"
             android:layout_column="1"
@@ -121,7 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Ved/V2"
+                    android:text="will V"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp"/>
 
@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="didn't V"
+                    android:text="won't V"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp"/>
 
@@ -137,7 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Did ___ V?"
+                    android:text="Will ___ V?"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -167,7 +167,7 @@
             android:padding="8dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/past_simple_2"
+            android:text="@string/future_simple_1"
             android:layout_weight="1"
             android:layout_margin="1dp"
             android:layout_column="1"
@@ -199,7 +199,7 @@
             android:padding="8dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/markers_4"
+            android:text="@string/markers_7"
             android:layout_weight="1"
             android:layout_margin="1dp"
             android:layout_column="1"
@@ -209,4 +209,3 @@
     </TableRow>
 
 </TableLayout>
-

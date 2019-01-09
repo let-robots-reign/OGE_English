@@ -12,12 +12,12 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/reading_task"
+            android:id="@+id/theory_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:elevation="12dp"
             app:cardCornerRadius="20dp">

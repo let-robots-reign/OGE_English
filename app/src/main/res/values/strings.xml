@@ -409,4 +409,39 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     </string>
     <string name="markers_4">Yesterday, last week/month/year, 2 days/1 week/4 months /10 years ago, in 1995</string>
 
+    <string name="past_cont_1"><u>I/he/she/it</u></string>
+    <string name="past_cont_2"><u>We/you/they</u></string>
+    <string name="past_cont_3">
+        Действие в точное время в прошлом (&lt;24 часов):
+        \nI <b>was watching</b> a movie <u>yesterday at 2pm</u>
+        \n<u>This time last Friday</u> we <b>were driving</b> to our dacha.
+        \n\nДействие в прошлом одновременно с другим действием. Другое действие может быть ДЛИТЕЛЬНЫМ (Past Continuous) или <i>коротким</i> (Past Simple):
+        \nMum <b>was reading</b> a newspaper <u>while</u> dad WAS WATCHING the news.
+        \nThey <b>were playing</b> Monopoly <i>when</i> grandpa entered the room.
+    </string>
+    <string name="markers_5">This time yesterday/last Friday, last Sunday evening/at 4pm, when, while</string>
+
+    <string name="past_perf_1">
+        Действие ДО <i>другого действия</i> в прошлом:
+        \n<u>By the time</u> <i>we came home</i>, dad <b>had</b> already <b>left</b>.
+        \nYesterday <i>I started reading</i> the book <b>I had bought</b>.
+        \n\nДействие, являющееся причиной <i>другого действия</i>/СОСТОЯНИЯ в прошлом:
+        \nMary <i>was crying</i> <u>because</u> she <b>had failed</b> the exam.
+        \nSam WAS HAPPY <u>as</u> he <b>had won</b> $100 000.
+    </string>
+
+    <string name="markers_6">Before, after, by last Wednesday/ by 3am/by the time, because, as(для указания причины), until</string>
+
+    <string name="future_simple_1">
+        Обещания/Надежды:
+        \nShe <i>promises</i> she <b>will come</b> to visit us next week.
+        \nI <i>hope</i> you <b>will pass</b> the exam.
+        \n\nСпонтанные решения:
+        \nYour bag looks heavy! I <b>will carry</b> it for you.
+        \n\nПредсказания из того, что мы знаем:
+        \nJim is <i>the smartest boy in class</i>, he <b>will get</b> everything right on his test.
+    </string>
+
+    <string name="markers_7">Tomorrow, next Friday/week/month/year, in(через) a week/a month/5 years</string>
+
 </resources>
