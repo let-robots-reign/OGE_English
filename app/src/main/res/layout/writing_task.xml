@@ -344,6 +344,15 @@
                     android:textSize="16sp"
                     android:textStyle="italic" />
 
+                <TextView
+                    android:id="@+id/full_answer_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Do you think wearing uniform is necessary for students, why?"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+
                 <RadioGroup
                     android:id="@+id/options1"
                     android:layout_width="wrap_content"
@@ -374,7 +383,16 @@
                     android:text="@string/writing_task5"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"/>
+
+                <TextView
+                    android:id="@+id/full_answer_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Do you think wearing uniform is necessary for students, why?"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
 
                 <RadioGroup
                     android:id="@+id/options2"
@@ -406,7 +424,16 @@
                     android:text="@string/writing_task5"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"/>
+
+                <TextView
+                    android:id="@+id/full_answer_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Do you think wearing uniform is necessary for students, why?"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
 
                 <RadioGroup
                     android:id="@+id/options3"
