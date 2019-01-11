@@ -81,22 +81,18 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
                 Intent intent;
                 switch (position) {
                     case 0:
-                        intent = new Intent(context, IndividualActivity.class);
-                        context.startActivity(intent);
-                        break;
-                    case 1:
                         intent = new Intent(context, AudioActivity.class);
                         context.startActivity(intent);
                         break;
-                    case 2:
+                    case 1:
                         intent = new Intent(context, ReadingActivity.class);
                         context.startActivity(intent);
                         break;
-                    case 3:
+                    case 2:
                         intent = new Intent(context, UoeActivity.class);
                         context.startActivity(intent);
                         break;
-                    case 4:
+                    case 3:
                         intent = new Intent(context, WritingActivity.class);
                         context.startActivity(intent);
                         break;

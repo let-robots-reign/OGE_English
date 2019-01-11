@@ -1,494 +1,492 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimaryLight">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="480dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="8dp"
-            android:elevation="12dp"
-            app:cardCornerRadius="20dp">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/structure"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/merriweather_regular"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/writing_task2"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:textStyle="italic" />
+                android:minHeight="480dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="70dp"
+                android:elevation="12dp"
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
-                    android:id="@+id/structure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/structure"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/merriweather_regular"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/writing_task2"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <LinearLayout
+                        android:id="@+id/structure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <View
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="1"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                        <View
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="28dp"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="2"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                        <View
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="56dp"
+                            android:layout_marginStart="56dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="3"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                        <View
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="84dp"
+                            android:layout_marginStart="84dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="88dp"
+                            android:layout_marginStart="88dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="4"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                        <View
+                            android:id="@+id/letter_e_view"
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="112dp"
+                            android:layout_marginStart="112dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="116dp"
+                            android:layout_marginStart="116dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="5"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                        <View
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="140dp"
+                            android:layout_marginStart="140dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="144dp"
+                            android:layout_marginStart="144dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="6"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                        <View
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="168dp"
+                            android:layout_marginStart="168dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="172dp"
+                            android:layout_marginStart="172dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="7"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                        <View
+                            android:layout_width="28dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="196dp"
+                            android:layout_marginStart="196dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/answer_cell" />
+
+                        <EditText
+                            android:id="@+id/writing_cell_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="200dp"
+                            android:layout_marginStart="200dp"
+                            android:layout_marginTop="-5dp"
+                            android:digits="0123456789."
+                            android:focusableInTouchMode="true"
+                            android:hint="8"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="1" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/hint"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/phrases"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/merriweather_regular" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/writing_task1"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <LinearLayout
+                        android:id="@+id/phrases"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/linkers"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/merriweather_regular" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/writing_task3"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <LinearLayout
+                        android:id="@+id/linkers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/writing_task4"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <LinearLayout
+                        android:id="@+id/sentences"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/full_answers"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/merriweather_regular" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="@string/writing_task5"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/full_answer_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Do you think wearing uniform is necessary for students, why?"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <RadioGroup
+                        android:id="@+id/options1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/question1_option1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:id="@+id/question1_option2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:id="@+id/question1_option3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp" />
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="@string/writing_task5"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:textStyle="italic"/>
+
+                    <TextView
+                        android:id="@+id/full_answer_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Do you think wearing uniform is necessary for students, why?"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <RadioGroup
+                        android:id="@+id/options2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/question2_option1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:id="@+id/question2_option2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:id="@+id/question2_option3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp" />
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="@string/writing_task5"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:textStyle="italic"/>
+
+                    <TextView
+                        android:id="@+id/full_answer_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Do you think wearing uniform is necessary for students, why?"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <RadioGroup
+                        android:id="@+id/options3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/question3_option1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:id="@+id/question3_option2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:id="@+id/question3_option3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp" />
+
+                    </RadioGroup>
+
+
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/layout_bg"
+        android:text="@string/exit"
+        app:fontFamily="@font/merriweather_bold"/>
 
-                    <View
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/layout_bg"
+        android:text="@string/submit"
+        app:fontFamily="@font/merriweather_bold"/>
 
-                    <EditText
-                        android:id="@+id/writing_cell_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="1"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                    <View
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
-
-                    <EditText
-                        android:id="@+id/writing_cell_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="2"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                    <View
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="56dp"
-                        android:layout_marginStart="56dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
-
-                    <EditText
-                        android:id="@+id/writing_cell_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginStart="60dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="3"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                    <View
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="84dp"
-                        android:layout_marginStart="84dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
-
-                    <EditText
-                        android:id="@+id/writing_cell_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="88dp"
-                        android:layout_marginStart="88dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="4"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                    <View
-                        android:id="@+id/letter_e_view"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="112dp"
-                        android:layout_marginStart="112dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
-
-                    <EditText
-                        android:id="@+id/writing_cell_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="116dp"
-                        android:layout_marginStart="116dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="5"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                    <View
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="140dp"
-                        android:layout_marginStart="140dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
-
-                    <EditText
-                        android:id="@+id/writing_cell_6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="144dp"
-                        android:layout_marginStart="144dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="6"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                    <View
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="168dp"
-                        android:layout_marginStart="168dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
-
-                    <EditText
-                        android:id="@+id/writing_cell_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="172dp"
-                        android:layout_marginStart="172dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="7"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                    <View
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="196dp"
-                        android:layout_marginStart="196dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/answer_cell" />
-
-                    <EditText
-                        android:id="@+id/writing_cell_8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="200dp"
-                        android:layout_marginStart="200dp"
-                        android:layout_marginTop="-5dp"
-                        android:digits="0123456789."
-                        android:focusableInTouchMode="true"
-                        android:hint="8"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="1" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/hint"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/phrases"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/merriweather_regular" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/writing_task1"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:textStyle="italic" />
-
-                <LinearLayout
-                    android:id="@+id/phrases"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginTop="12dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/linkers"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/merriweather_regular" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/writing_task3"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:textStyle="italic" />
-
-                <LinearLayout
-                    android:id="@+id/linkers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginTop="12dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/writing_task4"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:textStyle="italic" />
-
-                <LinearLayout
-                    android:id="@+id/sentences"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginTop="12dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/full_answers"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/merriweather_regular" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="@string/writing_task5"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/full_answer_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Do you think wearing uniform is necessary for students, why?"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="12dp"/>
-
-                <RadioGroup
-                    android:id="@+id/options1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <RadioButton
-                        android:id="@+id/question1_option1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <RadioButton
-                        android:id="@+id/question1_option2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <RadioButton
-                        android:id="@+id/question1_option3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp" />
-
-                </RadioGroup>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="@string/writing_task5"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:textStyle="italic"/>
-
-                <TextView
-                    android:id="@+id/full_answer_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Do you think wearing uniform is necessary for students, why?"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="12dp"/>
-
-                <RadioGroup
-                    android:id="@+id/options2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <RadioButton
-                        android:id="@+id/question2_option1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <RadioButton
-                        android:id="@+id/question2_option2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <RadioButton
-                        android:id="@+id/question2_option3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp" />
-
-                </RadioGroup>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="@string/writing_task5"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:textStyle="italic"/>
-
-                <TextView
-                    android:id="@+id/full_answer_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Do you think wearing uniform is necessary for students, why?"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="12dp"/>
-
-                <RadioGroup
-                    android:id="@+id/options3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <RadioButton
-                        android:id="@+id/question3_option1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <RadioButton
-                        android:id="@+id/question3_option2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <RadioButton
-                        android:id="@+id/question3_option3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp" />
-
-                </RadioGroup>
-
-
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryLight"
-            android:layout_marginBottom="8dp">
-
-            <Button
-                android:id="@+id/exit_button"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/layout_bg"
-                android:text="@string/exit"
-                app:fontFamily="@font/merriweather_bold"/>
-
-            <Button
-                android:id="@+id/submit_button"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="8dp"
-                android:background="@drawable/layout_bg"
-                android:text="@string/submit"
-                app:fontFamily="@font/merriweather_bold"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

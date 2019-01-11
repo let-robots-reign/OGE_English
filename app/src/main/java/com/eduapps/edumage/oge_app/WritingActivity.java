@@ -342,14 +342,14 @@ public class WritingActivity extends AppCompatActivity {
                 checkEditTextAnswer(answer7, 6, currentStructureQuestion, currentStructureAnswer);
                 checkEditTextAnswer(answer8, 7, currentStructureQuestion, currentStructureAnswer);
 
-                applyTextListener(answer1);
-                applyTextListener(answer2);
-                applyTextListener(answer3);
-                applyTextListener(answer4);
-                applyTextListener(answer5);
-                applyTextListener(answer6);
-                applyTextListener(answer7);
-                applyTextListener(answer8);
+                disableEditText(answer1);
+                disableEditText(answer2);
+                disableEditText(answer3);
+                disableEditText(answer4);
+                disableEditText(answer5);
+                disableEditText(answer6);
+                disableEditText(answer7);
+                disableEditText(answer8);
 
                 /* проверка упражнения на фразы-клише */
                 for (int i = 0; i < 6; i++) {
@@ -419,24 +419,6 @@ public class WritingActivity extends AppCompatActivity {
         }
     }
 
-    private void applyTextListener(final EditText answer) {
-        answer.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                answer.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
-
     private String checkSpinnerSelection(Spinner spinner, String ans) {
         String typed = spinner.getSelectedItem().toString();
         if (typed.equals(ans)) {
@@ -458,6 +440,15 @@ public class WritingActivity extends AppCompatActivity {
                 radioButton.setTextColor(getResources().getColor(R.color.wrong_answer));
             }
         }
+    }
+
+    private void disableEditText(EditText editText) {
+        editText.setHint("");
+        editText.setFocusable(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
+        editText.setBackgroundColor(Color.TRANSPARENT);
     }
 
     private void assignQuestion(int currentId) {
