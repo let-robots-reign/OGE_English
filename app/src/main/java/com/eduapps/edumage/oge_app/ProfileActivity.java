@@ -21,14 +21,21 @@ import android.widget.TextView;
 
 import com.eduapps.edumage.oge_app.data.Tables;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
-    final int EXP_PER_LEVEL = 100;
+    final int EXP_PER_LEVEL = 239;  // 3824 exp int total, 16 levels
+    private int collectedXP;
+    private int planProgress;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,7 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private SpannableString getUserDeadline() {
-        String baseString = "до экзамена " + getDaysTillExam() + " дней";
+        String baseString = "до экзамена дней: " + getDaysTillExam();
         SpannableString spanText = new SpannableString(baseString);
         spanText.setSpan(new StyleSpan(Typeface.BOLD), 12, baseString.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -93,27 +100,38 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String getUserPlanPercentage() {
-        return "план выполнен на 20%";
+        planProgress = Math.round((collectedXP / EXP_PER_LEVEL) * 100);
+        return "план выполнен на " + planProgress + "%";
     }
 
     private int colorUserPlan() {
-        return R.color.wrong_answer;
+        if (planProgress < 20) {
+            return R.color.wrong_answer;
+        } else if (planProgress < 75) {
+            return R.color.middling;
+        } else {
+            return R.color.right_answer;
+        }
     }
 
-    private int getDaysTillExam() {
-        return 11;
+    private long getDaysTillExam() {
+        Calendar examDate = Calendar.getInstance();
+        examDate.set(Calendar.YEAR, 2019);
+        examDate.set(Calendar.MONTH, 4);
+        examDate.set(Calendar.DATE, 25);
+        long diffMillis = examDate.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays(diffMillis);
     }
 
     private int getUserProgress() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
-        //Log.v("ProfileActivity", collectedXP+"");
         return collectedXP % EXP_PER_LEVEL;
     }
 
     private String getUserLevel() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+        collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
         return String.valueOf(collectedXP / EXP_PER_LEVEL + 1);
     }
 
@@ -191,7 +209,6 @@ public class ProfileActivity extends AppCompatActivity {
         db.execSQL("DELETE FROM " + Tables.RecentActivities.TABLE_NAME + " ;");
         cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, null,
                 null, null, null, null);
-        Log.v("AudioTaskActivity", ""+cursor.getCount());
         // putting all the data in the dbRecent
         ContentValues values = new ContentValues();
         for (int j = 0; j < activitiesList.size(); j++) {

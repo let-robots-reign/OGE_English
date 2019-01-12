@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.eduapps.edumage.oge_app.data.Tables;
 
@@ -104,6 +105,8 @@ public class TrainingsActivity extends AppCompatActivity {
                 }
             }
         }
+        //Log.v("TrainingsActivity", progress+"");
+        //Log.v("TrainingsActivity", Math.round((progress / tasksCount) * 100)+"");
         return Math.round((progress / tasksCount) * 100);
     }
 }
