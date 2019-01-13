@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -47,7 +48,6 @@ public class AudioTaskFragment extends TaskFragment {
     private ImageView playPauseIcon;
 
     private List<String> rightAnswersList;
-    private List<String> typedAnswers;
     private int rightAnswers;
     private int retriesCount;
 
@@ -68,15 +68,9 @@ public class AudioTaskFragment extends TaskFragment {
             retriesCount -= 1;
             releaseMediaPlayer();
             setPauseMode();
+            setAudioPlayingStatus(false);
         }
     };
-
-//    private View.OnTouchListener disableTouch = new View.OnTouchListener() {
-//        @Override
-//        public boolean onTouch(View v, MotionEvent event) {
-//            return false;
-//        }
-//    };
 
     private AudioManager.OnAudioFocusChangeListener changeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
@@ -134,7 +128,6 @@ public class AudioTaskFragment extends TaskFragment {
         //db = new DbHelper(getActivity()).getReadableDatabase();
         retriesCount = 1; // in варианты user can retry only once
         assignQuestionAndAudio();
-        typedAnswers = new ArrayList<>();
 
         if (position < 2) {
             TextView question = rootView.findViewById(R.id.audio_question);
@@ -337,13 +330,6 @@ public class AudioTaskFragment extends TaskFragment {
         final RadioButton radioButton6 = options6.findViewById(options6.getCheckedRadioButtonId());
         checkRadioButtonAnswer(options6, radioButton6, 5);
 
-//        options1.setOnTouchListener(disableTouch);
-//        options2.setOnTouchListener(disableTouch);
-//        options3.setOnTouchListener(disableTouch);
-//        options4.setOnTouchListener(disableTouch);
-//        options5.setOnTouchListener(disableTouch);
-//        options6.setOnTouchListener(disableTouch);
-
         return rightAnswers;
     }
 
@@ -354,7 +340,6 @@ public class AudioTaskFragment extends TaskFragment {
         } else {
             answer.setTextColor(getResources().getColor(R.color.wrong_answer));
         }
-        typedAnswers.add(answer.getText().toString());
     }
 
     public void checkRadioButtonAnswer(RadioGroup options, RadioButton radioButton, int position) {
@@ -365,9 +350,6 @@ public class AudioTaskFragment extends TaskFragment {
             } else {
                 radioButton.setTextColor(getResources().getColor(R.color.wrong_answer));
             }
-            typedAnswers.add("" + options.indexOfChild(radioButton));
-        } else {
-            typedAnswers.add("-1");
         }
     }
 

@@ -18,6 +18,7 @@ import android.text.TextWatcher;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -45,6 +46,13 @@ public class WritingActivity extends AppCompatActivity {
     private int rightAnswers;
 
     private SQLiteDatabase db;
+
+    private View.OnTouchListener disableTouch = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return true;
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -351,13 +359,17 @@ public class WritingActivity extends AppCompatActivity {
                 disableEditText(answer7);
                 disableEditText(answer8);
 
+                Spinner curSpinner;
+
                 /* проверка упражнения на фразы-клише */
                 for (int i = 0; i < 6; i++) {
                     List<Spinner> rowSpinners = spinnersCluster.get(i);
                     String[] curAns = clichesAnswers[i].split(" ");
                     String[] typedAnswer = new String[curAns.length];
                     for (int j = 0; j < curAns.length; j++) {
-                        typedAnswer[j] = checkSpinnerSelection(rowSpinners.get(j), curAns[j]);
+                        curSpinner = rowSpinners.get(j);
+                        curSpinner.setOnTouchListener(disableTouch);
+                        typedAnswer[j] = checkSpinnerSelection(curSpinner, curAns[j]);
                     }
 
                     if (TextUtils.join("\n", typedAnswer).equals(
@@ -370,7 +382,9 @@ public class WritingActivity extends AppCompatActivity {
                 for (int i = 0; i < rowSpinners.size(); i++) {
                     int indexOfTypedWord = Arrays.asList(unshuffledQuestion).indexOf(currentLinkersQuestion[i]);
                     String rightAns = unshuffledAns[indexOfTypedWord];
-                    String typed = checkSpinnerSelection(rowSpinners.get(i), rightAns);
+                    curSpinner = rowSpinners.get(i);
+                    curSpinner.setOnTouchListener(disableTouch);
+                    String typed = checkSpinnerSelection(curSpinner, rightAns);
                     if (typed.equals(rightAns)) {
                         rightAnswers++;
                     }
@@ -382,8 +396,9 @@ public class WritingActivity extends AppCompatActivity {
                     List<String> sentenceAns = sentencesAnswers.get(i);
                     for (int j = 0; j < sentence.size(); j++) {
                         String curAns = sentenceAns.get(j);
-                        Spinner spinner = sentence.get(j);
-                        String typed = checkSpinnerSelection(spinner, curAns);
+                        curSpinner = sentence.get(j);
+                        curSpinner.setOnTouchListener(disableTouch);
+                        String typed = checkSpinnerSelection(curSpinner, curAns);
                         if (typed.equals(curAns)) {
                             rightAnswers++;
                         }
@@ -402,6 +417,18 @@ public class WritingActivity extends AppCompatActivity {
                 final RadioGroup options3 = findViewById(R.id.options3);
                 final RadioButton radioButton3 = options3.findViewById(options3.getCheckedRadioButtonId());
                 checkRadioButtonAnswer(options3, radioButton3, radioAnswers[2]);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(WritingActivity.this);
+                builder.setTitle("Ваш результат:")
+                        .setCancelable(false)
+                        .setMessage("You have " + rightAnswers + "/43 right answers")
+                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                builder.show();
             }
         });
     }

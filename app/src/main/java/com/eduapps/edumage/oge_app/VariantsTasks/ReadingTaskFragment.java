@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -29,7 +32,6 @@ public class ReadingTaskFragment extends TaskFragment {
     private int position;
 
     private List<String> rightAnswersList;
-    private List<String> typedAnswers;
     private int rightAnswers;
     private String heading;
     private SQLiteDatabase db;
@@ -38,6 +40,12 @@ public class ReadingTaskFragment extends TaskFragment {
 
     private View rootView;
 
+    private View.OnTouchListener disableTouch = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return true;
+        }
+    };
 
     public ReadingTaskFragment() {
         // Required empty public constructor
@@ -72,7 +80,6 @@ public class ReadingTaskFragment extends TaskFragment {
         //db = new DbHelper(getActivity()).getReadableDatabase();
 
         assignQuestion();
-        typedAnswers = new ArrayList<>();
 
         String[] question = new String[]{};
         if (position == 0) {
@@ -176,24 +183,26 @@ public class ReadingTaskFragment extends TaskFragment {
 
         Spinner spinner1 = rootView.findViewById(R.id.spinner1);
         checkSpinnerSelection(spinner1, 0);
-
         Spinner spinner2 = rootView.findViewById(R.id.spinner2);
         checkSpinnerSelection(spinner2, 1);
-
         Spinner spinner3 = rootView.findViewById(R.id.spinner3);
         checkSpinnerSelection(spinner3, 2);
-
         Spinner spinner4 = rootView.findViewById(R.id.spinner4);
         checkSpinnerSelection(spinner4, 3);
-
         Spinner spinner5 = rootView.findViewById(R.id.spinner5);
         checkSpinnerSelection(spinner5, 4);
-
         Spinner spinner6 = rootView.findViewById(R.id.spinner6);
         checkSpinnerSelection(spinner6, 5);
-
         Spinner spinner7 = rootView.findViewById(R.id.spinner7);
         checkSpinnerSelection(spinner7, 6);
+
+        spinner1.setOnTouchListener(disableTouch);
+        spinner2.setOnTouchListener(disableTouch);
+        spinner3.setOnTouchListener(disableTouch);
+        spinner4.setOnTouchListener(disableTouch);
+        spinner5.setOnTouchListener(disableTouch);
+        spinner6.setOnTouchListener(disableTouch);
+        spinner7.setOnTouchListener(disableTouch);
 
         return rightAnswers;
     }
@@ -247,7 +256,6 @@ public class ReadingTaskFragment extends TaskFragment {
             TextView text = (TextView) spinner.getSelectedView();
             text.setTextColor(getResources().getColor(R.color.wrong_answer));
         }
-        typedAnswers.add(spinner.getSelectedItem().toString());
     }
 
     private void checkRadioButtonAnswer(RadioGroup options, RadioButton radioButton, int position) {
@@ -258,9 +266,6 @@ public class ReadingTaskFragment extends TaskFragment {
             } else {
                 radioButton.setTextColor(getResources().getColor(R.color.wrong_answer));
             }
-            typedAnswers.add("" + options.indexOfChild(radioButton));
-        } else {
-            typedAnswers.add("-1");
         }
     }
 
