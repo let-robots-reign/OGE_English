@@ -92,7 +92,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private SpannableString getUserDeadline() {
-        String baseString = "до экзамена дней: " + getDaysTillExam();
+        long days = getDaysTillExam();
+        String baseString = "до экзамена " + days + getDeclension(days);
         SpannableString spanText = new SpannableString(baseString);
         spanText.setSpan(new StyleSpan(Typeface.BOLD), 12, baseString.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -121,6 +122,20 @@ public class ProfileActivity extends AppCompatActivity {
         examDate.set(Calendar.DATE, 25);
         long diffMillis = examDate.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays(diffMillis);
+    }
+
+    private String getDeclension(long days) {
+        String declension = "дней";
+        if (days % 100 == 11 || days % 100 == 12) {
+            declension = "дней";
+        } else if (days % 10 == 2 || days % 10 == 3 || days % 10 == 4) {
+            declension = "дня";
+        } else if (days % 10 > 4) {
+            declension = "дней";
+        } else if (days % 10 == 1) {
+            declension = "день";
+        }
+        return declension;
     }
 
     private int getUserProgress() {

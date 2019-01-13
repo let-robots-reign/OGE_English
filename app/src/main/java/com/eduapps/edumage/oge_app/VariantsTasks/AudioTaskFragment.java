@@ -101,6 +101,7 @@ public class AudioTaskFragment extends TaskFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         number = getArguments().getInt("number"); // variant number;
         position = getArguments().getInt("position"); // type of the audio task
+        setAudioPlayingStatus(false);
         super.onCreate(savedInstanceState);
     }
 
@@ -237,23 +238,29 @@ public class AudioTaskFragment extends TaskFragment {
         audioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.v("AudioTaskFragment", getAudioPlayingStatus()+"");
                 if (retriesCount < 0) {
                     Toast.makeText(getActivity(), "Вы больше не можете слушать запись",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     if (mediaPlayer == null) {
-                        int res = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC,
-                                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-                        if (res == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                            mediaPlayer = MediaPlayer.create(getActivity(),
-                                    getResources().getIdentifier(currentAudioFile,
-                                            "raw", getActivity().getPackageName()));
-                            setPlayMode();
-                            mediaPlayer.setOnCompletionListener(completionListener);
+                        if (getAudioPlayingStatus()) {
+                            Toast.makeText(getActivity(), "Вы не можете слушать несколько " +
+                                    "записей одновременно", Toast.LENGTH_SHORT).show();
+                        } else {
+                            int res = audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC,
+                                    AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                            if (res == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                                mediaPlayer = MediaPlayer.create(getActivity(),
+                                        getResources().getIdentifier(currentAudioFile,
+                                                "raw", getActivity().getPackageName()));
+                                mediaPlayer.setOnCompletionListener(completionListener);
+                                setPlayMode();
+                                setAudioPlayingStatus(true);
+                            }
                         }
                     } else {
                         if (ifAudioPlaying) {
-                            //setPauseMode();
                             Toast.makeText(getActivity(), "Вы не можете останавливать запись",
                                     Toast.LENGTH_SHORT).show();
                         } else {
@@ -279,13 +286,7 @@ public class AudioTaskFragment extends TaskFragment {
         EditText answer3 = rootView.findViewById(R.id.audio_cell_3);
         EditText answer4 = rootView.findViewById(R.id.audio_cell_4);
         EditText answer5 = rootView.findViewById(R.id.audio_cell_5);
-//        // change the question color to black again when user changes answer
-//        // also, hide keyboard when user wrote a number
-//        applyTextListener(answer1);
-//        applyTextListener(answer2);
-//        applyTextListener(answer3);
-//        applyTextListener(answer4);
-//        applyTextListener(answer5);
+
         // color the question green or red
         checkEditTextAnswer(answer1, 0);
         checkEditTextAnswer(answer2, 1);
@@ -449,7 +450,6 @@ public class AudioTaskFragment extends TaskFragment {
             mediaPlayer.start();
         }
         ifAudioPlaying = true;
-        //setAudioPlayingStatus(true);
         playPauseIcon.setImageResource(R.drawable.pause_icon);
     }
 
@@ -458,21 +458,20 @@ public class AudioTaskFragment extends TaskFragment {
             mediaPlayer.pause();
         }
         ifAudioPlaying = false;
-        //setAudioPlayingStatus(false);
         playPauseIcon.setImageResource(R.drawable.play_triangle);
     }
-//
-//    private void setAudioPlayingStatus(boolean status) {
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putBoolean("ifAudioPlaying", status);
-//        editor.apply();
-//    }
-//
-//    private boolean getAudioPlayingStatus() {
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//        return preferences.getBoolean("ifAudioPlaying", false);
-//    }
+
+    private void setAudioPlayingStatus(boolean status) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("ifAudioPlaying", status);
+        editor.apply();
+    }
+
+    private boolean getAudioPlayingStatus() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        return preferences.getBoolean("ifAudioPlaying", false);
+    }
 
     private void releaseMediaPlayer() {
         if (mediaPlayer != null) {
