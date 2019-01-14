@@ -35,7 +35,7 @@ public class UoeTaskActivity extends AppCompatActivity {
     String[] typedAnswers = new String[10];
     private List<UoeTask> tasks;
     private SQLiteDatabase db;
-    final String EXPERIENCE_KEY = "Experience";
+    final String EXPERIENCE_UOE_KEY = "ExperienceUoe";
     private int rightAnswers;
     private int category;
 
@@ -360,11 +360,11 @@ public class UoeTaskActivity extends AppCompatActivity {
         // add collected experience to user's level
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        if (preferences.contains(EXPERIENCE_KEY)) {
-            int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
-            editor.putInt(EXPERIENCE_KEY, collectedXP + exp);
+        if (preferences.contains(EXPERIENCE_UOE_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_UOE_KEY, 0);
+            editor.putInt(EXPERIENCE_UOE_KEY, collectedXP + exp);
         } else {
-            editor.putInt(EXPERIENCE_KEY, exp);
+            editor.putInt(EXPERIENCE_UOE_KEY, exp);
         }
         editor.apply();
     }

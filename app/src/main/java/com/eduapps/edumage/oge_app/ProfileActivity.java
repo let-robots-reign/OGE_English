@@ -21,19 +21,19 @@ import android.widget.TextView;
 
 import com.eduapps.edumage.oge_app.data.Tables;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
-    final String EXPERIENCE_KEY = "Experience";
-    final int EXP_PER_LEVEL = 239;  // 3824 exp int total, 16 levels
+    final String EXPERIENCE_AUDIO_KEY = "ExperienceAudio";
+    final String EXPERIENCE_READING_KEY = "ExperienceReading";
+    final String EXPERIENCE_UOE_KEY = "ExperienceUoe";
+    final String EXPERIENCE_WRITING_KEY = "ExperienceWriting";
+    final int EXP_PER_LEVEL = 622;  // 10574 (3824) exp int total, (16) 17 levels
     private int collectedXP;
     private int planProgress;
 
@@ -49,15 +49,15 @@ public class ProfileActivity extends AppCompatActivity {
         TextView deadline = findViewById(R.id.deadline);
         TextView plan = findViewById(R.id.plan);
 
+        ProgressBar levelBar = findViewById(R.id.level_bar);
+        levelBar.setProgress(getUserProgress());
+        levelBar.setMax(EXP_PER_LEVEL);
+
         username.setText(getUserName());
         goal.setText(getUserGoal());
         deadline.setText(getUserDeadline());
         plan.setText(getUserPlanPercentage());
         plan.setTextColor(getResources().getColor(colorUserPlan()));
-
-        ProgressBar levelBar = findViewById(R.id.level_bar);
-        levelBar.setProgress(getUserProgress());
-        levelBar.setMax(EXP_PER_LEVEL);
 
         TextView userLevel = findViewById(R.id.user_level);
         userLevel.setText(getUserLevel());
@@ -93,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private SpannableString getUserDeadline() {
         long days = getDaysTillExam();
-        String baseString = "до экзамена " + days + getDeclension(days);
+        String baseString = "до экзамена " + days + " " + getDeclension(days);
         SpannableString spanText = new SpannableString(baseString);
         spanText.setSpan(new StyleSpan(Typeface.BOLD), 12, baseString.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -140,13 +140,15 @@ public class ProfileActivity extends AppCompatActivity {
 
     private int getUserProgress() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+        int audioXP = preferences.getInt(EXPERIENCE_AUDIO_KEY, 0);
+        int readingXP = preferences.getInt(EXPERIENCE_READING_KEY, 0);
+        int uoeXP = preferences.getInt(EXPERIENCE_UOE_KEY, 0);
+        int writingXP = preferences.getInt(EXPERIENCE_WRITING_KEY, 0);
+        collectedXP = audioXP + readingXP + uoeXP + writingXP;
         return collectedXP % EXP_PER_LEVEL;
     }
 
     private String getUserLevel() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
         return String.valueOf(collectedXP / EXP_PER_LEVEL + 1);
     }
 

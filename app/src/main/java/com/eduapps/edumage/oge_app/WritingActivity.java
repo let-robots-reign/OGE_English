@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,6 +47,7 @@ public class WritingActivity extends AppCompatActivity {
     private int rightAnswers;
 
     private SQLiteDatabase db;
+    final String EXPERIENCE_WRITING_KEY = "ExperienceWriting";
 
     private View.OnTouchListener disableTouch = new View.OnTouchListener() {
         @Override
@@ -429,6 +431,8 @@ public class WritingActivity extends AppCompatActivity {
                             }
                         });
                 builder.show();
+
+                recordRecentActivity();
             }
         });
     }
@@ -500,6 +504,86 @@ public class WritingActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
+    }
+
+    private void recordRecentActivity() {
+        Cursor cursor;
+
+        // forming the data to write
+        int exp;
+        int totalQuestions = 43;
+        int dynamics = 0;
+        String topicName = "Письмо";
+
+        // if user does the task for the firs time, he gets more experience
+        // TODO: return here later
+//        if (currentCompletion == 50) {
+//            exp /= 2;
+//        } else if (currentCompletion == 100) {
+//            exp = 0;
+//        }
+        exp = rightAnswers;
+
+        // searching for records of the same topic to define dynamics
+        String selection = Tables.RecentActivities.COLUMN_TOPIC + " = ?";
+        String[] selectionArgs = new String[]{topicName};
+        cursor = db.query(Tables.RecentActivities.TABLE_NAME, null, selection,
+                selectionArgs, null, null, null);
+        if (cursor != null) {
+            try {
+                if (cursor.getCount() > 0) {
+                    cursor.moveToLast();
+                    int idRightAnswersColumn = cursor.getColumnIndex(Tables.RecentActivities.COLUMN_RIGHT);
+                    int lastResult = cursor.getInt(idRightAnswersColumn);
+                    if (rightAnswers > lastResult) {
+                        dynamics = 1;
+                    } else if (rightAnswers < lastResult) {
+                        dynamics = -1;
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+
+        // putting all the data in the dbRecent
+        ContentValues values = new ContentValues();
+        values.put(Tables.RecentActivities.COLUMN_TOPIC, topicName);
+        values.put(Tables.RecentActivities.COLUMN_RIGHT, rightAnswers);
+        values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
+        values.put(Tables.RecentActivities.COLUMN_EXP, exp);
+        values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
+        db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
+
+        // also, update completion if user did the task well
+        // TODO: return here later [2]
+//        if (rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
+//            ContentValues v = new ContentValues();
+//            v.put("completion", currentCompletion + 50);
+//            String table;
+//            switch (category) {
+//                case 0:
+//                    table = Tables.ReadingTask1.TABLE_NAME;
+//                    break;
+//                case 1:
+//                    table = Tables.ReadingTask2.TABLE_NAME;
+//                    break;
+//                default:
+//                    table = null;
+//            }
+//            db.update(table, v, "_id=" + currentID, null);
+//        }
+
+        // add collected experience to user's level
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.contains(EXPERIENCE_WRITING_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_WRITING_KEY, 0);
+            editor.putInt(EXPERIENCE_WRITING_KEY, collectedXP + exp);
+        } else {
+            editor.putInt(EXPERIENCE_WRITING_KEY, exp);
+        }
+        editor.apply();
     }
 
     private void addInstruction() {

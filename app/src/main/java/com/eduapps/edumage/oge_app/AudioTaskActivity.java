@@ -50,7 +50,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     private boolean canRetry;
 
     private SQLiteDatabase db;
-    final String EXPERIENCE_KEY = "Experience";
+    final String EXPERIENCE_AUDIO_KEY = "ExperienceAudio";
 
     private int currentID;
     private String currentQuestion;
@@ -676,8 +676,6 @@ public class AudioTaskActivity extends AppCompatActivity {
                         dynamics = 1;
                     } else if (rightAnswers < lastResult) {
                         dynamics = -1;
-                    } else {
-                        dynamics = 0;
                     }
                 }
             } finally {
@@ -699,7 +697,7 @@ public class AudioTaskActivity extends AppCompatActivity {
             ContentValues v = new ContentValues();
             v.put("completion", currentCompletion + 50);
             String table;
-            switch(category) {
+            switch (category) {
                 case 0:
                     table = Tables.AudioTask1.TABLE_NAME;
                     break;
@@ -718,11 +716,11 @@ public class AudioTaskActivity extends AppCompatActivity {
         // add collected experience to user's level
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        if (preferences.contains(EXPERIENCE_KEY)) {
-            int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
-            editor.putInt(EXPERIENCE_KEY, collectedXP + exp);
+        if (preferences.contains(EXPERIENCE_AUDIO_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_AUDIO_KEY, 0);
+            editor.putInt(EXPERIENCE_AUDIO_KEY, collectedXP + exp);
         } else {
-            editor.putInt(EXPERIENCE_KEY, exp);
+            editor.putInt(EXPERIENCE_AUDIO_KEY, exp);
         }
         editor.apply();
     }

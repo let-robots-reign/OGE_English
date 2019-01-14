@@ -37,7 +37,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private boolean canRetry;
 
     private SQLiteDatabase db;
-    final String EXPERIENCE_KEY = "Experience";
+    final String EXPERIENCE_READING_KEY = "ExperienceReading";
 
     private int currentID;
     private String currentText;
@@ -473,12 +473,14 @@ public class ReadingTaskActivity extends AppCompatActivity {
                 int textColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_TEXT);
                 int taskColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_TASK);
                 int answerColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_ANSWER);
+                int completionColumnIndex = cursor.getColumnIndex(Tables.ReadingTask1.COLUMN_COMPLETION);
 
                 cursor.moveToFirst();
                 currentID = cursor.getInt(idColumnIndex);
                 currentText = cursor.getString(textColumnIndex);
                 currentQuestion = cursor.getString(taskColumnIndex);
                 String currentAnswer = cursor.getString(answerColumnIndex);
+                currentCompletion = cursor.getInt(completionColumnIndex);
                 if (category == 1) {
                     int headingColumnIndex = cursor.getColumnIndex(Tables.ReadingTask2.COLUMN_HEADING);
                     heading = cursor.getString(headingColumnIndex);
@@ -544,14 +546,32 @@ public class ReadingTaskActivity extends AppCompatActivity {
         values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
         db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
 
+        // also, update completion if user did the task well
+        if (rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
+            ContentValues v = new ContentValues();
+            v.put("completion", currentCompletion + 50);
+            String table;
+            switch (category) {
+                case 0:
+                    table = Tables.ReadingTask1.TABLE_NAME;
+                    break;
+                case 1:
+                    table = Tables.ReadingTask2.TABLE_NAME;
+                    break;
+                default:
+                    table = null;
+            }
+            db.update(table, v, "_id=" + currentID, null);
+        }
+
         // add collected experience to user's level
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        if (preferences.contains(EXPERIENCE_KEY)) {
-            int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
-            editor.putInt(EXPERIENCE_KEY, collectedXP + exp);
+        if (preferences.contains(EXPERIENCE_READING_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_READING_KEY, 0);
+            editor.putInt(EXPERIENCE_READING_KEY, collectedXP + exp);
         } else {
-            editor.putInt(EXPERIENCE_KEY, exp);
+            editor.putInt(EXPERIENCE_READING_KEY, exp);
         }
         editor.apply();
     }
