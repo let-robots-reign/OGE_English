@@ -1,9 +1,11 @@
 package com.eduapps.edumage.oge_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,45 +70,54 @@ public class TrainingsActivity extends AppCompatActivity {
     }
 
     private int getProgress(String category) {
-        int progress = 0;
+        double progress = 0;
         int tasksCount = 1;
         Cursor cursor;
         List<String> tables = new ArrayList<>();
+        String key = "";
         switch (category) {
             case "audio":
                 tables.add(Tables.AudioTask1.TABLE_NAME);
                 tables.add(Tables.AudioTask2.TABLE_NAME);
                 tables.add(Tables.AudioTask3.TABLE_NAME);
                 tasksCount = AUDIO_TASKS_COUNT;
+                key = "AudioFullCompletion";
                 break;
             case "reading":
                 tables.add(Tables.ReadingTask1.TABLE_NAME);
                 tables.add(Tables.ReadingTask2.TABLE_NAME);
                 tasksCount = READING_TASKS_COUNT;
+                key = "ReadingFullCompletion";
                 break;
             case "uoe":
                 tables.add(Tables.UseOfEnglishTask.TABLE_NAME);
                 tasksCount = UOE_TASKS_COUNT;
+                key = "UoeFullCompletion";
                 break;
         }
 
-        // select the task that have "completion" = 100
+        // select the tasks that have "completion" = 100
         String selection = "completion = ?";
-        String[] selectionArgs = new String[]{"100"};
+        String[] selectionArgs = new String[]{"50"};
 
         for (String table : tables) {
             cursor = db.query(table, null, selection, selectionArgs, null,
                     null, null, null);
             if (cursor != null) {
                 try {
-                    progress += cursor.getCount();
+                    progress += ((double)cursor.getCount() / 2);
                 } finally {
                     cursor.close();
                 }
             }
         }
-        //Log.v("TrainingsActivity", progress+"");
-        //Log.v("TrainingsActivity", Math.round((progress / tasksCount) * 100)+"");
-        return Math.round((progress / tasksCount) * 100);
+
+        // and add those that have "completion" = 100
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.contains(key)) {
+            progress += preferences.getInt(key, 0);
+        }
+
+        return (int)Math.round(progress / tasksCount * 100);
     }
 }

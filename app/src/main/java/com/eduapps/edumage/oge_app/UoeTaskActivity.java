@@ -15,8 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +33,8 @@ public class UoeTaskActivity extends AppCompatActivity {
     String[] typedAnswers = new String[10];
     private List<UoeTask> tasks;
     private SQLiteDatabase db;
-    final String EXPERIENCE_UOE_KEY = "ExperienceUoe";
+    final String EXPERIENCE_KEY = "Experience";
+    final String UOE_FULLY_COMPLETED = "UoeFullCompletion";
     private int rightAnswers;
     private int category;
 
@@ -317,7 +316,19 @@ public class UoeTaskActivity extends AppCompatActivity {
                 }
                 // also, update completion if user answered the question correctly (and completion < 100)
                 if (comp < 100) {
-                    Log.v("UoeTaskActivity", comp+"");
+                    if (comp + 50 == 100) {
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        if (preferences.contains(UOE_FULLY_COMPLETED)) {
+                            int full = preferences.getInt(UOE_FULLY_COMPLETED, 0);
+                            editor.putInt(UOE_FULLY_COMPLETED, full + 1);
+                            editor.apply();
+                        } else {
+                            editor.putInt(UOE_FULLY_COMPLETED, 1);
+                        }
+                        editor.apply();
+                    }
+
                     ContentValues values = new ContentValues();
                     values.put("completion", comp + 50);
                     db.update(Tables.UseOfEnglishTask.TABLE_NAME, values,
@@ -360,11 +371,11 @@ public class UoeTaskActivity extends AppCompatActivity {
         // add collected experience to user's level
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        if (preferences.contains(EXPERIENCE_UOE_KEY)) {
-            int collectedXP = preferences.getInt(EXPERIENCE_UOE_KEY, 0);
-            editor.putInt(EXPERIENCE_UOE_KEY, collectedXP + exp);
+        if (preferences.contains(EXPERIENCE_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+            editor.putInt(EXPERIENCE_KEY, collectedXP + exp);
         } else {
-            editor.putInt(EXPERIENCE_UOE_KEY, exp);
+            editor.putInt(EXPERIENCE_KEY, exp);
         }
         editor.apply();
     }

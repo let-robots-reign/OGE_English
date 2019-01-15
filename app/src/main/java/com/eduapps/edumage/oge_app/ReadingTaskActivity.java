@@ -37,7 +37,8 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private boolean canRetry;
 
     private SQLiteDatabase db;
-    final String EXPERIENCE_READING_KEY = "ExperienceReading";
+    final String EXPERIENCE_KEY = "Experience";
+    final String READING_FULLY_COMPLETED = "ReadingFullCompletion";
 
     private int currentID;
     private String currentText;
@@ -548,6 +549,19 @@ public class ReadingTaskActivity extends AppCompatActivity {
 
         // also, update completion if user did the task well
         if (rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
+            if (currentCompletion + 50 == 100) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = preferences.edit();
+                if (preferences.contains(READING_FULLY_COMPLETED)) {
+                    int full = preferences.getInt(READING_FULLY_COMPLETED, 0);
+                    editor.putInt(READING_FULLY_COMPLETED, full + 1);
+                    editor.apply();
+                } else {
+                    editor.putInt(READING_FULLY_COMPLETED, 1);
+                }
+                editor.apply();
+            }
+
             ContentValues v = new ContentValues();
             v.put("completion", currentCompletion + 50);
             String table;
@@ -567,11 +581,11 @@ public class ReadingTaskActivity extends AppCompatActivity {
         // add collected experience to user's level
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        if (preferences.contains(EXPERIENCE_READING_KEY)) {
-            int collectedXP = preferences.getInt(EXPERIENCE_READING_KEY, 0);
-            editor.putInt(EXPERIENCE_READING_KEY, collectedXP + exp);
+        if (preferences.contains(EXPERIENCE_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+            editor.putInt(EXPERIENCE_KEY, collectedXP + exp);
         } else {
-            editor.putInt(EXPERIENCE_READING_KEY, exp);
+            editor.putInt(EXPERIENCE_KEY, exp);
         }
         editor.apply();
     }

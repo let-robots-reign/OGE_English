@@ -23,17 +23,15 @@ import com.eduapps.edumage.oge_app.data.Tables;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
-    final String EXPERIENCE_AUDIO_KEY = "ExperienceAudio";
-    final String EXPERIENCE_READING_KEY = "ExperienceReading";
-    final String EXPERIENCE_UOE_KEY = "ExperienceUoe";
-    final String EXPERIENCE_WRITING_KEY = "ExperienceWriting";
+    final String EXPERIENCE_KEY = "Experience";
     final int EXP_PER_LEVEL = 622;  // 10574 (3824) exp int total, (16) 17 levels
+    final int TOTAL_EXP = 10574;
     private int collectedXP;
     private int planProgress;
 
@@ -101,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String getUserPlanPercentage() {
-        planProgress = Math.round((collectedXP / EXP_PER_LEVEL) * 100);
+        planProgress = (int)Math.round((double)collectedXP / TOTAL_EXP * 100);
         return "план выполнен на " + planProgress + "%";
     }
 
@@ -121,7 +119,8 @@ public class ProfileActivity extends AppCompatActivity {
         examDate.set(Calendar.MONTH, 4);
         examDate.set(Calendar.DATE, 25);
         long diffMillis = examDate.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-        return TimeUnit.MILLISECONDS.toDays(diffMillis);
+        return diffMillis / 1000 / 60 / 60 / 24;
+        //return TimeUnit.MILLISECONDS.toDays(diffMillis);
     }
 
     private String getDeclension(long days) {
@@ -140,11 +139,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private int getUserProgress() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int audioXP = preferences.getInt(EXPERIENCE_AUDIO_KEY, 0);
-        int readingXP = preferences.getInt(EXPERIENCE_READING_KEY, 0);
-        int uoeXP = preferences.getInt(EXPERIENCE_UOE_KEY, 0);
-        int writingXP = preferences.getInt(EXPERIENCE_WRITING_KEY, 0);
-        collectedXP = audioXP + readingXP + uoeXP + writingXP;
+        collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);;
         return collectedXP % EXP_PER_LEVEL;
     }
 

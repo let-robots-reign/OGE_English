@@ -50,7 +50,8 @@ public class AudioTaskActivity extends AppCompatActivity {
     private boolean canRetry;
 
     private SQLiteDatabase db;
-    final String EXPERIENCE_AUDIO_KEY = "ExperienceAudio";
+    final String EXPERIENCE_KEY = "Experience";
+    final String AUDIO_FULLY_COMPLETED = "AudioFullCompletion";
 
     private int currentID;
     private String currentQuestion;
@@ -694,6 +695,19 @@ public class AudioTaskActivity extends AppCompatActivity {
 
         // also, update completion if user did the task well
         if (rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
+            if (currentCompletion + 50 == 100) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = preferences.edit();
+                if (preferences.contains(AUDIO_FULLY_COMPLETED)) {
+                    int full = preferences.getInt(AUDIO_FULLY_COMPLETED, 0);
+                    editor.putInt(AUDIO_FULLY_COMPLETED, full + 1);
+                    editor.apply();
+                } else {
+                    editor.putInt(AUDIO_FULLY_COMPLETED, 1);
+                }
+                editor.apply();
+            }
+
             ContentValues v = new ContentValues();
             v.put("completion", currentCompletion + 50);
             String table;
@@ -716,11 +730,11 @@ public class AudioTaskActivity extends AppCompatActivity {
         // add collected experience to user's level
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        if (preferences.contains(EXPERIENCE_AUDIO_KEY)) {
-            int collectedXP = preferences.getInt(EXPERIENCE_AUDIO_KEY, 0);
-            editor.putInt(EXPERIENCE_AUDIO_KEY, collectedXP + exp);
+        if (preferences.contains(EXPERIENCE_KEY)) {
+            int collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
+            editor.putInt(EXPERIENCE_KEY, collectedXP + exp);
         } else {
-            editor.putInt(EXPERIENCE_AUDIO_KEY, exp);
+            editor.putInt(EXPERIENCE_KEY, exp);
         }
         editor.apply();
     }
