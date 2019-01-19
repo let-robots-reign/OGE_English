@@ -15,17 +15,21 @@
         app:fontFamily="@font/merriweather_regular"
         android:layout_centerVertical="true"
         android:paddingRight="12dp"
-        android:paddingLeft="16dp"/>
+        android:paddingLeft="16dp"
+        android:paddingEnd="12dp"
+        android:paddingStart="16dp"/>
 
     <ImageView
         android:id="@+id/dynamics"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_height="10dp"
         android:layout_toRightOf="@id/category_name"
-        android:layout_marginTop="20dp"
-        android:foregroundGravity="center"
+        android:layout_toEndOf="@id/category_name"
+        android:layout_centerInParent="true"
         android:scaleType="centerCrop"
-        tools:srcCompat="@drawable/positive_dynamics" />
+        tools:srcCompat="@drawable/positive_dynamics"/>
 
     <RelativeLayout
         android:padding="8dp"

@@ -24,6 +24,7 @@ import com.eduapps.edumage.oge_app.data.Tables;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -91,9 +92,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     private SpannableString getUserDeadline() {
         long days = getDaysTillExam();
-        String baseString = "до экзамена " + days + " " + getDeclension(days);
-        SpannableString spanText = new SpannableString(baseString);
-        spanText.setSpan(new StyleSpan(Typeface.BOLD), 12, baseString.length(),
+        String baseString;
+        SpannableString spanText;
+        int start = 0;
+        if (days == 0) {
+            baseString = "экзамен уже сегодня";
+        } else if (days < 0) {
+            baseString = "экзамен уже прошел";
+        } else {
+            baseString = "до экзамена " + days + " " + getDeclension(days);
+            start = 12;
+        }
+        spanText = new SpannableString(baseString);
+        spanText.setSpan(new StyleSpan(Typeface.BOLD), start, baseString.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spanText;
     }
@@ -114,12 +125,13 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private long getDaysTillExam() {
-        Calendar examDate = Calendar.getInstance();
-        examDate.set(Calendar.YEAR, 2019);
-        examDate.set(Calendar.MONTH, 4);
-        examDate.set(Calendar.DATE, 25);
-        long diffMillis = examDate.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-        return diffMillis / 1000 / 60 / 60 / 24;
+//        Calendar examDate = Calendar.getInstance();
+//        examDate.set(Calendar.YEAR, 2019);
+//        examDate.set(Calendar.MONTH, 4);
+//        examDate.set(Calendar.DATE, 25);
+        long diffMillis = new GregorianCalendar(2019, 4, 25).getTimeInMillis()
+                - Calendar.getInstance().getTimeInMillis();
+        return (int)Math.ceil((double)diffMillis / 1000 / 60 / 60 / 24);
         //return TimeUnit.MILLISECONDS.toDays(diffMillis);
     }
 

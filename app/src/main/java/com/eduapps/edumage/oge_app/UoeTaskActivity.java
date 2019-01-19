@@ -185,7 +185,15 @@ public class UoeTaskActivity extends AppCompatActivity {
     }
 
     private void checkEditTextAnswer(EditText answer, int position) {
-        if (answer.getText().toString().equals(tasks.get(position).getAnswer())) {
+        String ans = tasks.get(position).getAnswer();
+            String typed = answer.getText().toString();
+            boolean cond;
+            if (ans.contains("/")) {   //  "/" in answer means there are two possible options
+                cond = typed.equals(ans.split("/")[0]) || typed.equals(ans.split("/")[1]);
+            } else {
+                cond = typed.equals(ans);
+            }
+            if (cond) {
             answer.setTextColor(getResources().getColor(R.color.right_answer));
             rightAnswers += 1;
         } else {

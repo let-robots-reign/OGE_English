@@ -26,7 +26,6 @@ public class UoeTaskFragment extends TaskFragment {
 
     private int rightAnswers;
     private List<String> rightAnswersList;
-    private String[] typedAnswers;
     private SQLiteDatabase db;
     private List<UoeTask> tasks;
 
@@ -61,7 +60,6 @@ public class UoeTaskFragment extends TaskFragment {
 
         tasks = new ArrayList<>();
         rightAnswersList = new ArrayList<>();
-        typedAnswers = new String[numberOfQuestions];
 
         assignTasks();
 
@@ -154,13 +152,20 @@ public class UoeTaskFragment extends TaskFragment {
 
 
     private void checkEditTextAnswer(EditText answer, int position) {
-        if (answer.getText().toString().equals(rightAnswersList.get(position))) {
+        String ans = tasks.get(position).getAnswer();
+        String typed = answer.getText().toString();
+        boolean cond;
+        if (ans.contains("/")) {   //  "/" in answer means there are two possible options
+            cond = typed.equals(ans.split("/")[0]) || typed.equals(ans.split("/")[1]);
+        } else {
+            cond = typed.equals(ans);
+        }
+        if (cond) {
             answer.setTextColor(getResources().getColor(R.color.right_answer));
             rightAnswers += 1;
         } else {
             answer.setTextColor(getResources().getColor(R.color.wrong_answer));
         }
-        typedAnswers[position] = answer.getText().toString();
     }
 
     private void assignTasks() {
