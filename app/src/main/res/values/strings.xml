@@ -265,7 +265,11 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="passive_html_part_1">
         Пассивный залог используется, когда <u>подлежащее</u> пассивно, то есть не выполняет действия, выраженного <b>сказуемым</b>.
         \nНапример: <u>Книга</u> <b>была написана</b> в 17-ом веке (книга не писала, её кто-то написал). - The <u>book</u> <b>was written</b> in the 17th century.
-        \n\nОбщая формула пассивного залога: <b>be + V3</b>. Чтобы употребить пассивный залог в нужном простом времени (Present Simple, Past Simple, Future Simple), возьмём подходящую форму глагола <b>be</b> (быть) из таблицы и добавим смысловой глагол в 3-ей форме.
+        \n\nПассивный залог используется, когда:
+        \n1) объект важнее того, кто совершает действие: These phones <b>are made</b> in China/Эти телефоны <b>сделаны</b> в Китае. (Телефоны для нас важнее, чем тот, кто их сделал)
+        \n2) тот, кто совершает действие, неизвестен: My bike <b>was stolen</b> yesterday/Мой велосипед <b>был украден</b> вчера. (Мы не знаем, кто украл велосипед)
+        \n3) тот, кто совершает действие, и так понятен: Our tests <b>will be checked</b> tomorrow/Наши тесты <b>будут проверены</b> завтра. (Понятно, что наш учитель будет проверять тесты)
+        \n\nОбщая формула пассивного залога: <b>be + V3</b>. Чтобы употребить пассивный залог в нужном простом времени (Present Simple, Past Simple, Future Simple), возьмём подходящую форму глагола <b>be</b> (быть) из таблицы и добавим смысловой глагол в 3-ей форме
     </string>
 
     <string name="passive_html_part_2">
@@ -443,5 +447,22 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     </string>
 
     <string name="markers_7">Tomorrow, next Friday/week/month/year, in(через) a week/a month/5 years</string>
+
+    <string name="reported_present_simple">Present Simple\n<b>(V/Vs)</b></string>
+    <string name="reported_future_simple">Future Simple\n<b>(will V)*</b></string>
+    <string name="reported_past_simple">Past Simple\n<b>(V2/Ved)</b></string>
+    <string name="reported_present_cont">Present Continuous\n<b>(am/is/are Ving)</b></string>
+    <string name="reported_past_cont">Past Continuous\n<b>(was/were Ving)</b></string>
+    <string name="reported_present_perf">Present Perfect\n<b>(have/has V3)</b></string>
+    <string name="future_in_past">Future in the past\n<b>(would V)*</b></string>
+    <string name="reported_past_perf">Past Perfect\n<b>(had V3)</b></string>
+    <string name="reported_past_perf_cont">Past Perfect Continuous\n<b>(had been Ving)</b></string>
+
+    <string name="reported_example_1">He said, \'I <b>like</b> meat.\' → He said that he <b>liked</b> meat.</string>
+    <string name="reported_example_2">She exclaimed, \'I <b>will cope</b> with it!\' → She exclaimed she <b>would cope</b> with that.*</string>
+    <string name="reported_example_3">We answered, \'We <b>were</b> there yesterday.\' → We answered we <b>had been</b> there the day before.</string>
+    <string name="reported_example_4">They wondered, \'<b>Are</b> you <b>working</b>?\' → They wondered if we <b>were working</b>.</string>
+    <string name="reported_example_5">She said, \'I <b>was working</b> at 7pm yesterday.\' → She said she <b>had been working</b> at 7pm the day before.</string>
+    <string name="reported_example_6">He said, \'I <b>have lost</b> my credit card.\' → He said he <b>had lost</b> his credit card.</string>
 
 </resources>

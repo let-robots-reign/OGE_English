@@ -128,7 +128,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="have not V3/Ved"
+                    android:text="have not (haven't) V3/Ved"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp"/>
 
@@ -166,7 +166,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="has not V3/Ved"
+                    android:text="has not (hasn't) V3/Ved"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp" />
 
