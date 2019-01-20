@@ -52,6 +52,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
     final String AUDIO_FULLY_COMPLETED = "AudioFullCompletion";
+    final String LAST_AUDIO_TASK_ID = "LastAudioId";
 
     private int currentID;
     private String currentQuestion;
@@ -604,9 +605,9 @@ public class AudioTaskActivity extends AppCompatActivity {
                 table = null;
         }
 
-        // select the tasks that were done less than twice
-        String selection = Tables.AudioTask1.COLUMN_COMPLETION + " < ?";
-        String[] selectionArgs = new String[]{"100"};
+        // select the tasks that were done less than twice (and not the previous task)
+        String selection = Tables.AudioTask1.COLUMN_COMPLETION + " < ?" + " AND " + Tables.AudioTask1.COLUMN_ID + " != ?";
+        String[] selectionArgs = new String[]{"100", String.valueOf(getLastTaskId())};
 
         cursor = db.query(table, null, selection, selectionArgs, null,
                 null, "RANDOM()", "1");
@@ -632,6 +633,7 @@ public class AudioTaskActivity extends AppCompatActivity {
                 currentAudioFile = cursor.getString(audioColumnIndex);
                 currentCompletion = cursor.getInt(completionColumnIndex);
 
+                setLastTaskId(currentID);
                 rightAnswersList.addAll(Arrays.asList(currentAnswer.split(" ")));
                 if (category == 0) {
                     rightAnswersList.add(""); // dummy
@@ -745,5 +747,17 @@ public class AudioTaskActivity extends AppCompatActivity {
             mediaPlayer = null;
             audioManager.abandonAudioFocus(changeListener);
         }
+    }
+
+    private void setLastTaskId(int id) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(LAST_AUDIO_TASK_ID, id);
+        editor.apply();
+    }
+
+    private int getLastTaskId() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getInt(LAST_AUDIO_TASK_ID, -1);
     }
 }

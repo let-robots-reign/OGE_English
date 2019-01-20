@@ -39,6 +39,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
     final String READING_FULLY_COMPLETED = "ReadingFullCompletion";
+    final String LAST_READING_TASK_ID = "LastReadingId";
 
     private int currentID;
     private String currentText;
@@ -456,9 +457,9 @@ public class ReadingTaskActivity extends AppCompatActivity {
                 table = null;
         }
 
-        // select the tasks that were done less than twice
-        String selection = Tables.ReadingTask1.COLUMN_COMPLETION + " < ?";
-        String[] selectionArgs = new String[]{"100"};
+        // select the tasks that were done less than twice (and not the previous task)
+        String selection = Tables.ReadingTask1.COLUMN_COMPLETION + " < ?" + " AND " + Tables.ReadingTask1.COLUMN_ID + " != ?";
+        String[] selectionArgs = new String[]{"100", String.valueOf(getLastTaskId())};
 
         cursor = db.query(table, null, selection, selectionArgs, null,
                 null, "RANDOM()", "1");
@@ -487,6 +488,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
                     heading = cursor.getString(headingColumnIndex);
                 }
 
+                setLastTaskId(currentID);
                 rightAnswersList.addAll(Arrays.asList(currentAnswer.split(" ")));
             } finally {
                 cursor.close();
@@ -588,5 +590,17 @@ public class ReadingTaskActivity extends AppCompatActivity {
             editor.putInt(EXPERIENCE_KEY, exp);
         }
         editor.apply();
+    }
+
+    private void setLastTaskId(int id) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(LAST_READING_TASK_ID, id);
+        editor.apply();
+    }
+
+    private int getLastTaskId() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getInt(LAST_READING_TASK_ID, -1);
     }
 }
