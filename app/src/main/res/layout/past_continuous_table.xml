@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="was not Ving"
+                    android:text="was not Ving/wasn't Ving"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp"/>
 
@@ -168,7 +168,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="were not Ving"
+                    android:text="were not Ving/weren't Ving"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp"/>
 

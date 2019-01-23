@@ -44,7 +44,6 @@
 
         <activity
             android:name=".VariantTask"
-            android:windowSoftInputMode="adjustNothing"
             android:parentActivityName=".VariantsActivity"
             android:theme="@style/AppTheme">
             <meta-data

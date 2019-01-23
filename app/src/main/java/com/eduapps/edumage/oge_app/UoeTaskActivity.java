@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -215,6 +216,12 @@ public class UoeTaskActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                String typed = s.toString();
+                if (!typed.equals(typed.toUpperCase())) {
+                    typed = typed.toUpperCase();
+                    answer.setText(typed);
+                    answer.setSelection(answer.getText().length());
+                }
             }
         });
     }

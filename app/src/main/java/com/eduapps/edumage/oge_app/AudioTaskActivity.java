@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -48,10 +49,14 @@ public class AudioTaskActivity extends AppCompatActivity {
     private int category;
     private int rightAnswers;
     private boolean canRetry;
+    private boolean perfectCompletion;
 
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
     final String AUDIO_FULLY_COMPLETED = "AudioFullCompletion";
+    final String LAST_AUDIO_TASK_1_ID = "LastAudio1Id";
+    final String LAST_AUDIO_TASK_2_ID = "LastAudio2Id";
+    final String LAST_AUDIO_TASK_3_8_ID = "LastAudio3_8Id";
 
     private int currentID;
     private String currentQuestion;
@@ -88,6 +93,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         db = new DbHelper(this).getWritableDatabase();
 
         canRetry = true;
+        perfectCompletion = false;
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
         category = 0;
@@ -220,11 +226,11 @@ public class AudioTaskActivity extends AppCompatActivity {
                         maxRightAnswers = 5;
                     }
 
-                    EditText answer1 = findViewById(R.id.audio_cell_1);
-                    EditText answer2 = findViewById(R.id.audio_cell_2);
-                    EditText answer3 = findViewById(R.id.audio_cell_3);
-                    EditText answer4 = findViewById(R.id.audio_cell_4);
-                    EditText answer5 = findViewById(R.id.audio_cell_5);
+                    final EditText answer1 = findViewById(R.id.audio_cell_1);
+                    final EditText answer2 = findViewById(R.id.audio_cell_2);
+                    final EditText answer3 = findViewById(R.id.audio_cell_3);
+                    final EditText answer4 = findViewById(R.id.audio_cell_4);
+                    final EditText answer5 = findViewById(R.id.audio_cell_5);
                     // change the question color to black again when user changes answer
                     // also, hide keyboard when user wrote a number
                     applyTextListener(answer1);
@@ -245,42 +251,64 @@ public class AudioTaskActivity extends AppCompatActivity {
                     builder.setTitle("Ваш результат:")
                                     .setMessage("You have " + rightAnswers + "/"
                                             + maxRightAnswers + " right answers")
-                                    .setCancelable(false)
-                                    .setPositiveButton("Смотреть ошибки",
-                                            new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    Intent intent = new Intent(AudioTaskActivity.this, MistakesActivity.class);
-                                                    // put category to know the key-value pairs
-                                                    intent.putExtra("task_category", "task_" + (category + 1));
-                                                    // answers user typed (transforming to String[] array)
-                                                    String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
-                                                    intent.putExtra("typed_answers", answersArray);
-                                                    // right answers indices (transforming to String[] array)
-                                                    String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
-                                                    intent.putExtra("right_answers", rightAnswersArray);
-                                                    // options (to get right answers by indices)
-                                                    intent.putExtra("question", currentQuestion);
-                                                    // id of the task
-                                                    intent.putExtra("id", currentID);
+                                    .setCancelable(false);
 
-                                                    // the result should appear in 'recent activities'
-                                                    recordRecentActivity(maxRightAnswers);
-
-                                                    startActivity(intent);
-                                                }
-                                            });
-
-                    if (canRetry) {
-                        builder.setNegativeButton("Попробовать снова",
+                    // if user answered everything correctly, they don't need "смотреть ошибки"
+                    if (rightAnswers == maxRightAnswers) {
+                        builder.setPositiveButton("OK",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        dialog.cancel();
-                                        typedAnswers.clear();
+                                        disableEditText(answer1);
+                                        disableEditText(answer2);
+                                        disableEditText(answer3);
+                                        disableEditText(answer4);
+                                        disableEditText(answer5);
+
+                                        if (!perfectCompletion) {
+                                            // the result should appear in 'recent activities'
+                                            recordRecentActivity(maxRightAnswers);
+                                            perfectCompletion = true;
+                                        }
                                     }
                                 });
-                        canRetry = false;
+                    } else {
+                        if (canRetry) {
+                            builder.setNegativeButton("Попробовать снова",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                            typedAnswers.clear();
+                                        }
+                                    });
+                            canRetry = false;
+                        }
+
+                        builder.setPositiveButton("Смотреть ошибки",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(AudioTaskActivity.this, MistakesActivity.class);
+                                        // put category to know the key-value pairs
+                                        intent.putExtra("task_category", "task_" + (category + 1));
+                                        // answers user typed (transforming to String[] array)
+                                        String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
+                                        intent.putExtra("typed_answers", answersArray);
+                                        // right answers indices (transforming to String[] array)
+                                        String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
+                                        intent.putExtra("right_answers", rightAnswersArray);
+                                        // options (to get right answers by indices)
+                                        intent.putExtra("question", currentQuestion);
+                                        // id of the task
+                                        intent.putExtra("id", currentID);
+
+                                        // the result should appear in 'recent activities'
+                                        recordRecentActivity(maxRightAnswers);
+
+                                        startActivity(intent);
+                                    }
+                                });
                     }
 
                     AlertDialog alert = builder.create();
@@ -330,42 +358,58 @@ public class AudioTaskActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(AudioTaskActivity.this);
                     builder.setTitle("Ваш результат:")
                             .setMessage("You have " + rightAnswers + "/6 right answers")
-                            .setCancelable(false)
-                            .setPositiveButton("Смотреть ошибки",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent(AudioTaskActivity.this, MistakesActivity.class);
-                                            // put category to know the key-value pairs
-                                            intent.putExtra("task_category", "task_3_8");
-                                            // answers user typed (transforming to String[] array)
-                                            String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
-                                            intent.putExtra("typed_answers", answersArray);
-                                            // right answers indices (transforming to String[] array)
-                                            String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
-                                            intent.putExtra("right_answers", rightAnswersArray);
-                                            // options (to get right answers by indices)
-                                            intent.putExtra("question", currentQuestion);
-                                            // id of the task
-                                            intent.putExtra("id", currentID);
+                            .setCancelable(false);
 
-                                            // the result should appear in 'recent activities'
-                                            recordRecentActivity(6);
-
-                                            startActivity(intent);
-                                        }
-                                    });
-
-                    if (canRetry) {
-                        builder.setNegativeButton("Попробовать снова",
+                    // if user answered everything correctly, they don't need "смотреть ошибки"
+                    if (rightAnswers == 6) {
+                        builder.setPositiveButton("OK",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        dialog.cancel();
-                                        typedAnswers.clear();
+                                        if (!perfectCompletion) {
+                                            // the result should appear in 'recent activities'
+                                            recordRecentActivity(6);
+                                            perfectCompletion = true;
+                                        }
                                     }
                                 });
-                        canRetry = false;
+                    } else {
+                        if (canRetry) {
+                            builder.setNegativeButton("Попробовать снова",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                            typedAnswers.clear();
+                                        }
+                                    });
+                            canRetry = false;
+                        }
+
+                        builder.setPositiveButton("Смотреть ошибки",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(AudioTaskActivity.this, MistakesActivity.class);
+                                        // put category to know the key-value pairs
+                                        intent.putExtra("task_category", "task_3_8");
+                                        // answers user typed (transforming to String[] array)
+                                        String[] answersArray = typedAnswers.toArray(new String[typedAnswers.size()]);
+                                        intent.putExtra("typed_answers", answersArray);
+                                        // right answers indices (transforming to String[] array)
+                                        String[] rightAnswersArray = rightAnswersList.toArray(new String[rightAnswersList.size()]);
+                                        intent.putExtra("right_answers", rightAnswersArray);
+                                        // options (to get right answers by indices)
+                                        intent.putExtra("question", currentQuestion);
+                                        // id of the task
+                                        intent.putExtra("id", currentID);
+
+                                        // the result should appear in 'recent activities'
+                                        recordRecentActivity(6);
+
+                                        startActivity(intent);
+                                    }
+                                });
                     }
 
                     AlertDialog alert = builder.create();
@@ -504,6 +548,15 @@ public class AudioTaskActivity extends AppCompatActivity {
         }
     }
 
+    private void disableEditText(EditText editText) {
+        editText.setHint("");
+        editText.setFocusable(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
+        editText.setBackgroundColor(Color.TRANSPARENT);
+    }
+
     private void checkEditTextAnswer(EditText answer, int position) {
         if (answer.getText().toString().equals(rightAnswersList.get(position))) {
             answer.setTextColor(getResources().getColor(R.color.right_answer));
@@ -604,9 +657,9 @@ public class AudioTaskActivity extends AppCompatActivity {
                 table = null;
         }
 
-        // select the tasks that were done less than twice
-        String selection = Tables.AudioTask1.COLUMN_COMPLETION + " < ?";
-        String[] selectionArgs = new String[]{"100"};
+        // select the tasks that were done less than twice (and not the previous task)
+        String selection = Tables.AudioTask1.COLUMN_COMPLETION + " < ?" + " AND " + Tables.AudioTask1.COLUMN_ID + " != ?";
+        String[] selectionArgs = new String[]{"100", String.valueOf(getLastTaskId())};
 
         cursor = db.query(table, null, selection, selectionArgs, null,
                 null, "RANDOM()", "1");
@@ -632,6 +685,7 @@ public class AudioTaskActivity extends AppCompatActivity {
                 currentAudioFile = cursor.getString(audioColumnIndex);
                 currentCompletion = cursor.getInt(completionColumnIndex);
 
+                setLastTaskId(currentID);
                 rightAnswersList.addAll(Arrays.asList(currentAnswer.split(" ")));
                 if (category == 0) {
                     rightAnswersList.add(""); // dummy
@@ -745,5 +799,45 @@ public class AudioTaskActivity extends AppCompatActivity {
             mediaPlayer = null;
             audioManager.abandonAudioFocus(changeListener);
         }
+    }
+
+    private void setLastTaskId(int id) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        String key;
+        switch (category) {
+            case 0:
+                key = LAST_AUDIO_TASK_1_ID;
+                break;
+            case 1:
+                key = LAST_AUDIO_TASK_2_ID;
+                break;
+            case 2:
+                key = LAST_AUDIO_TASK_3_8_ID;
+                break;
+            default:
+                key = "";
+        }
+        editor.putInt(key, id);
+        editor.apply();
+    }
+
+    private int getLastTaskId() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String key;
+        switch (category) {
+            case 0:
+                key = LAST_AUDIO_TASK_1_ID;
+                break;
+            case 1:
+                key = LAST_AUDIO_TASK_2_ID;
+                break;
+            case 2:
+                key = LAST_AUDIO_TASK_3_8_ID;
+                break;
+            default:
+                key = "";
+        }
+        return preferences.getInt(key, -1);
     }
 }

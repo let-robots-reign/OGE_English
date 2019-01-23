@@ -63,7 +63,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -116,7 +116,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -169,7 +169,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -222,7 +222,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -275,7 +275,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -328,7 +328,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -382,7 +382,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -436,7 +436,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -490,7 +490,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>
@@ -545,7 +545,7 @@
                             android:layout_marginStart="8dp"
                             android:focusableInTouchMode="true"
                             android:imeOptions="actionDone"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_regular"/>

@@ -3,14 +3,12 @@ package com.eduapps.edumage.oge_app;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-// import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -25,20 +23,14 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
 
     public static class TheoryViewHolder extends RecyclerView.ViewHolder {
         LinearLayout layout;
-        //  CardView theoryCard;
         TextView theoryCardName;
-        TextView cardsWatched;
         ImageView theoryCardIcon;
-        ProgressBar progressBar;
 
         TheoryViewHolder(View itemView) {
             super(itemView);
             layout = itemView.findViewById(R.id.layout_theory_card);
-            // theoryCard = itemView.findViewById(R.id.theory_card);
             theoryCardName = itemView.findViewById(R.id.theory_card_name);
-            cardsWatched = itemView.findViewById(R.id.cards_watched);
             theoryCardIcon = itemView.findViewById(R.id.theory_icon);
-            progressBar = itemView.findViewById(R.id.progress_bar);
         }
     }
 
@@ -57,14 +49,6 @@ public class RVTheoryAdapter extends RecyclerView.Adapter<RVTheoryAdapter.Theory
     @Override
     public void onBindViewHolder(final @NonNull TheoryViewHolder holder, int position) {
         holder.theoryCardName.setText(theory.get(position).getCardName());
-        // making progress bar
-        int watched = theory.get(position).getCardsWatched();
-        int total = theory.get(position).getCardsTotal();
-        String progress = "просмотрено " + watched + "/" + total;
-        holder.cardsWatched.setText(progress);
-        holder.progressBar.setProgress(watched);
-        holder.progressBar.setMax(total);
-
         holder.theoryCardIcon.setImageResource(theory.get(position).getIconResourse());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {

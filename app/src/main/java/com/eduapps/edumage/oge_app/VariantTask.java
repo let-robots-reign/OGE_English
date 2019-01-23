@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
@@ -15,24 +17,54 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.eduapps.edumage.oge_app.VariantsTasks.AudioTaskFragment;
-import com.eduapps.edumage.oge_app.VariantsTasks.ReadingTaskFragment;
 import com.eduapps.edumage.oge_app.VariantsTasks.TaskFragment;
-import com.eduapps.edumage.oge_app.VariantsTasks.UoeTaskFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class VariantTask extends AppCompatActivity {
+public class VariantTask extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Fragment>> {
     private static int number;
     private static SQLiteDatabase db;
+    private List<Fragment> fragments;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.variant);
+
+        db = new DbHelper(this).getReadableDatabase();
+
+        // getting the number of the variant
+        Bundle extras = getIntent().getExtras();
+        number = 0;
+        if (extras != null) {
+            number = extras.getInt("number");
+        }
+
+        setTitle("Вариант " + (number + 1));
+        Button checkButton = findViewById(R.id.check_button);
+        checkButton.setVisibility(View.GONE);
+
+        for (int i = 0; i < 10; i++) {
+            getLoaderManager().destroyLoader(i);
+        }
+        getLoaderManager().restartLoader(number, null, this).forceLoad();
+        getLoaderManager().initLoader(number, null, this).forceLoad();
+    }
+
+    @Override
+    public Loader<List<Fragment>> onCreateLoader(int id, Bundle args) {
+        ProgressBar bar = findViewById(R.id.loading_bar);
+        bar.setVisibility(ProgressBar.VISIBLE);
+        return new VariantLoader(this, number);
+    }
+
+    @Override
+    public void onLoadFinished(android.content.Loader<List<Fragment>> loader, List<Fragment> data) {
+        ProgressBar bar = findViewById(R.id.loading_bar);
+        bar.setVisibility(ProgressBar.GONE);
 
         // instruction
         View view = getLayoutInflater().inflate(R.layout.dont_show_checkbox, null);
@@ -70,28 +102,10 @@ public class VariantTask extends AppCompatActivity {
             alert.show();
         }
 
-        db = new DbHelper(this).getReadableDatabase();
-
-        // getting the number of the variant
-        Bundle extras = getIntent().getExtras();
-        number = 0;
-        if (extras != null) {
-            number = extras.getInt("number");
-        }
-
-        setTitle("Вариант " + (number + 1));
-
         final ViewPager viewpager = findViewById(R.id.viewpager);
         viewpager.setOffscreenPageLimit(7);
 
-        final List<Fragment> fragments = new ArrayList<>();
-        fragments.add(createAudioFragment(0));
-        fragments.add(createAudioFragment(1));
-        fragments.add(createAudioFragment(2));
-        fragments.add(createReadingFragment(0));
-        fragments.add(createReadingFragment(1));
-        fragments.add(createUoeFragment(0));
-        fragments.add(createUoeFragment(1));
+        fragments = data;
 
         CategoryInVariantsAdapter adapter = new CategoryInVariantsAdapter(getSupportFragmentManager(), fragments);
         viewpager.setAdapter(adapter);
@@ -100,6 +114,7 @@ public class VariantTask extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewpager);
 
         final Button checkButton = findViewById(R.id.check_button);
+        checkButton.setVisibility(View.VISIBLE);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +148,15 @@ public class VariantTask extends AppCompatActivity {
                 builder.show();
             }
         });
+
+        getLoaderManager().destroyLoader(loader.getId());
     }
+
+    @Override
+    public void onLoaderReset(Loader<List<Fragment>> loader) {
+        getLoaderManager().destroyLoader(loader.getId());
+    }
+
 
     private void storeDialogStatus(boolean isChecked) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -149,33 +172,6 @@ public class VariantTask extends AppCompatActivity {
 
     public static SQLiteDatabase getDb() {
         return db;
-    }
-
-    private static AudioTaskFragment createAudioFragment(int position) {
-        AudioTaskFragment fragment = new AudioTaskFragment();
-        Bundle bundle = new Bundle(2);
-        bundle.putInt("number", number);  // number of the variant
-        bundle.putInt("position", position);  // type of the task
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
-    private static ReadingTaskFragment createReadingFragment(int position) {
-        ReadingTaskFragment fragment = new ReadingTaskFragment();
-        Bundle bundle = new Bundle(2);
-        bundle.putInt("number", number);  // number of the variant
-        bundle.putInt("position", position);  // type of the task
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
-    private static UoeTaskFragment createUoeFragment(int position) {
-        UoeTaskFragment fragment = new UoeTaskFragment();
-        Bundle bundle = new Bundle(2);
-        bundle.putInt("number", number);  // number of the variant
-        bundle.putInt("position", position);  // type of the task
-        fragment.setArguments(bundle);
-        return fragment;
     }
 
     private void recordVariantResult(int res) {
