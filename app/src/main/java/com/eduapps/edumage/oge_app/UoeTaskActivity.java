@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -13,7 +14,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +39,8 @@ public class UoeTaskActivity extends AppCompatActivity {
     private int rightAnswers;
     private int category;
 
+    private boolean ifAnswered;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class UoeTaskActivity extends AppCompatActivity {
         }
 
         tasks = new ArrayList<>();
+        ifAnswered = false;
 
         // retrieving the tasks' category passed from adapter class
         Bundle extras = getIntent().getExtras();
@@ -143,17 +146,30 @@ public class UoeTaskActivity extends AppCompatActivity {
                 checkEditTextAnswer(origin9, 8);
                 checkEditTextAnswer(origin10, 9);
 
-                recordRecentActivity();
+                if (!ifAnswered) {
+                    recordRecentActivity();
+                }
+                ifAnswered = true;
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
                 builder.setTitle("Ваш результат:")
                                 .setMessage("You have " + rightAnswers + "/" + "10 right answers")
                                 .setCancelable(false)
-                                .setNegativeButton("Попробовать снова",
+                                .setNegativeButton("OK",
                                         new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
+                                                disableEditText(origin1);
+                                                disableEditText(origin2);
+                                                disableEditText(origin3);
+                                                disableEditText(origin4);
+                                                disableEditText(origin5);
+                                                disableEditText(origin6);
+                                                disableEditText(origin7);
+                                                disableEditText(origin8);
+                                                disableEditText(origin9);
+                                                disableEditText(origin10);
                                             }
                                         });
                 AlertDialog alert = builder.create();
@@ -183,6 +199,15 @@ public class UoeTaskActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void disableEditText(EditText editText) {
+        editText.setHint("");
+        editText.setFocusable(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
+        editText.setBackgroundColor(Color.TRANSPARENT);
     }
 
     private void checkEditTextAnswer(EditText answer, int position) {
