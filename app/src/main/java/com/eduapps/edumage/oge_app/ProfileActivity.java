@@ -31,7 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
-    final int EXP_PER_LEVEL = 622;  // 10574 (3824) exp int total, (16) 17 levels
+    final int EXP_PER_LEVEL = 300;  // ~10500 exp in total, 35 levels     (10574 (3824) exp int total, (16) 17 levels)
     final int TOTAL_EXP = 10574;
     private int collectedXP;
     private int planProgress;

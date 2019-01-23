@@ -39,7 +39,8 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
     final String READING_FULLY_COMPLETED = "ReadingFullCompletion";
-    final String LAST_READING_TASK_ID = "LastReadingId";
+    final String LAST_READING_TASK_9_ID = "LastReading9Id";
+    final String LAST_READING_TASK_10_17_ID = "LastReading10_17Id";
 
     private int currentID;
     private String currentText;
@@ -595,12 +596,34 @@ public class ReadingTaskActivity extends AppCompatActivity {
     private void setLastTaskId(int id) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(LAST_READING_TASK_ID, id);
+        String key;
+        switch (category) {
+            case 0:
+                key = LAST_READING_TASK_9_ID;
+                break;
+            case 1:
+                key = LAST_READING_TASK_10_17_ID;
+                break;
+            default:
+                key="";
+        }
+        editor.putInt(key, id);
         editor.apply();
     }
 
     private int getLastTaskId() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return preferences.getInt(LAST_READING_TASK_ID, -1);
+        String key;
+        switch (category) {
+            case 0:
+                key = LAST_READING_TASK_9_ID;
+                break;
+            case 1:
+                key = LAST_READING_TASK_10_17_ID;
+                break;
+            default:
+                key="";
+        }
+        return preferences.getInt(key, -1);
     }
 }
