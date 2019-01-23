@@ -2,9 +2,12 @@ package com.eduapps.edumage.oge_app.VariantsTasks;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +90,13 @@ public class UoeTaskFragment extends TaskFragment {
         question6.setText(tasks.get(5).getQuestion());
         origin6.setHint(tasks.get(5).getOrigin());
 
+        applyTextListener(origin1);
+        applyTextListener(origin2);
+        applyTextListener(origin3);
+        applyTextListener(origin4);
+        applyTextListener(origin5);
+        applyTextListener(origin6);
+
         if (numberOfQuestions == 9) {
             TextView question7 = rootView.findViewById(R.id.uoe_task7);
             final EditText origin7 = rootView.findViewById(R.id.uoe_answer7);
@@ -101,6 +111,10 @@ public class UoeTaskFragment extends TaskFragment {
             origin8.setHint(tasks.get(7).getOrigin());
             question9.setText(tasks.get(8).getQuestion());
             origin9.setHint(tasks.get(8).getOrigin());
+
+            applyTextListener(origin7);
+            applyTextListener(origin8);
+            applyTextListener(origin9);
         }
 
         rootView.findViewById(R.id.uoe_card10).setVisibility(View.GONE);
@@ -135,6 +149,13 @@ public class UoeTaskFragment extends TaskFragment {
         checkEditTextAnswer(origin5, 4);
         checkEditTextAnswer(origin6, 5);
 
+        disableEditText(origin1);
+        disableEditText(origin2);
+        disableEditText(origin3);
+        disableEditText(origin4);
+        disableEditText(origin5);
+        disableEditText(origin6);
+
         if (numberOfQuestions == 9) {
             final EditText origin7 = rootView.findViewById(R.id.uoe_answer7);
             final EditText origin8 = rootView.findViewById(R.id.uoe_answer8);
@@ -143,6 +164,10 @@ public class UoeTaskFragment extends TaskFragment {
             checkEditTextAnswer(origin7, 6);
             checkEditTextAnswer(origin8, 7);
             checkEditTextAnswer(origin9, 8);
+
+            disableEditText(origin7);
+            disableEditText(origin8);
+            disableEditText(origin9);
         }
 
         return rightAnswers;
@@ -164,6 +189,38 @@ public class UoeTaskFragment extends TaskFragment {
         } else {
             answer.setTextColor(getResources().getColor(R.color.wrong_answer));
         }
+    }
+
+    private void applyTextListener(final EditText answer) {
+        answer.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                answer.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String typed = s.toString();
+                if (!typed.equals(typed.toUpperCase())) {
+                    typed = typed.toUpperCase();
+                    answer.setText(typed);
+                    answer.setSelection(answer.getText().length());
+                }
+            }
+        });
+    }
+
+    private void disableEditText(EditText editText) {
+        editText.setHint("");
+        editText.setFocusable(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
+        editText.setBackgroundColor(Color.TRANSPARENT);
     }
 
     private void assignTasks() {
