@@ -141,6 +141,17 @@ public class TheoryItemActivity extends AppCompatActivity {
             main.setVisibility(View.INVISIBLE);
             View view = getLayoutInflater().inflate(R.layout.future_simple_table, layout, false);
             layout.addView(view);
+        } else if (position == 19) {
+            main.setPadding(32, 32, 32, 32);
+            layout.setLayoutParams(lp);
+            View view = getLayoutInflater().inflate(R.layout.reported_speech_table, layout, false);
+            layout.addView(view);
+            TextView text = new TextView(this);
+            text.setText(R.string.would_html_part_2);
+            text.setTextSize(16);
+            text.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            text.setPadding(32, 32, 32, 32);
+            layout.addView(text);
         }
     }
 

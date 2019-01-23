@@ -25,7 +25,6 @@ public class UoeTaskFragment extends TaskFragment {
     private int position;
 
     private int rightAnswers;
-    private List<String> rightAnswersList;
     private SQLiteDatabase db;
     private List<UoeTask> tasks;
 
@@ -59,7 +58,6 @@ public class UoeTaskFragment extends TaskFragment {
         db = VariantTask.getDb();
 
         tasks = new ArrayList<>();
-        rightAnswersList = new ArrayList<>();
 
         assignTasks();
 
@@ -228,7 +226,6 @@ public class UoeTaskFragment extends TaskFragment {
                     String answer = cursor.getString(answerColumnIndex);
                     UoeTask elem = new UoeTask(questionsIds[i], task, origin, answer, 0);
                     tasks.add(elem);
-                    rightAnswersList.add(cursor.getString(answerColumnIndex));
                 } finally {
                     cursor.close();
                 }
