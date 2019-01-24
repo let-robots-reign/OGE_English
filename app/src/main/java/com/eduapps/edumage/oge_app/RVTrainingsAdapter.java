@@ -71,6 +71,9 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
         if (position == getItemCount() - 1) {
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
                     holder.layout.getPaddingRight(), 10);
+            // writing doesn't need "progress" scale
+            holder.progress.setVisibility(View.GONE);
+            holder.progressBar.setVisibility(View.GONE);
         }
 
         holder.layout.setOnClickListener(new View.OnClickListener() {

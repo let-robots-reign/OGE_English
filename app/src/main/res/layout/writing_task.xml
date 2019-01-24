@@ -380,9 +380,14 @@
                     </RadioGroup>
 
                     <TextView
+                        android:id="@+id/explanation_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        />
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        tools:text="Дан неполный ответ на вопрос: не сказано, почему униформа важна."
+                        android:textStyle="italic"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -426,6 +431,16 @@
                     </RadioGroup>
 
                     <TextView
+                        android:id="@+id/explanation_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        tools:text="Дан неполный ответ на вопрос: не сказано, почему униформа важна."
+                        android:textStyle="italic"/>
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
@@ -466,6 +481,15 @@
 
                     </RadioGroup>
 
+                    <TextView
+                        android:id="@+id/explanation_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        tools:text="Дан неполный ответ на вопрос: не сказано, почему униформа важна."
+                        android:textStyle="italic"/>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

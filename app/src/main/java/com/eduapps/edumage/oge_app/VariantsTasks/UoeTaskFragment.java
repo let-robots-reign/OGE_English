@@ -8,9 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,6 +36,14 @@ public class UoeTaskFragment extends TaskFragment {
 
     private View rootView;
     private int numberOfQuestions;
+
+    private View.OnTouchListener clickListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            return false;
+        }
+    };
 
     public UoeTaskFragment() {
         // required empty
@@ -97,6 +108,13 @@ public class UoeTaskFragment extends TaskFragment {
         applyTextListener(origin5);
         applyTextListener(origin6);
 
+        origin1.setOnTouchListener(clickListener);
+        origin2.setOnTouchListener(clickListener);
+        origin3.setOnTouchListener(clickListener);
+        origin4.setOnTouchListener(clickListener);
+        origin5.setOnTouchListener(clickListener);
+        origin6.setOnTouchListener(clickListener);
+
         if (numberOfQuestions == 9) {
             TextView question7 = rootView.findViewById(R.id.uoe_task7);
             final EditText origin7 = rootView.findViewById(R.id.uoe_answer7);
@@ -115,6 +133,10 @@ public class UoeTaskFragment extends TaskFragment {
             applyTextListener(origin7);
             applyTextListener(origin8);
             applyTextListener(origin9);
+
+            origin7.setOnTouchListener(clickListener);
+            origin8.setOnTouchListener(clickListener);
+            origin9.setOnTouchListener(clickListener);
         }
 
         rootView.findViewById(R.id.uoe_card10).setVisibility(View.GONE);

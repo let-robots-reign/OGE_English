@@ -15,8 +15,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -83,6 +85,14 @@ public class AudioTaskFragment extends TaskFragment {
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                 setPlayMode();
             }
+        }
+    };
+
+    private View.OnTouchListener clickListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+            return false;
         }
     };
 
@@ -154,6 +164,12 @@ public class AudioTaskFragment extends TaskFragment {
             applyTextListener(answer3);
             applyTextListener(answer4);
             applyTextListener(answer5);
+
+            answer1.setOnTouchListener(clickListener);
+            answer2.setOnTouchListener(clickListener);
+            answer3.setOnTouchListener(clickListener);
+            answer4.setOnTouchListener(clickListener);
+            answer5.setOnTouchListener(clickListener);
         } else {
             String[] question = currentQuestion.split("\n");
 
@@ -230,7 +246,6 @@ public class AudioTaskFragment extends TaskFragment {
         audioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("AudioTaskFragment", getAudioPlayingStatus()+"");
                 if (retriesCount < 0) {
                     Toast.makeText(getActivity(), "Вы больше не можете слушать запись",
                             Toast.LENGTH_SHORT).show();
