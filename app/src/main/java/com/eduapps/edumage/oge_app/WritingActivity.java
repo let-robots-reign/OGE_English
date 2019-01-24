@@ -281,6 +281,7 @@ public class WritingActivity extends AppCompatActivity {
         Collections.shuffle(ids);
 
         final int[] radioAnswers = new int[3];
+        final String[] comments = new String[3];
 
         assignQuestion(ids.get(0));
         String heading1 = currentQuestion[0];
@@ -293,6 +294,7 @@ public class WritingActivity extends AppCompatActivity {
         RadioButton option1_3 = findViewById(R.id.question1_option3);
         option1_3.setText(currentQuestion[3]);
         radioAnswers[0] = Integer.parseInt(currentAnswer[0]) - 1;
+        comments[0] = currentQuestion[4] + "\n" + currentQuestion[5] + "\n" + currentQuestion[6];
 
         assignQuestion(ids.get(1));
         String heading2 = currentQuestion[0];
@@ -305,6 +307,7 @@ public class WritingActivity extends AppCompatActivity {
         RadioButton option2_3 = findViewById(R.id.question2_option3);
         option2_3.setText(currentQuestion[3]);
         radioAnswers[1] = Integer.parseInt(currentAnswer[0]) - 1;
+        comments[1] = currentQuestion[4] + "\n" + currentQuestion[5] + "\n" + currentQuestion[6];
 
         assignQuestion(ids.get(2));
         String heading3 = currentQuestion[0];
@@ -317,6 +320,7 @@ public class WritingActivity extends AppCompatActivity {
         RadioButton option3_3 = findViewById(R.id.question3_option3);
         option3_3.setText(currentQuestion[3]);
         radioAnswers[2] = Integer.parseInt(currentAnswer[0]) - 1;
+        comments[2] = currentQuestion[4] + "\n" + currentQuestion[5] + "\n" + currentQuestion[6];
 
         Button exitButton = findViewById(R.id.exit_button);
         exitButton.setOnClickListener(new View.OnClickListener() {
@@ -410,13 +414,32 @@ public class WritingActivity extends AppCompatActivity {
                 final RadioButton radioButton1 = options1.findViewById(options1.getCheckedRadioButtonId());
                 checkRadioButtonAnswer(options1, radioButton1, radioAnswers[0]);
 
+                TextView explan1 = findViewById(R.id.explanation_1);
+                if (radioButton1 != null) {
+                    int typed = options1.indexOfChild(radioButton1);
+                    //Log.v("WritingActivity", typed+"_____"+comments[0]);
+                    explan1.setText(comments[0].split("\n")[typed]);
+                }
+
                 final RadioGroup options2 = findViewById(R.id.options2);
                 final RadioButton radioButton2 = options2.findViewById(options2.getCheckedRadioButtonId());
                 checkRadioButtonAnswer(options2, radioButton2, radioAnswers[1]);
 
+                TextView explan2 = findViewById(R.id.explanation_2);
+                if (radioButton2 != null) {
+                    int typed = options2.indexOfChild(radioButton2);
+                    explan2.setText(comments[1].split("\n")[typed]);
+                }
+
                 final RadioGroup options3 = findViewById(R.id.options3);
                 final RadioButton radioButton3 = options3.findViewById(options3.getCheckedRadioButtonId());
                 checkRadioButtonAnswer(options3, radioButton3, radioAnswers[2]);
+
+                TextView explan3 = findViewById(R.id.explanation_3);
+                if (radioButton3 != null) {
+                    int typed = options3.indexOfChild(radioButton3);
+                    explan3.setText(comments[2].split("\n")[typed]);
+                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(WritingActivity.this);
                 builder.setTitle("Ваш результат:")
