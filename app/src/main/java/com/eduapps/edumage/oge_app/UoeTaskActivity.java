@@ -195,7 +195,6 @@ public class UoeTaskActivity extends AppCompatActivity {
                                     submitButton.setVisibility(View.VISIBLE);
                                 }
                             }, 100);
-
                         }
                     }
                 });
