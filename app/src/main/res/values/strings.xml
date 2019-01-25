@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">OGE_App</string>
-
+    <string name="app_name">ОГЭ Английский</string>
 
     <string name="oge_main_screen">ОГЭ</string>
     <string name="english">English</string>
