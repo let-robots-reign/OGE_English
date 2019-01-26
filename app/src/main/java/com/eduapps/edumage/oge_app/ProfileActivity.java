@@ -146,7 +146,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private long getDaysTillExam() {
-        long diffMillis = new GregorianCalendar(2019, 4, 25).getTimeInMillis()
+        long diffMillis = new GregorianCalendar(2019, 4, 24).getTimeInMillis()
                 - Calendar.getInstance().getTimeInMillis();
         return (int)Math.ceil((double)diffMillis / 1000 / 60 / 60 / 24);
     }
