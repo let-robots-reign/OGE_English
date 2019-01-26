@@ -62,8 +62,8 @@ public class ActivitiesAdapter extends ArrayAdapter<ActivityItem> {
 
             // making topicName smaller if it's too big for a card
             if (currentActivity.getTopicName().length() > 20) {
-                activityName.setTextSize(10);
-                activityName.setMaxWidth(240);
+                activityName.setTextSize(8);
+                activityName.setMaxWidth(300);
             }
 
             if (currentActivity.getTopicName().equals("Недавняя активность")

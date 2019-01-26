@@ -54,9 +54,9 @@
 
                     <TextView
                         android:id="@+id/goal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text='Цель: n баллов, оценка "m"'
+                        tools:text='Цель: оценка "m"'
                         android:textStyle="italic"
                         android:textSize="14sp"
                         android:textColor="@color/colorPrimaryText"

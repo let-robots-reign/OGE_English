@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -31,10 +30,16 @@ public class ProfileActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
+    final String NAME_KEY = "UserName";
+    final String GRADE_KEY = "UserGrade";
     final int EXP_PER_LEVEL = 300;  // ~10500 exp in total, 35 levels     (10574 (3824) exp int total, (16) 17 levels)
-    final int TOTAL_EXP = 10574;
+    //final int TOTAL_EXP = 10574;
+    final int EXP_FOR_3 = 4500;
+    final int EXP_FOR_4 = 7500;
+    final int EXP_FOR_5 = 9000;
     private int collectedXP;
     private int planProgress;
+    private int userGrade;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,11 +88,17 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String getUserName() {
-        return "Алексей Зотов";
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getString(NAME_KEY, "Имя не указано");
     }
 
     private String getUserGoal() {
-        return "Цель: 57 баллов, оценка \"4\"";
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        userGrade = preferences.getInt(GRADE_KEY, 0);
+        if (userGrade == 0) {
+            return "Оценка не была указана";
+        }
+        return "Цель: оценка \"" + userGrade + "\"";
     }
 
     private SpannableString getUserDeadline() {
@@ -110,7 +121,17 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String getUserPlanPercentage() {
-        planProgress = (int)Math.round((double)collectedXP / TOTAL_EXP * 100);
+        int total = 0;
+        if (userGrade == 0) {
+            return "оценка не была указана";
+        } else if (userGrade == 3) {
+            total = EXP_FOR_3;
+        } else if (userGrade == 4) {
+            total = EXP_FOR_4;
+        } else if (userGrade == 5) {
+            total = EXP_FOR_5;
+        }
+        planProgress = (int)Math.round((double)collectedXP / total * 100);
         return "план выполнен на " + planProgress + "%";
     }
 
@@ -125,14 +146,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private long getDaysTillExam() {
-//        Calendar examDate = Calendar.getInstance();
-//        examDate.set(Calendar.YEAR, 2019);
-//        examDate.set(Calendar.MONTH, 4);
-//        examDate.set(Calendar.DATE, 25);
         long diffMillis = new GregorianCalendar(2019, 4, 25).getTimeInMillis()
                 - Calendar.getInstance().getTimeInMillis();
         return (int)Math.ceil((double)diffMillis / 1000 / 60 / 60 / 24);
-        //return TimeUnit.MILLISECONDS.toDays(diffMillis);
     }
 
     private String getDeclension(long days) {

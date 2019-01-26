@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_background"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hello"
+        android:textSize="32sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        app:fontFamily="@font/lobster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_name"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        app:fontFamily="@font/merriweather_regular"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/name_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_surname"
+        android:inputType="textCapSentences"
+        android:layout_marginBottom="16dp"
+        android:imeOptions="actionDone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_grade"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        app:fontFamily="@font/merriweather_regular"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/grade_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/grade"
+        android:inputType="number"
+        android:digits="345"
+        android:layout_marginBottom="16dp"
+        android:maxLength="1"
+        android:gravity="center"
+        android:imeOptions="actionDone"/>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_preparation"
+        app:fontFamily="@font/merriweather_regular"
+        android:background="@drawable/layout_bg"
+        android:textAllCaps="false"
+        android:padding="8dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_comment"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        app:fontFamily="@font/merriweather_regular"/>
+
+</LinearLayout>
