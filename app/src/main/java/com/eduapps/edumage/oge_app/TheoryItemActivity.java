@@ -29,14 +29,6 @@ public class TheoryItemActivity extends AppCompatActivity {
         int[] topics;
         switch (category) {
             case 0:
-                cards = new String[]{""};  // empty for now
-                topics = new int[]{};
-                break;
-            case 1:
-                cards = new String[]{""};  // empty for now
-                topics = new int[]{};
-                break;
-            case 2:
                 cards = new String[]{"Множественное число существительных", "Порядковые числительные",
                         "Притяжательные местоимения", "Объектные местоимения", "Возвратные местоимения",
                         "Пассивный залог", "I wish + V2", "Условное предложение (реальное)",
@@ -52,10 +44,9 @@ public class TheoryItemActivity extends AppCompatActivity {
                                     R.string.objective_html, R.string.objective_html, R.string.degrees_comparison_html,
                                     R.string.would_html_part_1};
                 break;
-            case 3:
-                cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки",
-                        "Полный ответ на вопрос"};
-                topics = new int[]{R.string.algorythm};
+            case 1:
+                cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки"};
+                topics = new int[]{R.string.algorythm, R.string.blank, R.string.objective_html};
                 break;
             default:
                 cards = new String[]{""};  // empty for now
@@ -76,82 +67,94 @@ public class TheoryItemActivity extends AppCompatActivity {
         TextView main = findViewById(R.id.main_theory_block);
         main.setText(topics[position]);
 
-        if (position == 2) {
-            View view = getLayoutInflater().inflate(R.layout.possessive_pronouns_table, layout, false);
-            layout.addView(view);
-        } else if (position == 3) {
-            View view = getLayoutInflater().inflate(R.layout.objective_pronouns_table, layout, false);
-            layout.addView(view);
-        } else if (position == 4) {
-            View view = getLayoutInflater().inflate(R.layout.self_pronouns_table, layout, false);
-            layout.addView(view);
-        } else if (position == 5) {
-            View view = getLayoutInflater().inflate(R.layout.passive_table, layout, false);
-            layout.addView(view);
+        if (category == 0) {
+            if (position == 2) {
+                View view = getLayoutInflater().inflate(R.layout.possessive_pronouns_table, layout, false);
+                layout.addView(view);
+            } else if (position == 3) {
+                View view = getLayoutInflater().inflate(R.layout.objective_pronouns_table, layout, false);
+                layout.addView(view);
+            } else if (position == 4) {
+                View view = getLayoutInflater().inflate(R.layout.self_pronouns_table, layout, false);
+                layout.addView(view);
+            } else if (position == 5) {
+                View view = getLayoutInflater().inflate(R.layout.passive_table, layout, false);
+                layout.addView(view);
 
-            TextView text = new TextView(this);
-            text.setText(R.string.passive_html_part_2);
-            text.setTextSize(16);
-            text.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                TextView text = new TextView(this);
+                text.setText(R.string.passive_html_part_2);
+                text.setTextSize(16);
+                text.setTextColor(getResources().getColor(R.color.colorPrimaryText));
 
-            layout.addView(text);
-        } else if (position == 9) {
-            View view = getLayoutInflater().inflate(R.layout.passive_table, layout, false);
-            layout.addView(view);
-        } else if (position == 11) {
-            // crutch
-            layout.setLayoutParams(lp);
-            main.setTextSize(4);
-            main.setVisibility(View.INVISIBLE);
-            View view = getLayoutInflater().inflate(R.layout.present_simple_table, layout, false);
-            layout.addView(view);
-        } else if (position == 12) {
-            layout.setLayoutParams(lp);
-            main.setTextSize(5);
-            main.setVisibility(View.INVISIBLE);
-            View view = getLayoutInflater().inflate(R.layout.present_continuous_table, layout, false);
-            layout.addView(view);
-        } else if (position == 13) {
-            layout.setLayoutParams(lp);
-            main.setTextSize(5);
-            main.setVisibility(View.INVISIBLE);
-            View view = getLayoutInflater().inflate(R.layout.present_perfect_table, layout, false);
-            layout.addView(view);
-        } else if (position == 14) {
-            layout.setLayoutParams(lp);
-            main.setTextSize(5);
-            main.setVisibility(View.INVISIBLE);
-            View view = getLayoutInflater().inflate(R.layout.past_simple_table, layout, false);
-            layout.addView(view);
-        } else if (position == 15) {
-            layout.setLayoutParams(lp);
-            main.setTextSize(5);
-            main.setVisibility(View.INVISIBLE);
-            View view = getLayoutInflater().inflate(R.layout.past_continuous_table, layout, false);
-            layout.addView(view);
-        } else if (position == 16) {
-            layout.setLayoutParams(lp);
-            main.setTextSize(5);
-            main.setVisibility(View.INVISIBLE);
-            View view = getLayoutInflater().inflate(R.layout.past_perfect_table, layout, false);
-            layout.addView(view);
-        } else if (position == 17) {
-            layout.setLayoutParams(lp);
-            main.setTextSize(5);
-            main.setVisibility(View.INVISIBLE);
-            View view = getLayoutInflater().inflate(R.layout.future_simple_table, layout, false);
-            layout.addView(view);
-        } else if (position == 19) {
-            main.setPadding(32, 32, 32, 32);
-            layout.setLayoutParams(lp);
-            View view = getLayoutInflater().inflate(R.layout.reported_speech_table, layout, false);
-            layout.addView(view);
-            TextView text = new TextView(this);
-            text.setText(R.string.would_html_part_2);
-            text.setTextSize(16);
-            text.setTextColor(getResources().getColor(R.color.colorPrimaryText));
-            text.setPadding(32, 32, 32, 32);
-            layout.addView(text);
+                layout.addView(text);
+            } else if (position == 9) {
+                View view = getLayoutInflater().inflate(R.layout.passive_table, layout, false);
+                layout.addView(view);
+            } else if (position == 11) {
+                // crutch
+                layout.setLayoutParams(lp);
+                main.setTextSize(4);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.present_simple_table, layout, false);
+                layout.addView(view);
+            } else if (position == 12) {
+                layout.setLayoutParams(lp);
+                main.setTextSize(5);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.present_continuous_table, layout, false);
+                layout.addView(view);
+            } else if (position == 13) {
+                layout.setLayoutParams(lp);
+                main.setTextSize(5);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.present_perfect_table, layout, false);
+                layout.addView(view);
+            } else if (position == 14) {
+                layout.setLayoutParams(lp);
+                main.setTextSize(5);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.past_simple_table, layout, false);
+                layout.addView(view);
+            } else if (position == 15) {
+                layout.setLayoutParams(lp);
+                main.setTextSize(5);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.past_continuous_table, layout, false);
+                layout.addView(view);
+            } else if (position == 16) {
+                layout.setLayoutParams(lp);
+                main.setTextSize(5);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.past_perfect_table, layout, false);
+                layout.addView(view);
+            } else if (position == 17) {
+                layout.setLayoutParams(lp);
+                main.setTextSize(5);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.future_simple_table, layout, false);
+                layout.addView(view);
+            } else if (position == 19) {
+                main.setPadding(32, 32, 32, 32);
+                layout.setLayoutParams(lp);
+                View view = getLayoutInflater().inflate(R.layout.reported_speech_table, layout, false);
+                layout.addView(view);
+                TextView text = new TextView(this);
+                text.setText(R.string.would_html_part_2);
+                text.setTextSize(16);
+                text.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+                text.setPadding(32, 32, 32, 32);
+                layout.addView(text);
+            }
+        } else if (category == 1) {
+            if (position == 1) {
+                setContentView(R.layout.cliches_theory);
+            } else if (position == 2) {
+                layout.setLayoutParams(lp);
+                main.setTextSize(5);
+                main.setVisibility(View.INVISIBLE);
+                View view = getLayoutInflater().inflate(R.layout.linkers_table, layout, false);
+                layout.addView(view);
+            }
         }
     }
 

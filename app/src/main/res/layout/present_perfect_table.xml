@@ -65,18 +65,18 @@
             android:layout_margin="1dp"
             android:layout_column="1"
             android:background="#FFFFFF"
-            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1.5"/>
+                    android:layout_weight="0.7"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -84,15 +84,19 @@
                     android:layout_weight="2"
                     android:text='"+"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text='"-"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -100,21 +104,25 @@
                     android:layout_weight="2"
                     android:text='"?"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="0.7"
                     android:text="@string/present_perf_1"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:layout_marginLeft="4dp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -122,15 +130,19 @@
                     android:layout_weight="2"
                     android:text="have V3/Ved"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="have not (haven't) V3/Ved"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -138,21 +150,26 @@
                     android:layout_weight="2"
                     android:text="Have ___ V3/Ved?"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="4dp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="0.7"
                     android:text="@string/present_perf_2"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="4dp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -160,15 +177,19 @@
                     android:layout_weight="2"
                     android:text="has V3/Ved"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="has not (hasn't) V3/Ved"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -176,7 +197,10 @@
                     android:layout_weight="2"
                     android:text="Has ___ V3/Ved?"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="4dp"/>
             </LinearLayout>
         </LinearLayout>
     </TableRow>

@@ -65,18 +65,18 @@
             android:layout_margin="1dp"
             android:layout_column="1"
             android:background="#FFFFFF"
-            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -84,15 +84,17 @@
                     android:layout_weight="1"
                     android:text='"+"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text='"-"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -100,22 +102,25 @@
                     android:layout_weight="2"
                     android:text='"?"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="@string/present_simple_1"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"/>
 
                 <TextView
                     android:id="@+id/statement"
@@ -124,16 +129,20 @@
                     android:layout_weight="1"
                     android:text="V"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:id="@+id/negation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="do not V/don't V"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:id="@+id/question"
@@ -142,22 +151,25 @@
                     android:layout_weight="2"
                     android:text="Do ___ V?"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="@string/present_simple_2"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -165,15 +177,19 @@
                     android:layout_weight="1"
                     android:text="Vs"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="does not V/doesn't V"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -181,7 +197,9 @@
                     android:layout_weight="2"
                     android:text="Does ___ V?"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
         </LinearLayout>
     </TableRow>

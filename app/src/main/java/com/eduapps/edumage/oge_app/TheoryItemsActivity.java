@@ -19,7 +19,7 @@ public class TheoryItemsActivity extends AppCompatActivity {
         if (extras != null) {
             category = extras.getInt("category");
         }
-        String[] categories = new String[]{"Аудирование", "Чтение", "Языковой материал", "Письмо"};
+        String[] categories = new String[]{"Языковой материал", "Письмо"};
         setTitle(categories[category]);
 
         setContentView(R.layout.theory_cards);
@@ -28,12 +28,6 @@ public class TheoryItemsActivity extends AppCompatActivity {
         List<String> items;
         switch (category) {
             case 0:
-                cards = new String[]{};  // empty for now
-                break;
-            case 1:
-                cards = new String[]{};  // empty for now
-                break;
-            case 2:
                 cards = new String[]{"Множественное число существительных", "Порядковые числительные",
                     "Притяжательные местоимения", "Объектные местоимения", "Возвратные местоимения",
                     "Пассивный залог", "I wish + V2", "Условное предложение (реальное)",
@@ -42,9 +36,8 @@ public class TheoryItemsActivity extends AppCompatActivity {
                     "Прошедшее простое", "Прошедшее продолженное", "Прошедшее совершённое",
                     "Будущее простое", "Степени сравнения прилагательных", "Would + V"};
                 break;
-            case 3:
-                cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки",
-                        "Полный ответ на вопрос"};
+            case 1:
+                cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки"};
                 break;
             default:
                 cards = null;

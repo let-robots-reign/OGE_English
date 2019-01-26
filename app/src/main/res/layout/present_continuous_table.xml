@@ -70,12 +70,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="2"/>
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -83,15 +84,19 @@
                     android:layout_weight="1.5"
                     android:text='"+"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text='"-"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -99,23 +104,25 @@
                     android:layout_weight="2"
                     android:text='"?"'
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
+                android:layout_marginBottom="8dp">
 
                 <TextView
-                    android:paddingLeft="4dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="@string/present_cont_1"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:layout_marginLeft="4dp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -123,15 +130,19 @@
                     android:layout_weight="1.5"
                     android:text="am Ving"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="am not Ving"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -139,22 +150,25 @@
                     android:layout_weight="2"
                     android:text="Am ___ Ving?"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="@string/present_cont_2"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="4dp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -162,15 +176,19 @@
                     android:layout_weight="1.5"
                     android:text="is Ving"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="is not Ving/isn't Ving"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -178,22 +196,25 @@
                     android:layout_weight="2"
                     android:text="Is ___ Ving?"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="@string/present_cont_3"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="4dp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -201,15 +222,19 @@
                     android:layout_weight="1.5"
                     android:text="are Ving"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="are not Ving/aren't Ving"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -217,7 +242,9 @@
                     android:layout_weight="2"
                     android:text="Are ___ Ving?"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
         </LinearLayout>
     </TableRow>
