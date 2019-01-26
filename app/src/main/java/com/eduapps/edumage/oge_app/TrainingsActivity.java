@@ -19,7 +19,6 @@ import java.util.List;
 
 public class TrainingsActivity extends AppCompatActivity {
 
-    static Parcelable state;
     LinearLayoutManager layoutManager;
     SQLiteDatabase db;
 
@@ -43,7 +42,6 @@ public class TrainingsActivity extends AppCompatActivity {
         // collect all trainings in a list
         List<Training> trainings = new ArrayList<>();
 
-        //trainings.add(new Training(R.string.individual, 0, R.drawable.ic_individual));
         trainings.add(new Training(R.string.audio, getProgress("audio"), R.drawable.ic_audio));
         trainings.add(new Training(R.string.reading, getProgress("reading"), R.drawable.ic_reading));
         trainings.add(new Training(R.string.use_of_english, getProgress("uoe"), R.drawable.ic_use_of_english));
@@ -51,16 +49,6 @@ public class TrainingsActivity extends AppCompatActivity {
 
         RVTrainingsAdapter adapter = new RVTrainingsAdapter(trainings);
         trainingsList.setAdapter(adapter);
-
-        if (state != null) {
-            layoutManager.onRestoreInstanceState(state);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        state = layoutManager.onSaveInstanceState();
-        super.onPause();
     }
 
     @Override

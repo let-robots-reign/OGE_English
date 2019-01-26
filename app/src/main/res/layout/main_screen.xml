@@ -91,7 +91,6 @@
 
     </LinearLayout>
 
-
     <ImageView
         android:id="@+id/user_icon"
         android:layout_width="55dp"
