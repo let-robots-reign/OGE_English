@@ -40,23 +40,28 @@ public class GridViewAdapter extends BaseAdapter {
         final Button button;
         if (convertView == null) {
             button = new Button(context);
-            button.setPadding(8, 8,8 ,8);
-            button.setText(source.get(position));
-            button.setTextSize(12);
-            button.setBackgroundColor(context.getResources().getColor(R.color.colorSecondary));
-            button.setTextColor(context.getResources().getColor(R.color.colorPrimaryText));
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, TheoryItemActivity.class);
-                    intent.putExtra("position", position);
-                    intent.putExtra("category", category);
-                    context.startActivity(intent);
-                }
-            });
         } else {
             button = (Button) convertView;
         }
+
+        button.setPadding(8, 8,8 ,8);
+        button.setText(source.get(position));
+        if (position == 7 || position == 8) {
+            button.setTextSize(10);
+        } else {
+            button.setTextSize(12);
+        }
+        button.setBackgroundColor(context.getResources().getColor(R.color.colorSecondary));
+        button.setTextColor(context.getResources().getColor(R.color.colorPrimaryText));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, TheoryItemActivity.class);
+                intent.putExtra("position", position);
+                intent.putExtra("category", category);
+                context.startActivity(intent);
+            }
+        });
 
         return button;
     }

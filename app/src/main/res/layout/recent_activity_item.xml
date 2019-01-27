@@ -48,7 +48,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:textColor="@color/experience"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:fontFamily="@font/merriweather_regular"/>
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_alignParentEnd="true"
             android:layout_above="@id/experience"
             tools:textColor="@color/right_answer"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:fontFamily="@font/merriweather_regular"/>
 
     </RelativeLayout>
