@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/name_surname"
         android:inputType="textCapSentences"
+        android:gravity="center"
         android:layout_marginBottom="16dp"
         android:imeOptions="actionDone"/>
 

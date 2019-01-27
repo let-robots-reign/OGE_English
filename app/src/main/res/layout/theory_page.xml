@@ -54,7 +54,9 @@
                     tools:text="@string/plurals_html"
                     android:textSize="16sp"
                     android:textColor="@color/colorPrimaryText"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:breakStrategy="simple"
+                    android:hyphenationFrequency="none"/>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     String name = nameField.getText().toString();
                     String grade = gradeField.getText().toString();
-                    Log.v("MainActivity", name + "_____" + grade);
                     if (name.equals("") || grade.equals("")) {
                         comment.setVisibility(View.VISIBLE);
                     } else {
@@ -117,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                answer.setTextColor(getResources().getColor(R.color.colorPrimaryText));
                 if (s.toString().length() > 0) {
                     hideKeyboard(MainActivity.this);
                 }
