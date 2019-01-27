@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text='"+"'
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text='"-"'
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text='"?"'
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="have V3/Ved"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="have not (haven't) V3/Ved"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="Have ___ V3/Ved?"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="has V3/Ved"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="has not (hasn't) V3/Ved"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="Has ___ V3/Ved?"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"

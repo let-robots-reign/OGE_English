@@ -76,14 +76,14 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="0.7"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:text='"+"'
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text='"-"'
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text='"?"'
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -118,7 +118,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.7"
                     android:text="@string/present_cont_1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="12sp"
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:text="am Ving"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="am not Ving"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="Am ___ Ving?"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -164,7 +164,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.7"
                     android:text="@string/present_cont_2"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="12sp"
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:text="is Ving"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -185,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="is not Ving/isn't Ving"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="Is ___ Ving?"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -210,7 +210,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.7"
                     android:text="@string/present_cont_3"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="12sp"
@@ -221,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:text="are Ving"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -231,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="are not Ving/aren't Ving"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -241,7 +241,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="Are ___ Ving?"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
