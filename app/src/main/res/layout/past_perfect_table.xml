@@ -76,7 +76,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="0.7"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -118,7 +118,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.8"
                     android:text="@string/past_simple_1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="14sp"
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="had V3/Ved"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="had not (hadn't) V3/Ved"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/wrong_answer"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="Had ___ V3/Ved?"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_horizontal"/>
