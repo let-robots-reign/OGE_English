@@ -201,7 +201,8 @@
             android:label="@string/writing"
             android:parentActivityName=".TrainingsActivity"
             android:theme="@style/AppTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TrainingsActivity" />

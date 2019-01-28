@@ -638,7 +638,7 @@ public class WritingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WritingActivity.this, TheoryItemActivity.class);
                 intent.putExtra("position", 0);
-                intent.putExtra("category", 3);
+                intent.putExtra("category", 1);
                 startActivity(intent);
             }
         });
