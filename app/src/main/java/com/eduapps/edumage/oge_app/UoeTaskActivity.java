@@ -18,6 +18,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -198,6 +200,54 @@ public class UoeTaskActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        // "Don't show" checkbox goes with the instructions
+        View view = getLayoutInflater().inflate(R.layout.dont_show_checkbox, null);
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    storeDialogStatus(true);
+                } else {
+                    storeDialogStatus(false);
+                }
+            }
+        });
+
+        // when a user enters, he should see an instruction to the task
+        AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
+        builder.setTitle("Инструкция")
+                .setCancelable(false)
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.setMessage("Преобразуйте слова, напечатанные заглавными буквами так, чтобы они " +
+                "грамматически и лексически соответствовали содержанию текстов. Заполните пропуски " +
+                "полученными словами. Глагольные формы вводите без сокращений");
+
+        builder.setView(view);
+        AlertDialog alert = builder.create();
+        if (getDialogStatus()) {
+            alert.hide();
+        } else {
+            alert.show();
+        }
+    }
+
+    private void storeDialogStatus(boolean isChecked) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("Dont_show_uoe", isChecked);
+        editor.apply();
+    }
+
+    private boolean getDialogStatus() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getBoolean("Dont_show_uoe", false);
     }
 
     private void disableEditText(EditText editText) {
