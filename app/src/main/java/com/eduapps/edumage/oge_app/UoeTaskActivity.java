@@ -243,8 +243,10 @@ public class UoeTaskActivity extends AppCompatActivity {
                 String typed = s.toString();
                 if (!typed.equals(typed.toUpperCase())) {
                     typed = typed.toUpperCase();
+                    int cursorPosition = answer.getSelectionStart();
                     answer.setText(typed);
-                    answer.setSelection(answer.getText().length());
+                    //answer.setSelection(answer.getText().length());
+                    answer.setSelection(cursorPosition);
                 }
             }
         });
