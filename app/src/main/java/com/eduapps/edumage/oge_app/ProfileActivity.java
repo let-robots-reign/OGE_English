@@ -22,7 +22,6 @@ import com.eduapps.edumage.oge_app.data.Tables;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -153,7 +152,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private String getDeclension(long days) {
         String declension = "дней";
-        if (days % 100 == 11 || days % 100 == 12) {
+        if (days % 100 == 11 || days % 100 == 12 || days % 100 == 13 || days % 100 == 14) {
             declension = "дней";
         } else if (days % 10 == 2 || days % 10 == 3 || days % 10 == 4) {
             declension = "дня";
