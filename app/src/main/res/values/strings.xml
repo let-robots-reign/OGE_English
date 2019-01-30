@@ -38,7 +38,7 @@
     <string name="uoe_topic2">Порядковые числительные</string>
     <string name="uoe_topic3">Объектные местоимения</string>
 
-    <string name="app_version">Версия приложения: 0.9</string>
+    <string name="app_version">Версия приложения: 1.0</string>
     <string name="email_us">Хотите сообщить об ошибке или внести предложение? Напишите нам!</string>
     <string name="icons_designed_by">Icons designed by Smashicons, Freepik, Gregor Cresnar from www.flaticon.com</string>
     <string name="MA_gratitude">Благодарность Марии Туруновой за наполнение контентом</string>
@@ -204,10 +204,10 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \n\n<b>Существительные, оканчивающиеся на определённые буквы</b>
         \n\nЕсли существительное оканчивается на буквы <b>-o, -ch, -sh, -s, -ss, -x</b>,  добавляем <b>-es</b>.
         \nНапример: a potato-potato<b>es</b>; a match – match<b>es</b>; a bush – bush<b>es</b>; a bus – bus<b>es</b>; a glass – glass<b>es</b>; a box – box<b>es</b>.
-        \n\nЕсли существительное оканчивается на <b>согласная + y</b>, то <b>y</b> меняется на <b>-i</b> и добавляется <b>-es</b>.
-        \nНапример: a country – countr<b>ies</b>; a party – part<b>ies</b>; a story – stor<b>ies</b>.
+        \n\nЕсли существительное оканчивается на согласная + <b>y</b>, то <b>y</b> меняется на <b>-i</b> и добавляется <b>-es</b>.
+        \nНапример: a countr<b>y</b> – countr<b>ies</b>; a part<b>y</b> – part<b>ies</b>; a stor<b>y</b> – stor<b>ies</b>.
         \n\nЕсли существительное оканчивается на <b>-f</b> или <b>-fe</b>, то <b>-f/-fe</b> меняется на <b>-v</b> и добавляется <b>-es</b>.
-        \nНапример: a life – li<b>ves</b>; a leaf – lea<b>ves</b>, a wolf – wol<b>ves</b>.
+        \nНапример: a li<b>fe</b> – li<b>ves</b>; a lea<b>f</b> – lea<b>ves</b>, a wol<b>f</b> – wol<b>ves</b>.
         \n\n<b>Исключения</b>
         \n\nК исключениям, которые могут встретиться в ОГЭ, относятся следующие:
         \na m<b>a</b>n – m<b>e</b>n
@@ -225,9 +225,9 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \n\nЧтобы образовать порядковое числительное, нужно прибавить к количественному числительному буквы <b>-th</b>.
         \nНапример: four – four<b>th</b>, seven – seven<b>th</b>, twenty-six - twenty-six<b>th</b>.
         \n\n<b>Числительные, оканчивающиеся на определённые буквы</b>
-        \n\nЕсли числительное оканчивается на <b>-ve</b> (в английском это 5 (fi<b>ve</b>) и 12 (twel<b>ve</b>)),  меняем <u>ve</u> на <u>f</u> и добавляем <b>-th</b>.
-        \nНапример: fi<u>ve</u> – fi<u>f</u><b>th</b>, twel<u>ve</u>-twel<b>f</b><b>th</b>.
-        \n\nЕсли числительное оканчивается на <b>-y</b> (в английском это 20, 30, 40 и т.д.), то <u>y</u> меняется на <u>i</u> и добавляется <b>-eth</b>.
+        \n\nЕсли числительное оканчивается на <u>-ve</u> (в английском это 5 (fi<u>ve</u>) и 12 (twel<u>ve</u>)), меняем <u>-ve</u> на <u>-f</u> и добавляем <b>-th</b>.
+        \nНапример: fi<u>ve</u> – fi<u>f</u><b>th</b>, twel<u>ve</u>-twel<u>f</u><b>th</b>.
+        \n\nЕсли числительное оканчивается на <u>-y</u> (в английском это 20, 30, 40 и т.д.), то <u>-y</u> меняется на <u>-i</u> и добавляется <b>-eth</b>.
         \nНапример: twent<u>y</u> – twent<u>i</u><b>eth</b>, sixt<u>y</u> – sixt<u>i</u><b>eth</b>, ninet<u>y</u> - ninet<u>i</u><b>eth</b>.
         \n\nВ числительном 8 добавляется только буква <b>h</b>:
         \neight – eight<b>h</b>
@@ -235,9 +235,9 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \nnin<strike>e</strike> - nin<b>th</b>
         \n\n<b>Исключения</b>
         \nК исключениям относятся числительные 1, 2 и 3:
-        \none – first
-        \ntwo – second
-        \nthree – third
+        \none – <b>first</b>
+        \ntwo – <b>second</b>
+        \nthree – <b>third</b>
         \n\nОбратите внимание, что в составном числительном (из нескольких слов) меняется только последнее слово, как и в русском языке.
         \nНапример:
         \nthirty-<b>one</b> – thirty-<b>first</b> (тридцать <b>первый</b> — тридцать <b>первого</b>)
@@ -255,22 +255,22 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \n\nВ английском языке у притяжательных местоимений нет рода, числа и падежа, то есть они не изменяются: <b>моя</b> комната — <b>my</b> room, <b>мои</b> комнаты — <b>my</b> rooms, <b>моей</b> комнаты — <b>my room</b>, <b>мой</b> телефон — <b>my</b> phone.
         \n\nПритяжательные местоимения делятся на 2 группы в зависимости от места в предложении:
         \n1) Притяжательные местоимения, после которых стоит <i>существительное</i> (<b>my</b> <i>keys</i>, <b>his</b> <i>book</i>, <b>their</b> <i>money</i>).
-        \n2) Притяжательные местоимения, после которых нет существительного (The keys are <b>mine</b>, Whose book is this? - <b>His</b>, The money is <b>theirs</b>).
+        \n2) Притяжательные местоимения, после которых нет существительного (The keys are <b>mine</b>. Whose book is this? - <b>His</b>. The money is <b>theirs</b>).
     </string>
 
     <string name="objective_html">
         В английском языке у личных местоимений 2 падежа: именительный и объектный (косвенный: от родительного до предложного).
-        \nМестоимения в именительном падеже отвечают на вопросы Кто? Что? и в предложении являются <u>подлежащим</u>.
+        \nМестоимения в именительном падеже отвечают на вопросы <b>Кто? Что?</b> и в предложении являются <b><u>подлежащим</u></b>.
         \nНапример: <u><b>She</b></u> likes fruit. <u><b>We</b></u> walk our dog twice a day. Can <u><b>you</b></u> open the door?
-        \n\nМестоимения в косвенном падеже отвечают на вопросы Кого? Чего? Кому? Чему? Кем? Чем? О ком? О чём? и в предложении являются дополнением.
-        \nНапример: Help me! Don’t ask him. They are waiting for us.
+        \n\nМестоимения в косвенном падеже отвечают на вопросы <b>Кого? Чего? Кому? Чему? Кем? Чем? О ком? О чём?</b> и в предложении являются дополнением.
+        \nНапример: Help <b>me</b>! Don’t ask <b>him</b>. They are waiting for <b>us</b>.
     </string>
 
     <string name="self_html">
         Возвратные местоимения используются, когда <u>подлежащее</u> и <b>дополнение</b> — один и тот же человек/предмет.
-        \nНапример: <u>I</u> solved the problem <b>myself</b> — <u>Я</u> решил задачу <b>сам</b>.
-        \n<u>He</u> blames <b>himself</b> — <u>Он</u> винит <b>себя</b>. (Сравните: <u>He</u> blames <b>her</b> — <u>Он</u> винит <b>её</b>)
-        \n<u>We</u> can’t do it <b>ourselves</b> — <u>Мы</u> не можем сделать это <b>сами</b>.
+        \nНапример: <u>I</u> solved the problem <b>myself</b>. — <u>Я</u> решил задачу <b>сам</b>.
+        \n<u>He</u> blames <b>himself</b>. — <u>Он</u> винит <b>себя</b>. (Сравните: <u>He</u> blames <b>her</b>. — <u>Он</u> винит <b>её</b>)
+        \n<u>We</u> can’t do it <b>ourselves</b>. — <u>Мы</u> не можем сделать это <b>сами</b>.
     </string>
 
     <string name="passive_html_part_1">
@@ -280,7 +280,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
         \n1) объект важнее того, кто совершает действие: These phones <b>are made</b> in China/Эти телефоны <b>сделаны</b> в Китае. (Телефоны для нас важнее, чем тот, кто их сделал)
         \n2) тот, кто совершает действие, неизвестен: My bike <b>was stolen</b> yesterday/Мой велосипед <b>был украден</b> вчера. (Мы не знаем, кто украл велосипед)
         \n3) тот, кто совершает действие, и так понятен: Our tests <b>will be checked</b> tomorrow/Наши тесты <b>будут проверены</b> завтра. (Понятно, что наш учитель будет проверять тесты)
-        \n\nОбщая формула пассивного залога: <b>be + V3</b>. Чтобы употребить пассивный залог в нужном простом времени (Present Simple, Past Simple, Future Simple), возьмём подходящую форму глагола <b>be</b> (быть) из таблицы и добавим смысловой глагол в 3-ей форме
+        \n\nОбщая формула пассивного залога: \n<b>be + V3</b>. Чтобы употребить пассивный залог в нужном простом времени (Present Simple, Past Simple, Future Simple), возьмём подходящую форму глагола <b>be</b> (быть) из таблицы и добавим смысловой глагол в 3-ей форме.
     </string>
 
     <string name="passive_html_part_2">
@@ -291,7 +291,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     </string>
     
     <string name="wish_html">
-        I wish … - разновидность условного предложения. Возможны 2 варианта построения предложений:
+        I wish … – разновидность условного предложения. Возможны 2 варианта построения предложений:
         \n<u>I wish</u> he <b>lived</b> here (<u>I wish</u> + <b>V2</b>) – жалеем о том, что он не живёт здесь сейчас.
         \n<u>I wish</u> he <b>had lived</b> here (<u>I wish</u> + <b>had V3</b>) – жалеем о том,что он не жил здесь в прошлом.
         \nВ ОГЭ вам понадобится только одна формула: <u>I wish</u> + <b>V2</b>, поэтому смело ставьте глагол после I wish во вторую форму.
@@ -321,7 +321,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
 
     <string name="modals_html">
         Модальные глаголы выражают отношение говорящего к действию (совет, разрешение, обязанность и т.д.). К ним относятся <b>can, must, should, may, have to</b> и др.
-        \n\nМодальные глаголы не изменяются, то есть, не добавляются -s, -ed, -ing.
+        \n\nМодальные глаголы не изменяются, то есть, не добавляются <b>-s</b>, <b>-ed</b>, <b>-ing</b>.
         \nПосле модальных глаголов следует <u>инфинитив</u>.
         \nВ вопросах модальный глагол ставится в начале предложения, в отрицании добавляется <b>not / -n’t</b> после глагола; вспомогательные глаголы не нужны.
         \n\nНапример:
@@ -333,7 +333,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
 
     <string name="degrees_comparison_html">
         В русском языке прилагательные изменяются по родам, числу и падежам (красивый, красивая, красивые, красивыми и т.д.). В английском языке прилагательные не изменяются. Однако можно образовать различные степени сравнения, как и в русском.
-        \n\nСтепени сравнения образуются двумя способами: к коротким словам добавляем суффиксы <b>-er</b> (=более) и <b>-est</b> (=самый), к длинным - слова <b>more</b> (=более) и <b>most</b> (=самый).
+        \n\nСтепени сравнения образуются двумя способами: к коротким словам добавляем суффиксы <b>-er</b> (=более) и <b>-est</b> (=самый), к длинным – слова <b>more</b> (=более) и <b>most</b> (=самый).
         \nНапример: tall – tall<b>er</b> – the tall<b>est</b>, interesting – <b>more</b> interesting – the <b>most</b> interesting.
         \n\nКороткие слова состоят из 1 слога (kind, slow, tall) или 2-х слогов, если оканчиваются на -y (happy, funny, crazy). Все остальные слова длинные (peaceful, interesting, dangerous).
         \n\nПри образовании степеней сравнения коротких слов нужно помнить 3 правила написания:
@@ -378,11 +378,11 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="present_simple_2"><u>He\nshe\nit</u></string>
     <string name="present_simple_3">
         Регулярные действия/привычки:
-        \nI <b>clean</b> my teeth <u>twice a day</u>
-        \nShe <b>swims</b> in the sea <u>every summer</u>
+        \nI <b>clean</b> my teeth <u>twice a day</u>.
+        \nShe <b>swims</b> in the sea <u>every summer</u>.
         \n\nРасписание:
-        \nThe train <b>leaves</b> <u>at 7</u>
-        \nThe TV show <b>starts</b> <u>in 15 minutes</u>
+        \nThe train <b>leaves</b> <u>at 7</u>.
+        \nThe TV show <b>starts</b> <u>in 15 minutes</u>.
     </string>
 
     <string name="markers_1">Always, usually, sometimes, often,  never, every day/week/month/year, once/twice/three times a day/week/month/year</string>
@@ -393,13 +393,13 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
 
     <string name="present_cont_4">
         Прямо сейчас:
-        \nI <b>am learning</b> English tenses <u>at the moment</u>
+        \nI <b>am learning</b> English tenses <u>at the moment</u>.
         \n\nПланы на будущее:
-        \nWe <b>are visiting</b> our grandparents <u>at the weekend</u>
+        \nWe <b>are visiting</b> our grandparents <u>at the weekend</u>.
         \n\nРаздражение:
         \nShe <b>is</b> <u>always</u> <b>crying</b>, I’m fed up with it!
         \n\nВременные ситуации:
-        \n<u>This week</u> I <b>am studying</b> for my exams
+        \n<u>This week</u> I <b>am studying</b> for my exams.
     </string>
 
     <string name="markers_2">At the moment, (right) now, always, constantly (раздражение), this week/month/year, today</string>
@@ -408,11 +408,11 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="present_perf_2"><u>He\nshe\nit</u></string>
     <string name="present_perf_3">
         Есть результат (время неизвестно/неважно):
-        \nI <b>have lost</b> my keys
-        \nShe <b>has broken</b> the vase
+        \nI <b>have lost</b> my keys.
+        \nShe <b>has broken</b> the vase.
         \n\nДействие произошло в период времени, который ещё не закончился:
         \n<b>Have</b> you <b>seen</b> Mark <u>today</u>?
-        \nShe <b>has been</b> abroad <u>this month</u>
+        \nShe <b>has been</b> abroad <u>this month</u>.
     </string>
     <string name="markers_3">Already, yet, just, recently, lately, ever, never, today, this week/month/year</string>
 
@@ -430,7 +430,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="past_cont_2"><u>We\nyou\nthey</u></string>
     <string name="past_cont_3">
         Действие в точное время в прошлом (&lt;24 часов):
-        \nI <b>was watching</b> a movie <u>yesterday at 2pm</u>
+        \nI <b>was watching</b> a movie <u>yesterday at 2pm</u>.
         \n<u>This time last Friday</u> we <b>were driving</b> to our dacha.
         \n\nДействие в прошлом одновременно с другим действием. Другое действие может быть ДЛИТЕЛЬНЫМ (Past Continuous) или <i>коротким</i> (Past Simple):
         \nMum <b>was reading</b> a newspaper <u>while</u> dad WAS WATCHING the news.
