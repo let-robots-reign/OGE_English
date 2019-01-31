@@ -15,7 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,16 +29,20 @@ import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventList
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class UoeTaskActivity extends AppCompatActivity {
 
-    String[] typedAnswers = new String[10];
+    String[] typedAnswers;
     private List<UoeTask> tasks;
     private SQLiteDatabase db;
     final String EXPERIENCE_KEY = "Experience";
     final String UOE_FULLY_COMPLETED = "UoeFullCompletion";
+    final String LAST_UOE_ALL_TOPICS = "UoeAllTopicsLast";
+    final String LAST_UOE_FORMATION = "UoeFormationLast";
     private int rightAnswers;
     private int category;
+    private int numberOfQuestions;
 
     private boolean ifAnswered;
 
@@ -50,10 +53,6 @@ public class UoeTaskActivity extends AppCompatActivity {
 
         db = new DbHelper(this).getWritableDatabase();
 
-        for (int i = 0; i < 10; i++) {
-            typedAnswers[i] = "";
-        }
-
         tasks = new ArrayList<>();
         ifAnswered = false;
 
@@ -62,6 +61,18 @@ public class UoeTaskActivity extends AppCompatActivity {
         category = 0;
         if (extras != null) {
             category = extras.getInt("category");
+        }
+
+        numberOfQuestions = 10;
+        if (category == 0) {
+            numberOfQuestions = 9;
+        } else if (category == 1) {
+            numberOfQuestions = 6;
+        }
+
+        typedAnswers = new String[numberOfQuestions];
+        for (int i = 0; i < numberOfQuestions; i++) {
+            typedAnswers[i] = "";
         }
 
         setTitle(getResources().getStringArray(R.array.uoe_topics)[category]);
@@ -101,14 +112,27 @@ public class UoeTaskActivity extends AppCompatActivity {
         origin5.setHint(tasks.get(4).getOrigin());
         question6.setText(tasks.get(5).getQuestion());
         origin6.setHint(tasks.get(5).getOrigin());
-        question7.setText(tasks.get(6).getQuestion());
-        origin7.setHint(tasks.get(6).getOrigin());
-        question8.setText(tasks.get(7).getQuestion());
-        origin8.setHint(tasks.get(7).getOrigin());
-        question9.setText(tasks.get(8).getQuestion());
-        origin9.setHint(tasks.get(8).getOrigin());
-        question10.setText(tasks.get(9).getQuestion());
-        origin10.setHint(tasks.get(9).getOrigin());
+        if (category != 1) {
+            question7.setText(tasks.get(6).getQuestion());
+            origin7.setHint(tasks.get(6).getOrigin());
+            question8.setText(tasks.get(7).getQuestion());
+            origin8.setHint(tasks.get(7).getOrigin());
+            question9.setText(tasks.get(8).getQuestion());
+            origin9.setHint(tasks.get(8).getOrigin());
+        }
+        if (category > 1) {
+            question10.setText(tasks.get(9).getQuestion());
+            origin10.setHint(tasks.get(9).getOrigin());
+        }
+
+        if (category == 0) {
+            findViewById(R.id.uoe_card10).setVisibility(View.GONE);
+        } else if (category == 1) {
+            findViewById(R.id.uoe_card10).setVisibility(View.GONE);
+            findViewById(R.id.uoe_card9).setVisibility(View.GONE);
+            findViewById(R.id.uoe_card8).setVisibility(View.GONE);
+            findViewById(R.id.uoe_card7).setVisibility(View.GONE);
+        }
 
         applyTextListener(origin1);
         applyTextListener(origin2);
@@ -143,10 +167,14 @@ public class UoeTaskActivity extends AppCompatActivity {
                 checkEditTextAnswer(origin4, 3);
                 checkEditTextAnswer(origin5, 4);
                 checkEditTextAnswer(origin6, 5);
-                checkEditTextAnswer(origin7, 6);
-                checkEditTextAnswer(origin8, 7);
-                checkEditTextAnswer(origin9, 8);
-                checkEditTextAnswer(origin10, 9);
+                if (category != 1) {
+                    checkEditTextAnswer(origin7, 6);
+                    checkEditTextAnswer(origin8, 7);
+                    checkEditTextAnswer(origin9, 8);
+                }
+                if (category > 1) {
+                    checkEditTextAnswer(origin10, 9);
+                }
 
                 if (!ifAnswered) {
                     recordRecentActivity();
@@ -155,7 +183,7 @@ public class UoeTaskActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
                 builder.setTitle("Ваш результат:")
-                                .setMessage("You have " + rightAnswers + "/" + "10 right answers")
+                                .setMessage("You have " + rightAnswers + "/" + numberOfQuestions + " right answers")
                                 .setCancelable(false)
                                 .setNegativeButton("OK",
                                         new DialogInterface.OnClickListener() {
@@ -304,81 +332,152 @@ public class UoeTaskActivity extends AppCompatActivity {
 
     private void generateRandomTasks(int category) {
         Cursor cursor;
-        String selection = Tables.UseOfEnglishTask.COLUMN_TOPIC + " = ?";
-        String[] selectionArgs = null;
-
-        String[] topicsArray = getResources().getStringArray(R.array.uoe_topics);
-        if (category == 0) {
-            // no filtration if "по всем темам"
-            selection = null;
-        } else {
-            selectionArgs = new String[]{topicsArray[category]}; // filter by topic name
-        }
-
-        // select the tasks that were done less than twice
-        String completionSelect = Tables.UseOfEnglishTask.COLUMN_COMPLETION + " < ?";
-        String[] completionSelectArgs = new String[]{"100"};
-        String totalSelection;
-        String[] totalSelectionArgs;
-        if (selection != null) {
-            totalSelection = selection + " AND " + completionSelect;
-            totalSelectionArgs = new String[]{selectionArgs[0], completionSelectArgs[0]};
-        } else {
-            totalSelection = completionSelect;
-            totalSelectionArgs = completionSelectArgs;
-        }
-
-        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, totalSelection,
-                totalSelectionArgs,null, null, "RANDOM()", "1");
-        if (cursor == null) {
-            cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
-                    selectionArgs, null,null, "RANDOM()", "1");
-        }
-
-        if (cursor != null) {
-            try {
-                int idColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ID);
-                int taskColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_TASK);
-                int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
-                int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
-                int completionColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_COMPLETION);
-
-                List<String> tasksList = new ArrayList<>();
-                List<String> originsList = new ArrayList<>();
-                cursor.moveToFirst();
-                for (int i = 0; i < 10; i++) {
-                    int id = cursor.getInt(idColumnIndex);
-                    String task = cursor.getString(taskColumnIndex);
-                    String origin = cursor.getString(originColumnIndex);
-                    String answer = cursor.getString(answerColumnIndex);
-                    int completion = cursor.getInt(completionColumnIndex);
-                    UoeTask elem = new UoeTask(id, task, origin, answer, completion);
-                    while (tasksList.contains(task) || (originsList.contains(origin) && category != 4
-                            && category != 6 && category != 8 && category != 10 && category != 12) ||
-                            (tasksList.size() > 0 && tasksList.get(i - 1).equals(task))) {
-                        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
-                                selectionArgs, null, null, "RANDOM()", "1");
-                        cursor.moveToFirst();
-                        id = cursor.getInt(idColumnIndex);
-                        task = cursor.getString(taskColumnIndex);
-                        origin = cursor.getString(originColumnIndex);
-                        answer = cursor.getString(answerColumnIndex);
-                        completion = cursor.getInt(completionColumnIndex);
-                        elem = new UoeTask(id, task, origin, answer, completion);
-                    }
-                    tasks.add(elem);
-                    tasksList.add(task);
-                    originsList.add(origin);
-                    cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, totalSelection,
-                            totalSelectionArgs,null, null, "RANDOM()", "1");
-                    if (cursor == null) {
-                        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
-                                selectionArgs, null,null, "RANDOM()", "1");
-                    }
-                    cursor.moveToFirst();
+        if (category == 0 || category == 1) {
+            /* по всем темам and словообразование have special generating mechanism */
+            int[] questionsIds = new int[]{};
+            if (category == 0) {
+                // по всем темам
+                Random rand = new Random();
+                int number = rand.nextInt(10);
+                // avoiding repetition
+                while (number == getLastTextNumber()) {
+                    number = rand.nextInt(10);
                 }
-            } finally {
-                cursor.close();
+                setLastTextNumber(number);
+                if (number == 0) {
+                    questionsIds = new int[]{293, 464, 641, 138, 511, 2, 438, 230, 50};
+                } else if (number == 1) {
+                    questionsIds = new int[]{7, 299, 711, 387, 428, 234, 53, 142, 520};
+                } else if (number == 2) {
+                    questionsIds = new int[]{390, 528, 147, 58, 238, 529, 301, 471, 680};
+                } else if (number == 3) {
+                    questionsIds = new int[]{14, 246, 360, 447, 550, 727, 477, 687, 211};
+                } else if (number == 4) {
+                    questionsIds = new int[]{411, 569, 20, 570, 366, 166, 726, 73, 481};
+                } else if (number == 5) {
+                    questionsIds = new int[]{693, 171, 259, 23, 213, 324, 451, 581, 582};
+                } else if (number == 6) {
+                    questionsIds = new int[]{327, 112, 657, 78, 695, 588, 262, 484, 506};
+                } else if (number == 7) {
+                    questionsIds = new int[]{600, 601, 373, 334, 268, 81, 216, 486, 415};
+                } else if (number == 8) {
+                    questionsIds = new int[]{613, 614, 337, 87, 276, 37, 491, 185, 227};
+                } else if (number == 9) {
+                    questionsIds = new int[]{220, 728, 288, 634, 708, 347, 401, 435, 195};
+                }
+            } else {
+                questionsIds = new int[6];
+                Random rand = new Random();
+                int number = rand.nextInt(78);
+                // avoiding repetition
+                while (number == getLastTextNumber()) {
+                    number = rand.nextInt(10);
+                }
+                setLastTextNumber(number);
+                int start = 729 + 6 * number;
+                int end = 729 + 6 * (number + 1);
+                int idx = 0;
+                for (int i = start; i < end; i++) {
+                    questionsIds[idx] = i;
+                    idx++;
+                }
+            }
+
+            String selection = Tables.UseOfEnglishTask._ID + " = ?";
+
+            for (int i = 0; i < (category == 0 ? 9 : 6); i++) {
+                String[] selectionArg = new String[]{String.valueOf(questionsIds[i])};
+                cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                        selectionArg, null, null, null, null);
+
+                if (cursor != null) {
+                    try {
+                        int taskColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_TASK);
+                        int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
+                        int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
+
+                        cursor.moveToFirst();
+                        String task = cursor.getString(taskColumnIndex);
+                        if (questionsIds[i] == 246) {
+                            task = "Several benches __________________.";
+                        } else if (questionsIds[i] == 259) {
+                            task = "Lots of animals __________________ there.";
+                        }
+                        String origin = cursor.getString(originColumnIndex);
+                        String answer = cursor.getString(answerColumnIndex);
+                        UoeTask elem = new UoeTask(questionsIds[i], task, origin, answer, 0);
+                        tasks.add(elem);
+                    } finally {
+                        cursor.close();
+                    }
+                }
+            }
+
+        } else {
+            String selection = Tables.UseOfEnglishTask.COLUMN_TOPIC + " = ?";
+
+            String[] topicsArray = getResources().getStringArray(R.array.uoe_topics);
+            String[] selectionArgs = new String[]{topicsArray[category]}; // filter by topic name
+
+            // select the tasks that were done less than twice
+            String completionSelect = Tables.UseOfEnglishTask.COLUMN_COMPLETION + " < ?";
+            String[] completionSelectArgs = new String[]{"100"};
+
+            String totalSelection = selection + " AND " + completionSelect;
+            String[] totalSelectionArgs = new String[]{selectionArgs[0], completionSelectArgs[0]};
+
+            cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, totalSelection,
+                    totalSelectionArgs,null, null, "RANDOM()", "1");
+            if (cursor == null) {
+                cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                        selectionArgs, null,null, "RANDOM()", "1");
+            }
+
+            if (cursor != null) {
+                try {
+                    int idColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ID);
+                    int taskColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_TASK);
+                    int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
+                    int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
+                    int completionColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_COMPLETION);
+
+                    List<String> tasksList = new ArrayList<>();
+                    List<String> originsList = new ArrayList<>();
+                    cursor.moveToFirst();
+                    for (int i = 0; i < 10; i++) {
+                        int id = cursor.getInt(idColumnIndex);
+                        String task = cursor.getString(taskColumnIndex);
+                        String origin = cursor.getString(originColumnIndex);
+                        String answer = cursor.getString(answerColumnIndex);
+                        int completion = cursor.getInt(completionColumnIndex);
+                        UoeTask elem = new UoeTask(id, task, origin, answer, completion);
+                        while (tasksList.contains(task) || (originsList.contains(origin) && category != 4
+                                && category != 6 && category != 8 && category != 10 && category != 12) ||
+                                (tasksList.size() > 0 && tasksList.get(i - 1).equals(task))) {
+                            cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                                    selectionArgs, null, null, "RANDOM()", "1");
+                            cursor.moveToFirst();
+                            id = cursor.getInt(idColumnIndex);
+                            task = cursor.getString(taskColumnIndex);
+                            origin = cursor.getString(originColumnIndex);
+                            answer = cursor.getString(answerColumnIndex);
+                            completion = cursor.getInt(completionColumnIndex);
+                            elem = new UoeTask(id, task, origin, answer, completion);
+                        }
+                        tasks.add(elem);
+                        tasksList.add(task);
+                        originsList.add(origin);
+                        cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, totalSelection,
+                                totalSelectionArgs,null, null, "RANDOM()", "1");
+                        if (cursor == null) {
+                            cursor = db.query(Tables.UseOfEnglishTask.TABLE_NAME, null, selection,
+                                    selectionArgs, null,null, "RANDOM()", "1");
+                        }
+                        cursor.moveToFirst();
+                    }
+                } finally {
+                    cursor.close();
+                }
             }
         }
     }
@@ -388,7 +487,6 @@ public class UoeTaskActivity extends AppCompatActivity {
 
         // forming the data to write
         int dynamics = 0;
-        int totalQuestions = 10;  // in UoE there are always 10 tasks
         String topicName = getResources().getStringArray(R.array.uoe_topics)[category];
 
         // building exp points. If user does the task correctly for the first time, they get 2exp
@@ -454,7 +552,7 @@ public class UoeTaskActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(Tables.RecentActivities.COLUMN_TOPIC, topicName);
         values.put(Tables.RecentActivities.COLUMN_RIGHT, rightAnswers);
-        values.put(Tables.RecentActivities.COLUMN_TOTAL, totalQuestions);
+        values.put(Tables.RecentActivities.COLUMN_TOTAL, numberOfQuestions);
         values.put(Tables.RecentActivities.COLUMN_EXP, exp);
         values.put(Tables.RecentActivities.COLUMN_DYNAMICS, dynamics);
         db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
@@ -468,6 +566,30 @@ public class UoeTaskActivity extends AppCompatActivity {
         } else {
             editor.putInt(EXPERIENCE_KEY, exp);
         }
+        editor.apply();
+    }
+
+    private int getLastTextNumber() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String key;
+        if (category == 0) {
+            key = LAST_UOE_ALL_TOPICS;
+        } else {
+            key = LAST_UOE_FORMATION;
+        }
+        return preferences.getInt(key, -1);
+    }
+
+    private void setLastTextNumber(int number) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        String key;
+        if (category == 0) {
+            key = LAST_UOE_ALL_TOPICS;
+        } else {
+            key = LAST_UOE_FORMATION;
+        }
+        editor.putInt(key, number);
         editor.apply();
     }
 }
