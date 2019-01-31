@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app.VariantsTasks;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,7 +14,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,6 +44,7 @@ import static com.eduapps.edumage.oge_app.AudioTaskActivity.hideKeyboard;
 public class AudioTaskFragment extends TaskFragment {
     private int position;
     private int number;
+    private int deviceHeight;
 
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
@@ -122,10 +125,16 @@ public class AudioTaskFragment extends TaskFragment {
         int layout = position < 2 ? R.layout.audio_tasks_1_2 : R.layout.audio_tasks_3_8;
         rootView = inflater.inflate(layout, container, false);
 
+        deviceHeight = getDeviceHeight();
+
         CardView audioCard = rootView.findViewById(R.id.audio_task);
         if (position < 2) {
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) audioCard.getLayoutParams();
-            lp.setMargins(16, 8, 16, 8);
+            if (deviceHeight < 1000) {
+                lp.setMargins(8, 8, 8, 8);
+            } else {
+                lp.setMargins(16, 8, 16, 8);
+            }
             audioCard.setLayoutParams(lp);
         } else {
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) audioCard.getLayoutParams();
@@ -144,6 +153,9 @@ public class AudioTaskFragment extends TaskFragment {
             question.setText(currentQuestion);
             if (currentQuestion.length() >= 250) {
                 question.setTextSize(14);
+            }
+            if (deviceHeight < 1000) {
+                question.setTextSize(12);
             }
             // category 0 consists of 4 answers cells, not 5, so we'll delete the last one
             if (position == 0) {
@@ -466,6 +478,14 @@ public class AudioTaskFragment extends TaskFragment {
     private boolean getAudioPlayingStatus() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         return preferences.getBoolean("ifAudioPlaying", false);
+    }
+
+    private int getDeviceHeight() {
+        WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        display.getMetrics(metrics);
+        return metrics.heightPixels;
     }
 
     private void releaseMediaPlayer() {
