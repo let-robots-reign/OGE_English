@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import static com.eduapps.edumage.oge_app.AudioTaskActivity.hideKeyboard;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             /* Do first run stuff */
             setContentView(R.layout.greetings);
+
+            MobileAds.initialize(this, getResources().getString(R.string.ads_application_id));
 
             final EditText nameField = findViewById(R.id.name_field);
             final EditText gradeField = findViewById(R.id.grade_field);
@@ -60,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setMainScreen() {
         setContentView(R.layout.main_screen);
+
+        AdView adView = findViewById(R.id.adView_main);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         TextView trainingButton = findViewById(R.id.training);
         trainingButton.setOnClickListener(new View.OnClickListener() {

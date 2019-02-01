@@ -1,135 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
-    android:paddingTop="10dp"
-    android:paddingLeft="18dp"
-    android:paddingRight="18dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:elevation="12dp"
-        app:cardCornerRadius="20dp"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="16sp"
-            app:fontFamily="@font/merriweather_regular"
-            android:text="@string/app_version"/>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="12dp"
-        app:cardCornerRadius="20dp"
-        android:layout_marginBottom="16dp">
+        android:paddingTop="10dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
 
-        <LinearLayout
-            android:padding="8dp"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="50dp"
+            android:elevation="12dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="16dp">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 app:fontFamily="@font/merriweather_regular"
-                android:text="@string/email_us"/>
+                android:text="@string/app_version"/>
+        </android.support.v7.widget.CardView>
 
-            <ImageView
-                android:id="@+id/email_icon"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:layout_marginRight="15dp"
-                app:srcCompat="@drawable/ic_mail"/>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="12dp"
-        app:cardCornerRadius="20dp"
-        android:layout_marginBottom="16dp">
-
-        <RelativeLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="16dp">
 
-            <ImageView
-                android:id="@+id/like_icon_1"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                app:srcCompat="@drawable/ic_like"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:padding="8dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/like_icon_1"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="16sp"
-                app:fontFamily="@font/merriweather_regular"
-                android:text="@string/icons_designed_by"/>
+                android:orientation="horizontal">
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/merriweather_regular"
+                    android:text="@string/email_us"/>
 
-    </android.support.v7.widget.CardView>
+                <ImageView
+                    android:id="@+id/email_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="15dp"
+                    app:srcCompat="@drawable/ic_mail"/>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="12dp"
-        app:cardCornerRadius="20dp">
+            </LinearLayout>
 
-        <RelativeLayout
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="16dp">
 
-            <ImageView
-                android:id="@+id/like_icon_2"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                app:srcCompat="@drawable/ic_like"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/like_icon_2"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="16sp"
-                app:fontFamily="@font/merriweather_regular"
-                android:text="@string/MA_gratitude"/>
+                <ImageView
+                    android:id="@+id/like_icon_1"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    app:srcCompat="@drawable/ic_like"/>
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/like_icon_1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/merriweather_regular"
+                    android:text="@string/icons_designed_by"/>
 
-    </android.support.v7.widget.CardView>
+            </RelativeLayout>
 
+        </android.support.v7.widget.CardView>
 
-</LinearLayout>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:id="@+id/like_icon_2"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    app:srcCompat="@drawable/ic_like"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/like_icon_2"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/merriweather_regular"
+                    android:text="@string/MA_gratitude"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/ads_test">
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>

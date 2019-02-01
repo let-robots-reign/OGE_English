@@ -36,7 +36,10 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-ads:17.1.3'
     compile 'com.android.support:cardview-v7:27.1.1'
+    compile 'com.android.support:animated-vector-drawable:27.1.1'
+    compile 'com.android.support:customtabs:27.1.1'
     compile 'com.android.support:recyclerview-v7:27.1.1'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'com.android.support:design:27.1.1'
