@@ -111,4 +111,19 @@
         android:layout_marginBottom="13dp"
         app:srcCompat="@drawable/ic_info"/>
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView_main"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/user_icon"
+        android:layout_toLeftOf="@id/settings_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_main_screen">
+    </com.google.android.gms.ads.AdView>
+
 </RelativeLayout>
