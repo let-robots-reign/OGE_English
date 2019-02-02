@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -289,14 +290,14 @@ public class UoeTaskActivity extends AppCompatActivity {
 
     private void checkEditTextAnswer(EditText answer, int position) {
         String ans = tasks.get(position).getAnswer();
-            String typed = answer.getText().toString();
-            boolean cond;
-            if (ans.contains("/")) {   //  "/" in answer means there are two possible options
-                cond = typed.equals(ans.split("/")[0]) || typed.equals(ans.split("/")[1]);
-            } else {
-                cond = typed.equals(ans);
-            }
-            if (cond) {
+        String typed = answer.getText().toString();
+        boolean cond;
+        if (ans.contains("/")) {   //  "/" in answer means there are two possible options
+            cond = typed.equals(ans.split("/")[0]) || typed.equals(ans.split("/")[1]);
+        } else {
+            cond = typed.equals(ans);
+        }
+        if (cond) {
             answer.setTextColor(getResources().getColor(R.color.right_answer));
             rightAnswers += 1;
         } else {
@@ -395,6 +396,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                         int taskColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_TASK);
                         int originColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ORIGIN);
                         int answerColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_ANSWER);
+                        int completionColumnIndex = cursor.getColumnIndex(Tables.UseOfEnglishTask.COLUMN_COMPLETION);
 
                         cursor.moveToFirst();
                         String task = cursor.getString(taskColumnIndex);
@@ -405,7 +407,8 @@ public class UoeTaskActivity extends AppCompatActivity {
                         }
                         String origin = cursor.getString(originColumnIndex);
                         String answer = cursor.getString(answerColumnIndex);
-                        UoeTask elem = new UoeTask(questionsIds[i], task, origin, answer, 0);
+                        int completion = cursor.getInt(completionColumnIndex);
+                        UoeTask elem = new UoeTask(questionsIds[i], task, origin, answer, completion);
                         tasks.add(elem);
                     } finally {
                         cursor.close();
