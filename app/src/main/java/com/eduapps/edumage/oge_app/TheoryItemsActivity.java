@@ -22,12 +22,12 @@ public class TheoryItemsActivity extends AppCompatActivity {
         if (extras != null) {
             category = extras.getInt("category");
         }
-        String[] categories = new String[]{"Языковой материал", "Письмо"};
+        String[] categories = new String[]{"Общая информация об экзамене", "Языковой материал", "Письмо"};
         setTitle(categories[category]);
 
         setContentView(R.layout.theory_cards);
 
-        if (category == 1) {
+        if (category != 1) {
             AdView adView = findViewById(R.id.adView_theory_cards);
             AdRequest adRequest = new AdRequest.Builder().build();
             adView.loadAd(adRequest);
@@ -37,6 +37,10 @@ public class TheoryItemsActivity extends AppCompatActivity {
         List<String> items;
         switch (category) {
             case 0:
+                cards = new String[]{"Порядок проведения", "Аудирование", "Чтение", "Языковой материал",
+                                    "Письмо"};
+                break;
+            case 1:
                 cards = new String[]{"Множественное число существительных", "Порядковые числительные",
                     "Притяжательные местоимения", "Объектные местоимения", "Возвратные местоимения",
                     "Пассивный залог", "I wish + V2", "Условное предложение (реальное)",
@@ -45,7 +49,7 @@ public class TheoryItemsActivity extends AppCompatActivity {
                     "Прошедшее простое", "Прошедшее продолженное", "Прошедшее совершённое",
                     "Будущее простое", "Степени сравнения прилагательных", "Would + V"};
                 break;
-            case 1:
+            case 2:
                 cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки"};
                 break;
             default:

@@ -33,8 +33,9 @@ public class TheoryActivity extends AppCompatActivity {
 
         //theory.add(new TheoryCard(R.string.audio, R.drawable.ic_audio, 5, 12));
         //theory.add(new TheoryCard(R.string.reading, R.drawable.ic_reading, 13, 15));
-        theory.add(new TheoryCard(R.string.use_of_english, R.drawable.ic_use_of_english, 24, 42));
-        theory.add(new TheoryCard(R.string.writing, R.drawable.ic_writing, 9, 10));
+        theory.add(new TheoryCard(R.string.exam_info, R.drawable.ic_exam));
+        theory.add(new TheoryCard(R.string.use_of_english, R.drawable.ic_use_of_english));
+        theory.add(new TheoryCard(R.string.writing, R.drawable.ic_writing));
 
         RVTheoryAdapter adapter = new RVTheoryAdapter(theory);
         theoryList.setAdapter(adapter);

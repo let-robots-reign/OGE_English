@@ -29,6 +29,12 @@ public class TheoryItemActivity extends AppCompatActivity {
         int[] topics;
         switch (category) {
             case 0:
+                cards = new String[]{"Порядок проведения", "Аудирование", "Чтение", "Языковой материал",
+                        "Письмо"};
+                topics = new int[]{R.string.procedure, R.string.audio_instruction,
+                        R.string.reading_instruction, R.string.uoe_instruction, R.string.writing_instruction};
+                break;
+            case 1:
                 cards = new String[]{"Множественное число существительных", "Порядковые числительные",
                         "Притяжательные местоимения", "Объектные местоимения", "Возвратные местоимения",
                         "Пассивный залог", "I wish + V2", "Условное предложение (реальное)",
@@ -44,7 +50,7 @@ public class TheoryItemActivity extends AppCompatActivity {
                                     R.string.clarification, R.string.clarification, R.string.degrees_comparison_html,
                                     R.string.would_html_part_1};
                 break;
-            case 1:
+            case 2:
                 cards = new String[]{"Алгоритм написания", "Фразы-клише", "Слова-связки"};
                 topics = new int[]{R.string.algorythm, R.string.blank, R.string.objective_html};
                 break;
@@ -67,7 +73,7 @@ public class TheoryItemActivity extends AppCompatActivity {
         TextView main = findViewById(R.id.main_theory_block);
         main.setText(topics[position]);
 
-        if (category == 0) {
+        if (category == 1) {
             if (position == 2) {
                 View view = getLayoutInflater().inflate(R.layout.possessive_pronouns_table, layout, false);
                 layout.addView(view);
@@ -137,7 +143,7 @@ public class TheoryItemActivity extends AppCompatActivity {
                 text.setPadding(32, 32, 32, 32);
                 layout.addView(text);
             }
-        } else if (category == 1) {
+        } else if (category == 2) {
             if (position == 1) {
                 setContentView(R.layout.cliches_theory);
             } else if (position == 2) {
