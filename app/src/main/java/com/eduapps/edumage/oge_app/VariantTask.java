@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,6 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.eduapps.edumage.oge_app.VariantsTasks.TaskFragment;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.List;
 
@@ -29,10 +32,15 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
     private static SQLiteDatabase db;
     private List<Fragment> fragments;
 
+    private InterstitialAd interstitialAd;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.variant);
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getResources().getString(R.string.variant_ad));
 
         db = new DbHelper(this).getReadableDatabase();
 
@@ -118,6 +126,8 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+
                 checkButton.setVisibility(View.GONE);
 
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) viewpager.getLayoutParams();
@@ -150,6 +160,29 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
         });
 
         getLoaderManager().destroyLoader(loader.getId());
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (interstitialAd.isLoaded()) {
+            interstitialAd.show();
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // the same behavior for the "up/home" button in the Action Bar
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                if (interstitialAd.isLoaded()) {
+                    interstitialAd.show();
+                }
+                this.onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

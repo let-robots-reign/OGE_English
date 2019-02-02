@@ -485,5 +485,9 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="trainings_screen_banner">ca-app-pub-8665387274352365/2072228830</string>
     <string name="topics_screen_banner">ca-app-pub-8665387274352365/2124910167</string>
     <string name="info_screen_banner">ca-app-pub-8665387274352365/1937207907</string>
+    <string name="theory_screen_banner">ca-app-pub-8665387274352365/1727602147</string>
+    <string name="profile_screen_banner">ca-app-pub-8665387274352365/1344458766</string>
+    <string name="theory_cards_screen_banner">ca-app-pub-8665387274352365/8787834511</string>
+    <string name="variant_ad">ca-app-pub-8665387274352365/7630665512</string>
 
 </resources>

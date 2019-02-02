@@ -21,10 +21,6 @@ public class UoeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category_list);
 
-        AdView adView = findViewById(R.id.adView_topics);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
         RecyclerView uoeTopicsList = findViewById(R.id.topics_list);
 
         uoeTopicsList.setHasFixedSize(true);
