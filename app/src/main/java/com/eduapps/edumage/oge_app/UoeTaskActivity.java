@@ -501,6 +501,7 @@ public class UoeTaskActivity extends AppCompatActivity {
             if (typedAnswers[i].equals(elem.getAnswer())) {
                 // user answered question #i correctly
                 int comp = elem.getCompletion();
+                Log.v("UoeTaskActivity", comp+"");
                 if (comp == 0) {
                     exp += 2;
                 } else if (comp == 50) {

@@ -194,7 +194,7 @@ public class WritingActivity extends AppCompatActivity {
             TextView eng_phrase = new TextView(this);
             eng_phrase.setText(currentQuestion[i]);
             eng_phrase.setTextSize(16);
-            eng_phrase.setTextColor(getResources().getColor(R.color.colorPrimaryText));
+            eng_phrase.setTextColor(getResources().getColor(R.color.colorPrimaryText))  ;
             question.addView(eng_phrase);
 
             LayoutInflater inflater = LayoutInflater.from(this);

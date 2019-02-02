@@ -13,6 +13,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.eduapps.edumage.oge_app.data.Tables;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,10 @@ public class TrainingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trainings_list);
+
+        AdView adView = findViewById(R.id.adView_trainings);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         db = new DbHelper(this).getReadableDatabase();
 
