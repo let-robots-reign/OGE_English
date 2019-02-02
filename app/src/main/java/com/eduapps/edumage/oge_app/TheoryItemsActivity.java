@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +26,12 @@ public class TheoryItemsActivity extends AppCompatActivity {
         setTitle(categories[category]);
 
         setContentView(R.layout.theory_cards);
+
+        if (category == 1) {
+            AdView adView = findViewById(R.id.adView_theory_cards);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         String[] cards;
         List<String> items;
