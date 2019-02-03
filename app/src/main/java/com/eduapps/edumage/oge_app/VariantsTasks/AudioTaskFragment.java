@@ -44,7 +44,6 @@ import static com.eduapps.edumage.oge_app.AudioTaskActivity.hideKeyboard;
 public class AudioTaskFragment extends TaskFragment {
     private int position;
     private int number;
-    private int deviceHeight;
 
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
@@ -125,7 +124,7 @@ public class AudioTaskFragment extends TaskFragment {
         int layout = position < 2 ? R.layout.audio_tasks_1_2 : R.layout.audio_tasks_3_8;
         rootView = inflater.inflate(layout, container, false);
 
-        deviceHeight = getDeviceHeight();
+        int deviceHeight = getDeviceHeight();
 
         CardView audioCard = rootView.findViewById(R.id.audio_task);
         if (position < 2) {
@@ -152,10 +151,11 @@ public class AudioTaskFragment extends TaskFragment {
             // if the question is too big
             question.setText(currentQuestion);
             if (currentQuestion.length() >= 250) {
-                question.setTextSize(14);
-            }
-            if (deviceHeight < 1000) {
-                question.setTextSize(12);
+                if (deviceHeight < 1000) {
+                    question.setTextSize(12);
+                } else {
+                    question.setTextSize(14);
+                }
             }
             // category 0 consists of 4 answers cells, not 5, so we'll delete the last one
             if (position == 0) {

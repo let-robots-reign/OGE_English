@@ -45,5 +45,6 @@ public class TheoryActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(TheoryActivity.this, MainActivity.class);
         startActivity(intent);
+        super.onBackPressed();
     }
 }

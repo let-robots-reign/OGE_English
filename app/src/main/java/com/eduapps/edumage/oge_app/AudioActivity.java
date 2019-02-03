@@ -46,5 +46,6 @@ public class AudioActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(AudioActivity.this, TrainingsActivity.class);
         startActivity(intent);
+        super.onBackPressed();
     }
 }

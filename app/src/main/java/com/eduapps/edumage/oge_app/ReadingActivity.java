@@ -47,5 +47,6 @@ public class ReadingActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(ReadingActivity.this, TrainingsActivity.class);
         startActivity(intent);
+        super.onBackPressed();
     }
 }

@@ -57,9 +57,6 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
     @Override
     public void onBindViewHolder(final @NonNull TrainingsViewHolder holder, int position) {
         holder.trainingName.setText(trainings.get(position).getTrainingName());
-//        if (trainings.get(position).getTrainingName() == R.string.individual) {
-//            holder.trainingName.setTextSize(14);
-//        }
         // make a progress bar
         String progress = "прогресс " + trainings.get(position).getProgress() + "%";
         holder.progress.setText(progress);
@@ -70,7 +67,7 @@ public class RVTrainingsAdapter extends RecyclerView.Adapter<RVTrainingsAdapter.
         // alter paddingBottom of the last element
         if (position == getItemCount() - 1) {
             holder.layout.setPadding(holder.layout.getPaddingLeft(), holder.layout.getPaddingTop(),
-                    holder.layout.getPaddingRight(), 10);
+                    holder.layout.getPaddingRight(), 100);
             // writing doesn't need "progress" scale
             holder.progress.setVisibility(View.GONE);
             holder.progressBar.setVisibility(View.GONE);

@@ -1,5 +1,6 @@
 package com.eduapps.edumage.oge_app;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,8 +14,11 @@ import android.support.v4.view.ViewPager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -120,9 +124,23 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
 
         TabLayout tabLayout = findViewById(R.id.category_tabs);
         tabLayout.setupWithViewPager(viewpager);
+        int deviceHeight = getDeviceHeight();
+        if (deviceHeight < 1000) {  // supporting small screens
+            tabLayout.setLayoutParams(new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT, 42));
+        }
 
         final Button checkButton = findViewById(R.id.check_button);
         checkButton.setVisibility(View.VISIBLE);
+        if (deviceHeight < 1000) {  // supporting small screens
+            RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 48);
+            buttonParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            checkButton.setLayoutParams(buttonParams);
+
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) viewpager.getLayoutParams();
+            lp.setMargins(0, 0, 0, 48);
+            viewpager.setLayoutParams(lp);
+        }
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,6 +223,14 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
 
     public static SQLiteDatabase getDb() {
         return db;
+    }
+
+    private int getDeviceHeight() {
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        display.getMetrics(metrics);
+        return metrics.heightPixels;
     }
 
     private void recordVariantResult(int res) {

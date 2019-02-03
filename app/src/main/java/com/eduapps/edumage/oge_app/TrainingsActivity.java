@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.util.Log;
 import com.eduapps.edumage.oge_app.data.Tables;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +60,7 @@ public class TrainingsActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(TrainingsActivity.this, MainActivity.class);
         startActivity(intent);
+        super.onBackPressed();
     }
 
     private int getProgress(String category) {

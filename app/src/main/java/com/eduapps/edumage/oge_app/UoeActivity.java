@@ -42,5 +42,6 @@ public class UoeActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(UoeActivity.this, TrainingsActivity.class);
         startActivity(intent);
+        super.onBackPressed();
     }
 }
