@@ -191,7 +191,7 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // the same behavior for the "up/home" button in the Action Bar
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 if (interstitialAd.isLoaded()) {
                     interstitialAd.show();

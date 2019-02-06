@@ -15,8 +15,10 @@ import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +73,6 @@ public class AudioTaskFragment extends TaskFragment {
             retriesCount -= 1;
             releaseMediaPlayer();
             setPauseMode();
-            setAudioPlayingStatus(false);
         }
     };
 
@@ -83,12 +84,31 @@ public class AudioTaskFragment extends TaskFragment {
                 setPauseMode();
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 setPauseMode();
-                releaseMediaPlayer();
+                //releaseMediaPlayer();
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                 setPlayMode();
             }
         }
     };
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        setPauseMode();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setPlayMode();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    @Override
+    public void onDestroy() {
+        releaseMediaPlayer();
+        super.onDestroy();
+    }
 
     private View.OnTouchListener clickListener = new View.OnTouchListener() {
         @Override
@@ -108,12 +128,6 @@ public class AudioTaskFragment extends TaskFragment {
         position = getArguments().getInt("position"); // type of the audio task
         setAudioPlayingStatus(false);
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onStop() {
-        releaseMediaPlayer();
-        super.onStop();
     }
 
     @Nullable
@@ -275,7 +289,6 @@ public class AudioTaskFragment extends TaskFragment {
                                                 "raw", getActivity().getPackageName()));
                                 mediaPlayer.setOnCompletionListener(completionListener);
                                 setPlayMode();
-                                setAudioPlayingStatus(true);
                             }
                         }
                     } else {
@@ -455,9 +468,10 @@ public class AudioTaskFragment extends TaskFragment {
     private void setPlayMode() {
         if (mediaPlayer != null) {
             mediaPlayer.start();
+            ifAudioPlaying = true;
+            playPauseIcon.setImageResource(R.drawable.pause_icon);
+            setAudioPlayingStatus(true);
         }
-        ifAudioPlaying = true;
-        playPauseIcon.setImageResource(R.drawable.pause_icon);
     }
 
     private void setPauseMode() {
@@ -466,6 +480,7 @@ public class AudioTaskFragment extends TaskFragment {
         }
         ifAudioPlaying = false;
         playPauseIcon.setImageResource(R.drawable.play_triangle);
+        setAudioPlayingStatus(false);
     }
 
     private void setAudioPlayingStatus(boolean status) {

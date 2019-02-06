@@ -528,6 +528,24 @@ public class AudioTaskActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        // pause it only if it's playing
+        if (ifAudioPlaying) {
+            setPauseMode();
+            ifAudioPlaying = true;  //
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ifAudioPlaying) {
+            setPlayMode();
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         // when user exits via "back" we also need to stop the audio
         releaseMediaPlayer();
@@ -625,9 +643,9 @@ public class AudioTaskActivity extends AppCompatActivity {
     private void setPlayMode() {
         if (mediaPlayer != null) {
             mediaPlayer.start();
+            ifAudioPlaying = true;
+            playPauseIcon.setImageResource(R.drawable.pause_icon);
         }
-        ifAudioPlaying = true;
-        playPauseIcon.setImageResource(R.drawable.pause_icon);
     }
 
     private void setPauseMode() {

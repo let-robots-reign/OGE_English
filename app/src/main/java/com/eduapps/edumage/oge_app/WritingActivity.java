@@ -417,7 +417,6 @@ public class WritingActivity extends AppCompatActivity {
                 TextView explan1 = findViewById(R.id.explanation_1);
                 if (radioButton1 != null) {
                     int typed = options1.indexOfChild(radioButton1);
-                    //Log.v("WritingActivity", typed+"_____"+comments[0]);
                     explan1.setText(comments[0].split("\n")[typed]);
                 }
 
@@ -638,7 +637,7 @@ public class WritingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WritingActivity.this, TheoryItemActivity.class);
                 intent.putExtra("position", 0);
-                intent.putExtra("category", 1);
+                intent.putExtra("category", 2);
                 startActivity(intent);
             }
         });
