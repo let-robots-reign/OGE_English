@@ -322,12 +322,12 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     </string>
 
     <string name="modals_html">
-        Модальные глаголы выражают отношение говорящего к действию (совет, разрешение, обязанность и т.д.). К ним относятся <b>can, must, should, may, have to</b> и др.
+        Модальные глаголы выражают отношение говорящего к действию (совет, разрешение, обязанность и т.д.). К ним относятся <b>can, must, should, may</b> и др.
         \n\nМодальные глаголы не изменяются, то есть, не добавляются <b>-s</b>, <b>-ed</b>, <b>-ing</b>.
         \nПосле модальных глаголов следует <u>инфинитив</u>.
         \nВ вопросах модальный глагол ставится в начале предложения, в отрицании добавляется <b>not / -n’t</b> после глагола; вспомогательные глаголы не нужны.
         \n\nНапример:
-        \nWe <b>can</b> <u>swim</u>. We <b>can not</b> <u>swim</u>. <b>Can</b> we <u>swim</u>? - настоящее время
+        \nWe <b>can</b> <u>swim</u>. We <b>cannot</b> <u>swim</u>. <b>Can</b> we <u>swim</u>? - настоящее время
         \nWe <b>could</b> <u>swim</u>. We <b>could not</b> <u>swim</u>. <b>Could</b> we <u>swim</u>? - прошедшее время
         \nHe <b>should</b> <u>sleep</u> more. He <b>shouldn’t</b> <u>sleep</u> more. <b>Should</b> he <u>sleep</u> more?
         \nThey <b>must</b> <u>go</u>. They <b>mustn’t</b> <u>go</u>. <b>Must</b> they <u>go</u>?

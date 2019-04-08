@@ -80,25 +80,25 @@ public class UoeTaskActivity extends AppCompatActivity {
 
         generateRandomTasks(category);
 
-        TextView question1 = findViewById(R.id.uoe_task1);
+        final TextView question1 = findViewById(R.id.uoe_task1);
         final EditText origin1 = findViewById(R.id.uoe_answer1);
-        TextView question2 = findViewById(R.id.uoe_task2);
+        final TextView question2 = findViewById(R.id.uoe_task2);
         final EditText origin2 = findViewById(R.id.uoe_answer2);
-        TextView question3 = findViewById(R.id.uoe_task3);
+        final TextView question3 = findViewById(R.id.uoe_task3);
         final EditText origin3 = findViewById(R.id.uoe_answer3);
-        TextView question4 = findViewById(R.id.uoe_task4);
+        final TextView question4 = findViewById(R.id.uoe_task4);
         final EditText origin4 = findViewById(R.id.uoe_answer4);
-        TextView question5 = findViewById(R.id.uoe_task5);
+        final TextView question5 = findViewById(R.id.uoe_task5);
         final EditText origin5 = findViewById(R.id.uoe_answer5);
-        TextView question6 = findViewById(R.id.uoe_task6);
+        final TextView question6 = findViewById(R.id.uoe_task6);
         final EditText origin6 = findViewById(R.id.uoe_answer6);
-        TextView question7 = findViewById(R.id.uoe_task7);
+        final TextView question7 = findViewById(R.id.uoe_task7);
         final EditText origin7 = findViewById(R.id.uoe_answer7);
-        TextView question8 = findViewById(R.id.uoe_task8);
+        final TextView question8 = findViewById(R.id.uoe_task8);
         final EditText origin8 = findViewById(R.id.uoe_answer8);
-        TextView question9 = findViewById(R.id.uoe_task9);
+        final TextView question9 = findViewById(R.id.uoe_task9);
         final EditText origin9 = findViewById(R.id.uoe_answer9);
-        TextView question10 = findViewById(R.id.uoe_task10);
+        final TextView question10 = findViewById(R.id.uoe_task10);
         final EditText origin10 = findViewById(R.id.uoe_answer10);
 
         question1.setText(tasks.get(0).getQuestion());
@@ -201,6 +201,21 @@ public class UoeTaskActivity extends AppCompatActivity {
                                                 disableEditText(origin8);
                                                 disableEditText(origin9);
                                                 disableEditText(origin10);
+
+                                                if (category == 0 || category == 1) {
+                                                    question1.setText(tasks.get(0).getQuestion().replaceAll("__________________", tasks.get(0).getAnswer()));
+                                                    question2.setText(tasks.get(1).getQuestion().replaceAll("__________________", tasks.get(1).getAnswer()));
+                                                    question3.setText(tasks.get(2).getQuestion().replaceAll("__________________", tasks.get(2).getAnswer()));
+                                                    question4.setText(tasks.get(3).getQuestion().replaceAll("__________________", tasks.get(3).getAnswer()));
+                                                    question5.setText(tasks.get(4).getQuestion().replaceAll("__________________", tasks.get(4).getAnswer()));
+                                                    question6.setText(tasks.get(5).getQuestion().replaceAll("__________________", tasks.get(5).getAnswer()));
+                                                    if (category == 0) {
+                                                        question7.setText(tasks.get(6).getQuestion().replaceAll("__________________", tasks.get(6).getAnswer()));
+                                                        question8.setText(tasks.get(7).getQuestion().replaceAll("__________________", tasks.get(7).getAnswer()));
+                                                        question9.setText(tasks.get(8).getQuestion().replaceAll("__________________", tasks.get(8).getAnswer()));
+                                                    }
+                                                }
+
                                             }
                                         });
                 AlertDialog alert = builder.create();
@@ -257,7 +272,10 @@ public class UoeTaskActivity extends AppCompatActivity {
         builder.setMessage("Преобразуйте слова, напечатанные заглавными буквами так, чтобы они " +
                 "грамматически и лексически соответствовали содержанию текстов. Заполните пропуски " +
                 "полученными словами. Слова вводите заглавными буквами, без пробелов, как в " +
-                "экзаменационном бланке. Глагольные формы вводите без сокращений.");
+                "экзаменационном бланке. Глагольные формы вводите без сокращений. В секциях " +
+                "По всем темам и Словообразование после проверки вы увидите правильные ответы. Если " +
+                "вы допустили ошибку в определенной грамматической теме, следует изучить " +
+                "соответствующий раздел Теории.");
 
         builder.setView(view);
         AlertDialog alert = builder.create();
@@ -281,7 +299,6 @@ public class UoeTaskActivity extends AppCompatActivity {
     }
 
     private void disableEditText(EditText editText) {
-        editText.setHint("");
         editText.setFocusable(false);
         editText.setEnabled(false);
         editText.setCursorVisible(false);
@@ -340,33 +357,75 @@ public class UoeTaskActivity extends AppCompatActivity {
             if (category == 0) {
                 // по всем темам
                 Random rand = new Random();
-                int number = rand.nextInt(10);
+                int number = rand.nextInt(20);
                 // avoiding repetition
                 while (number == getLastTextNumber()) {
-                    number = rand.nextInt(10);
+                    number = rand.nextInt(20);
                 }
                 setLastTextNumber(number);
-                if (number == 0) {
-                    questionsIds = new int[]{293, 464, 641, 138, 511, 2, 438, 230, 50};
-                } else if (number == 1) {
-                    questionsIds = new int[]{7, 299, 711, 387, 428, 234, 53, 142, 520};
-                } else if (number == 2) {
-                    questionsIds = new int[]{390, 528, 147, 58, 238, 529, 301, 471, 680};
-                } else if (number == 3) {
-                    questionsIds = new int[]{14, 246, 360, 447, 550, 727, 477, 687, 211};
-                } else if (number == 4) {
-                    questionsIds = new int[]{411, 569, 20, 570, 366, 166, 726, 73, 481};
-                } else if (number == 5) {
-                    questionsIds = new int[]{693, 171, 259, 23, 213, 324, 451, 581, 582};
-                } else if (number == 6) {
-                    questionsIds = new int[]{327, 112, 657, 78, 695, 588, 262, 484, 506};
-                } else if (number == 7) {
-                    questionsIds = new int[]{600, 601, 373, 334, 268, 81, 216, 486, 415};
-                } else if (number == 8) {
-                    questionsIds = new int[]{613, 614, 337, 87, 276, 37, 491, 185, 227};
-                } else if (number == 9) {
-                    questionsIds = new int[]{220, 728, 288, 634, 708, 347, 401, 435, 195};
+                switch (number) {
+                    case 0:
+                        questionsIds = new int[]{293, 464, 641, 138, 511, 2, 438, 230, 50};
+                        break;
+                    case 1:
+                        questionsIds = new int[]{7, 299, 711, 387, 428, 234, 53, 142, 520};
+                        break;
+                    case 2:
+                        questionsIds = new int[]{390, 528, 147, 58, 238, 529, 301, 471, 680};
+                        break;
+                    case 3:
+                        questionsIds = new int[]{14, 246, 360, 447, 550, 727, 477, 687, 211};
+                        break;
+                    case 4:
+                        questionsIds = new int[]{411, 569, 20, 570, 366, 166, 726, 73, 481};
+                        break;
+                    case 5:
+                        questionsIds = new int[]{693, 171, 259, 23, 213, 324, 451, 581, 582};
+                        break;
+                    case 6:
+                        questionsIds = new int[]{327, 112, 657, 78, 695, 588, 262, 484, 506};
+                        break;
+                    case 7:
+                        questionsIds = new int[]{600, 601, 373, 334, 268, 81, 216, 486, 415};
+                        break;
+                    case 8:
+                        questionsIds = new int[]{613, 614, 337, 87, 276, 37, 491, 185, 227};
+                        break;
+                    case 9:
+                        questionsIds = new int[]{220, 728, 288, 634, 708, 347, 401, 435, 195};
+                        break;
+                    case 10:
+                        questionsIds = new int[]{509, 1, 510, 640, 199, 292, 137, 349, 229};
+                        break;
+                    case 11:
+                        questionsIds = new int[]{3, 465, 512, 439, 200, 139, 675, 222, 294};
+                        break;
+                    case 12:
+                        questionsIds = new int[]{513, 295, 514, 231, 51, 466, 502, 384, 201};
+                        break;
+                    case 13:
+                        questionsIds = new int[]{515, 96, 140, 4, 232, 516, 296, 297, 676};
+                        break;
+                    case 14:
+                        questionsIds = new int[]{517, 141, 202, 518, 642, 385, 97, 426, 5};
+                        break;
+                    case 15:
+                        questionsIds = new int[]{52, 386, 436, 233, 519, 6, 677, 441, 298};
+                        break;
+                    case 16:
+                        questionsIds = new int[]{522, 55, 523, 389, 99, 144, 468, 643, 236};
+                        break;
+                    case 17:
+                        questionsIds = new int[]{524, 56, 145, 403, 300, 223, 525, 644, 469};
+                        break;
+                    case 18:
+                        questionsIds = new int[]{526, 645, 237, 470, 146, 100, 527, 57, 8};
+                        break;
+                    case 19:
+                        questionsIds = new int[]{150, 61, 533, 204, 304, 474, 240, 351, 682};
+                        break;
                 }
+
             } else {
                 questionsIds = new int[6];
                 Random rand = new Random();
