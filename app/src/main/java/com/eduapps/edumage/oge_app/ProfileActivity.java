@@ -59,8 +59,8 @@ public class ProfileActivity extends AppCompatActivity {
         TextView plan = findViewById(R.id.plan);
 
         ProgressBar levelBar = findViewById(R.id.level_bar);
-        levelBar.setProgress(getUserProgress());
         levelBar.setMax(EXP_PER_LEVEL);
+        levelBar.setProgress(getUserProgress());
 
         username.setText(getUserName());
         goal.setText(getUserGoal());
