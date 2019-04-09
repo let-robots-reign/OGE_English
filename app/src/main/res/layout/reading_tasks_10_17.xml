@@ -44,7 +44,8 @@
                     android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="12dp"
-                    app:fontFamily="@font/merriweather_regular"/>
+                    app:fontFamily="@font/merriweather_regular"
+                    android:textIsSelectable="true"/>
 
                 <TextView
                     android:id="@+id/reading_text"
@@ -54,7 +55,8 @@
                     tools:text="@string/reading_topic2_text1"
                     android:textSize="14sp"
                     android:textColor="@color/colorPrimaryText"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <TextView
                     android:id="@+id/question1"
@@ -63,7 +65,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options1"
@@ -98,7 +101,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options2"
@@ -133,7 +137,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options3"
@@ -168,7 +173,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options4"
@@ -203,7 +209,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options5"
@@ -238,7 +245,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options6"
@@ -273,7 +281,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options7"
@@ -308,7 +317,8 @@
                     tools:text="@string/reading_topic2_task1"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:fontFamily="@font/roboto_regular"/>
+                    app:fontFamily="@font/roboto_regular"
+                    android:textIsSelectable="true"/>
 
                 <RadioGroup
                     android:id="@+id/options8"

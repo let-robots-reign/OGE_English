@@ -203,16 +203,16 @@ public class UoeTaskActivity extends AppCompatActivity {
                                                 disableEditText(origin10);
 
                                                 if (category == 0 || category == 1) {
-                                                    question1.setText(tasks.get(0).getQuestion().replaceAll("__________________", tasks.get(0).getAnswer()));
-                                                    question2.setText(tasks.get(1).getQuestion().replaceAll("__________________", tasks.get(1).getAnswer()));
-                                                    question3.setText(tasks.get(2).getQuestion().replaceAll("__________________", tasks.get(2).getAnswer()));
-                                                    question4.setText(tasks.get(3).getQuestion().replaceAll("__________________", tasks.get(3).getAnswer()));
-                                                    question5.setText(tasks.get(4).getQuestion().replaceAll("__________________", tasks.get(4).getAnswer()));
-                                                    question6.setText(tasks.get(5).getQuestion().replaceAll("__________________", tasks.get(5).getAnswer()));
+                                                    question1.setText(insertRightAnswer(tasks.get(0)));
+                                                    question2.setText(insertRightAnswer(tasks.get(1)));
+                                                    question3.setText(insertRightAnswer(tasks.get(2)));
+                                                    question4.setText(insertRightAnswer(tasks.get(3)));
+                                                    question5.setText(insertRightAnswer(tasks.get(4)));
+                                                    question6.setText(insertRightAnswer(tasks.get(5)));
                                                     if (category == 0) {
-                                                        question7.setText(tasks.get(6).getQuestion().replaceAll("__________________", tasks.get(6).getAnswer()));
-                                                        question8.setText(tasks.get(7).getQuestion().replaceAll("__________________", tasks.get(7).getAnswer()));
-                                                        question9.setText(tasks.get(8).getQuestion().replaceAll("__________________", tasks.get(8).getAnswer()));
+                                                        question7.setText(insertRightAnswer(tasks.get(6)));
+                                                        question8.setText(insertRightAnswer(tasks.get(7)));
+                                                        question9.setText(insertRightAnswer(tasks.get(8)));
                                                     }
                                                 }
 
@@ -273,9 +273,7 @@ public class UoeTaskActivity extends AppCompatActivity {
                 "грамматически и лексически соответствовали содержанию текстов. Заполните пропуски " +
                 "полученными словами. Слова вводите заглавными буквами, без пробелов, как в " +
                 "экзаменационном бланке. Глагольные формы вводите без сокращений. В секциях " +
-                "По всем темам и Словообразование после проверки вы увидите правильные ответы. Если " +
-                "вы допустили ошибку в определенной грамматической теме, следует изучить " +
-                "соответствующий раздел Теории.");
+                "По всем темам и Словообразование после проверки вы увидите правильные ответы.");
 
         builder.setView(view);
         AlertDialog alert = builder.create();
@@ -347,6 +345,24 @@ public class UoeTaskActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String insertRightAnswer(UoeTask task) {
+        return task.getQuestion().replaceAll(repeat(countUnderscores(task.getQuestion())), task.getAnswer());
+    }
+
+    private int countUnderscores(String text) {
+        int count = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if ((text.charAt(i) + "").equals("_")) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private String repeat(int count) {
+        return new String(new char[count]).replace("\0", "_");
     }
 
     private void generateRandomTasks(int category) {
