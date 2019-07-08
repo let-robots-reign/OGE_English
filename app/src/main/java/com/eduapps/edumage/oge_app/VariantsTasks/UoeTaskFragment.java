@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,7 +18,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.eduapps.edumage.oge_app.DbHelper;
 import com.eduapps.edumage.oge_app.R;
 import com.eduapps.edumage.oge_app.UoeTask;
 import com.eduapps.edumage.oge_app.data.Tables;
@@ -74,6 +74,9 @@ public class UoeTaskFragment extends TaskFragment {
         tasks = new ArrayList<>();
 
         assignTasks();
+
+        CardView hintCard = rootView.findViewById(R.id.uoe_hint_card);
+        hintCard.setVisibility(View.VISIBLE);
 
         TextView question1 = rootView.findViewById(R.id.uoe_task1);
         final EditText origin1 = rootView.findViewById(R.id.uoe_answer1);
@@ -192,6 +195,28 @@ public class UoeTaskFragment extends TaskFragment {
             disableEditText(origin9);
         }
 
+
+        TextView question1 = rootView.findViewById(R.id.uoe_task1);
+        TextView question2 = rootView.findViewById(R.id.uoe_task2);
+        TextView question3 = rootView.findViewById(R.id.uoe_task3);
+        TextView question4 = rootView.findViewById(R.id.uoe_task4);
+        TextView question5 = rootView.findViewById(R.id.uoe_task5);
+        TextView question6 = rootView.findViewById(R.id.uoe_task6);
+        question1.setText(insertRightAnswer(tasks.get(0)));
+        question2.setText(insertRightAnswer(tasks.get(1)));
+        question3.setText(insertRightAnswer(tasks.get(2)));
+        question4.setText(insertRightAnswer(tasks.get(3)));
+        question5.setText(insertRightAnswer(tasks.get(4)));
+        question6.setText(insertRightAnswer(tasks.get(5)));
+        if (numberOfQuestions == 9) {
+            TextView question7 = rootView.findViewById(R.id.uoe_task7);
+            TextView question8 = rootView.findViewById(R.id.uoe_task8);
+            TextView question9 = rootView.findViewById(R.id.uoe_task9);
+            question7.setText(insertRightAnswer(tasks.get(6)));
+            question8.setText(insertRightAnswer(tasks.get(7)));
+            question9.setText(insertRightAnswer(tasks.get(8)));
+        }
+
         return rightAnswers;
     }
 
@@ -236,6 +261,24 @@ public class UoeTaskFragment extends TaskFragment {
                 }
             }
         });
+    }
+
+    private String insertRightAnswer(UoeTask task) {
+        return task.getQuestion().replaceAll(repeat(countUnderscores(task.getQuestion())), task.getAnswer());
+    }
+
+    private int countUnderscores(String text) {
+        int count = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if ((text.charAt(i) + "").equals("_")) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private String repeat(int count) {
+        return new String(new char[count]).replace("\0", "_");
     }
 
     private void disableEditText(EditText editText) {
