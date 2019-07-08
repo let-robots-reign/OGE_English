@@ -19,8 +19,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.eduapps.edumage.oge_app.data.Tables;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,10 +44,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
-
-        AdView adView = findViewById(R.id.adView_profile);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 
         db = new DbHelper(this).getWritableDatabase();
 

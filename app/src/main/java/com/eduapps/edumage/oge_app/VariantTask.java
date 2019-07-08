@@ -26,8 +26,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.eduapps.edumage.oge_app.VariantsTasks.TaskFragment;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.List;
 
@@ -36,15 +34,10 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
     private static SQLiteDatabase db;
     private List<Fragment> fragments;
 
-    private InterstitialAd interstitialAd;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.variant);
-
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getResources().getString(R.string.variant_ad));
 
         db = new DbHelper(this).getReadableDatabase();
 
@@ -144,7 +137,6 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
 
                 checkButton.setVisibility(View.GONE);
 
@@ -182,9 +174,6 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
 
     @Override
     public void onBackPressed() {
-        if (interstitialAd.isLoaded()) {
-            interstitialAd.show();
-        }
         super.onBackPressed();
     }
 
@@ -193,9 +182,6 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
         // the same behavior for the "up/home" button in the Action Bar
         switch (item.getItemId()) {
             case android.R.id.home:
-                if (interstitialAd.isLoaded()) {
-                    interstitialAd.show();
-                }
                 this.onBackPressed();
                 return true;
             default:
