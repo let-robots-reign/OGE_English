@@ -49,7 +49,7 @@
                 app:srcCompat="@drawable/play_triangle"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginLeft="20dp"
@@ -267,6 +267,34 @@
                         tools:text="@string/audio_topic3_task1_option3"
                         android:layout_marginBottom="8dp"/>
                 </RadioGroup>
+
+                <TextView
+                    android:id="@+id/right_answer_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:text="@string/right_answer_header"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:fontFamily="@font/roboto_regular"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/right_answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:fontFamily="@font/roboto_regular"
+                    android:layout_marginBottom="16dp"/>
+
 
             </LinearLayout>
 

@@ -174,7 +174,7 @@ public class AudioTaskFragment extends TaskFragment {
             // category 0 consists of 4 answers cells, not 5, so we'll delete the last one
             if (position == 0) {
                 rootView.findViewById(R.id.letter_e).setVisibility(View.INVISIBLE);
-                rootView.findViewById(R.id.letter_e_view).setVisibility(View.GONE);
+                rootView.findViewById(R.id.letter_e_view).setVisibility(View.INVISIBLE);
                 rootView.findViewById(R.id.audio_cell_5).setVisibility(View.GONE);
             }
 
@@ -335,6 +335,17 @@ public class AudioTaskFragment extends TaskFragment {
             disableEditText(answer5);
         }
 
+        TextView rightAnswersHeader = rootView.findViewById(R.id.right_answer_header);
+        rightAnswersHeader.setVisibility(View.VISIBLE);
+        TextView displayRightAnswers = rootView.findViewById(R.id.right_answer);
+        displayRightAnswers.setVisibility(View.VISIBLE);
+        StringBuilder displayString = new StringBuilder();
+        for (String answer : rightAnswersList) {
+            displayString.append(answer);
+            displayString.append(" ");
+        }
+        displayRightAnswers.setText(displayString.toString());
+
         return rightAnswers;
     }
 
@@ -368,6 +379,21 @@ public class AudioTaskFragment extends TaskFragment {
         final RadioGroup options6 = rootView.findViewById(R.id.options6);
         final RadioButton radioButton6 = options6.findViewById(options6.getCheckedRadioButtonId());
         checkRadioButtonAnswer(options6, radioButton6, 5);
+
+        TextView rightAnswersHeader = rootView.findViewById(R.id.right_answer_header);
+        rightAnswersHeader.setVisibility(View.VISIBLE);
+        TextView displayRightAnswers = rootView.findViewById(R.id.right_answer);
+        displayRightAnswers.setVisibility(View.VISIBLE);
+
+        String[] question = currentQuestion.split("\n");
+        StringBuilder displayString = new StringBuilder();
+        for (int i = 0; i < rightAnswersList.size(); i++) {
+            displayString.append(i + 3);
+            displayString.append(". ");
+            displayString.append(question[i].split("/option/")[Integer.valueOf(rightAnswersList.get(i))]);
+            displayString.append("\n");
+        }
+        displayRightAnswers.setText(displayString.toString());
 
         return rightAnswers;
     }
