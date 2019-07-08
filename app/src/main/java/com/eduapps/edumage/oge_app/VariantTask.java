@@ -159,7 +159,7 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
                 builder.setTitle("Ваш результат:")
                         .setCancelable(false)
                         .setMessage("You have " + totalRightAnswers + "/45 right answers")
-                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Смотреть ошибки и ответы", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
