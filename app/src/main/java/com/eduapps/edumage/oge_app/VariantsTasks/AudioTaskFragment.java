@@ -388,7 +388,7 @@ public class AudioTaskFragment extends TaskFragment {
         String[] question = currentQuestion.split("\n");
         StringBuilder displayString = new StringBuilder();
         for (int i = 0; i < rightAnswersList.size(); i++) {
-            displayString.append(i + 3);
+            displayString.append(i + 1);
             displayString.append(". ");
             displayString.append(question[i].split("/option/")[Integer.valueOf(rightAnswersList.get(i))]);
             displayString.append("\n");

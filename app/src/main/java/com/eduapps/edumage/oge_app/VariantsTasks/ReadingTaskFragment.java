@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -204,6 +202,23 @@ public class ReadingTaskFragment extends TaskFragment {
         spinner6.setOnTouchListener(disableTouch);
         spinner7.setOnTouchListener(disableTouch);
 
+        TextView rightAnswersHeader = rootView.findViewById(R.id.right_answer_header);
+        rightAnswersHeader.setVisibility(View.VISIBLE);
+        TextView displayRightAnswers = rootView.findViewById(R.id.right_answer);
+        displayRightAnswers.setVisibility(View.VISIBLE);
+
+        String[] question = currentQuestion.split("\n");
+        StringBuilder displayAnswer = new StringBuilder();
+        String temp;
+        for (int i = 0; i < rightAnswersList.size(); i++) {
+            displayAnswer.append(i + 1);
+            displayAnswer.append(". ");
+            temp = question[Integer.valueOf(rightAnswersList.get(i))];
+            displayAnswer.append(temp.substring(temp.indexOf(".") + 2));
+            displayAnswer.append("\n");
+        }
+        displayRightAnswers.setText(displayAnswer.toString());
+
         return rightAnswers;
     }
 
@@ -242,6 +257,21 @@ public class ReadingTaskFragment extends TaskFragment {
         final RadioGroup options8 = rootView.findViewById(R.id.options8);
         final RadioButton radioButton8 = options8.findViewById(options8.getCheckedRadioButtonId());
         checkRadioButtonAnswer(options8, radioButton8, 7);
+
+        TextView rightAnswersHeader = rootView.findViewById(R.id.right_answer_header);
+        rightAnswersHeader.setVisibility(View.VISIBLE);
+        TextView displayRightAnswers = rootView.findViewById(R.id.right_answer);
+        displayRightAnswers.setVisibility(View.VISIBLE);
+
+        String[] question = new String[]{"True", "False", "Not stated"};
+        StringBuilder displayAnswer = new StringBuilder();
+        for (int i = 0; i < rightAnswersList.size(); i++) {
+            displayAnswer.append(i + 1);
+            displayAnswer.append(". ");
+            displayAnswer.append(question[Integer.valueOf(rightAnswersList.get(i)) - 1]);
+            displayAnswer.append("\n");
+        }
+        displayRightAnswers.setText(displayAnswer.toString());
 
         return rightAnswers;
     }
