@@ -15,12 +15,12 @@ android {
             storePassword 'alex5alex'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.eduapps.edumage.oge_app"
         minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 12
+        targetSdkVersion 27
+        versionCode 14
         versionName "1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -36,7 +36,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-ads:17.2.0'
     compile 'com.android.support:cardview-v7:27.1.1'
     compile 'com.android.support:animated-vector-drawable:27.1.1'
     compile 'com.android.support:customtabs:27.1.1'

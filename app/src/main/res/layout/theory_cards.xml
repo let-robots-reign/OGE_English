@@ -17,16 +17,4 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:minHeight="100dp"/>
-
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView_theory_cards"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/theory_cards_screen_banner">
-    </com.google.android.gms.ads.AdView>
-
 </RelativeLayout>
