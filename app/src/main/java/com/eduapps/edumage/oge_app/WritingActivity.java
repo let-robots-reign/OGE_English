@@ -646,7 +646,7 @@ public class WritingActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(WritingActivity.this);
         builder.setTitle("Инструкция")
-                .setCancelable(false)
+                .setCancelable(true)
                 .setMessage("Данная тренировка проверяет отдельные навыки, необходимые для " +
                         "написания письма:\n1. Знание структуры письма\n2. Использование фраз-клише\n" +
                         "3. Использование слов-связок.\n4. Умение дать полный ответ на вопрос.\n" +

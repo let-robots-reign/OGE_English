@@ -88,7 +88,7 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
         // when a user enters, he should see an instruction to the task
         AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
         builder.setTitle("Инструкция")
-                .setCancelable(false)
+                .setCancelable(true)
                 .setMessage("Вариант содержит задания 1-32 письменной части экзамена. После " +
                         "выполнения всех заданий вы можете нажать на кнопку \"Проверить вариант\" " +
                         "и получить свой результат. После проверки варианта вы не сможете " +

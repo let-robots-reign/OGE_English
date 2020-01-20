@@ -354,7 +354,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
         // when a user enters, he should see an instruction to the task
         AlertDialog.Builder builder = new AlertDialog.Builder(ReadingTaskActivity.this);
         builder.setTitle("Инструкция")
-                .setCancelable(false)
+                .setCancelable(true)
                 .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

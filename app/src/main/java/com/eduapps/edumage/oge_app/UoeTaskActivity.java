@@ -202,17 +202,19 @@ public class UoeTaskActivity extends AppCompatActivity {
                                                 disableEditText(origin9);
                                                 disableEditText(origin10);
 
-                                                if (category == 0 || category == 1) {
-                                                    question1.setText(insertRightAnswer(tasks.get(0)));
-                                                    question2.setText(insertRightAnswer(tasks.get(1)));
-                                                    question3.setText(insertRightAnswer(tasks.get(2)));
-                                                    question4.setText(insertRightAnswer(tasks.get(3)));
-                                                    question5.setText(insertRightAnswer(tasks.get(4)));
-                                                    question6.setText(insertRightAnswer(tasks.get(5)));
-                                                    if (category == 0) {
-                                                        question7.setText(insertRightAnswer(tasks.get(6)));
-                                                        question8.setText(insertRightAnswer(tasks.get(7)));
-                                                        question9.setText(insertRightAnswer(tasks.get(8)));
+                                                question1.setText(insertRightAnswer(tasks.get(0)));
+                                                question2.setText(insertRightAnswer(tasks.get(1)));
+                                                question3.setText(insertRightAnswer(tasks.get(2)));
+                                                question4.setText(insertRightAnswer(tasks.get(3)));
+                                                question5.setText(insertRightAnswer(tasks.get(4)));
+                                                question6.setText(insertRightAnswer(tasks.get(5)));
+
+                                                if (category == 0 || category > 1) {
+                                                    question7.setText(insertRightAnswer(tasks.get(6)));
+                                                    question8.setText(insertRightAnswer(tasks.get(7)));
+                                                    question9.setText(insertRightAnswer(tasks.get(8)));
+                                                    if (category > 1) {
+                                                        question10.setText(insertRightAnswer(tasks.get(9)));
                                                     }
                                                 }
 
@@ -262,7 +264,7 @@ public class UoeTaskActivity extends AppCompatActivity {
         // when a user enters, he should see an instruction to the task
         AlertDialog.Builder builder = new AlertDialog.Builder(UoeTaskActivity.this);
         builder.setTitle("Инструкция")
-                .setCancelable(false)
+                .setCancelable(true)
                 .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -272,8 +274,7 @@ public class UoeTaskActivity extends AppCompatActivity {
         builder.setMessage("Преобразуйте слова, напечатанные заглавными буквами так, чтобы они " +
                 "грамматически и лексически соответствовали содержанию текстов. Заполните пропуски " +
                 "полученными словами. Слова вводите заглавными буквами, без пробелов, как в " +
-                "экзаменационном бланке. Глагольные формы вводите без сокращений. В секциях " +
-                "По всем темам и Словообразование после проверки вы увидите правильные ответы.");
+                "экзаменационном бланке. Глагольные формы вводите без сокращений.");
 
         builder.setView(view);
         AlertDialog alert = builder.create();
