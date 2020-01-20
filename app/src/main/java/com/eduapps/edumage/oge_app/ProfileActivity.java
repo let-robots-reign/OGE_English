@@ -145,7 +145,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private long getDaysTillExam() {
-        long diffMillis = new GregorianCalendar(2019, 4, 24).getTimeInMillis()
+        long diffMillis = new GregorianCalendar(2020, 4, 22).getTimeInMillis()
                 - Calendar.getInstance().getTimeInMillis();
         return (int)Math.ceil((double)diffMillis / 1000 / 60 / 60 / 24);
     }
@@ -166,7 +166,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private int getUserProgress() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);;
+        collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
         return collectedXP % EXP_PER_LEVEL;
     }
 

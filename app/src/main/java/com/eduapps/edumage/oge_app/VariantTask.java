@@ -158,7 +158,7 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
                 AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
                 builder.setTitle("Ваш результат:")
                         .setCancelable(false)
-                        .setMessage("You have " + totalRightAnswers + "/45 right answers")
+                        .setMessage("You have " + totalRightAnswers + "/44 right answers")
                         .setNegativeButton("Смотреть ошибки и ответы", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

@@ -342,51 +342,7 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp">
 
-                    <View
-                        android:id="@+id/textG"
-                        android:layout_width="28dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/answer_cell"
-                        android:layout_marginTop="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="G"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginTop="9dp"
-                        android:textSize="24sp"
-                        android:textColor="@color/colorPrimaryText"/>
-
-                    <Spinner
-                        android:id="@+id/spinner7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/textG"
-                        android:layout_marginTop="9dp"
-                        style="@android:style/Widget.Holo.Light.Spinner"/>
-
-                    <TextView
-                        android:id="@+id/question7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="@string/task9_task1_text1"
-                        android:layout_below="@id/textG"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="6dp"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimaryText"
-                        app:fontFamily="@font/roboto_regular"
-                        android:textIsSelectable="true"/>
-
-                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/right_answer_header"

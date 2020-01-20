@@ -556,7 +556,9 @@ public class UoeTaskActivity extends AppCompatActivity {
                         cursor.moveToFirst();
                     }
                 } finally {
-                    cursor.close();
+                    if (cursor != null) {
+                        cursor.close();
+                    }
                 }
             }
         }

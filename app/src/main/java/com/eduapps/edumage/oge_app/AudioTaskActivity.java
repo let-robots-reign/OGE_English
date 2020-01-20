@@ -555,7 +555,7 @@ public class AudioTaskActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // the same behavior for the "up/home" button in the Action Bar
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 releaseMediaPlayer();
                 this.onBackPressed();
@@ -765,7 +765,7 @@ public class AudioTaskActivity extends AppCompatActivity {
         db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
 
         // also, update completion if user did the task well
-        if (rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
+        if ((double)rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
             if (currentCompletion + 50 == 100) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = preferences.edit();

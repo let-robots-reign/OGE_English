@@ -147,7 +147,7 @@ In the evening Max is going to/option/go to a party./option/do his homework/opti
     <string name="not_stated">Not stated</string>
 
     <!-- Reading Задание 9 -->
-    <string name="headings">Заголовки:</string>
+    <string name="headings">Вопросы:</string>
     <string name="texts">Тексты:</string>
 
     <!-- Writing task -->
