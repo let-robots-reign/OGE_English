@@ -1,7 +1,7 @@
 package com.eduapps.edumage.oge_app.VariantsTasks;
 
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 public class TaskFragment extends Fragment {
     public TaskFragment() {
