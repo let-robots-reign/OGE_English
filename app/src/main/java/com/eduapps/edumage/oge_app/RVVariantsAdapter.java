@@ -64,14 +64,14 @@ public class RVVariantsAdapter extends RecyclerView.Adapter<RVVariantsAdapter.Va
             holder.ifSolved.setText(R.string.not_solved);
         } else {
             //holder.ifSolved.setText(R.string.solved);
-            String message = "результат: " + res + "/45";
+            String message = "результат: " + res + "/44";
             holder.ifSolved.setText(message);
             int color;
-            if (res >= 40) {
+            if (res >= 39) {
                 color = R.color.cards;
-            } else if (res >= 35) {
+            } else if (res >= 34) {
                 color = R.color.right_answer;
-            } else if (res >= 19) {
+            } else if (res >= 18) {
                 color = R.color.middling;
             } else {
                 color = R.color.wrong_answer;

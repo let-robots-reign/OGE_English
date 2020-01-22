@@ -89,7 +89,7 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
         AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
         builder.setTitle("Инструкция")
                 .setCancelable(true)
-                .setMessage("Вариант содержит задания 1-32 письменной части экзамена. После " +
+                .setMessage("Вариант содержит задания 1-31 письменной части экзамена. После " +
                         "выполнения всех заданий вы можете нажать на кнопку \"Проверить вариант\" " +
                         "и получить свой результат. После проверки варианта вы не сможете " +
                         "редактировать свои ответы, но сможете просмотреть свои ошибки.")
