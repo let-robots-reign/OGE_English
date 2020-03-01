@@ -3,9 +3,9 @@ package com.eduapps.edumage.oge_app.VariantsTasks;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -84,7 +84,7 @@ public class ReadingTaskFragment extends TaskFragment {
             ArrayAdapter<String> adapter; // adapter for spinners
 
             TextView headings = rootView.findViewById(R.id.headings_list);
-            headings.setText(currentQuestion.split("Выберите заголовок\n")[1]);
+            headings.setText(currentQuestion.split("Выберите вопрос\n")[1]);
 
             // spinner options are the list of headings
             String[] spinnerOptions = currentQuestion.split("\n");
@@ -125,12 +125,6 @@ public class ReadingTaskFragment extends TaskFragment {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner6.setAdapter(adapter);
 
-            Spinner spinner7 = rootView.findViewById(R.id.spinner7);
-            adapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_spinner_item, spinnerOptions);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner7.setAdapter(adapter);
-
             question = currentText.split("\n");
         } else if (position == 1) {
             TextView headingView = rootView.findViewById(R.id.heading);
@@ -141,7 +135,7 @@ public class ReadingTaskFragment extends TaskFragment {
             question = currentQuestion.split("\n");
         }
 
-        // first category has 7 questions, 2nd - 8
+        // first category has 6 questions, 2nd - 8
         TextView question1 = rootView.findViewById(R.id.question1);
         question1.setText(question[0]);
 
@@ -160,10 +154,10 @@ public class ReadingTaskFragment extends TaskFragment {
         TextView question6 = rootView.findViewById(R.id.question6);
         question6.setText(question[5].trim());
 
-        TextView question7 = rootView.findViewById(R.id.question7);
-        question7.setText(question[6].trim());
-
         if (position == 1) {
+            TextView question7 = rootView.findViewById(R.id.question7);
+            question7.setText(question[6].trim());
+
             TextView question8 = rootView.findViewById(R.id.question8);
             question8.setText(question[7].trim());
         }
@@ -191,8 +185,6 @@ public class ReadingTaskFragment extends TaskFragment {
         checkSpinnerSelection(spinner5, 4);
         Spinner spinner6 = rootView.findViewById(R.id.spinner6);
         checkSpinnerSelection(spinner6, 5);
-        Spinner spinner7 = rootView.findViewById(R.id.spinner7);
-        checkSpinnerSelection(spinner7, 6);
 
         spinner1.setOnTouchListener(disableTouch);
         spinner2.setOnTouchListener(disableTouch);
@@ -200,7 +192,6 @@ public class ReadingTaskFragment extends TaskFragment {
         spinner4.setOnTouchListener(disableTouch);
         spinner5.setOnTouchListener(disableTouch);
         spinner6.setOnTouchListener(disableTouch);
-        spinner7.setOnTouchListener(disableTouch);
 
         TextView rightAnswersHeader = rootView.findViewById(R.id.right_answer_header);
         rightAnswersHeader.setVisibility(View.VISIBLE);
@@ -303,7 +294,7 @@ public class ReadingTaskFragment extends TaskFragment {
         rightAnswersList = new ArrayList<>();
         Cursor cursor;
         String selection = Tables.ReadingTask1.COLUMN_ID + " = ?";
-        String[] selectionArgs = new String[]{String.valueOf(number + 1)};
+        String[] selectionArgs = new String[]{String.valueOf(number % 8 + 1)};
         switch (position) {
             case 0:
                 cursor = db.query(Tables.ReadingTask1.TABLE_NAME, null, selection,

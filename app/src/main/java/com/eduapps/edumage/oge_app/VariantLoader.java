@@ -3,7 +3,7 @@ package com.eduapps.edumage.oge_app;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.eduapps.edumage.oge_app.VariantsTasks.AudioTaskFragment;
 import com.eduapps.edumage.oge_app.VariantsTasks.ReadingTaskFragment;

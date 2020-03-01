@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
@@ -145,7 +145,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private long getDaysTillExam() {
-        long diffMillis = new GregorianCalendar(2019, 4, 24).getTimeInMillis()
+        long diffMillis = new GregorianCalendar(2020, 4, 22).getTimeInMillis()
                 - Calendar.getInstance().getTimeInMillis();
         return (int)Math.ceil((double)diffMillis / 1000 / 60 / 60 / 24);
     }
@@ -166,7 +166,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private int getUserProgress() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);;
+        collectedXP = preferences.getInt(EXPERIENCE_KEY, 0);
         return collectedXP % EXP_PER_LEVEL;
     }
 

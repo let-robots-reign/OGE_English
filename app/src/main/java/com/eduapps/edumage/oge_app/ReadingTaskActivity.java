@@ -8,9 +8,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -70,7 +71,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             setContentView(R.layout.reading_task_9);
             setTitle(R.string.reading_topic1);
             TextView headings = findViewById(R.id.headings_list);
-            headings.setText(currentQuestion.split("Выберите заголовок\n")[1]);
+            headings.setText(currentQuestion.split("Выберите вопрос\n")[1]);
 
             // spinner options are the list of headings
             String[] spinnerOptions = currentQuestion.split("\n");
@@ -111,12 +112,6 @@ public class ReadingTaskActivity extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner6.setAdapter(adapter);
 
-            Spinner spinner7 = findViewById(R.id.spinner7);
-            adapter = new ArrayAdapter<>(this,
-                    android.R.layout.simple_spinner_item, spinnerOptions);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner7.setAdapter(adapter);
-
             question = currentText.split("\n");
 
         } else if (category == 1) {
@@ -130,7 +125,8 @@ public class ReadingTaskActivity extends AppCompatActivity {
             question = currentQuestion.split("\n");
         }
 
-        // first category has 7 questions, 2nd - 8
+
+        // first category has 6 questions, 2nd - 8
         TextView question1 = findViewById(R.id.question1);
         question1.setText(question[0]);
 
@@ -149,10 +145,10 @@ public class ReadingTaskActivity extends AppCompatActivity {
         TextView question6 = findViewById(R.id.question6);
         question6.setText(question[5].trim());
 
-        TextView question7 = findViewById(R.id.question7);
-        question7.setText(question[6].trim());
-
         if (category == 1) {
+            TextView question7 = findViewById(R.id.question7);
+            question7.setText(question[6].trim());
+
             TextView question8 = findViewById(R.id.question8);
             question8.setText(question[7].trim());
         }
@@ -195,12 +191,9 @@ public class ReadingTaskActivity extends AppCompatActivity {
                     Spinner spinner6 = findViewById(R.id.spinner6);
                     checkSpinnerSelection(spinner6, 5);
 
-                    Spinner spinner7 = findViewById(R.id.spinner7);
-                    checkSpinnerSelection(spinner7, 6);
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReadingTaskActivity.this);
                     builder.setTitle("Ваш результат:")
-                            .setMessage("You have " + rightAnswers + "/7 right answers")
+                            .setMessage("You have " + rightAnswers + "/6 right answers")
                             .setCancelable(false)
                             .setPositiveButton("Смотреть ошибки",
                                     new DialogInterface.OnClickListener() {
@@ -221,7 +214,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
                                             intent.putExtra("id", currentID);
 
                                             // the result should appear in 'recent activities'
-                                            recordRecentActivity(7);
+                                            recordRecentActivity(6);
 
                                             startActivity(intent);
                                         }
@@ -363,10 +356,9 @@ public class ReadingTaskActivity extends AppCompatActivity {
                 });
         switch(category) {
             case 0:
-                builder.setMessage("Прочитайте тексты и установите соответствие между текстами и " +
-                        "их заголовками: к каждому тексту, обозначенному буквами А–G, подберите " +
-                        "соответствующий заголовок, обозначенный цифрами 1–8. Используйте каждую " +
-                        "цифру только один раз. В задании есть один лишний заголовок.");
+                builder.setMessage("Определите, в каком из текстов A-F содержатся ответы на вопросы" +
+                        " 1-7. Используйте каждую цифру только один раз. В задании есть один " +
+                        "лишний вопрос.");
                 break;
             case 1:
                 builder.setMessage("Прочитайте текст. Определите, какие из приведённых утверждений " +
@@ -512,7 +504,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
             exp = rightAnswers * 10;
         }
 
-        // if user does the task for the firs time, he gets more experience
+        // if user does the task for the first time, he gets more experience
         if (currentCompletion == 50) {
             exp /= 2;
         } else if (currentCompletion == 100) {
@@ -551,7 +543,7 @@ public class ReadingTaskActivity extends AppCompatActivity {
         db.insert(Tables.RecentActivities.TABLE_NAME, null, values);
 
         // also, update completion if user did the task well
-        if (rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
+        if ((double)rightAnswers / totalQuestions >= 0.6 && currentCompletion < 100) {
             if (currentCompletion + 50 == 100) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = preferences.edit();

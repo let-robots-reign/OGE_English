@@ -6,14 +6,14 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Loader;
-import android.support.v4.view.ViewPager;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.MenuItem;
@@ -89,7 +89,7 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
         AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
         builder.setTitle("Инструкция")
                 .setCancelable(true)
-                .setMessage("Вариант содержит задания 1-32 письменной части экзамена. После " +
+                .setMessage("Вариант содержит задания 1-31 письменной части экзамена. После " +
                         "выполнения всех заданий вы можете нажать на кнопку \"Проверить вариант\" " +
                         "и получить свой результат. После проверки варианта вы не сможете " +
                         "редактировать свои ответы, но сможете просмотреть свои ошибки.")
@@ -158,7 +158,7 @@ public class VariantTask extends AppCompatActivity implements LoaderManager.Load
                 AlertDialog.Builder builder = new AlertDialog.Builder(VariantTask.this);
                 builder.setTitle("Ваш результат:")
                         .setCancelable(false)
-                        .setMessage("You have " + totalRightAnswers + "/45 right answers")
+                        .setMessage("You have " + totalRightAnswers + "/44 right answers")
                         .setNegativeButton("Смотреть ошибки и ответы", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
